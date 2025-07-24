@@ -2,6 +2,8 @@
 
 use App\Livewire\Login;
 use App\Livewire\Navbar;
+use App\Livewire\Akademik;
+use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,4 +11,4 @@ Route::get('/', function () {
 });
 
 Route::get('/login', Login::class)->name('login');
-Route::get('/dashboard', Navbar::class)->name('dashboard');
+Route::get('/', Akademik::class)->name('akademi');

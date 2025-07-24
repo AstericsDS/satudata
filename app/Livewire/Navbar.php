@@ -7,9 +7,8 @@ use Livewire\Attributes\Title;
 
 class Navbar extends Component
 {
-    #[Title('Dashboard')]
     public function render()
     {
-        return view('livewire.navbar');
+        return view('livewire.navbar')->slot('navbar');
     }
 }

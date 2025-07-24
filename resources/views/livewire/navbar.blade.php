@@ -1,4 +1,4 @@
-<div class="px-6 py-4 flex justify-between items-center sticky top-0 bg-white">
+<div class="px-12 py-4 flex justify-between items-center fixed top-0 bg-white z-50 w-full">
     <div class="flex items-center gap-4">
         <a href="/dashboard">
             <img src="images/unj.png" alt="" width="50px">
