@@ -1,74 +1,58 @@
 import ApexCharts from 'apexcharts'
 
-var donutOption = {
+var options1 = {
     chart: {
-        type: 'donut' // ✅ use 'donut', not 'circle'
+        type: 'bar',
+        height: 350
     },
-    series: [37, 69],
-    labels: ['S1', 'S2'],
+    series: [
+        {
+        name: 'Jumlah Mahasiswa',
+        data: [30, 40, 45, 50, 49, 60, 70, 80]
+        },
+        {
+            name: 'Jumlah Mahasiswa Diterima',
+            data: [6979, 7019, 8082, 8722, 12671, 11604, 27477, 9280]
+        }
+    ],
+    colors: ["#4D774E", "#9DC88D"],
+    dataLabels: {
+        enabled: false
+    },
+    tooltip: {
+        y: {
+            formatter: function(value){
+                return value;
+            },
+        },
+        style: {
+            colors: ['#000000']
+        }
+    },
+    xaxis: {
+        categories: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+    },
     plotOptions: {
-        pie: {
-            donut: {
-                labels: {
-                    show: true,
-                    name: {
-                        show: true,
-                        fontSize: '16px',
-                        color: '#333',
-                        offsetY: -10
-                    },
-                    value: {
-                        show: true,
-                        fontSize: '20px',
-                        color: '#111',
-                        offsetY: 10,
-                        formatter: function (val) {
-                            return val;
-                        }
-                    },
-                    total: {
-                        show: true,
-                        label: 'Total',
-                        formatter: function (w) {
-                            return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                        }
-                    }
-                }
-            }
+        bar: {
+            columnWidth: '25%',
+            borderRadius: 3,
+            borderRadiusApplication: 'end'
         }
     }
 };
 
-var donutChart = new ApexCharts(document.querySelector("#donut"), donutOption);
-donutChart.render();
-  
-  var options = {
-      chart: {
-          type: 'bar'
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true
-            }
-        },
-        series: [{
-            data: [{
-                x: 'category A',
-                y: 10,
-                fillColor: '#a6da95'
-            }, {
-                x: 'category B',
-                y: 18,
-                fillColor: '#ed8796'
-            }, {
-                x: 'category C',
-                y: 13,
-                fillColor: '#8aadf4',
-                strokeColor: '#C23829'
-            }]
-    }]
-}
+var options2 = {
+    chart: {
+        type: 'pie',
+        height: 300
+    },
+    series: [27346, 2025, 1072, 3640],
+    labels: ['S1', 'S2', 'S3', 'D4'],
+    colors: ["#4D774E", "#9DC88D", "#006569", "#00b3ba"],
 
-var chart = new ApexCharts(document.querySelector("#chart"), options);
+};
 
-chart.render();
+var chart1 = new ApexCharts(document.querySelector("#angkatan"), options1);
+var chart2 = new ApexCharts(document.querySelector("#jenjang"), options2);
+chart1.render();
+chart2.render();

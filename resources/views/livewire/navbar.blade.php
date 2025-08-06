@@ -11,7 +11,7 @@
     </div>
 
     <div class="flex gap-8 text-white">
-        <button>
+        <button class="">
             Home
         </button>
         <button>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use App\Livewire\Login;
 use App\Livewire\Navbar;
 use App\Livewire\Akademik;
@@ -12,3 +13,5 @@ Route::get('/', function () {
 
 Route::get('/login', Login::class)->name('login');
 Route::get('/', Akademik::class)->name('akademi');
+
+Route::get('mahasiswa/import', [MahasiswaController::class, 'import']);
