@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class DosenService {
@@ -48,8 +49,8 @@ class DosenService {
     }
 
     public function getCountLecturersByJabatan() {
-        $api_url = env('PDDIKTI_API_URL');
-        $token = env('PDDIKTI_API_TOKEN');
+        $api_url = env('PDDIKTI_BASE_URL') . '/ws/live2.php';
+        $token = env('PDDIKTI_TOKEN');
 
         $response = Http::post($api_url, [
             'act' => 'GetRiwayatFungsionalDosen',
@@ -77,5 +78,44 @@ class DosenService {
             'Lektor Kepala' => $lektor_kepala,
             'profesor' => $profesor
         ]);
+    }
+
+    // sejujurna ini masih nguwawor
+    public function getCountLecturersByFaculty() {
+        $token = env('SIAKAD_BASE_URL');
+        // $api_url = env('SIAKAD_BASE_URL') . '/dataLengkapDosen/All/' . $token;
+
+        $facultyCounts = Cache::remember('lecturer_faculty_counts', 60, function () {
+        
+            $faculties = [
+                '99' => 'Sekolah Pascasarjana',
+                '11' => 'Fakultas Ilmu Pendidikan',
+                '12' => 'Fakultas Bahasa dan Seni',
+                '13' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
+                '14' => 'Fakultas Ilmu Sosial dan Hukum',
+                '15' => 'Fakultas Teknik',
+                '16' => 'Fakultas Ilmu Keolahragaan dan Kesehatan',
+                '17' => 'Fakultas Ekonomi dan Bisnis',
+                '18' => 'Fakultas Psikologi',
+                '20' => 'Program Profesi Guru'
+            ];
+
+            $base_url = env('SIAKAD_BASE_URL');
+            $counts = [];
+
+            foreach ($faculties as $faculty_code => $faculty_name) {
+                $dosenApiUrl = "{$base_url}/api/as400/dosenFakultas/{$faculty_code}";
+                $dosenResponse = Http::get($dosenApiUrl);
+
+                if ($dosenResponse->successful()) {
+                    $lecturerCount = count($dosenResponse->json());
+                    $counts[$faculty_name] = $lecturerCount;
+                } else {
+                    $counts[$faculty_name] = 0;
+                }
+            }
+            return $counts;
+        });
+        return response()->json($facultyCounts);
     }
 }

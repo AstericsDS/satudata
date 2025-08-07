@@ -9,6 +9,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/lecturer-stats', [Counter::class, 'getCountLecturersByEducation']);
+Route::get('/lecturer-edu', [DosenService::class, 'getCountLecturersByEducation']);
 Route::get('/lecturer-jabatan', [DosenService::class, 'getCountLecturersByJabatan']);
 Route::get('/lecturer-faculty', [DosenService::class, 'getCountLecturersByFaculty']);
