@@ -149,7 +149,7 @@ var options7 = {
     colors: ["#4D774E", "#9DC88D", "#00b3ba", "#004b23", "#006569", "#55a630"],
 };
 
-// masih dummy. masih tidak bisa pake api siakad </3
+// data hitung manual dari response.json. masih tidak bisa pake api siakad </3
 var options8 = {
     chart: {
         type: 'bar',
@@ -158,7 +158,7 @@ var options8 = {
     series: [
         {
             name: 'Jumlah Dosen',
-            data: [100, 197, 308, 350, 423, 509, 203, 178, 400, 345]
+            data: [72, 598, 277, 197, 183, 276, 163, 195, 57, 4]
         },
     ],
     colors: ["#4D774E"],
