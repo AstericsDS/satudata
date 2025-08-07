@@ -1,4 +1,4 @@
-<div class="px-12 py-4 flex justify-between items-center bg-unj w-full">
+<div class="px-12 py-4 flex justify-between items-center bg-unj w-full fixed top-0 z-50">
 
     <div class="flex items-center gap-4">
         <a href="/dashboard">

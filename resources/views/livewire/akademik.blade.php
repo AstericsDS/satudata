@@ -1,4 +1,4 @@
-<div class="p-16">
+<div class="p-16 pt-0 mt-[120px]">
     {{-- <div id="chart" class="w-lg">
 
     </div> --}}
@@ -15,85 +15,93 @@
         </div>
     </div> --}}
 
-    <div class="flex gap-4 p-4">
+    <div class="p-8 border-2 rounded-md border-gray-200">
 
-        <div class="p-2 flex-1 shadow-xl">
-            <div class="flex flex-col gap-2">
-                <p class="text-gray-400 font-semibold">Dosen</p>
-                <p class="font-semibold">1429</p>
-                <div>
-                    <span>41%</span>
-                    <span>Kualitas S3</span>
+        {{-- Header --}}
+        <h1 class="text-3xl">Data Mahasiswa</h1>
+        <hr class="mt-4 text-gray-300 rounded-xl">
+
+        {{-- Main Container Mahasiswa --}}
+        <div class="flex gap-4 mt-6">
+
+            <div class="p-2 flex-1 shadow-xl">
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-400 font-semibold">Dosen</p>
+                    <p class="font-semibold text-2xl">1429</p>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-lime-800 text-white  font-semibold rounded-md text-xs">35%</span>
+                        <span class="text-gray-500">Kualitas S3</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="p-2 flex-1 shadow-xl">
-            <div class="flex flex-col gap-2">
-                <p class="text-gray-400 font-semibold">Mahasiswa</p>
-                <p class="font-semibold">44272</p>
-                <div>
-                    <span>41%</span>
-                    <span>Kualitas S3</span>
+    
+            <div class="p-2 flex-1 shadow-xl">
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-400 font-semibold">Mahasiswa</p>
+                    <p class="font-semibold text-2xl">44272</p>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-lime-800 text-white  font-semibold rounded-md text-xs">+8%</span>
+                        <span class="text-gray-500">Dari tahun sebelumnya</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="p-2 flex-1 shadow-xl">
-            <div class="flex flex-col gap-2">
-                <p class="text-gray-400 font-semibold">Wisuda 2025</p>
-                <p class="font-semibold">2283</p>
-                <div>
-                    <span>41%</span>
-                    <span>Kualitas S3</span>
+    
+            <div class="p-2 flex-1 shadow-xl">
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-400 font-semibold">Wisuda 2025</p>
+                    <p class="font-semibold text-2xl">2283</p>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-15%</span>
+                        <span class="text-gray-500">Dari tahun sebelumnya</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="p-2 flex-1 shadow-xl">
-            <div class="flex flex-col gap-2">
-                <p class="text-gray-400 font-semibold">Peminat 2025</p>
-                <p class="font-semibold">-</p>
-                <div>
-                    <span>41%</span>
-                    <span>Kualitas S3</span>
+    
+            <div class="p-2 flex-1 shadow-xl">
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-400 font-semibold">Peminat 2025</p>
+                    <p class="font-semibold text-2xl">47652</p>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-11%</span>
+                        <span class="text-gray-500">Dari tahun sebelumnya</span>
+                    </div>
                 </div>
             </div>
+    
         </div>
-
-    </div>
-
-    <div class="grid grid-cols-2 gap-x-14 gap-y-4 mt-8">
-        <div class="text-white shadow-xl">
-            <div class="bg-unj rounded-t-md p-4 font-semibold">
-                <p class="text-center">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</p>
+    
+        <div class="grid grid-cols-2 gap-x-14 gap-y-8 mt-8">
+            <div class="text-white shadow-xl">
+                <div class="bg-unj rounded-t-md p-4 font-semibold">
+                    <p class="text-center">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</p>
+                </div>
+                <div>
+                    <div id="angkatan" class="text-black mt-4"></div>
+                </div>
             </div>
-            <div>
-                <div id="angkatan" class="text-black mt-4"></div>
+            <div class="text-white shadow-xl">
+                <div class="bg-unj rounded-t-md p-4 font-semibold">
+                    <p class="text-center">Jumlah Mahasiswa Berdasarkan Fakultas</p>
+                </div>
+                <div>
+                    <div id="fakultas" class="text-black mt-4 h-full"></div>
+                </div>
             </div>
-        </div>
-        <div class="text-white shadow-xl">
-            <div class="bg-unj rounded-t-md p-4 font-semibold">
-                <p class="text-center">Jumlah Mahasiswa Berdasarkan Fakultas</p>
+            <div class="text-white shadow-xl">
+                <div class="bg-unj rounded-t-md p-4 font-semibold">
+                    <p class="text-center">Jumlah Mahasiswa Berdasarkan Jenjang</p>
+                </div>
+                <div>
+                    <div id="jenjang" class="text-black mt-4"></div>
+                </div>
             </div>
-            <div>
-                <div class="text-black mt-4"></div>
-            </div>
-        </div>
-        <div class="text-white shadow-xl">
-            <div class="bg-unj rounded-t-md p-4 font-semibold">
-                <p class="text-center">Jumlah Mahasiswa Berdasarkan Jenjang</p>
-            </div>
-            <div>
-                <div id="jenjang" class="text-black mt-4"></div>
-            </div>
-        </div>
-        <div class="text-white shadow-xl">
-            <div class="bg-unj rounded-t-md p-4 font-semibold">
-                <p class="text-center">Jumlah Peminat per-Tahun</p>
-            </div>
-            <div>
-                <div class="text-black mt-4"></div>
+            <div class="text-white shadow-xl">
+                <div class="bg-unj rounded-t-md p-4 font-semibold">
+                    <p class="text-center">Jumlah Peminat per-Tahun</p>
+                </div>
+                <div>
+                    <div id="peminat" class="text-black mt-4"></div>
+                </div>
             </div>
         </div>
     </div>
