@@ -1,31 +1,14 @@
-<div class="p-16 pt-0 mt-[120px]">
-    {{-- <div id="chart" class="w-lg">
+{{-- Wrapper --}}
+<div>
+    
+    {{-- All Container --}}
+    <div class="p-16 pt-0 mt-[120px]">
 
-    </div> --}}
-    {{-- <div>
-        <div class="p-2">
-            <div class="flex border-r-2">
-                <div class="flex flex-col justify-between">
-                    <h1 class="text-2xl font-medium">MAHASISWA S1 DITERIMA</h1>
-                    <h1 class="text-5xl">106</h1>
-                    <h1 class="text-xs">0.00% Dari semester sebelumnya</h1>
-                </div>
-                <div id="donut"></div>
-            </div>
-        </div>
-    </div> --}}
-
-    <div class="p-8 border-2 rounded-md border-gray-200">
-
-        {{-- Header --}}
-        <h1 class="text-3xl">Data Mahasiswa</h1>
-        <hr class="mt-4 text-gray-300 rounded-xl">
-
-        {{-- Main Container Mahasiswa --}}
-        <div class="flex gap-4 mt-6">
+        {{-- Status - Start --}}
+        <div class="flex gap-4 mt-6 mb-6">
 
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Dosen</p>
                     <p class="font-semibold text-2xl">1429</p>
                     <div class="flex items-center gap-2">
@@ -34,9 +17,9 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Mahasiswa</p>
                     <p class="font-semibold text-2xl">44272</p>
                     <div class="flex items-center gap-2">
@@ -45,9 +28,9 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Wisuda 2025</p>
                     <p class="font-semibold text-2xl">2283</p>
                     <div class="flex items-center gap-2">
@@ -56,53 +39,125 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2">
-                    <p class="text-gray-400 font-semibold">Peminat 2025</p>
-                    <p class="font-semibold text-2xl">47652</p>
-                    <div class="flex items-center gap-2">
-                        <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-11%</span>
-                        <span class="text-gray-500">Dari tahun sebelumnya</span>
+                <p class="text-gray-400 font-semibold">Peminat 2025</p>
+                <p class="font-semibold text-2xl">47652</p>
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-11%</span>
+                    <span class="text-gray-500">Dari tahun sebelumnya</span>
+                </div>
+            </div>
+
+        </div>
+        {{-- Status - End --}}
+
+        {{-- Data Mahasiswa - Start --}}
+        <div class="p-8 border-2 rounded-md border-gray-200">
+
+            {{-- Header - Start --}}
+            <h1 class="text-3xl">Data Mahasiswa</h1>
+            <hr class="mt-4 text-gray-300 rounded-xl">
+            {{-- Header - End --}}
+
+            {{-- Main Container Mahasiswa - Start --}}
+            <div class="grid grid-cols-2 gap-x-14 gap-y-8 mt-8">
+
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</p>
+                    </div>
+                    <div>
+                        <div id="angkatan" class="text-black mt-4"></div>
                     </div>
                 </div>
+
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Mahasiswa Berdasarkan Fakultas</p>
+                    </div>
+                    <div>
+                        <div id="fakultas" class="text-black mt-4 h-full"></div>
+                    </div>
+                </div>
+
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Mahasiswa Berdasarkan Jenjang</p>
+                    </div>
+                    <div>
+                        <div id="jenjang" class="text-black mt-4"></div>
+                    </div>
+                </div>
+
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Peminat per-Tahun</p>
+                    </div>
+                    <div>
+                        <div id="peminat" class="text-black mt-4"></div>
+                    </div>
+                </div>
+
             </div>
-    
+            {{-- Main Container Mahasiswa - End --}}
+
         </div>
-    
-        <div class="grid grid-cols-2 gap-x-14 gap-y-8 mt-8">
-            <div class="text-white shadow-xl">
-                <div class="bg-unj rounded-t-md p-4 font-semibold">
-                    <p class="text-center">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</p>
+        {{-- Data Mahasiswa - End --}}
+
+        {{-- Data Dosen - Start --}}
+        <div class="p-8 border-2 rounded-md border-gray-200 mt-8">
+        
+            {{-- Header - Start --}}
+            <h1 class="text-3xl">Data Dosen</h1>
+            <hr class="mt-4 text-gray-300 rounded-xl">
+            {{-- Header - End --}}
+        
+            {{-- Main Container Dosen - Start --}}
+            <div class="grid grid-cols-2 gap-x-14 gap-y-8 mt-8">
+        
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Dosen Berdasarkan Jenjang Pendidikan Tertinggi</p>
+                    </div>
+                    <div>
+                        <div id="dosen-gelar" class="text-black mt-4"></div>
+                    </div>
                 </div>
-                <div>
-                    <div id="angkatan" class="text-black mt-4"></div>
+        
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Dosen Berdasarkan Jabatan Fungsional</p>
+                    </div>
+                    <div>
+                        <div id="dosen-jabatan" class="text-black mt-4 h-full"></div>
+                    </div>
                 </div>
+        
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Dosen Berdasarkan Status Kepegawaian</p>
+                    </div>
+                    <div>
+                        <div id="dosen-pegawai" class="text-black mt-4"></div>
+                    </div>
+                </div>
+        
+                <div class="text-white shadow-xl">
+                    <div class="bg-unj rounded-t-md p-4 font-semibold">
+                        <p class="text-center">Jumlah Dosen Berdasarkan Fakultas</p>
+                    </div>
+                    <div>
+                        <div id="dosen-fakultas" class="text-black mt-4"></div>
+                    </div>
+                </div>
+        
             </div>
-            <div class="text-white shadow-xl">
-                <div class="bg-unj rounded-t-md p-4 font-semibold">
-                    <p class="text-center">Jumlah Mahasiswa Berdasarkan Fakultas</p>
-                </div>
-                <div>
-                    <div id="fakultas" class="text-black mt-4 h-full"></div>
-                </div>
-            </div>
-            <div class="text-white shadow-xl">
-                <div class="bg-unj rounded-t-md p-4 font-semibold">
-                    <p class="text-center">Jumlah Mahasiswa Berdasarkan Jenjang</p>
-                </div>
-                <div>
-                    <div id="jenjang" class="text-black mt-4"></div>
-                </div>
-            </div>
-            <div class="text-white shadow-xl">
-                <div class="bg-unj rounded-t-md p-4 font-semibold">
-                    <p class="text-center">Jumlah Peminat per-Tahun</p>
-                </div>
-                <div>
-                    <div id="peminat" class="text-black mt-4"></div>
-                </div>
-            </div>
+            {{-- Main Container Dosen - End --}}
+        
         </div>
+        {{-- Data Dosen - End --}}
+
     </div>
+
 </div>
