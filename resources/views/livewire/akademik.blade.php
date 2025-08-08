@@ -41,11 +41,13 @@
             </div>
 
             <div class="p-2 flex-1 shadow-xl">
-                <p class="text-gray-400 font-semibold">Peminat 2025</p>
-                <p class="font-semibold text-2xl">47652</p>
-                <div class="flex items-center gap-2">
-                    <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-11%</span>
-                    <span class="text-gray-500">Dari tahun sebelumnya</span>
+                <div class="flex flex-col gap-2 ml-2">
+                    <p class="text-gray-400 font-semibold">Peminat 2025</p>
+                    <p class="font-semibold text-2xl">47652</p>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-11%</span>
+                        <span class="text-gray-500">Dari tahun sebelumnya</span>
+                    </div>
                 </div>
             </div>
 
