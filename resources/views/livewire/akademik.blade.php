@@ -2,22 +2,25 @@
 <div>
     
     {{-- All Container --}}
-    <div class="p-16 pt-0 mt-[120px]">
+    <div class="p-16 pt-0 mt-[50px]">
 
         {{-- Status - Start --}}
-        <div class="flex gap-4 mt-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 mb-6">
 
+            {{-- Dosen - Start --}}
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Dosen</p>
-                    <p class="font-semibold text-2xl">1429</p>
+                    <p class="font-semibold text-2xl">2022</p>
                     <div class="flex items-center gap-2">
-                        <span class="px-2 py-1 bg-lime-800 text-white  font-semibold rounded-md text-xs">35%</span>
+                        <span class="px-2 py-1 bg-lime-800 text-white  font-semibold rounded-md text-xs">32%</span>
                         <span class="text-gray-500">Kualitas S3</span>
                     </div>
                 </div>
             </div>
+            {{-- Dosen - End --}}
 
+            {{-- Mahasiswa - Start --}}
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Mahasiswa</p>
@@ -29,6 +32,7 @@
                 </div>
             </div>
 
+            {{-- Wisuda - Start --}}
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Wisuda 2025</p>
@@ -39,7 +43,9 @@
                     </div>
                 </div>
             </div>
+            {{-- Wisuda - End --}}
 
+            {{-- Peminat - Start --}}
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Peminat 2025</p>
@@ -50,6 +56,7 @@
                     </div>
                 </div>
             </div>
+            {{-- Peminat - End --}}
 
         </div>
         {{-- Status - End --}}

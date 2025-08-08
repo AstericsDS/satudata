@@ -113,6 +113,21 @@ var options4 = {
             borderRadius: 3,
             borderRadiusApplication: 'end',
             columnWidth: '40%',
+            dataLabels: {
+                total: {
+                    enabled: true,
+                    // buat nampilin koma tapi display masih berantakan
+                    // formatter: function (value) {
+                    //     return value.toLocaleString();  
+                    // },
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: '#333'
+                    },
+                    offsetY: -10,
+                }
+            }
         },
     },
     colors: ["#4D774E", "#9DC88D", "#006569"],
