@@ -41,7 +41,7 @@
 
                 {{-- Home - Start --}}
                 <li>
-                    <a href="#" class="block py-2 px-3 text-white bg-unj" aria-current="page">
+                    <a href="/" class="block py-2 px-3 text-white bg-unj hover:underline" aria-current="page">
                         Home
                     </a>
                 </li>
@@ -49,14 +49,14 @@
 
                 {{-- Akademik & Mahasiswa - Start --}}
                 <li>
-                    <button id="akademik-navbar-link" data-dropdown-toggle="akademikNavbar" class="flex items-center justify-between w-full py-2 px-3 text-white bg-unj">
+                    <button id="akademik-navbar-link" data-dropdown-toggle="akademikNavbar" class="flex items-center justify-between w-full py-2 px-3 text-white bg-unj hover:underline">
                         Akademik & Mahasiswa
                     </button>
                     {{-- Menu Akademik & Mahasiswa - Start --}}
                     <div id="akademikNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
                         <ul class="text-sm text-unj" aria-labelledby="akademik-large-button">
                             <li>
-                                <a href="#" class="block px-4 py-1.5">Jumlah Mahasiswa</a>
+                                <a href="/jumlah-mahasiswa" class="block px-4 py-1.5 hover:underline">Jumlah Mahasiswa</a>
                             </li>
                             <li>
                                 <a href="#" class="block px-4 py-1.5">Jumlah Wisudawan</a>

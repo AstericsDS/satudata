@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\Mahasiswa;
 use App\Services\MahasiswaSyncService;
 use App\Services\DosenService;
 
+#[Title('Dashboard')]
 class Akademik extends Component
 {
     // public $mhs;
