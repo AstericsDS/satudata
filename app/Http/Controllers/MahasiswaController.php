@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\MahasiswaSyncService;
+use App\Services\MahasiswaService;
 
 class MahasiswaController extends Controller
 {
-    public function import(MahasiswaSyncService $service)
+    public function import(MahasiswaService $service)
     {
-        $service->import();
-
-        return response()->json(['message' => 'Import completed (test mode).']);
+        $service->mhsCount();
     }
 }

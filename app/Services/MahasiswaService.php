@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Http;
 
-class MahasiswaSyncService
+class MahasiswaService
 {
     public function import()
     {
@@ -56,7 +56,7 @@ class MahasiswaSyncService
         }
     }
 
-    function mhsCount()
+    public function mhsCount()
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -68,7 +68,7 @@ class MahasiswaSyncService
                     "limit" => '',
                     "offset" => 0,
                 ]);
-        return $response['jumlah'];
+        return $response->json()['jumlah'];
     }
 
     function lulusCount()
