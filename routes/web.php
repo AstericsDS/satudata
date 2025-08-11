@@ -8,10 +8,11 @@ use App\Http\Controllers\Counter;
 use App\Livewire\JumlahMahasiswa;
 use App\Livewire\Admin\Sinkronisasi;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\MahasiswaController;
 
 // Public
-Route::get('/', Akademik::class)->name('akademi');
+Route::get('/', Akademik::class)->name('akademik');
 Route::get('/login', Login::class)->name('login');
 Route::get('/jumlah-mahasiswa', JumlahMahasiswa::class)->name('jumlah-mahasiswa');
 
@@ -21,4 +22,4 @@ Route::prefix('admin')->group(function(){
 });
 
 // API
-Route::get('mahasiswa/import', [MahasiswaController::class, 'import']);
+Route::get('/unj-angka', [DataController::class, 'angkatan']);

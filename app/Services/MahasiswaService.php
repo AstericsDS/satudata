@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Data;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Http;
 
@@ -58,6 +59,8 @@ class MahasiswaService
 
     public function mhsCount()
     {
+        $model = Data::first();
+        $data = $model->unj_dalam_angka;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
         ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
@@ -68,7 +71,16 @@ class MahasiswaService
                     "limit" => '',
                     "offset" => 0,
                 ]);
-        return $response->json()['jumlah'];
+
+        $data['jumlah_mahasiswa'] = $response->json()['jumlah'];
+        $model->unj_dalam_angka = $data;
+        $model->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Jumlah mahasiswa updated successfully',
+            'jumlah_mahasiswa' => $model['jumlah_mahasiswa']
+        ]);
     }
 
     function lulusCount()
@@ -76,7 +88,7 @@ class MahasiswaService
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
         ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
-                    "act" =>  "GetListMahasiswaLulusDO",
+                    "act" => "GetListMahasiswaLulusDO",
                     "token" => env('PDDIKTI_TOKEN'),
                     "filter" => "nama_jenis_keluar = 'Lulus' AND tanggal_keluar LIKE '%2025'",
                     "order" => "",
