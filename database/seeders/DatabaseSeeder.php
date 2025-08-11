@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             ];
         }
 
+        $angkatan['updated_at'] = null;
+
         Data::create([
             'unj_dalam_angka' => [
                 'jumlah_dosen' => null,
@@ -41,6 +43,7 @@ class DatabaseSeeder extends Seeder
                 'wisuda_tahun_sebelum' => null,
                 'peminat_2025' => null,
                 'peminat_tahun_sebelum' => null,
+                'updated_at' => null,
             ],
             'mahasiswa_berdasarkan_angkatan' => $angkatan,
         ]);

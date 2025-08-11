@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Data;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Services\UNJDalamAngkaService;
-use App\Models\Data;
+use App\Services\MahasiswaAngkatanService;
 
 #[Layout('components.layouts.admin')]
 class Sinkronisasi extends Component
@@ -17,10 +18,18 @@ class Sinkronisasi extends Component
         $service->mahasiswaCount();
         $service->wisudaCount();
 
-        $this->data->updated_at = now();
-        $this->data->save();
+        Data::where('id', 1)->update([
+            'unj_dalam_angka->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
+        ]);
     }
 
+    public function mahasiswaAngkatan(MahasiswaAngkatanService $service)
+    {
+        $service->synchronize();
+        Data::where('id', 1)->update([
+            'mahasiswa_berdasarkan_angkatan->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
+        ]);
+    }
 
     public function mount()
     {

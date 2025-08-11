@@ -56,7 +56,13 @@
                             </button>
                         </td>
                         <td class="px-6 py-4">
-                            Data ini disinkronisasi pada: <span class="font-semibold text-black">{{ $data->updated_at->locale('id')->translatedFormat('l, d F (H:i:s)') }}</span>
+                            @if (isset($data->unj_dalam_angka['updated_at']))
+                                <div wire:poll>
+                                    Data ini disinkronisasi pada: <span class="font-semibold text-black">{{ $data->unj_dalam_angka['updated_at'] }}</span>
+                                </div>
+                            @else
+                                Data belum disinkronisasi
+                            @endif
                         </td>
                         <td class="px-6 py-4">
                             PD-DIKTI
@@ -71,16 +77,16 @@
                             Grafik jumlah mahasiswa berdasarkan angkatan
                         </td>
                         <td class="px-6 py-4">
-                            <button wire:loading.attr="disabled" wire:click='synchronize' class="p-2 bg-blue-400 w-fit rounded-md hover:bg-blue-500 cursor-pointer transition-all">
+                            <button wire:loading.attr="disabled" wire:click='mahasiswaAngkatan' class="p-2 bg-blue-400 w-fit rounded-md hover:bg-blue-500 cursor-pointer transition-all">
 
-                                <span wire:loading.remove wire:target="synchronize">
+                                <span wire:loading.remove wire:target="mahasiswaAngkatan">
                                     <!-- Normal icon -->
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
                                     </svg>
                                 </span>
 
-                                <span wire:loading wire:target="synchronize">
+                                <span wire:loading wire:target="mahasiswaAngkatan">
                                     <!-- Loading spinner -->
                                     <svg class="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -90,7 +96,14 @@
                             </button>
                         </td>
                         <td class="px-6 py-4">
-                            Data ini disinkronisasi pada: <span class="font-semibold text-black">{{ $data->updated_at->locale('id')->translatedFormat('l, d F (H:i:s)') }}</span>
+                            @if (isset($data->mahasiswa_berdasarkan_angkatan['updated_at']))
+                                <div wire:poll>
+                                    Data ini disinkronisasi pada: <span class="font-semibold text-black">{{ $data->mahasiswa_berdasarkan_angkatan['updated_at'] }}</span>
+                                </div>
+                            @else
+                                Data belum disinkronisasi
+                            @endif
+
                         </td>
                         <td class="px-6 py-4">
                             PD-DIKTI
