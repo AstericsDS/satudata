@@ -20,7 +20,7 @@ class MahasiswaAngkatanService
             // Get jumlah diterima
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+            ])->post(env('PDDIKTI_URL'), [
                         "act" => "GetCountMahasiswa",
                         "token" => env('PDDIKTI_TOKEN'),
                         "filter" => "nama_periode_masuk LIKE '{$year}%'",
@@ -32,7 +32,7 @@ class MahasiswaAngkatanService
             // Get jumlah aktif
             $response2 = Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+            ])->post(env('PDDIKTI_URL'), [
                         "act" => "GetCountMahasiswa",
                         "token" => env('PDDIKTI_TOKEN'),
                         "filter" => "nama_periode_masuk LIKE '{$year}%' AND nama_status_mahasiswa = 'AKTIF'",

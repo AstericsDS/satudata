@@ -1,6 +1,5 @@
 {{-- Wrapper --}}
 <div>
-
     {{-- All Container --}}
     <div class="p-16 pt-0 mt-[50px]">
 
@@ -169,4 +168,11 @@
 
     </div>
 
+
+    <script>
+        window.chartData = {
+            jumlah_mahasiswa_diterima: @json($jumlah_mahasiswa_diterima),
+            jumlah_mahasiswa: @json($jumlah_mahasiswa),
+        };
+    </script>
 </div>

@@ -16,7 +16,7 @@ class MahasiswaService
         do {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+            ])->post(env('PDDIKTI_URL'), [
                         "act" => "GetListMahasiswa",
                         "token" => env('PDDIKTI_TOKEN'),
                         "filter" => "nama_status_mahasiswa = 'AKTIF' AND status_sync = 'sudah sync'",
@@ -63,7 +63,7 @@ class MahasiswaService
         $data = $model->unj_dalam_angka;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+        ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListMahasiswa",
                     "token" => env('PDDIKTI_TOKEN'),
                     "filter" => "nama_status_mahasiswa = 'AKTIF' AND status_sync = 'sudah sync'",
@@ -87,7 +87,7 @@ class MahasiswaService
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+        ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListMahasiswaLulusDO",
                     "token" => env('PDDIKTI_TOKEN'),
                     "filter" => "nama_jenis_keluar = 'Lulus' AND tanggal_keluar LIKE '%2025'",

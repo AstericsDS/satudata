@@ -9,25 +9,40 @@ class PDDIKTIService
 {
     public function getToken()
     {
-        // If token exists in cache, return it
-        if (Cache::has('pddikti_token')) {
-            return Cache::get('pddikti_token');
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+        ])->post(env('PDDIKTI_URL'), [
+                    'act' => 'GetToken',
+                    'username' => env('PDDIKTI_USERNAME'),
+                    'password' => env('PDDIKTI_PASSWORD'),
+                ]);
+
+        $data = $response->json();
+        Cache::store('database')->put('token', $data['data']['token']);
+        return;
+    }
+
+    public function refreshToken()
+    {
+        Cache::forget('token');
+        return $this->getToken();
+    }
+
+    public function checkToken()
+    {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+        ])->post(env('PDDIKTI_URL'), [
+                    "act" => "GetListDosen",
+                    "token" => Cache::get('token'),
+                    "filter" => "nama_status_aktif = 'Aktif'",
+                    "order" => "",
+                    "limit" => "1",
+                    "offset" => "0"
+                ]);
+
+        if ($response['error_code'] == '100' && $response['error_desc'] == 'Invalid Token. Token tidak ada atau token sudah expired.') {
+            $this->refreshToken();
         }
-
-        // Otherwise fetch a new token
-        $response = Http::post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
-            'act' => 'GetToken',
-            'username' => env('PDDIKTI_USER'),
-            'password' => env('PDDIKTI_PASSWORD'),
-        ]);
-
-        $token = $response->json()['data']['token'] ?? null;
-
-        if ($token) {
-            // Store for 1 day (or actual expiry time if known)
-            Cache::put('pddikti_token', $token, now()->addDay());
-        }
-
-        return $token;
     }
 }

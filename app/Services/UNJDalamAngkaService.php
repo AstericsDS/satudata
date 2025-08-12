@@ -4,20 +4,30 @@ namespace App\Services;
 
 use App\Models\Data;
 use App\Models\Mahasiswa;
+use App\Services\PDDIKTIService;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class UNJDalamAngkaService
 {
+    protected $tokenService;
+
+    public function __construct(PDDIKTIService $service)
+    {
+        $this->tokenService = $service;
+    }
+
     public function dosenCount()
     {
+        $token = Cache::get('token');
         $model = Data::first();
         $data = $model->unj_dalam_angka;
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+        ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListDosen",
-                    "token" => env('PDDIKTI_TOKEN'),
+                    "token" => $token,
                     "filter" => "nama_status_aktif = 'Aktif'",
                     "order" => "",
                     "limit" => "",
@@ -30,14 +40,15 @@ class UNJDalamAngkaService
 
     public function dosenTahunSebelumCount()
     {
+        $token = Cache::get('token');
         $model = Data::first();
         $data = $model->unj_dalam_angka;
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+        ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListDosen",
-                    "token" => env('PDDIKTI_TOKEN'),
+                    "token" => $token,
                     "filter" => "nama_status_aktif = 'Aktif'",
                     "order" => "",
                     "limit" => "",
@@ -50,13 +61,14 @@ class UNJDalamAngkaService
 
     public function mahasiswaCount()
     {
+        $token = Cache::get('token');
         $model = Data::first();
         $data = $model->unj_dalam_angka;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+        ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListMahasiswa",
-                    "token" => env('PDDIKTI_TOKEN'),
+                    "token" => $token,
                     "filter" => "nama_status_mahasiswa = 'AKTIF' AND status_sync = 'sudah sync'",
                     "order" => "",
                     "limit" => '',
@@ -70,13 +82,14 @@ class UNJDalamAngkaService
 
     public function wisudaCount()
     {
+        $token = Cache::get('token');
         $model = Data::first();
         $data = $model->unj_dalam_angka;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+        ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListMahasiswa",
-                    "token" => env('PDDIKTI_TOKEN'),
+                    "token" => $token,
                     "filter" => "tanggal_keluar LIKE '%2025' AND status_sync = 'sudah sync'",
                     "order" => "",
                     "limit" => "",

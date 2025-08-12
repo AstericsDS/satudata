@@ -1,5 +1,4 @@
 <div class="p-8">
-
     <div class="rounded-t-lg overflow-hidden">
         <div class="bg-unj py-4">
             <h1 class="text-white text-center text-3xl">Sinkronisasi Data</h1>

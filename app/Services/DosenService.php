@@ -11,7 +11,7 @@ class DosenService {
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_BASE_URL') . '/ws/live2.php', [
+        ])->post(env('PDDIKTI_URL'), [
             "act" => "GetListDosen",
             "token" => env('PDDIKTI_TOKEN'),
             "filter" => "nama_status_aktif = 'Aktif'",
@@ -23,7 +23,7 @@ class DosenService {
     }
 
     public function getCountLecturersByEducation() {
-        $api_url = env('PDDIKTI_BASE_URL') . '/ws/live2.php';
+        $api_url = env('PDDIKTI_URL');
         $token = env('PDDIKTI_TOKEN');
 
         $response = Http::post($api_url, [
@@ -49,7 +49,7 @@ class DosenService {
     }
 
     public function getCountLecturersByJabatan() {
-        $api_url = env('PDDIKTI_BASE_URL') . '/ws/live2.php';
+        $api_url = env('PDDIKTI_URL');
         $token = env('PDDIKTI_TOKEN');
 
         $response = Http::post($api_url, [

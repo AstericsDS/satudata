@@ -1,23 +1,26 @@
 import ApexCharts from 'apexcharts'
 
+const jumlah_mahasiswa_diterima = window.chartData.jumlah_mahasiswa_diterima;
+const jumlah_mahasiswa = window.chartData.jumlah_mahasiswa;
+
 var options1 = {
     chart: {
-        type: 'bar',
+        type: 'line',
         height: 350
     },
     series: [
-        // {
-        // name: 'Jumlah Mahasiswa',
-        // data: [30, 40, 45, 50, 49, 60, 70, 80]
-        // },
         {
             name: 'Jumlah Mahasiswa Diterima',
-            data: [6979, 7019, 8082, 8722, 12671, 11604, 27477, 9280]
+            data: jumlah_mahasiswa_diterima,
+        },
+        {
+            name: 'Jumlah Mahasiswa',
+            data: jumlah_mahasiswa,
         }
     ],
     colors: ["#4D774E", "#9DC88D"],
     dataLabels: {
-        enabled: true,
+        enabled: false,
         offsetY: -18,
         position: 'top',
         style: {

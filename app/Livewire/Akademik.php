@@ -13,23 +13,22 @@ use App\Services\MahasiswaSyncService;
 class Akademik extends Component
 {
     public Data $data;
-    // public $mhs;
-    // public $dosen;
-    // public $mhs_lulus;
-    // public function mount(MahasiswaSyncService $mhs, DosenService $dosen)
-    // {
-    //     $this->mhs = $mhs->mhsCount();
-    //     $this->dosen = $dosen->dosenCount();
-    //     $this->mhs_lulus = $mhs->lulusCount();
-    // }
+    public $jumlah_mahasiswa_diterima = [];
+    public $jumlah_mahasiswa = [];
     public function mount()
     {
         $this->data = Data::first();
+
+        foreach ($this->data->mahasiswa_berdasarkan_angkatan as $data) {
+            if (!is_array($data)) continue;
+            $this->jumlah_mahasiswa_diterima[] = $data['jumlah_mahasiswa_diterima'] ?? 0;
+            $this->jumlah_mahasiswa[] = $data['jumlah_mahasiswa'] ?? 0;
+        }
     }
     public function render()
     {
         return view('livewire.akademik', [
-            
+
         ]);
     }
 }
