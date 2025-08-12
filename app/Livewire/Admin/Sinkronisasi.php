@@ -34,6 +34,7 @@ class Sinkronisasi extends Component
 
     public function mahasiswaAngkatan(MahasiswaAngkatanService $service)
     {
+        $this->pddikti->checkToken();
         $service->synchronize();
         Data::where('id', 1)->update([
             'mahasiswa_berdasarkan_angkatan->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')

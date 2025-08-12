@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Services;
-use Illuminate\Support\Facades\Http;
 use App\Models\Data;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class MahasiswaAngkatanService
 {
     public function synchronize()
     {
+        $token = Cache::get('token');
         $model = Data::first();
         $data = $model->mahasiswa_berdasarkan_angkatan;
 
@@ -22,7 +24,7 @@ class MahasiswaAngkatanService
                 'Content-Type' => 'application/json',
             ])->post(env('PDDIKTI_URL'), [
                         "act" => "GetCountMahasiswa",
-                        "token" => env('PDDIKTI_TOKEN'),
+                        "token" => $token,
                         "filter" => "nama_periode_masuk LIKE '{$year}%'",
                         "order" => "",
                         "limit" => "",
@@ -34,7 +36,7 @@ class MahasiswaAngkatanService
                 'Content-Type' => 'application/json',
             ])->post(env('PDDIKTI_URL'), [
                         "act" => "GetCountMahasiswa",
-                        "token" => env('PDDIKTI_TOKEN'),
+                        "token" => $token,
                         "filter" => "nama_periode_masuk LIKE '{$year}%' AND nama_status_mahasiswa = 'AKTIF'",
                         "order" => "",
                         "limit" => "",
