@@ -28,7 +28,7 @@ class UNJDalamAngkaService
         ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListDosen",
                     "token" => $token,
-                    "filter" => "nama_status_aktif = 'Aktif'",
+                    "filter" => "nama_status_aktif = 'Aktif' and nuptk is not null",
                     "order" => "",
                     "limit" => "",
                     "offset" => "0"
@@ -69,7 +69,7 @@ class UNJDalamAngkaService
         ])->post(env('PDDIKTI_URL'), [
                     "act" => "GetListMahasiswa",
                     "token" => $token,
-                    "filter" => "nama_status_mahasiswa = 'AKTIF' AND status_sync = 'sudah sync'",
+                    "filter" => "nama_status_mahasiswa = 'AKTIF' AND status_sync = 'sudah sync' AND nama_program_studi != 'Profesi Pendidikan Profesi Guru'",
                     "order" => "",
                     "limit" => '',
                     "offset" => 0,
