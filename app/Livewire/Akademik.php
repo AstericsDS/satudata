@@ -18,30 +18,14 @@ class Akademik extends Component
     public $jumlah_mahasiswa = [];
     public $jumlah_dosen_s2 = [];
     public $jumlah_dosen_s3 = [];
-
-    // public function loadData() {
-    //     $this->data = Data::first();
-
-    //     foreach ($this->data->mahasiswa_berdasarkan_angkatan as $data) {
-    //         if (!is_array($data)) continue;
-    //         $this->jumlah_mahasiswa_diterima[] = $data['jumlah_mahasiswa_diterima'] ?? 0;
-    //         $this->jumlah_mahasiswa[] = $data['jumlah_mahasiswa'] ?? 0;
-    //     }
-
-    //     $this->jumlah_dosen_s2[] = $data['jumlah_dosen_s2'] ?? 0;
-    //     $this->jumlah_dosen_s3[] = $data['jumlah_dosen_s3'] ?? 0;
-    // }
-
-    // #[On('dosen-data-updated')]
-    // public function refreshDataDosen() {
-    //     $this->loadData();
-    //     $this->dispatch('updateDosenChart', series: [$this->jumlah_dosen_s2, $this->jumlah_dosen_s3]);
-    // }
+    public $jumlah_dosen_plp = [];
+    public $jumlah_dosen_asisten = [];
+    public $jumlah_dosen_lektor = [];
+    public $jumlah_dosen_lektor_kepala = [];
+    public $jumlah_dosen_profesor = [];
     
     public function mount()
     {
-        // $this->loadData();
-        
         $this->data = Data::first();
 
         foreach ($this->data->mahasiswa_berdasarkan_angkatan as $data) {
@@ -53,12 +37,11 @@ class Akademik extends Component
         $this->jumlah_dosen_s2[] = $this->data->dosen_berdasarkan_pendidikan['jumlah_dosen_s2'] ?? 0;
         $this->jumlah_dosen_s3[] = $this->data->dosen_berdasarkan_pendidikan['jumlah_dosen_s3'] ?? 0;
 
-        // foreach($this->data->dosen_berdasarkan_pendidikan as $data_dosen_pendidikan) {
-        //     if (!is_array($data_dosen_pendidikan))
-        //         continue;
-        //     $this->jumlah_dosen_s2[] = $data_dosen_pendidikan['jumlah_s2'];
-        //     $this->jumlah_dosen_s3[] = $data_dosen_pendidikan['jumlah_s3'];
-        // }
+        $this->jumlah_dosen_plp[] = $this->data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_plp'] ?? 0;
+        $this->jumlah_dosen_asisten[] = $this->data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_asisten'] ?? 0;
+        $this->jumlah_dosen_lektor[] = $this->data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_lektor'] ?? 0;
+        $this->jumlah_dosen_lektor_kepala[] = $this->data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_lektor_kepala'] ?? 0;
+        $this->jumlah_dosen_profesor[] = $this->data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_profesor'] ?? 0;
     }
     
     public function render()

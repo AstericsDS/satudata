@@ -54,6 +54,14 @@ class Sinkronisasi extends Component
         ]);
     }
 
+    public function dosenJabatan(DosenService $service) {
+        $this->pddikti->checkToken();
+        $service->synchronizeJabatanDosen();
+        Data::where('id', 1)->update([
+            'dosen_berdasarkan_jabatan_fungsional->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
+        ]);
+    }
+
     public function mount()
     {
         $this->data = Data::first();

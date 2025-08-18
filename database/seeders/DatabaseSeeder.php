@@ -50,6 +50,14 @@ class DatabaseSeeder extends Seeder
                 'jumlah_dosen_s2' => 0,
                 'jumlah_dosen_s3' => 0,
                 'updated_at' => null 
+            ],
+            'dosen_berdasarkan_jabatan_fungsional' => [
+                'jumlah_dosen_plp' => 0,
+                'jumlah_dosen_asisten' => 0,
+                'jumlah_dosen_lektor' => 0,
+                'jumlah_dosen_lektor_kepala' => 0,
+                'jumlah_dosen_profesor' => 0,
+                'updated_at' => null
             ]
         ]);
 

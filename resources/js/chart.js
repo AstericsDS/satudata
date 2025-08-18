@@ -147,7 +147,7 @@ var options5 = {
     ],
     // series: [1695, 811],
     labels: ['S2', 'S3'],
-    colors: ["#4D774E", "#9DC88D"],
+    colors: ["#55a630", "#9DC88D"],
 };
 
 var options6 = {
@@ -155,8 +155,15 @@ var options6 = {
         type: 'pie',
         height: 350
     },
-    series: [5, 814, 1000, 674, 286],
-    labels: ['PLP Terampil Mahir', 'Asisten Ahli', 'Lektor', 'Lektor Kepala','Profesor'],
+    // series: [5, 814, 1000, 674, 286],
+    series: [
+        window.chartData.jumlah_dosen_plp,
+        window.chartData.jumlah_dosen_asisten,
+        window.chartData.jumlah_dosen_lektor,
+        window.chartData.jumlah_dosen_lektor_kepala,
+        window.chartData.jumlah_dosen_profesor,
+    ],
+    labels: ['PLP Terampil Mahir', 'Asisten Ahli', 'Lektor', 'Lektor Kepala', 'Profesor'],
     colors: ["#4D774E", "#9DC88D", "#55a630", "#006569", "#00b3ba"],
 };
 
