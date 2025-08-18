@@ -46,6 +46,11 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => null,
             ],
             'mahasiswa_berdasarkan_angkatan' => $angkatan,
+            'dosen_berdasarkan_pendidikan' => [
+                'jumlah_dosen_s2' => 0,
+                'jumlah_dosen_s3' => 0,
+                'updated_at' => null 
+            ]
         ]);
 
     }

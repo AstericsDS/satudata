@@ -141,7 +141,11 @@ var options5 = {
         type: 'pie',
         height: 350
     },
-    series: [1695, 811],
+    series: [
+        window.chartData.jumlah_dosen_s2,
+        window.chartData.jumlah_dosen_s3,
+    ],
+    // series: [1695, 811],
     labels: ['S2', 'S3'],
     colors: ["#4D774E", "#9DC88D"],
 };

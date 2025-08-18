@@ -3,12 +3,17 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Data;
+use App\Models\Dosen;
+use App\Services\DosenPendidikanService;
+use App\Services\DosenService;
 use App\Services\PDDIKTIService;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Services\UNJDalamAngkaService;
 use App\Services\MahasiswaAngkatanService;
 
+#[Title('Dashboard Admin')]
 #[Layout('components.layouts.admin')]
 class Sinkronisasi extends Component
 {
@@ -38,6 +43,14 @@ class Sinkronisasi extends Component
         $service->synchronize();
         Data::where('id', 1)->update([
             'mahasiswa_berdasarkan_angkatan->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
+        ]);
+    }
+
+    public function dosenPendidikan(DosenService $service) {
+        $this->pddikti->checkToken();
+        $service->synchronizePendidikanDosen();
+        Data::where('id', 1)->update([
+            'dosen_berdasarkan_pendidikan->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
         ]);
     }
 

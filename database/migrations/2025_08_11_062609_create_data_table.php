@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('unj_dalam_angka')->nullable();
             $table->json('mahasiswa_berdasarkan_angkatan')->nullable();
+            $table->json('dosen_berdasarkan_pendidikan')->nullable();
             $table->timestamps();
         });
     }

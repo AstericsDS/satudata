@@ -173,6 +173,16 @@
         window.chartData = {
             jumlah_mahasiswa_diterima: @json($jumlah_mahasiswa_diterima),
             jumlah_mahasiswa: @json($jumlah_mahasiswa),
+            jumlah_dosen_s2: @json($data->dosen_berdasarkan_pendidikan['jumlah_dosen_s2']),
+            jumlah_dosen_s3: @json($data->dosen_berdasarkan_pendidikan['jumlah_dosen_s3'])
         };
+
+        // document.addEventListener('livewire:init', () => {
+        //     Livewire.on('updateDosenChart', (event) => {
+        //         if (window.chart5) {
+        //             window.chart5.updateSeries(event.series);
+        //         }
+        //     });
+        // });
     </script>
 </div>

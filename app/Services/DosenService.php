@@ -2,50 +2,49 @@
 
 namespace App\Services;
 
+use App\Models\Data;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+
 
 class DosenService {
-    public function dosenCount()
-    {
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
+
+    public function synchronizePendidikanDosen() {
+        $token = Cache::get('token');
+        $model = Data::first();
+        $data = $model->dosen_berdasarkan_pendidikan;
+
+        $response_s2 = Http::withHeaders([
+            'Content-Type' => 'application/json'
         ])->post(env('PDDIKTI_URL'), [
-            "act" => "GetListDosen",
-            "token" => env('PDDIKTI_TOKEN'),
-            "filter" => "nama_status_aktif = 'Aktif'",
+            "act" => "GetRiwayatPendidikanDosen",
+            "token" => $token,
+            "filter" => "nama_jenjang_pendidikan = 'S2' and nuptk is not null",
             "order" => "",
             "limit" => "",
-            "offset" => "0"
-        ]);
-        return $response['jumlah'];
-    }
-
-    public function getCountLecturersByEducation() {
-        $api_url = env('PDDIKTI_URL');
-        $token = env('PDDIKTI_TOKEN');
-
-        $response = Http::post($api_url, [
-            'act' => 'GetRiwayatPendidikanDosen',
-            'token' => $token,
-            'filter' => "",
-            'limit' => "",
-            'offset' => '0'
+            "offset" => 0
         ]);
 
-        if(!$response->successful()) {
-            return response()->json(['error' => 'Failed to fetch data'], 500);
-        }
-
-        $lecturers = new Collection($response->json()['data']);
-        $s2 = $lecturers->where('nama_jenjang_pendidikan', 'S2')->count();
-        $s3 = $lecturers->where('nama_jenjang_pendidikan', 'S3')->count();
-
-        return response()->json([
-            's2_lecturers' => $s2,
-            's3_lecturers' => $s3,
+        $response_s3 = Http::withHeaders([
+            'Content-Type' => 'application/json'
+        ])->post(env('PDDIKTI_URL'), [
+            "act" => "GetRiwayatPendidikanDosen",
+            "token" => $token,
+            "filter" => "nama_jenjang_pendidikan = 'S3' and nuptk is not null",
+            "order" => "",
+            "limit" => "",
+            "offset" => 0
         ]);
+
+        $dosen_s2 = new Collection($response_s2->json()['data']);
+        $dosen_s3 = new Collection($response_s3->json()['data']);
+
+        $data['jumlah_dosen_s2'] = $dosen_s2->count() ?? 0;
+        $data['jumlah_dosen_s3'] = $dosen_s3->count() ?? 0;
+
+        $model->dosen_berdasarkan_pendidikan = $data;
+        $model->save();
     }
 
     public function getCountLecturersByJabatan() {
