@@ -52,72 +52,29 @@ class DosenService {
         $model = Data::first();
         $data = $model->dosen_berdasarkan_jabatan_fungsional;
 
-        $response_plp = Http::withHeaders([
+        $jabatan_dosen = [
+            'jumlah_dosen_plp' => 'PLP Terampil Mahir',
+            'jumlah_dosen_asisten' => 'Asisten Ahli',
+            'jumlah_dosen_lektor' => 'Lektor',
+            'jumlah_dosen_lektor_kepala' => 'Lektor Kepala',
+            'jumlah_dosen_profesor' => 'Profesor',
+        ];
+
+        $response = Http::withHeaders([
             'Content-Type' => 'application/json'
         ])->post(env('PDDIKTI_URL'), [
             "act" => "GetRiwayatFungsionalDosen",
             "token" => $token,
-            "filter" => "nama_jabatan_fungsional = 'PLP Terampil Mahir' and nuptk is not null",
+            "filter" => "",
             "order" => "",
             "limit" => "",
             "offset" => 0
         ]);
+        $dosen = collect($response->json()['data']);
 
-        $response_asisten = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(env('PDDIKTI_URL'), [
-            "act" => "GetRiwayatFungsionalDosen",
-            "token" => $token,
-            "filter" => "nama_jabatan_fungsional = 'Asisten Ahli' and nuptk is not null",
-            "order" => "",
-            "limit" => "",
-            "offset" => 0
-        ]);
-
-        $response_lektor = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(env('PDDIKTI_URL'), [
-            "act" => "GetRiwayatFungsionalDosen",
-            "token" => $token,
-            "filter" => "nama_jabatan_fungsional = 'Lektor' and nuptk is not null",
-            "order" => "",
-            "limit" => "",
-            "offset" => 0
-        ]);
-
-        $response_lektor_kepala = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(env('PDDIKTI_URL'), [
-            "act" => "GetRiwayatFungsionalDosen",
-            "token" => $token,
-            "filter" => "nama_jabatan_fungsional = 'Lektor Kepala' and nuptk is not null",
-            "order" => "",
-            "limit" => "",
-            "offset" => 0
-        ]);
-
-        $response_profesor = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(env('PDDIKTI_URL'), [
-            "act" => "GetRiwayatFungsionalDosen",
-            "token" => $token,
-            "filter" => "nama_jabatan_fungsional = 'Profesor' and nuptk is not null",
-            "order" => "",
-            "limit" => "",
-            "offset" => 0
-        ]);
-
-        $dosen_plp = new Collection($response_plp->json()['data']);
-        $dosen_asisten = new Collection($response_asisten->json()['data']);
-        $dosen_lektor = new Collection($response_lektor->json()['data']);
-        $dosen_lektor_kepala = new Collection($response_lektor_kepala->json()['data']);
-        $dosen_profesor = new Collection($response_profesor->json()['data']);
-
-        $data['jumlah_dosen_plp'] = $dosen_plp->count() ?? 0;
-        $data['jumlah_dosen_asisten'] = $dosen_asisten->count() ?? 0;
-        $data['jumlah_dosen_lektor'] = $dosen_lektor->count() ?? 0;
-        $data['jumlah_dosen_lektor_kepala'] = $dosen_lektor_kepala->count() ?? 0;
-        $data['jumlah_dosen_profesor'] = $dosen_profesor->count() ?? 0;
+        foreach($jabatan_dosen as $key => $jabatan) {
+            $data[$key] = $dosen->where('nama_jabatan_fungsional', $jabatan)->count();
+        }
 
         $model->dosen_berdasarkan_jabatan_fungsional = $data;
         $model->save();
@@ -169,118 +126,5 @@ class DosenService {
 
         $model->dosen_berdasarkan_fakultas = $data;
         $model->save();
-    }
-
-    public function getDosen() {
-        $token = env('SIAKAD_TOKEN');
-        $api_url = env('SIAKAD_BASE_URL') . '/dataLengkapDosen/All/' . $token;
-
-        $response = Http::withToken($token)->get($api_url);
-        $data = $response->json()['isi'];
-
-        $dosen = collect($data);
-        // $ft = $dosen->where('namafakultas', 'Fakultas Teknik')->count();
-        // $fbs = $dosen->where('namafakultas', 'Fakultas Bahasa dan Seni')->count();
-        // $fip = $dosen->where('namafakultas', 'Fakultas Ilmu Pendidikan')->count();
-        
-        // dd($ft);
-
-        $faculties = [
-            'FT' => 'Fakultas Teknik',
-            'FBS' => 'Fakultas Bahasa dan Seni',
-            'FIP' => 'Fakultas Ilmu Pendidikan',
-            'FMIPA' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
-            'FISH' => 'Fakultas Ilmu Sosial dan Hukum',
-            'FIO' => 'Fakultas Ilmu Olahraga'
-        ];
-
-        $facultyCounts = [];
-
-        foreach ($faculties as $abbreviation => $fullName) {
-            $facultyCounts[$abbreviation] = $dosen->where('namafakultas', $fullName)->count();
-        }
-
-        return response()->json($facultyCounts);
-
-        // return response()->json([
-        //     'FT' => $ft,
-        //     'FBS' => $fbs,
-        //     'FIP' => $fip
-        // ]);
-    }
-    
-    public function getCountLecturersByJabatan() {
-        $api_url = env('PDDIKTI_URL');
-        $token = env('PDDIKTI_TOKEN');
-
-        $response = Http::post($api_url, [
-            'act' => 'GetRiwayatFungsionalDosen',
-            'token' => $token,
-            'filter' => "",
-            'limit' => "",
-            'offset' => '0'
-        ]);
-
-        if(!$response->successful()) {
-            return response()->json(['error' => 'Failed to fetch data'], 500);
-        }
-
-        $lecturers = new Collection($response->json()['data']);
-        $plp = $lecturers->where('nama_jabatan_fungsional', 'PLP Terampil Mahir')->whereNotNull('nuptk')->count();
-        $asisten_ahli = $lecturers->where('nama_jabatan_fungsional', 'Asisten Ahli')->whereNotNull('nuptk')->count();
-        $lektor = $lecturers->where('nama_jabatan_fungsional', 'Lektor')->whereNotNull('nuptk')->count();
-        $lektor_kepala = $lecturers->where('nama_jabatan_fungsional', 'Lektor Kepala')->whereNotNull('nuptk')->count();
-        $profesor = $lecturers->where('nama_jabatan_fungsional', 'Profesor')->whereNotNull('nuptk')->count();
-
-        return response()->json([
-            'PLP Terampil Mahir' => $plp,
-            'Asisten Ahli' => $asisten_ahli,
-            'Lektor' => $lektor,
-            'Lektor Kepala' => $lektor_kepala,
-            'profesor' => $profesor
-        ]);
-    }
-
-    public function getDosenFakultas() {
-        
-    }
-
-    // sejujurna ini masih nguwawor
-    public function getCountLecturersByFaculty() {
-        $token = env('SIAKAD_BASE_URL');
-        // $api_url = env('SIAKAD_BASE_URL') . '/dataLengkapDosen/All/' . $token;
-
-        $facultyCounts = Cache::remember('lecturer_faculty_counts', 60, function () {
-        
-            $faculties = [
-                '99' => 'Sekolah Pascasarjana',
-                '11' => 'Fakultas Ilmu Pendidikan',
-                '12' => 'Fakultas Bahasa dan Seni',
-                '13' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
-                '14' => 'Fakultas Ilmu Sosial dan Hukum',
-                '15' => 'Fakultas Teknik',
-                '16' => 'Fakultas Ilmu Keolahragaan dan Kesehatan',
-                '17' => 'Fakultas Ekonomi dan Bisnis',
-                '18' => 'Fakultas Psikologi',
-                '20' => 'Program Profesi Guru'
-            ];
-
-            $base_url = env('SIAKAD_BASE_URL');
-            $counts = [];
-
-            foreach ($faculties as $faculty_code => $faculty_name) {
-                $dosenApiUrl = "{$base_url}/api/as400/dosenFakultas/{$faculty_code}";
-                $dosenResponse = Http::get($dosenApiUrl);
-
-                if ($dosenResponse->successful()) {
-                    $lecturerCount = count($dosenResponse->json());
-                    $counts[$faculty_name] = $lecturerCount;
-                } else {
-                    $counts[$faculty_name] = 0;
-                }
-            }
-            return $counts;
-        });
-        return response()->json($facultyCounts);
     }
 }
