@@ -183,7 +183,6 @@ var options7 = {
     colors: ["#00b3ba", "#9DC88D", "#006569", "#55a630"],
 };
 
-// data hitung manual dari response.json. masih tidak bisa pake api siakad </3
 var options8 = {
     chart: {
         type: 'bar',
@@ -192,12 +191,24 @@ var options8 = {
     series: [
         {
             name: 'Jumlah Dosen',
-            data: [72, 598, 277, 197, 183, 276, 163, 195, 57, 4]
+            // data: [72, 598, 277, 197, 183, 276, 163, 195, 57, 4]
+            data: [
+                window.chartData.jumlah_dosen_pascasarjana,
+                window.chartData.jumlah_dosen_fip,
+                window.chartData.jumlah_dosen_fbs,
+                window.chartData.jumlah_dosen_fmipa,
+                window.chartData.jumlah_dosen_fish,
+                window.chartData.jumlah_dosen_ft,
+                window.chartData.jumlah_dosen_fikk,
+                window.chartData.jumlah_dosen_feb,
+                window.chartData.jumlah_dosen_fpsi,
+                window.chartData.jumlah_dosen_ppg,
+            ]
         },
     ],
     colors: ["#4D774E"],
     xaxis: {
-        categories: ['Pascasarjana', 'FIP', 'FBS', 'FMIPA', 'FISH', 'FT', 'FIK', 'FEB', 'FP', 'PPG']
+        categories: ['Pascasarjana', 'FIP', 'FBS', 'FMIPA', 'FISH', 'FT', 'FIKK', 'FEB', 'FPSI', 'PPG']
     },
     plotOptions: {
         bar: {

@@ -11,13 +11,15 @@ class Data extends Model
         'mahasiswa_berdasarkan_angkatan',
         'dosen_berdasarkan_pendidikan',
         'dosen_berdasarkan_jabatan_fungsional',
-        'dosen_berdasarkan_status_kepegawaian'
+        'dosen_berdasarkan_status_kepegawaian',
+        'dosen_berdasarkan_fakultas'
     ];
     protected $casts = [
         'unj_dalam_angka' => 'array',
         'mahasiswa_berdasarkan_angkatan' => 'array',
         'dosen_berdasarkan_pendidikan' => 'array',
         'dosen_berdasarkan_jabatan_fungsional' => 'array',
-        'dosen_berdasarkan_status_kepegawaian' => 'array'
+        'dosen_berdasarkan_status_kepegawaian' => 'array',
+        'dosen_berdasarkan_fakultas' => 'array'
     ];
 }

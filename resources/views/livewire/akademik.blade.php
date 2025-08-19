@@ -187,6 +187,17 @@
             jumlah_dosen_pppk: @json($data->dosen_berdasarkan_status_kepegawaian['jumlah_dosen_pppk'] ?? 0),
             jumlah_dosen_tetap: @json($data->dosen_berdasarkan_status_kepegawaian['jumlah_dosen_tetap'] ?? 0),
             jumlah_dosen_tidak_tetap: @json($data->dosen_berdasarkan_status_kepegawaian['jumlah_dosen_tidak_tetap'] ?? 0),
+
+            jumlah_dosen_pascasarjana: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_pascasarjana'] ?? 0),
+            jumlah_dosen_fip: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fip'] ?? 0),
+            jumlah_dosen_fbs: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fbs'] ?? 0),
+            jumlah_dosen_fmipa: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fmipa'] ?? 0),
+            jumlah_dosen_fish: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fish'] ?? 0),
+            jumlah_dosen_ft: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_ft'] ?? 0),
+            jumlah_dosen_fikk: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fikk'] ?? 0),
+            jumlah_dosen_feb: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_feb'] ?? 0),
+            jumlah_dosen_fpsi: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fpsi'] ?? 0),
+            jumlah_dosen_ppg: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_ppg'] ?? 0),
         };
     </script>
 </div>

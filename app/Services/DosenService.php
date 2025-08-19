@@ -141,20 +141,72 @@ class DosenService {
         $model->save();
     }
 
-    public function getDosenSipeg() {
-        $api_url = env('SIPEG_BASE_URL') . '/api/pegawai';
+    public function synchronizeFakultasDosen() {
+        $token = env('SIAKAD_TOKEN');
+        $api_url = env('SIAKAD_BASE_URL') . '/dataLengkapDosen/All/' . $token;
+        $model = Data::first();
+        $data = $model->dosen_berdasarkan_fakultas;
 
-        $response = Http::withToken(env('SIPEG_TOKEN'))->get($api_url);
+        $list_fakultas = [
+            'jumlah_dosen_pascasarjana' => 'Sekolah Pascasarjana',
+            'jumlah_dosen_fip' => 'Fakultas Ilmu Pendidikan',
+            'jumlah_dosen_fbs' => 'Fakultas Bahasa dan Seni',
+            'jumlah_dosen_fmipa' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
+            'jumlah_dosen_fish' => 'Fakultas Ilmu Sosial dan Hukum',
+            'jumlah_dosen_ft' => 'Fakultas Teknik',
+            'jumlah_dosen_fikk' => 'Fakultas Ilmu Keolahragaan dan Kesehatan',
+            'jumlah_dosen_feb' => 'Fakultas Ekonomi dan Bisnis',
+            'jumlah_dosen_fpsi' => 'Fakultas Psikologi',
+            'jumlah_dosen_ppg' => 'Program Profesi Guru'
+        ];
 
-        // $data = json_decode($response->body(), true);
-        $data2 = $response->json()['pegawais'];
+        $response = Http::withToken($token)->get($api_url);
+        $dosen = collect($response->json()['isi']);
+
+        foreach($list_fakultas as $key => $fakultas) {
+            $data[$key] = $dosen->where('namafakultas', $fakultas)->count();
+        }
+
+        $model->dosen_berdasarkan_fakultas = $data;
+        $model->save();
+    }
+
+    public function getDosen() {
+        $token = env('SIAKAD_TOKEN');
+        $api_url = env('SIAKAD_BASE_URL') . '/dataLengkapDosen/All/' . $token;
+
+        $response = Http::withToken($token)->get($api_url);
+        $data = $response->json()['isi'];
+
+        $dosen = collect($data);
+        // $ft = $dosen->where('namafakultas', 'Fakultas Teknik')->count();
+        // $fbs = $dosen->where('namafakultas', 'Fakultas Bahasa dan Seni')->count();
+        // $fip = $dosen->where('namafakultas', 'Fakultas Ilmu Pendidikan')->count();
         
-        $dosens = collect($data2);
-        $dosen = $dosens->where('cabang', 'Dosen Tetap')->count();
+        // dd($ft);
+
+        $faculties = [
+            'FT' => 'Fakultas Teknik',
+            'FBS' => 'Fakultas Bahasa dan Seni',
+            'FIP' => 'Fakultas Ilmu Pendidikan',
+            'FMIPA' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
+            'FISH' => 'Fakultas Ilmu Sosial dan Hukum',
+            'FIO' => 'Fakultas Ilmu Olahraga'
+        ];
+
+        $facultyCounts = [];
+
+        foreach ($faculties as $abbreviation => $fullName) {
+            $facultyCounts[$abbreviation] = $dosen->where('namafakultas', $fullName)->count();
+        }
+
+        return response()->json($facultyCounts);
+
         // return response()->json([
-        //     'dosen' => $dosen
+        //     'FT' => $ft,
+        //     'FBS' => $fbs,
+        //     'FIP' => $fip
         // ]);
-        dd($dosen);
     }
     
     public function getCountLecturersByJabatan() {
@@ -187,6 +239,10 @@ class DosenService {
             'Lektor Kepala' => $lektor_kepala,
             'profesor' => $profesor
         ]);
+    }
+
+    public function getDosenFakultas() {
+        
     }
 
     // sejujurna ini masih nguwawor

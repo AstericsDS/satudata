@@ -65,6 +65,19 @@ class DatabaseSeeder extends Seeder
                 'jumlah_dosen_tetap' => 0,
                 'jumlah_dosen_tidak_tetap' => 0,
                 'updated_at' => null
+            ],
+            'dosen_berdasarkan_fakultas' => [
+                'jumlah_dosen_pascasarjana' => 0,
+                'jumlah_dosen_fip' => 0,
+                'jumlah_dosen_fbs' => 0,
+                'jumlah_dosen_fmipa' => 0,
+                'jumlah_dosen_fish' => 0,
+                'jumlah_dosen_ft' => 0,
+                'jumlah_dosen_fikk' => 0,
+                'jumlah_dosen_feb' => 0,
+                'jumlah_dosen_fpsi' => 0,
+                'jumlah_dosen_ppg' => 0,
+                'updated_at' => null
             ]
         ]);
 
