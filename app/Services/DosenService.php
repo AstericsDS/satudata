@@ -123,6 +123,40 @@ class DosenService {
         $model->save();
     }
 
+    public function synchronizeKepegawaianDosen() {
+        $api_url = env('SIPEG_BASE_URL') . '/api/pegawai';
+        $token = env('SIPEG_TOKEN');
+        $model = Data::first();
+        $data = $model->dosen_berdasarkan_status_kepegawaian;
+
+        $response = Http::withToken($token)->get($api_url);
+        $dosen = collect($response->json()['pegawais']);
+
+        $data['jumlah_dosen_pns'] = $dosen->where('cabang', 'Dosen')->count() ?? 0;
+        $data['jumlah_dosen_pppk'] = $dosen->where('cabang', 'PPPK_Dosen')->count() ?? 0;
+        $data['jumlah_dosen_tetap'] = $dosen->where('cabang', 'Dosen Tetap')->count() ?? 0;
+        $data['jumlah_dosen_tidak_tetap'] = $dosen->where('cabang', 'Dosen Tidak Tetap')->count() ?? 0;
+
+        $model->dosen_berdasarkan_status_kepegawaian = $data;
+        $model->save();
+    }
+
+    public function getDosenSipeg() {
+        $api_url = env('SIPEG_BASE_URL') . '/api/pegawai';
+
+        $response = Http::withToken(env('SIPEG_TOKEN'))->get($api_url);
+
+        // $data = json_decode($response->body(), true);
+        $data2 = $response->json()['pegawais'];
+        
+        $dosens = collect($data2);
+        $dosen = $dosens->where('cabang', 'Dosen Tetap')->count();
+        // return response()->json([
+        //     'dosen' => $dosen
+        // ]);
+        dd($dosen);
+    }
+    
     public function getCountLecturersByJabatan() {
         $api_url = env('PDDIKTI_URL');
         $token = env('PDDIKTI_TOKEN');

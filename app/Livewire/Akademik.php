@@ -23,6 +23,7 @@ class Akademik extends Component
     public $jumlah_dosen_lektor = [];
     public $jumlah_dosen_lektor_kepala = [];
     public $jumlah_dosen_profesor = [];
+    public $jumlah_dosen_pns = [];
     
     public function mount()
     {

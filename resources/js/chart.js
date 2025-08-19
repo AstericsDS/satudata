@@ -167,15 +167,20 @@ var options6 = {
     colors: ["#4D774E", "#9DC88D", "#55a630", "#006569", "#00b3ba"],
 };
 
-// note = di api pddikti ga ada status kepegawaian. labels masih ngikutin punya unnes
 var options7 = {
     chart: {
         type: 'pie',
         height: 350
     },
-    series: [70, 55, 204, 148, 403, 1173],
-    labels: ['Tidak Tetap', 'Calon Pegawai Tetap', 'Tetap', 'PPPK','CPNS', 'PNS'],
-    colors: ["#4D774E", "#9DC88D", "#00b3ba", "#004b23", "#006569", "#55a630"],
+    // series: [70, 55, 148, 1173],
+    series: [
+        window.chartData.jumlah_dosen_tidak_tetap,
+        window.chartData.jumlah_dosen_tetap,
+        window.chartData.jumlah_dosen_pppk,
+        window.chartData.jumlah_dosen_pns,
+    ],
+    labels: ['Tidak Tetap', 'Tetap', 'PPPK', 'PNS'],
+    colors: ["#00b3ba", "#9DC88D", "#006569", "#55a630"],
 };
 
 // data hitung manual dari response.json. masih tidak bisa pake api siakad </3

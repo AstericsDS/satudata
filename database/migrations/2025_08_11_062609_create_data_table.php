@@ -17,6 +17,7 @@ return new class extends Migration
             $table->json('mahasiswa_berdasarkan_angkatan')->nullable();
             $table->json('dosen_berdasarkan_pendidikan')->nullable();
             $table->json('dosen_berdasarkan_jabatan_fungsional')->nullable();
+            $table->json('dosen_berdasarkan_status_kepegawaian')->nullable();
             $table->timestamps();
         });
     }

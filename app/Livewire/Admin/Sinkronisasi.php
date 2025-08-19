@@ -21,10 +21,12 @@ class Sinkronisasi extends Component
     public Data $data;
     public $jumlah_mahasiswa_diterima = [];
     public $jumlah_mahasiswa = [];
+    
     public function __construct()
     {
         $this->pddikti = app(PDDIKTIService::class);
     }
+    
     public function unjDalamAngka(UNJDalamAngkaService $service)
     {
         $this->pddikti->checkToken();
@@ -59,6 +61,13 @@ class Sinkronisasi extends Component
         $service->synchronizeJabatanDosen();
         Data::where('id', 1)->update([
             'dosen_berdasarkan_jabatan_fungsional->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
+        ]);
+    }
+
+    public function dosenKepegawaian(DosenService $service) {
+        $service->synchronizeKepegawaianDosen();
+        Data::where('id', 1)->update([
+            'dosen_berdasarkan_status_kepegawaian->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
         ]);
     }
 
