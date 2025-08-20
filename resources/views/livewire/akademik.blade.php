@@ -10,7 +10,7 @@
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Dosen</p>
-                    <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['jumlah_dosen'] ?? '0' }}</p>
+                    <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['jumlah_dosen'] ?? '1458' }}</p>
                     <div class="flex items-center gap-2">
                         <span class="px-2 py-1 bg-lime-800 text-white  font-semibold rounded-md text-xs">32%</span>
                         <span class="text-gray-500">Kualitas S3</span>
@@ -23,7 +23,7 @@
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Mahasiswa</p>
-                    <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['jumlah_mahasiswa'] ?? '0' }}</p>
+                    <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['jumlah_mahasiswa'] ?? '44259' }}</p>
                     <div class="flex items-center gap-2">
                         <span class="px-2 py-1 bg-lime-800 text-white  font-semibold rounded-md text-xs">+8%</span>
                         <span class="text-gray-500">Dari tahun sebelumnya</span>
@@ -35,7 +35,7 @@
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Wisuda 2025</p>
-                    <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['wisuda_2025'] ?? '0' }}</p>
+                    <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['wisuda_2025'] ?? '3270' }}</p>
                     <div class="flex items-center gap-2">
                         <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-15%</span>
                         <span class="text-gray-500">Dari tahun sebelumnya</span>
@@ -48,7 +48,7 @@
             <div class="p-2 flex-1 shadow-xl">
                 <div class="flex flex-col gap-2 ml-2">
                     <p class="text-gray-400 font-semibold">Peminat 2025</p>
-                    <p class="font-semibold text-2xl text-red-500">47652</p>
+                    <p class="font-semibold text-2xl">47652</p>
                     <div class="flex items-center gap-2">
                         <span class="px-2 py-1 bg-red-500 text-white  font-semibold rounded-md text-xs">-11%</span>
                         <span class="text-gray-500">Dari tahun sebelumnya</span>
@@ -169,10 +169,10 @@
     </div>
 
 
-    <script>
+    <!-- <script>
         window.chartData = {
             jumlah_mahasiswa_diterima: @json($jumlah_mahasiswa_diterima),
             jumlah_mahasiswa: @json($jumlah_mahasiswa),
         };
-    </script>
+    </script> -->
 </div>
