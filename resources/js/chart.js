@@ -141,9 +141,13 @@ var options5 = {
         type: 'pie',
         height: 350
     },
-    series: [1695, 811],
+    series: [
+        window.chartData.jumlah_dosen_s2,
+        window.chartData.jumlah_dosen_s3,
+    ],
+    // series: [1695, 811],
     labels: ['S2', 'S3'],
-    colors: ["#4D774E", "#9DC88D"],
+    colors: ["#55a630", "#9DC88D"],
 };
 
 var options6 = {
@@ -151,23 +155,34 @@ var options6 = {
         type: 'pie',
         height: 350
     },
-    series: [5, 814, 1000, 674, 286],
-    labels: ['PLP Terampil Mahir', 'Asisten Ahli', 'Lektor', 'Lektor Kepala','Profesor'],
+    // series: [5, 814, 1000, 674, 286],
+    series: [
+        window.chartData.jumlah_dosen_plp,
+        window.chartData.jumlah_dosen_asisten,
+        window.chartData.jumlah_dosen_lektor,
+        window.chartData.jumlah_dosen_lektor_kepala,
+        window.chartData.jumlah_dosen_profesor,
+    ],
+    labels: ['PLP Terampil Mahir', 'Asisten Ahli', 'Lektor', 'Lektor Kepala', 'Profesor'],
     colors: ["#4D774E", "#9DC88D", "#55a630", "#006569", "#00b3ba"],
 };
 
-// note = di api pddikti ga ada status kepegawaian. labels masih ngikutin punya unnes
 var options7 = {
     chart: {
         type: 'pie',
         height: 350
     },
-    series: [70, 55, 204, 148, 403, 1173],
-    labels: ['Tidak Tetap', 'Calon Pegawai Tetap', 'Tetap', 'PPPK','CPNS', 'PNS'],
-    colors: ["#4D774E", "#9DC88D", "#00b3ba", "#004b23", "#006569", "#55a630"],
+    // series: [70, 55, 148, 1173],
+    series: [
+        window.chartData.jumlah_dosen_tidak_tetap,
+        window.chartData.jumlah_dosen_tetap,
+        window.chartData.jumlah_dosen_pppk,
+        window.chartData.jumlah_dosen_pns,
+    ],
+    labels: ['Tidak Tetap', 'Tetap', 'PPPK', 'PNS'],
+    colors: ["#00b3ba", "#9DC88D", "#006569", "#55a630"],
 };
 
-// data hitung manual dari response.json. masih tidak bisa pake api siakad </3
 var options8 = {
     chart: {
         type: 'bar',
@@ -176,12 +191,24 @@ var options8 = {
     series: [
         {
             name: 'Jumlah Dosen',
-            data: [72, 598, 277, 197, 183, 276, 163, 195, 57, 4]
+            // data: [72, 598, 277, 197, 183, 276, 163, 195, 57, 4]
+            data: [
+                window.chartData.jumlah_dosen_pascasarjana,
+                window.chartData.jumlah_dosen_fip,
+                window.chartData.jumlah_dosen_fbs,
+                window.chartData.jumlah_dosen_fmipa,
+                window.chartData.jumlah_dosen_fish,
+                window.chartData.jumlah_dosen_ft,
+                window.chartData.jumlah_dosen_fikk,
+                window.chartData.jumlah_dosen_feb,
+                window.chartData.jumlah_dosen_fpsi,
+                window.chartData.jumlah_dosen_ppg,
+            ]
         },
     ],
     colors: ["#4D774E"],
     xaxis: {
-        categories: ['Pascasarjana', 'FIP', 'FBS', 'FMIPA', 'FISH', 'FT', 'FIK', 'FEB', 'FP', 'PPG']
+        categories: ['Pascasarjana', 'FIP', 'FBS', 'FMIPA', 'FISH', 'FT', 'FIKK', 'FEB', 'FPSI', 'PPG']
     },
     plotOptions: {
         bar: {

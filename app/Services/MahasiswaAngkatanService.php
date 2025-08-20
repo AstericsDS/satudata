@@ -25,7 +25,7 @@ class MahasiswaAngkatanService
             ])->post(env('PDDIKTI_URL'), [
                         "act" => "GetCountMahasiswa",
                         "token" => $token,
-                        "filter" => "nama_periode_masuk LIKE '{$year}%'",
+                        "filter" => "nama_periode_masuk LIKE '{$year}%' and nama_program_studi != 'Profesi Pendidikan Profesi Guru'",
                         "order" => "",
                         "limit" => "",
                         "offset" => 0
@@ -37,7 +37,7 @@ class MahasiswaAngkatanService
             ])->post(env('PDDIKTI_URL'), [
                         "act" => "GetCountMahasiswa",
                         "token" => $token,
-                        "filter" => "nama_periode_masuk LIKE '{$year}%' AND nama_status_mahasiswa = 'AKTIF'",
+                        "filter" => "nama_periode_masuk LIKE '{$year}%' AND nama_status_mahasiswa = 'AKTIF' and nama_program_studi != 'Profesi Pendidikan Profesi Guru'",
                         "order" => "",
                         "limit" => "",
                         "offset" => 0

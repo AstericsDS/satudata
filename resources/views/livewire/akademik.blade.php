@@ -8,7 +8,7 @@
 
             {{-- Dosen - Start --}}
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2 ml-2">
+                <div class="flex flex-col gap-2 ml-1">
                     <p class="text-gray-400 font-semibold">Dosen</p>
                     <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['jumlah_dosen'] ?? '1458' }}</p>
                     <div class="flex items-center gap-2">
@@ -21,7 +21,7 @@
 
             {{-- Mahasiswa - Start --}}
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2 ml-2">
+                <div class="flex flex-col gap-2 ml-1">
                     <p class="text-gray-400 font-semibold">Mahasiswa</p>
                     <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['jumlah_mahasiswa'] ?? '44259' }}</p>
                     <div class="flex items-center gap-2">
@@ -33,7 +33,7 @@
 
             {{-- Wisuda - Start --}}
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2 ml-2">
+                <div class="flex flex-col gap-2 ml-1">
                     <p class="text-gray-400 font-semibold">Wisuda 2025</p>
                     <p class="font-semibold text-2xl">{{ $data->unj_dalam_angka['wisuda_2025'] ?? '3270' }}</p>
                     <div class="flex items-center gap-2">
@@ -46,7 +46,7 @@
 
             {{-- Peminat - Start --}}
             <div class="p-2 flex-1 shadow-xl">
-                <div class="flex flex-col gap-2 ml-2">
+                <div class="flex flex-col gap-2 ml-1">
                     <p class="text-gray-400 font-semibold">Peminat 2025</p>
                     <p class="font-semibold text-2xl">47652</p>
                     <div class="flex items-center gap-2">
@@ -173,6 +173,31 @@
         window.chartData = {
             jumlah_mahasiswa_diterima: @json($jumlah_mahasiswa_diterima),
             jumlah_mahasiswa: @json($jumlah_mahasiswa),
+
+            jumlah_dosen_s2: @json($data->dosen_berdasarkan_pendidikan['jumlah_dosen_s2'] ?? 0),
+            jumlah_dosen_s3: @json($data->dosen_berdasarkan_pendidikan['jumlah_dosen_s3'] ?? 0),
+
+            jumlah_dosen_plp: @json($data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_plp'] ?? 0),
+            jumlah_dosen_asisten: @json($data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_asisten'] ?? 0),
+            jumlah_dosen_lektor: @json($data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_lektor'] ?? 0),
+            jumlah_dosen_lektor_kepala: @json($data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_lektor_kepala'] ?? 0),
+            jumlah_dosen_profesor: @json($data->dosen_berdasarkan_jabatan_fungsional['jumlah_dosen_profesor'] ?? 0),
+
+            jumlah_dosen_pns: @json($data->dosen_berdasarkan_status_kepegawaian['jumlah_dosen_pns'] ?? 0),
+            jumlah_dosen_pppk: @json($data->dosen_berdasarkan_status_kepegawaian['jumlah_dosen_pppk'] ?? 0),
+            jumlah_dosen_tetap: @json($data->dosen_berdasarkan_status_kepegawaian['jumlah_dosen_tetap'] ?? 0),
+            jumlah_dosen_tidak_tetap: @json($data->dosen_berdasarkan_status_kepegawaian['jumlah_dosen_tidak_tetap'] ?? 0),
+
+            jumlah_dosen_pascasarjana: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_pascasarjana'] ?? 0),
+            jumlah_dosen_fip: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fip'] ?? 0),
+            jumlah_dosen_fbs: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fbs'] ?? 0),
+            jumlah_dosen_fmipa: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fmipa'] ?? 0),
+            jumlah_dosen_fish: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fish'] ?? 0),
+            jumlah_dosen_ft: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_ft'] ?? 0),
+            jumlah_dosen_fikk: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fikk'] ?? 0),
+            jumlah_dosen_feb: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_feb'] ?? 0),
+            jumlah_dosen_fpsi: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_fpsi'] ?? 0),
+            jumlah_dosen_ppg: @json($data->dosen_berdasarkan_fakultas['jumlah_dosen_ppg'] ?? 0),
         };
     </script> -->
 </div>
