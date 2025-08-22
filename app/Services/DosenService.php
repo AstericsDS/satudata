@@ -117,7 +117,7 @@ class DosenService {
             'jumlah_dosen_ppg' => 'Program Profesi Guru'
         ];
 
-        $response = Http::withToken($token)->get($api_url);
+        $response = Http::withToken($token)->timeout(35000)->get($api_url);
         $dosen = collect($response->json()['isi']);
 
         foreach($list_fakultas as $key => $fakultas) {
