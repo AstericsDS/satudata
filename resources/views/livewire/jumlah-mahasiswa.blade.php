@@ -283,9 +283,116 @@
     {{-- Container Graph - Start --}}
     <div class="flex-1 mt-10 mr-8 flex flex-col w-full">
         <div class="text-white shadow-xl">
-            <div class="bg-unj rounded-t-md p-4 font-semibold">
+            <div class="bg-unj rounded-t-md p-4 font-semibold relative">
                 <p class="text-center">Jumlah Mahasiswa Berdasarkan</p>
+                
+                {{-- Wrapper Badge - Start --}}
+                <div class="justify-center flex mt-2 flex-nowrap overflow-x-auto">
+
+                    {{-- Badge Jenjang Pendidikan - Start --}}
+                    <span id="badge-jenjang-dismiss"
+                        class="inline-flex items-center px-2 py-1 me-2 text-sm font-semibold rounded-sm text-unj bg-gray-200">
+                       S1 
+                        <button type="button"
+                            class="inline-flex items-center p-1 ml-1 mt-0.5 text-sm text-unj bg-transparent rounded-xs hover:bg-gray-100"
+                            data-dismiss-target="#badge-jenjang-dismiss" aria-label="Remove">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Remove badge</span>
+                        </button>
+                    </span>
+                    {{-- Badge Jenjang Pendidikan - End --}}
+
+                    {{-- Badge Semester - Start --}}
+                    <span id="badge-semester-dismiss"
+                        class="inline-flex items-center px-2 py-1 me-2 text-sm font-semibold rounded-sm text-unj bg-gray-200">
+                        121
+                        <button type="button"
+                            class="inline-flex items-center p-1 ml-1 mt-0.5 text-sm text-unj bg-transparent rounded-xs hover:bg-gray-100"
+                            data-dismiss-target="#badge-semester-dismiss" aria-label="Remove">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Remove badge</span>
+                        </button>
+                    </span>
+                    {{-- Badge Semester - End --}}
+
+                    {{-- Badge Fakultas - Start --}}
+                    <span id="badge-fakultas-dismiss"
+                        class="inline-flex items-center px-2 py-1 me-2 text-sm font-semibold rounded-sm text-unj bg-gray-200">
+                        FMIPA
+                        <button type="button"
+                            class="inline-flex items-center p-1 ml-1 mt-0.5 text-sm text-unj bg-transparent rounded-xs hover:bg-gray-100"
+                            data-dismiss-target="#badge-fakultas-dismiss" aria-label="Remove">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Remove badge</span>
+                        </button>
+                    </span>
+                    {{-- Badge Fakultas - End --}}
+
+                    {{-- Badge Prodi - Start --}}
+                    <span id="badge-prodi-dismiss"
+                        class="inline-flex items-center px-2 py-1 me-2 text-sm font-semibold rounded-sm text-unj bg-gray-200">
+                        S1 - Ilmu Komputer
+                        <button type="button"
+                            class="inline-flex items-center p-1 ml-1 mt-0.5 text-sm text-unj bg-transparent rounded-xs hover:bg-gray-100"
+                            data-dismiss-target="#badge-prodi-dismiss" aria-label="Remove">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Remove badge</span>
+                        </button>
+                    </span>
+                    {{-- Badge Prodi - End --}}
+
+                    {{-- Badge Keaktifan - Start --}}
+                    <span id="badge-keaktifan-dismiss"
+                        class="inline-flex items-center px-2 py-1 me-2 text-sm font-semibold rounded-sm text-unj bg-gray-200">
+                        Aktif
+                        <button type="button"
+                            class="inline-flex items-center p-1 ml-1 mt-0.5 text-sm text-unj bg-transparent rounded-xs hover:bg-gray-100"
+                            data-dismiss-target="#badge-keaktifan-dismiss" aria-label="Remove">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Remove badge</span>
+                        </button>
+                    </span>
+                    {{-- Badge Keaktifan - End --}}
+
+                    {{-- Badge Kewarganegaraan - Start --}}
+                    <span id="badge-kewarganegaraan-dismiss"
+                        class="inline-flex items-center px-2 py-1 me-2 text-sm font-semibold rounded-sm text-unj bg-gray-200">
+                        WNI
+                        <button type="button"
+                            class="inline-flex items-center p-1 ml-1 mt-0.5 text-sm text-unj bg-transparent rounded-xs hover:bg-gray-100"
+                            data-dismiss-target="#badge-kewarganegaraan-dismiss" aria-label="Remove">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Remove badge</span>
+                        </button>
+                    </span>
+                    {{-- Badge Kewarganegaraan - End --}}
+
+                </div>
+                {{-- Wrapper Badge - End --}}
+
+                
             </div>
+
+            
+
             <div>
                 <div id="angkatan" class="text-black mt-4"></div>
             </div>
@@ -295,3 +402,10 @@
 
 </div>
 {{-- Wrapper - End --}}
+
+<script>
+    window.chartData = {
+        jumlah_mahasiswa_diterima: @json($jumlah_mahasiswa_diterima),
+        jumlah_mahasiswa: @json($jumlah_mahasiswa),
+    }
+</script>

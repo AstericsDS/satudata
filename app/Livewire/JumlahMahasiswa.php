@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Data;
 use Livewire\Component;
 
 class JumlahMahasiswa extends Component
@@ -18,6 +19,9 @@ class JumlahMahasiswa extends Component
     ];
     public $status_keaktifan = ['Semua', 'Aktif', 'Lulus'];
     public $kewarganegaraan = ['WNI', 'WNA'];
+    public Data $data;
+    public $jumlah_mahasiswa_diterima = [];
+    public $jumlah_mahasiswa = [];
     
     public $selected_jenjang = null;
     public $selected_fakultas = null;
@@ -42,6 +46,17 @@ class JumlahMahasiswa extends Component
     public function selectGraphType($graph_type) {
         $this->selected_graph_type = $graph_type;
         
+    }
+
+    public function mount()
+    {
+        $this->data = Data::first();
+
+        foreach ($this->data->mahasiswa_berdasarkan_angkatan as $data) {
+            if (!is_array($data)) continue;
+            $this->jumlah_mahasiswa_diterima[] = $data['jumlah_mahasiswa_diterima'] ?? 0;
+            $this->jumlah_mahasiswa[] = $data['jumlah_mahasiswa'] ?? 0;
+        }
     }
     
     public function render()
