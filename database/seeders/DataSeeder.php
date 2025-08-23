@@ -43,6 +43,13 @@ class DataSeeder extends Seeder
                 'jumlah_dosen_s3' => 0,
                 'updated_at' => null 
             ],
+            'mahasiswa_berdasarkan_jenjang_pendidikan' => [
+                'jumlah_mahasiswa_d4' => 0,
+                'jumlah_mahasiswa_s1' => 0,
+                'jumlah_mahasiswa_s2' => 0,
+                'jumlah_mahasiswa_s3' => 0,
+                'updated_at' => null
+            ],
             'dosen_berdasarkan_jabatan_fungsional' => [
                 'jumlah_dosen_plp' => 0,
                 'jumlah_dosen_asisten' => 0,

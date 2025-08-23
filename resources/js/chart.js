@@ -48,9 +48,15 @@ var options2 = {
         type: 'pie',
         height: 350
     },
-    series: [27346, 2025, 1072, 3640],
+    // series: [27346, 2025, 1072, 3640],
+    series: [
+        window.chartData.jumlah_mahasiswa_s1,
+        window.chartData.jumlah_mahasiswa_s2,
+        window.chartData.jumlah_mahasiswa_s3,
+        window.chartData.jumlah_mahasiswa_d4,
+    ],
     labels: ['S1', 'S2', 'S3', 'D4'],
-    colors: ["#4D774E", "#9DC88D", "#006569", "#00b3ba"],
+    colors: ["#55a630", "#9DC88D", "#006569", "#00b3ba"],
 
 };
 

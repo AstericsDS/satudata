@@ -174,6 +174,11 @@
             jumlah_mahasiswa_diterima: @json($jumlah_mahasiswa_diterima),
             jumlah_mahasiswa: @json($jumlah_mahasiswa),
 
+            jumlah_mahasiswa_d4: @json($data->mahasiswa_berdasarkan_jenjang_pendidikan['jumlah_mahasiswa_d4'] ?? 0),
+            jumlah_mahasiswa_s1: @json($data->mahasiswa_berdasarkan_jenjang_pendidikan['jumlah_mahasiswa_s1'] ?? 0),
+            jumlah_mahasiswa_s2: @json($data->mahasiswa_berdasarkan_jenjang_pendidikan['jumlah_mahasiswa_s2'] ?? 0),
+            jumlah_mahasiswa_s3: @json($data->mahasiswa_berdasarkan_jenjang_pendidikan['jumlah_mahasiswa_s3'] ?? 0),
+
             jumlah_dosen_s2: @json($data->dosen_berdasarkan_pendidikan['jumlah_dosen_s2'] ?? 0),
             jumlah_dosen_s3: @json($data->dosen_berdasarkan_pendidikan['jumlah_dosen_s3'] ?? 0),
 
