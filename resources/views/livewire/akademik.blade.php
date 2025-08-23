@@ -69,7 +69,7 @@
             {{-- Header - End --}}
 
             {{-- Main Container Mahasiswa - Start --}}
-            <div class="grid grid-cols-2 gap-x-14 gap-y-8 mt-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-14 gap-y-8 mt-8">
 
                 <div class="text-white shadow-xl">
                     <div class="bg-unj rounded-t-md p-4 font-semibold">
