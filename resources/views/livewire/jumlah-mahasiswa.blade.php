@@ -95,7 +95,7 @@
             <button id="fakultasButton" type="button" data-dropdown-toggle="fakultasFilter"
                 class="text-unj text-sm rounded-lg bg-white border border-gray-500 text-center inline-flex items-center justify-between px-5 py-2 w-full">
                 <span>
-                    {{ $selected_fakultas ?? '-- Pilih fakultas --' }}
+                    {{ $this->selectedFakultas->singkatan_fakultas ?? '-- Pilih fakultas --' }}
                 </span>
                 <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 10 6">
@@ -106,13 +106,19 @@
             {{-- Dropdown Button - End --}}
         
             {{-- Fakultas Menu - Start --}}
-            <div id="fakultasFilter" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-100">
+            <div id="fakultasFilter" class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-100">
                 <ul class="py-2 text-sm text-unj ml-2" aria-labelledby="fakultasButton">
+
+                    <li>
+                        <a href="#" wire:click.prevent="clearFakultas()" class="block px-4 py-2 hover:bg-gray-100">
+                            -- Hapus pilihan --
+                        </a>
+                    </li>
         
-                    @foreach ($fakultas_list as $fakultas_key => $fakultas_name)
+                    @foreach ($fakultas_list as $fakultas)
                         <li>
-                            <a href="#" wire:click.prevent="selectFakultas('{{ $fakultas_key }}')" class="block px-4 py-2 hover:bg-gray-100">
-                                {{ $fakultas_name }}
+                            <a href="#" wire:click.prevent="selectFakultas('{{ $fakultas->kode_fakultas }}')" class="block px-4 py-2 hover:bg-gray-100">
+                                {{ $fakultas->nama_fakultas }}
                             </a>
                         </li>
                     @endforeach
@@ -322,10 +328,11 @@
                     {{-- Badge Semester - End --}}
 
                     {{-- Badge Fakultas - Start --}}
+                    @if($this->selectedFakultas)
                     <span id="badge-fakultas-dismiss"
                         class="inline-flex items-center px-2 py-1 me-2 text-sm font-semibold rounded-sm text-unj bg-gray-200">
-                        FMIPA
-                        <button type="button"
+                        {{ $this->selectedFakultas->singkatan_fakultas }}
+                        <button type="button" wire:click.prevent="clearFakultas()"
                             class="inline-flex items-center p-1 ml-1 mt-0.5 text-sm text-unj bg-transparent rounded-xs hover:bg-gray-100"
                             data-dismiss-target="#badge-fakultas-dismiss" aria-label="Remove">
                             <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -335,6 +342,7 @@
                             <span class="sr-only">Remove badge</span>
                         </button>
                     </span>
+                    @endif
                     {{-- Badge Fakultas - End --}}
 
                     {{-- Badge Prodi - Start --}}
