@@ -17,7 +17,7 @@ class DosenService {
 
         $response_s2 = Http::withHeaders([
             'Content-Type' => 'application/json'
-        ])->post(env('PDDIKTI_URL'), [
+        ])->timeout(60000)->post(env('PDDIKTI_URL'), [
             "act" => "GetRiwayatPendidikanDosen",
             "token" => $token,
             "filter" => "nama_jenjang_pendidikan = 'S2' and nuptk is not null",
@@ -28,7 +28,7 @@ class DosenService {
 
         $response_s3 = Http::withHeaders([
             'Content-Type' => 'application/json'
-        ])->post(env('PDDIKTI_URL'), [
+        ])->timeout(60000)->post(env('PDDIKTI_URL'), [
             "act" => "GetRiwayatPendidikanDosen",
             "token" => $token,
             "filter" => "nama_jenjang_pendidikan = 'S3' and nuptk is not null",
@@ -62,7 +62,7 @@ class DosenService {
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json'
-        ])->post(env('PDDIKTI_URL'), [
+        ])->timeout(60000)->post(env('PDDIKTI_URL'), [
             "act" => "GetRiwayatFungsionalDosen",
             "token" => $token,
             "filter" => "",
@@ -86,7 +86,7 @@ class DosenService {
         $model = Data::first();
         $data = $model->dosen_berdasarkan_status_kepegawaian;
 
-        $response = Http::withToken($token)->get($api_url);
+        $response = Http::withToken($token)->timeout(60000)->get($api_url);
         $dosen = collect($response->json()['pegawais']);
 
         $data['jumlah_dosen_pns'] = $dosen->where('cabang', 'Dosen')->count() ?? 0;
@@ -117,7 +117,7 @@ class DosenService {
             'jumlah_dosen_ppg' => 'Program Profesi Guru'
         ];
 
-        $response = Http::withToken($token)->timeout(35000)->get($api_url);
+        $response = Http::withToken($token)->timeout(60000)->get($api_url);
         $dosen = collect($response->json()['isi']);
 
         foreach($list_fakultas as $key => $fakultas) {
