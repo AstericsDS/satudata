@@ -23,6 +23,7 @@ class FakultasSeeder extends Seeder
             ['kode_fakultas' => 16, 'nama_fakultas' => 'Fakultas Ilmu Keolahragaan dan Kesehatan', 'singkatan_fakultas' => 'FIKK'],
             ['kode_fakultas' => 17, 'nama_fakultas' => 'Fakultas Ekonomi dan Bisnis', 'singkatan_fakultas' => 'FEB'],
             ['kode_fakultas' => 18, 'nama_fakultas' => 'Fakultas Psikologi', 'singkatan_fakultas' => 'FPsi'],
+            ['kode_fakultas' => 20, 'nama_fakultas' => 'Program Profesi Guru', 'singkatan_fakultas' => 'PPG']
         ];
 
         Fakultas::insert($fakultas);
