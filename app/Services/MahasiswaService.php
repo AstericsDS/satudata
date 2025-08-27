@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Data;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class MahasiswaService
 {
@@ -96,5 +97,38 @@ class MahasiswaService
                     "offset" => "0"
                 ]);
         return count($response['data']);
+    }
+
+    public function synchronizePendidikanMahasiswa() {
+        $token = Cache::get('token');
+        $model = Data::first();
+        $data = $model->mahasiswa_berdasarkan_jenjang_pendidikan ?? [];
+
+        $list_jenjang_pendidikan = ['D4', 'S1', 'S2', 'S3'];
+        $counts = [];
+
+        foreach($list_jenjang_pendidikan as $jenjang_pendidikan) {
+            $response = Http::withHeaders([
+            'Content-Type' => 'application/json'
+            ])->post(env('PDDIKTI_URL'), [
+                "act" => "GetListMahasiswa",
+                "token" => $token,
+                "filter" => "nama_status_mahasiswa = 'AKTIF' AND status_sync = 'sudah sync' AND nama_program_studi != 'Profesi Pendidikan Profesi Guru' and nama_program_studi like '%{$jenjang_pendidikan} %'",
+                "order" => "",
+                "limit" => "",
+                "offset" => 0
+            ]);
+
+            if($response->successful() && isset($response->json()['jumlah'])) {
+                $count = (int) $response->json()['jumlah'];
+                $key = 'jumlah_mahasiswa_' . strtolower($jenjang_pendidikan);
+                $counts[$key] = $count;
+            }
+
+        }
+
+        $mahasiswa = array_merge($data, $counts);
+        $model->mahasiswa_berdasarkan_jenjang_pendidikan = $mahasiswa;
+        $model->save();
     }
 }
