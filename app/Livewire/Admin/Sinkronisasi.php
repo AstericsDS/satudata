@@ -23,6 +23,7 @@ class Sinkronisasi extends Component
     public Data $data;
     public $jumlah_mahasiswa_diterima = [];
     public $jumlah_mahasiswa = [];
+    public array $menu_list = [];
     
     public function __construct()
     {
@@ -92,6 +93,58 @@ class Sinkronisasi extends Component
     public function mount()
     {
         $this->data = Data::first();
+
+        $this->menu_list = [
+            [
+                'no' => 1,
+                'title' => 'UNJ dalam angka (Dosen, Mahasiswa, Wisuda Tahun Sekarang, Peminat)',
+                'action' => 'unjDalamAngka',
+                'statusKey' => 'unj_dalam_angka',
+                'source' => 'PD-DIKTI',
+            ],
+            [
+                'no' => 2,
+                'title' => 'Grafik jumlah mahasiswa berdasarkan angkatan',
+                'action' => 'mahasiswaAngkatan',
+                'statusKey' => 'mahasiswa_berdasarkan_angkatan',
+                'source' => 'PD-DIKTI',
+            ],
+            [
+                'no' => 3,
+                'title' => 'Grafik jumlah mahasiswa berdasarkan jenjang pendidikan',
+                'action' => 'mahasiswaPendidikan',
+                'statusKey' => 'mahasiswa_berdasarkan_jenjang_pendidikan',
+                'source' => 'PD-DIKTI',
+            ],
+            [
+                'no' => 4,
+                'title' => 'Grafik jumlah dosen berdasarkan jenjang pendidikan',
+                'action' => 'dosenPendidikan',
+                'statusKey' => 'dosen_berdasarkan_pendidikan',
+                'source' => 'PD-DIKTI',
+            ],
+            [
+                'no' => 5,
+                'title' => 'Grafik jumlah mahasiswa berdasarkan jabatan fungsional',
+                'action' => 'dosenJabatan',
+                'statusKey' => 'dosen_berdasarkan_status_kepegawaian',
+                'source' => 'PD-DIKTI',
+            ],
+            [
+                'no' => 6,
+                'title' => 'Grafik jumlah dosen berdasarkan status kepegawaian',
+                'action' => 'dosenKepegawaian',
+                'statusKey' => 'dosen_berdasarkan_status_kepegawaian',
+                'source' => 'SIPEG',
+            ],
+            [
+                'no' => 7,
+                'title' => 'Grafik jumlah dosen berdasarkan fakultas',
+                'action' => 'dosenFakultas',
+                'statusKey' => 'dosen_berdasarkan_fakultas',
+                'source' => 'SIAKAD',
+            ],
+        ];
         
         foreach ($this->data->mahasiswa_berdasarkan_angkatan as $key => $data) {
             if (!is_array($data)) continue;
