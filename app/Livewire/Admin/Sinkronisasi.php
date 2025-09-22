@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Data;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
+use App\Services\AkademikService;
 use App\Services\DosenPendidikanService;
 use App\Services\DosenService;
 use App\Services\PDDIKTIService;
@@ -90,6 +91,15 @@ class Sinkronisasi extends Component
         ]);
     }
 
+    // public function listFakultas(AkademikService $service) {
+    //     $service->syncFakultas();
+    //     Data::update(['updated_at' => now('Asia/Jakarta')]);
+    // }
+
+    public function dosenTable(DosenService $service) {
+        $service->syncDataDosen();
+    }
+
     public function mount()
     {
         $this->data = Data::first();
@@ -143,6 +153,20 @@ class Sinkronisasi extends Component
                 'action' => 'dosenFakultas',
                 'statusKey' => 'dosen_berdasarkan_fakultas',
                 'source' => 'SIAKAD',
+            ],
+            // [
+            //     'no' => 8,
+            //     'title' => 'Sinkronisasi list fakultas',
+            //     'action' => 'listFakultas',
+            //     'statusKey' => 'dosen_berdasarkan_fakultas',
+            //     'source' => 'SIAKAD',
+            // ],
+            [
+                'no' => 9,
+                'title' => 'Sinkronisasi data dosen',
+                'action' => 'dosenTable',
+                'statusKey' => 'dosen_berdasarkan_fakultas',
+                'source' => 'SIPEG',
             ],
         ];
         

@@ -29,7 +29,7 @@ class ProdiSeeder extends Seeder
 
             $nama_prodi = ucwords(strtolower($prodi['namaProdi']));
             $jenjang = strtoupper($prodi['jenjangProdi']);
-            $nama_prodi_lengkap = $jenjang . ' ' . $nama_prodi;
+            $nama_prodi_lengkap = $jenjang . ' - ' . $nama_prodi;
 
             Prodi::updateOrCreate(
                 ['kode_prodi' => $prodi['kodeProdi']],

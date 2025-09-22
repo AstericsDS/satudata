@@ -3,13 +3,48 @@
 namespace App\Services;
 
 use App\Models\Data;
+use App\Models\Dosen;
+use App\Models\Fakultas;
+use App\Models\Prodi;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
 
 class DosenService {
+    public function syncDataDosen() {
+        $fakultas_map = Fakultas::pluck('id', 'nama_fakultas');
+        $prodi_map = Prodi::pluck('id', 'nama_prodi_lengkap');
 
+        $token_sipeg = env('SIPEG_TOKEN');
+        $api_sipeg = env('SIPEG_BASE_URL') . '/api/pegawai';
+        $response_sipeg = Http::withToken($token_sipeg)->timeout(30000)->get($api_sipeg);
+        $data_sipeg = $response_sipeg->json()['pegawais'];
+
+        $cabang = ['Dosen', 'Dosen Tetap', 'Dosen Tidak Tetap', 'PPPK_Dosen'];
+        $filter_pegawai = collect($data_sipeg)->filter(function ($pegawai) use ($cabang) {
+            return isset($pegawai['status_aktif'], $pegawai['cabang']) && $pegawai['status_aktif'] == 'Aktif' && in_array($pegawai['cabang'], $cabang);
+        });
+
+        foreach($filter_pegawai as $pegawai) {
+            $prepared_data = [
+                'nama' => $pegawai['nama'],
+                'nik' => $pegawai['nik'],
+                'nip' => $pegawai['nip_baru'],
+                'cabang_dosen' => $pegawai['cabang'],
+                'status_kepegawaian' => $pegawai['status_aktif'],
+                'kode_fakultas' => $fakultas_map->get($pegawai['unit_kerja']),
+                'kode_prodi' => $prodi_map->get($pegawai['prodi'])
+            ];
+
+            Dosen::updateOrCreate(
+                ['nip' => $pegawai['nip_baru']],
+                $prepared_data
+            );
+        }
+
+    }
+    
     public function synchronizePendidikanDosen() {
         $token = Cache::get('token');
         $model = Data::first();
