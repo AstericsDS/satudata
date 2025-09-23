@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPage;
 use App\Livewire\Login;
 use App\Livewire\Navbar;
 use App\Livewire\Akademik;
@@ -15,6 +16,7 @@ use App\Http\Controllers\MahasiswaController;
 Route::get('/', Akademik::class)->name('akademik');
 Route::get('/login', Login::class)->name('login');
 Route::get('/jumlah-mahasiswa', JumlahMahasiswa::class)->name('jumlah-mahasiswa');
+Route::get('/test', [LandingPage::class, 'landingPage']);
 
 // Admin
 Route::prefix('admin')->group(function(){
