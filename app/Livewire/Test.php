@@ -4,14 +4,10 @@ namespace App\Livewire;
 
 use App\Models\Data;
 use Livewire\Component;
-use Livewire\Attributes\On;
-use App\Models\Mahasiswa;
-use App\Services\DosenService;
-use Livewire\Attributes\Title;
-use App\Services\MahasiswaSyncService;
+use Livewire\Attributes\Layout;
 
-#[Title('Dashboard')]
-class Akademik extends Component
+#[Layout('components.layouts.app')]
+class Test extends Component
 {
     public Data $data;
     public $jumlah_mahasiswa_diterima = [];
@@ -27,11 +23,8 @@ class Akademik extends Component
             $this->jumlah_mahasiswa[] = $data['jumlah_mahasiswa'] ?? 0;
         }
     }
-    
     public function render()
     {
-        return view('livewire.akademik', [
-
-        ]);
+        return view('livewire.test');
     }
 }

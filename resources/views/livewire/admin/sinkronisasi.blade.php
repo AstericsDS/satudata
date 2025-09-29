@@ -151,7 +151,7 @@
                             </button>
                         </td>
                         <td class="px-6 py-4">
-                            @if (isset($data->mahasiswa_berdasarkan_angkatan['updated_at']))
+                            @if (isset($data->mahasiswa_berdasarkan_jenjang_pendidikan['updated_at']))
                                 <div wire:poll>
                                     Data ini disinkronisasi pada: <span class="font-semibold text-black">{{ $data->mahasiswa_berdasarkan_angkatan['updated_at'] }}</span>
                                 </div>

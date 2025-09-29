@@ -5,7 +5,7 @@
 
         {{-- Logo - Start --}}
         <a href="/dashboard" class="flex items-center space-x-3">
-            <img src="images/unj.png" width="55px" class="h-14 w-auto mt-2 ml-2" alt="UNJ Logo">
+            <img src="{{asset('assets/images/unj.png')}}" width="55px" class="h-14 w-auto mt-2 ml-2" alt="UNJ Logo">
             <div class="flex flex-col">
                 <h1 class="font-bold text-lg sm:text-2xl text-white">SATU DATA</h1>
                 <h2 class="font-bold text-xs sm:text-base text-white">UNIVERSITAS NEGERI JAKARTA</h2>
