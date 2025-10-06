@@ -1,3 +1,3 @@
 import './bootstrap';
-import './chart';
+import './dashboardChart'
 import 'flowbite';

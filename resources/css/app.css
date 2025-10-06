@@ -12,6 +12,13 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 
     --color-unj: #006569;
-    --color-clr2: #4D774E;
-    --color-clr3: #9DC88D;
+    --color-secondary: #4D774E;
+    --color-tertiary: #9DC88D;
 }
+
+@layer base {
+    html {
+      @apply text-sm;
+    }
+  }
+  

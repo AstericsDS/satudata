@@ -27,12 +27,18 @@ class ProdiSeeder extends Seeder
                 ['nama_fakultas' => $prodi['namaFakultas'], 'singkatan_fakultas' => '']
             );
 
+            $nama_prodi = ucwords(strtolower($prodi['namaProdi']));
+            $jenjang = strtoupper($prodi['jenjangProdi']);
+            $nama_prodi_lengkap = $jenjang . ' - ' . $nama_prodi;
+
             Prodi::updateOrCreate(
                 ['kode_prodi' => $prodi['kodeProdi']],
                 [
                     'kode_prodi_dikti' => $prodi['prodi_dikti'],
-                    'nama_prodi' => $prodi['namaProdi'],
+                    // 'nama_prodi' => $prodi['namaProdi'],
+                    'nama_prodi' => $nama_prodi,
                     'jenjang_prodi' => $prodi['jenjangProdi'],
+                    'nama_prodi_lengkap' => $nama_prodi_lengkap,
                     'fakultas_id' => $fakultas->id
                 ]
             );

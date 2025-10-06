@@ -7,11 +7,12 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <title>{{ $title ?? 'Page Title' }}</title>
+    <script src="https://kit.fontawesome.com/803b706a8d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     @livewireStyles
 </head>
 
-<body class="min-h-screen bg-[url('assets/dashboard/background.svg')] bg-cover">
+<body class="min-h-screen bg-[url('/public/assets/dashboard/background.svg')] bg-cover relative flex flex-col">
     
     {{-- Navbar --}}
     <livewire:navbar />
@@ -57,6 +58,9 @@
             {{ $slot }}
         </div>
     {{-- </div> --}}
+    
+    {{-- Footer --}}
+    <livewire:footer />
 
     @livewireScripts
 </body>

@@ -40,9 +40,9 @@
     
     {{-- Background --}}
     <div>
-        <img src="{{ asset('assets/landing_page/mask.svg') }}" alt="" class="absolute right-0 -z-30 w-7xl">
-        <img src="{{ asset('assets/landing_page/vector_1.svg') }}" alt="" class="absolute right-10 -z-50 w-7xl">
-        <img src="{{ asset('assets/landing_page/vector_2.svg') }}" alt="" class="absolute right-70 -z-40 w-5xl">
+        <img src="{{ asset('assets/landing_page/mask.svg') }}" alt="" class="absolute right-0 -z-30 w-[1200px]">
+        <img src="{{ asset('assets/landing_page/vector_1.svg') }}" alt="" class="absolute right-10 -z-50 w-[1000px]">
+        <img src="{{ asset('assets/landing_page/vector_2.svg') }}" alt="" class="absolute right-80 -z-40 w-[1100px]">
     </div>
 
     {{-- Footer --}}

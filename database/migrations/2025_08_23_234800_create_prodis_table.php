@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kode_prodi_dikti');
             $table->string('nama_prodi');
             $table->string('jenjang_prodi');
+            $table->string('nama_prodi_lengkap');
             $table->unsignedBigInteger('fakultas_id');
             $table->foreign('fakultas_id')->references('id')->on('fakultas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
@@ -28,6 +29,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('prodis');
+        Schema::enableForeignKeyConstraints();
     }
 };

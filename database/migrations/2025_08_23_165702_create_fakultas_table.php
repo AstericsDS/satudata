@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('kode_fakultas')->unique();
             $table->string('nama_fakultas');
             $table->string('singkatan_fakultas');
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
