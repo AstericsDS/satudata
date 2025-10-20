@@ -116,7 +116,7 @@
 
             <div class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                 <div class="p-4 text-white text-center">
-                    <h1 class="font-semibold">Jumlah Mahasiswa Berdasarkan Jenjang</h1>
+                    <h1 class="font-semibold">Jumlah Peminat per-Tahun</h1>
                     <h2 class="">Data diperbarui 10 jam yang lalu</h2>
                 </div>
                 <div class="bg-white m-4 mt-0 rounded-lg p-4">

@@ -293,15 +293,15 @@ var options6 = {
     series: [
         {
             name: "Jumlah Mahasiswa S1",
-            data: jumlah_mahasiswa_s1,
+            data: window.chartData.jumlah_mahasiswa_s1,
         },
         {
             name: "Jumlah Mahasiswa S2",
-            data: jumlah_mahasiswa_s2,
+            data: window.chartData.jumlah_mahasiswa_s2,
         },
         {
             name: "Jumlah Mahasiswa S3",
-            data: jumlah_mahasiswa_s3,
+            data: window.chartData.jumlah_mahasiswa_s3,
         }
     ],
 
@@ -448,14 +448,9 @@ var options8 = {
     },
 };
 
-var chart1 = new ApexCharts(
-    document.querySelector("#mahasiswa-angkatan"),
-    options1
-);
-var chart2 = new ApexCharts(
-    document.querySelector("#mahasiswa-angkatan-small"),
-    options2
-);
+var chart1 = new ApexCharts(document.querySelector("#mahasiswa-angkatan"),options1);
+
+var chart2 = new ApexCharts(document.querySelector("#mahasiswa-angkatan-small"),options2);
 
 var chart4 = new ApexCharts(document.querySelector("#mahasiswa-fakultas-small"), options4);
 
