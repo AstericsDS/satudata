@@ -16,7 +16,6 @@ use App\Http\Controllers\MahasiswaController;
 Route::get('/', LandingPage::class)->name('landing-page');
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
 Route::get('/login', Login::class)->name('login');
-Route::get('/test', Test::class)->name('test');
 
 // Admin
 Route::prefix('admin')->group(function(){
@@ -29,4 +28,24 @@ Route::get('/unj-angka', [DataController::class, 'angkatan']);
 // Akademik dan Mahasiswa
 Route::prefix('akademik-dan-mahasiswa')->group(function(){
     Route::get('/jumlah-mahasiswa', JumlahMahasiswa::class)->name('jumlah-mahasiswa');
+});
+
+// Kepegawaian dan Umum
+Route::prefix('kepegawaian-dan-umum')->group(function() {
+
+});
+
+// Keuangan dan Perencanaan
+Route::prefix('keuangan-dan-perencanaan')->group(function() {
+
+});
+
+// Bisnis dan Inovasi
+Route::prefix('bisnis-dan-inovasi')->group(function() {
+
+});
+
+// Publikasi
+Route::prefix('publikasi')->group(function() {
+
 });

@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use App\Services\MahasiswaSyncService;
 use Livewire\Attributes\Layout;
 
-#[Title('Dashboard')]
+#[Title('Beranda')]
 #[Layout('components.layouts.app')]
 class Dashboard extends Component
 {

@@ -195,6 +195,99 @@ var options2 = {
     },
 };
 
+var options3 = {
+    chart: {
+        type: "bar",
+        height: 400,
+        toolbar: {
+            show: false,
+        },
+    },
+
+    series: [
+        {
+            name: "Jumlah Mahasiswa",
+            data: [2786, 5114, 7531, 6716, 5114, 6966, 3249, 7227, 5228],
+        },
+    ],
+
+    plotOptions: {
+        bar: {
+            horizontal: false,
+            columnWidth: "65%",
+            borderRadius: 5,
+            dataLabels: {
+                position: "top",
+            },
+        },
+    },
+
+    dataLabels: {
+        enabled: true,
+        offsetY: -20,
+        style: {
+            fontSize: "12px",
+            colors: ["#304758"],
+        },
+    },
+
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+    },
+    xaxis: {
+        categories: [
+            "Pascasarjana",
+            "FIP",
+            "FBS",
+            "FMIPA",
+            "FISH",
+            "FT",
+            "FIK",
+            "FEB",
+            "FP",
+        ],
+        labels: {
+            style: {
+                fontSize: "12px",
+            },
+        },
+        axisBorder: {
+            show: false,
+        },
+        axisTicks: {
+            show: false,
+        },
+    },
+
+    yaxis: {
+        show: false,
+    },
+
+    grid: {
+        show: false,
+    },
+
+    colors: ["#4D774E", "#30534E"],
+    fill: {
+        type: "gradient",
+        gradient: {
+            type: "vertical",
+            gradientToColors: ["#8FDD91", "#6CB9AD"],
+            stops: [0, 100],
+        },
+    },
+
+    legend: {
+        position: "bottom",
+        horizontalAlign: "center",
+        itemMargin: {
+            horizontal: 5,
+        },
+    },
+};
+
 var options4 = {
     chart: {
         type: "bar",
@@ -281,6 +374,107 @@ var options4 = {
     },
 };
 
+var options5 = {
+    chart: {
+        type: "bar",
+        height: 400,
+        toolbar: {
+            show: false,
+        },
+    },
+
+    series: [
+        {
+            name: "Jumlah Mahasiswa S1",
+            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350]
+        },
+        {
+            name: "Jumlah Mahasiswa S2",
+            data: [2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350],
+        },
+        {
+            name: "Jumlah Mahasiswa S3",
+            data: [3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350],
+        }
+    ],
+
+    plotOptions: {
+        bar: {
+            horizontal: false,
+            columnWidth: "65%",
+            borderRadius: 5,
+            dataLabels: {
+                position: "top",
+            },
+        },
+    },
+
+    dataLabels: {
+        enabled: true,
+        offsetY: -20,
+        style: {
+            fontSize: "12px",
+            colors: ["#304758"],
+        },
+    },
+
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+    },
+    xaxis: {
+        categories: [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+        ],
+        labels: {
+            style: {
+                fontSize: "12px",
+            },
+        },
+        axisBorder: {
+            show: false,
+        },
+        axisTicks: {
+            show: false,
+        },
+    },
+
+    yaxis: {
+        show: false,
+    },
+
+    grid: {
+        show: false,
+    },
+
+    colors: ["#4D774E", "#4D6245", "#30534E"],
+
+    fill: {
+        type: "gradient",
+        gradient: {
+            type: "vertical",
+            gradientToColors: ["#8FDD91", "#9DC88D", "#6CB9AD"],
+            stops: [0, 100],
+        },
+    },
+
+    legend: {
+        position: "bottom",
+        horizontalAlign: "center",
+        itemMargin: {
+            horizontal: 5,
+        },
+    },
+};
+
 var options6 = {
     chart: {
         type: "bar",
@@ -293,28 +487,29 @@ var options6 = {
     series: [
         {
             name: "Jumlah Mahasiswa S1",
-            data: window.chartData.jumlah_mahasiswa_s1,
+            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350]
         },
         {
             name: "Jumlah Mahasiswa S2",
-            data: window.chartData.jumlah_mahasiswa_s2,
+            data: [2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350],
         },
         {
             name: "Jumlah Mahasiswa S3",
-            data: window.chartData.jumlah_mahasiswa_s3,
+            data: [3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350],
         }
     ],
 
-
-    dataLabels: {
-        enabled: false,
-    },
-
-    yaxis: {
-        show: false,
-    },
-
     xaxis: {
+        categories: [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+        ],
         axisBorder: {
             show: false,
         },
@@ -333,6 +528,15 @@ var options6 = {
         },
     },
 
+
+    dataLabels: {
+        enabled: false,
+    },
+
+    yaxis: {
+        show: false,
+    },
+
     grid: {
         padding: {
             top: 0,
@@ -346,13 +550,13 @@ var options6 = {
         show: false,
     },
 
-    colors: ["#4D774E", "#30534E"],
+    colors: ["#4D774E", "#4D6245", "#30534E"],
 
     fill: {
         type: "gradient",
         gradient: {
             type: "vertical",
-            gradientToColors: ["#8FDD91", "#6CB9AD"],
+            gradientToColors: ["#8FDD91", "#9DC88D", "#6CB9AD"],
             stops: [0, 100],
         },
     },
@@ -364,6 +568,99 @@ var options6 = {
         },
     },
 }
+
+var options7 = {
+    chart: {
+        type: "bar",
+        height: 400,
+        toolbar: {
+            show: false,
+        },
+    },
+
+    series: [
+        {
+            name: "Peminat SNMPTN",
+            data: [38693, 38810, 37075, 36605, 38651],
+        },
+        {
+            name: "Peminat SBMPTN",
+            data: [43458, 41641, 34204, 43086, 45121],
+        },
+        {
+            name: "Peminat Mandiri",
+            data: [37161, 42120, 93111, 43585, 57182],
+        },
+    ],
+
+    plotOptions: {
+        bar: {
+            horizontal: false,
+            columnWidth: "65%",
+            borderRadius: 5,
+            dataLabels: {
+                position: "top",
+            },
+        },
+    },
+
+    dataLabels: {
+        enabled: true,
+        offsetY: -20,
+        style: {
+            fontSize: "12px",
+            colors: ["#304758"],
+        },
+    },
+
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+    },
+
+    xaxis: {
+        categories: [2020, 2021, 2022, 2023, 2024],
+        labels: {
+            style: {
+                fontSize: "12px",
+            },
+        },
+        axisBorder: {
+            show: false,
+        },
+        axisTicks: {
+            show: false,
+        },
+    },
+
+    yaxis: {
+        show: false,
+    },
+
+    grid: {
+        show: false,
+    },
+
+    colors: ["#4D774E", "#4D6245", "#30534E"],
+
+    fill: {
+        type: "gradient",
+        gradient: {
+            type: "vertical",
+            gradientToColors: ["#8FDD91", "#9DC88D", "#6CB9AD"],
+            stops: [0, 100],
+        },
+    },
+
+    legend: {
+        position: "bottom",
+        horizontalAlign: "center",
+        itemMargin: {
+            horizontal: 5,
+        },
+    },
+};
 
 var options8 = {
     series: [
@@ -452,14 +749,23 @@ var chart1 = new ApexCharts(document.querySelector("#mahasiswa-angkatan"),option
 
 var chart2 = new ApexCharts(document.querySelector("#mahasiswa-angkatan-small"),options2);
 
+var chart3 = new ApexCharts(document.querySelector("#mahasiswa-fakultas"), options3);
+
 var chart4 = new ApexCharts(document.querySelector("#mahasiswa-fakultas-small"), options4);
 
+var chart5 = new ApexCharts(document.querySelector("#mahasiswa-jenjang"), options5);
+
 var chart6 = new ApexCharts(document.querySelector("#mahasiswa-jenjang-small"), options6);
+
+var chart7 = new ApexCharts(document.querySelector("#peminat"), options7);
 
 var chart8 = new ApexCharts(document.querySelector("#peminat-small"), options8);
 
 chart1.render();
 chart2.render();
+chart3.render();
 chart4.render();
+chart5.render();
 chart6.render();
+chart7.render();
 chart8.render();
