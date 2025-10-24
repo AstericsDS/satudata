@@ -12,7 +12,7 @@
                     <span class="font-semibold ">Wisudawan 2025</span>
                 </div>
             </div>
-            <div class="w-fit mx-auto">
+            <div class="w-fit mx-auto">`
                 <span class="bg-unj rounded-lg text-white font-semibold p-[2px] px-[7px]">+9%</span>
                 <span class="text-gray-600 ml-2">Dari tahun sebelumnya</span>
             </div>

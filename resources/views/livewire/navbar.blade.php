@@ -1,4 +1,4 @@
-<nav class="bg-unj border-gray-200 sticky top-0 z-50">
+<nav class="bg-transparent border-gray-200 sticky top-0 z-50">
 
     {{-- All Container - Start --}}
     <div class="flex flex-wrap justify-between items-center w-full px-4 sm:px-6 py-2.5">
@@ -7,8 +7,8 @@
         <a href="/dashboard" class="flex items-center space-x-3">
             <img src="{{asset('assets/images/unj.png')}}" width="55px" class="h-14 w-auto mt-2 ml-2" alt="UNJ Logo">
             <div class="flex flex-col">
-                <h1 class="font-bold text-lg sm:text-2xl text-white">SATU DATA</h1>
-                <h2 class="font-bold text-xs sm:text-base text-white">UNIVERSITAS NEGERI JAKARTA</h2>
+                <h1 class="font-bold text-lg sm:text-2xl text-unj">SATU DATA</h1>
+                <h2 class="font-bold text-xs sm:text-base text-unj">UNIVERSITAS NEGERI JAKARTA</h2>
             </div>
         </a>
         {{-- Logo - End --}}
@@ -37,26 +37,26 @@
         <div class="hidden w-full xl:block xl:w-auto" id="navbar-multi-level">
 
             {{-- Menu List - Start --}}
-            <ul class="flex flex-col font-medium text-sm p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-unj xl:flex-row  xl:mt-0 xl:border-0">
+            <ul class="flex space-x-4 font-medium text-sm p-4 md:p-0 mt-4 border border-gray-100 rounded-lg xl:flex-row  xl:mt-0 xl:border-0">
 
                 {{-- Home - Start --}}
-                <li>
-                    <a href="/" class="block py-2 px-3 text-white bg-unj hover:underline" aria-current="page">
+                <li class="bg-unj rounded-md">
+                    <a href="/" class="block py-2 px-3 text-white hover:underline" aria-current="page">
                         Home
                     </a>
                 </li>
                 {{-- Home - End --}}
 
                 {{-- Akademik & Mahasiswa - Start --}}
-                <li>
-                    <button id="akademik-navbar-link" data-dropdown-toggle="akademikNavbar" class="flex items-center justify-between w-full py-2 px-3 text-white bg-unj hover:underline">
+                <li class=" {{ request()->route()->getPrefix() === '/akademik-dan-mahasiswa' ? 'bg-unj rounded-md overflow-hidden text-white' : 'text-unj' }}">
+                    <button id="akademik-navbar-link" data-dropdown-toggle="akademikNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline">
                         Akademik & Mahasiswa
                     </button>
                     {{-- Menu Akademik & Mahasiswa - Start --}}
                     <div id="akademikNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
                         <ul class="text-sm text-unj" aria-labelledby="akademik-large-button">
                             <li>
-                                <a href="/jumlah-mahasiswa" class="block px-4 py-1.5 hover:underline">Jumlah Mahasiswa</a>
+                                <a href="{{ route('jumlah-mahasiswa') }}" class="block px-4 py-1.5 hover:underline">Jumlah Mahasiswa</a>
                             </li>
                             <li>
                                 <a href="#" class="block px-4 py-1.5">Jumlah Wisudawan</a>
@@ -95,7 +95,7 @@
                 {{-- Akademik & Mahasiswa - End --}}
 
                 {{-- Kepegawaian & Umum - Start --}}
-                <li>
+                <li class="bg-unj rounded-md overflow-hidden">
                     <button id="kepegawaian-navbar-link" data-dropdown-toggle="kepegawaianNavbar"
                         class="flex items-center justify-between w-full py-2 px-3 text-white bg-unj">
                         Kepegawaian & Umum
@@ -129,7 +129,7 @@
                 {{-- Kepegawaian & Umum - End --}}
 
                 {{-- Keuangan & Perencanaan - Start --}}
-                <li>
+                <li class="bg-unj rounded-md overflow-hidden">
                     <button id="keuangan-navbar-link" data-dropdown-toggle="keuanganNavbar"
                         class="flex items-center justify-between w-full py-2 px-3 text-white bg-unj">
                         Keuangan & Perencanaan
@@ -154,7 +154,7 @@
                 {{-- Keuangan & Perencanaan - End --}}
 
                 {{-- Bisnis & Inovasi - Start --}}
-                <li>
+                <li class="bg-unj rounded-md overflow-hidden">
                     <button id="bisnis-navbar-link" data-dropdown-toggle="bisnisNavbar"
                         class="flex items-center justify-between w-full py-2 px-3 text-white bg-unj">
                         Bisnis & Inovasi
@@ -185,7 +185,7 @@
                 {{-- Bisnis & Inovasi - End --}}
 
                 {{-- Publikasi - Start --}}
-                <li>
+                <li class="bg-unj rounded-md overflow-hidden">
                     <button id="publikasi-navbar-link" data-dropdown-toggle="publikasiNavbar"
                         class="flex items-center justify-between w-full py-2 px-3 text-white bg-unj">
                         Publikasi
