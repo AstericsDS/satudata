@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Fakultas extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'kode_fakultas',
         'nama_fakultas',
@@ -13,6 +16,10 @@ class Fakultas extends Model
     ];
 
     public function prodi() {
-        return $this->hasMany(Prodi::class, 'kode_fakultas', 'kode_fakultas');
+        return $this->hasMany(Prodi::class, 'id', 'fakultas_id');
+    }
+
+    public function dosen() {
+        return $this->hasMany(Dosen::class, 'id', 'kode_fakultas');
     }
 }

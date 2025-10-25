@@ -76,7 +76,7 @@
                         <p class="text-center">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</p>
                     </div>
                     <div>
-                        <div id="angkatan" class="text-black mt-4"></div>
+                        <div id="mahasiswa" class="text-black mt-4"></div>
                     </div>
                 </div>
 

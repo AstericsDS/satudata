@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="https://kit.fontawesome.com/803b706a8d.js" crossorigin="anonymous"></script>
     <title>{{ $title ?? 'SATU DATA' }}</title>
 </head>
 
-<body class="min-h-screen bg-[url('/public/assets/images/login_bg.jpg')] bg-cover flex justify-center items-center bg-center">
-    <livewire:login />
+<body class="h-[100%] overflow-hidden">
+    <livewire:public.landing-page />
 </body>
 
 </html>

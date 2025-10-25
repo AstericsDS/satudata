@@ -1,0 +1,15 @@
+#dosen-fakultas .apexcharts-legend,
+#dosen-fakultas-small .apexcharts-legend {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#dosen-pendidikan-small .apexcharts-legend,
+#dosen-jabatan-small .apexcharts-legend,
+#dosen-kepegawaian-small .apexcharts-legend,
+#dosen-pendidikan .apexcharts-legend,
+#dosen-jabatan .apexcharts-legend,
+#dosen-kepegawaian .apexcharts-legend {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+}

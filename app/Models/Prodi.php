@@ -11,6 +11,7 @@ class Prodi extends Model
         'kode_prodi_dikti',
         'nama_prodi',
         'jenjang_prodi',
+        'nama_prodi_lengkap',
         'kode_asal_fakultas'
     ];
 
@@ -21,5 +22,9 @@ class Prodi extends Model
 
     public function fakultas() {
         return $this->belongsTo(Fakultas::class, 'kode_fakultas', 'kode_fakultas');
+    }
+
+    public function dosen() {
+        return $this->hasMany(Dosen::class, 'id', 'kode_prodi');
     }
 }
