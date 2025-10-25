@@ -306,15 +306,15 @@ var options4 = {
 
     xaxis: {
         categories: [
-            "Pascasarjana",
+            "SPasca",
             "FIP",
             "FBS",
             "FMIPA",
             "FISH",
             "FT",
-            "FIK",
+            "FIKK",
             "FEB",
-            "FP",
+            "FPsi",
         ],
         axisBorder: {
             show: false,
@@ -386,7 +386,7 @@ var options5 = {
     series: [
         {
             name: "Jumlah Mahasiswa S1",
-            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350]
+            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350],
         },
         {
             name: "Jumlah Mahasiswa S2",
@@ -395,7 +395,7 @@ var options5 = {
         {
             name: "Jumlah Mahasiswa S3",
             data: [3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350],
-        }
+        },
     ],
 
     plotOptions: {
@@ -483,11 +483,11 @@ var options6 = {
             show: false, // Hides the hamburger menu icon
         },
     },
-    
+
     series: [
         {
             name: "Jumlah Mahasiswa S1",
-            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350]
+            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350],
         },
         {
             name: "Jumlah Mahasiswa S2",
@@ -496,7 +496,7 @@ var options6 = {
         {
             name: "Jumlah Mahasiswa S3",
             data: [3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350],
-        }
+        },
     ],
 
     xaxis: {
@@ -527,7 +527,6 @@ var options6 = {
             },
         },
     },
-
 
     dataLabels: {
         enabled: false,
@@ -567,7 +566,7 @@ var options6 = {
             borderRadius: 2,
         },
     },
-}
+};
 
 var options7 = {
     chart: {
@@ -684,7 +683,7 @@ var options8 = {
             show: false, // Hides the hamburger menu icon
         },
     },
-    
+
     dataLabels: {
         enabled: false,
     },
@@ -745,21 +744,284 @@ var options8 = {
     },
 };
 
-var chart1 = new ApexCharts(document.querySelector("#mahasiswa-angkatan"),options1);
+var options9 = {
+    chart: {
+        type: "pie",
+        height: 400,
+    },
 
-var chart2 = new ApexCharts(document.querySelector("#mahasiswa-angkatan-small"),options2);
+    series: [10, 20, 30, 40],
 
-var chart3 = new ApexCharts(document.querySelector("#mahasiswa-fakultas"), options3);
+    labels: ["Sarjana", "Magister", "Doktor", "Profesor"],
 
-var chart4 = new ApexCharts(document.querySelector("#mahasiswa-fakultas-small"), options4);
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 125,
+        fontSize: "20px",
+        offsetX: 175,
+        offsetY: 125,
+    },
+};
 
-var chart5 = new ApexCharts(document.querySelector("#mahasiswa-jenjang"), options5);
+var options10 = {
+    chart: {
+        type: "pie",
+        height: 200,
+    },
 
-var chart6 = new ApexCharts(document.querySelector("#mahasiswa-jenjang-small"), options6);
+    series: [10, 20, 30, 40],
+
+    labels: ["Sarjana", "Magister", "Doktor", "Profesor"],
+
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 75,
+        fontSize: "10px",
+        offsetY: 50,
+        offsetX: -10,
+        itemMargin: {
+            vertical: -2,
+            horizontal: 5,
+        },
+    },
+};
+
+var options11 = {
+    chart: {
+        type: "pie",
+        height: 400,
+    },
+
+    series: [10, 20, 30, 40],
+
+    labels: ["Asisten Ahli", "Lektor", "Lektor Kepala", "Profesor"],
+
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 125,
+        fontSize: "20px",
+        offsetX: 110,
+        offsetY: 125,
+    },
+};
+
+var options12 = {
+    chart: {
+        type: "pie",
+        height: "100%",
+    },
+
+    series: [10, 20, 30, 40],
+
+    labels: ["Asisten Ahli", "Lektor", "Lektor Kepala", "Profesor"],
+
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 75,
+        width: 150,
+        fontSize: "10px",
+        offsetX: -10,
+        offsetY: 50,
+        itemMargin: {
+            vertical: 2,
+            horizontal: 5,
+        },
+    },
+};
+
+var options13 = {
+    chart: {
+        type: "pie",
+        height: 400,
+    },
+
+    series: [10, 20, 30, 40, 50, 60, 70, 80, 90],
+
+    labels: [
+        "FIP",
+        "FBS",
+        "FMIPA",
+        "FISH",
+        "FT",
+        "FIKK",
+        "FEB",
+        "FPsi",
+        "SPasca",
+    ],
+
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 125,
+        fontSize: "20px",
+        offsetX: 175,
+        offsetY: 110,
+    },
+};
+
+var options14 = {
+    chart: {
+        type: "pie",
+        height: 200,
+    },
+
+    series: [10, 20, 30, 40, 50, 60, 70, 80, 90],
+
+    labels: [
+        "FIP",
+        "FBS",
+        "FMIPA",
+        "FISH",
+        "FT",
+        "FIKK",
+        "FEB",
+        "FPsi",
+        "SPasca",
+    ],
+
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 125,
+        fontSize: "10px",
+        offsetY: 20,
+        itemMargin: {
+            vertical: 2,
+            horizontal: -2,
+        },
+    },
+};
+
+var options15 = {
+    chart: {
+        type: "pie",
+        height: 400,
+    },
+
+    series: [10, 20, 30, 40],
+
+    labels: ["PNS", "PPPK", "Dosen Tetap", "Dosen Tidak Tetap"],
+
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 125,
+        fontSize: "20px",
+        offsetX: 100,
+        offsetY: 110,
+    },
+};
+
+var options16 = {
+    chart: {
+        type: "pie",
+        height: 200,
+    },
+
+    series: [10, 20, 30, 40],
+
+    labels: ["PNS", "PPPK", "Dosen Tetap", "Dosen Tidak Tetap"],
+
+    legend: {
+        position: "right",
+        horizontalAlign: "center",
+        floating: false,
+        height: 75,
+        width: 155,
+        fontSize: "10px",
+        offsetX: -10,
+        offsetY: 50,
+        itemMargin: {
+            vertical: 2,
+            horizontal: 5,
+        },
+    },
+};
+
+var chart1 = new ApexCharts(
+    document.querySelector("#mahasiswa-angkatan"),
+    options1
+);
+
+var chart2 = new ApexCharts(
+    document.querySelector("#mahasiswa-angkatan-small"),
+    options2
+);
+
+var chart3 = new ApexCharts(
+    document.querySelector("#mahasiswa-fakultas"),
+    options3
+);
+
+var chart4 = new ApexCharts(
+    document.querySelector("#mahasiswa-fakultas-small"),
+    options4
+);
+
+var chart5 = new ApexCharts(
+    document.querySelector("#mahasiswa-jenjang"),
+    options5
+);
+
+var chart6 = new ApexCharts(
+    document.querySelector("#mahasiswa-jenjang-small"),
+    options6
+);
 
 var chart7 = new ApexCharts(document.querySelector("#peminat"), options7);
 
 var chart8 = new ApexCharts(document.querySelector("#peminat-small"), options8);
+
+var chart9 = new ApexCharts(
+    document.querySelector("#dosen-pendidikan"),
+    options9
+);
+
+var chart10 = new ApexCharts(
+    document.querySelector("#dosen-pendidikan-small"),
+    options10
+);
+
+var chart11 = new ApexCharts(
+    document.querySelector("#dosen-jabatan"),
+    options11
+);
+
+var chart12 = new ApexCharts(
+    document.querySelector("#dosen-jabatan-small"),
+    options12
+);
+
+var chart13 = new ApexCharts(
+    document.querySelector("#dosen-fakultas"),
+    options13
+);
+
+var chart14 = new ApexCharts(
+    document.querySelector("#dosen-fakultas-small"),
+    options14
+);
+
+var chart15 = new ApexCharts(
+    document.querySelector("#dosen-kepegawaian"),
+    options15
+);
+
+var chart16 = new ApexCharts(
+    document.querySelector("#dosen-kepegawaian-small"),
+    options16
+);
 
 chart1.render();
 chart2.render();
@@ -769,3 +1031,11 @@ chart5.render();
 chart6.render();
 chart7.render();
 chart8.render();
+chart9.render();
+chart10.render();
+chart11.render();
+chart12.render();
+chart13.render();
+chart14.render();
+chart15.render();
+chart16.render();
