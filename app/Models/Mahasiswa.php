@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     protected $fillable = [
-        'nama_mahasiswa',
-        'tanggal_lahir',
-        'nama_program_studi',
-        'nama_status_mahasiswa',
-        'nama_periode_masuk'
+        'nama',
+        'nipd',
+        'id_prodi',
+        'status',
+        'program_studi',
+        'jenjang',
+        'fakultas',
+        'periode_masuk',
+        'tanggal_keluar',
+    ];
+
+    protected $casts = [
+        'tanggal_keluar' => 'date',
     ];
 }

@@ -11,7 +11,7 @@ class PDDIKTIService
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_URL'), [
+        ])->post(config('api.pddikti_url'), [
                     'act' => 'GetToken',
                     'username' => env('PDDIKTI_USERNAME'),
                     'password' => env('PDDIKTI_PASSWORD'),
@@ -32,7 +32,7 @@ class PDDIKTIService
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(env('PDDIKTI_URL'), [
+        ])->post(config('api.pddikti_url'), [
                     "act" => "GetListDosen",
                     "token" => Cache::get('token'),
                     "filter" => "nama_status_aktif = 'Aktif'",
