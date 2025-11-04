@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AgendaPejabat;
 use App\Livewire\Test;
 use App\Livewire\Login;
 use App\Livewire\Navbar;
@@ -32,7 +33,7 @@ Route::prefix('akademik-dan-mahasiswa')->group(function(){
 
 // Kepegawaian dan Umum
 Route::prefix('kepegawaian-dan-umum')->group(function() {
-
+    Route::get('/agenda-pejabat', AgendaPejabat::class)->name('agenda-pejabat');
 });
 
 // Keuangan dan Perencanaan
