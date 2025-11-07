@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('synchronizes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('status', ['done', 'pending', 'idle']);
+            $table->enum('status', ['synchronized', 'synchronizing', 'unsynchronized', 'error']);
             $table->timestamps();
         });
     }
