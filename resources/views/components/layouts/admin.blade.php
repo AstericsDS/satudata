@@ -17,10 +17,10 @@
     {{-- Navbar --}}
     <livewire:admin.navbar />
 
-        <div class="grid grid-cols-[250px_1fr] min-h-dvh">
+        <div class="bg-[url('/public/assets/dashboard/background.svg')] bg-cover">
 
             {{-- Sidebar --}}
-            <livewire:admin.sidebar />
+            <!-- <livewire:admin.sidebar /> -->
 
             {{-- Content --}}
             {{ $slot }}

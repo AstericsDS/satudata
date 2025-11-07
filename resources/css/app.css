@@ -15,3 +15,8 @@
     --color-secondary: #4D774E;
     --color-tertiary: #9DC88D;
 }
+@layer base {
+    html {
+        @apply text-sm;
+    }
+}
