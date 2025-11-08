@@ -9,7 +9,7 @@
     <title>{{ $title ?? 'Page Title' }}</title>
     <script src="https://kit.fontawesome.com/803b706a8d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="icon" type="image/x-icon" href="{{asset('/images/unj.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/images/unj.png')}}">
     @livewireStyles
 </head>
 

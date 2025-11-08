@@ -2,8 +2,8 @@
 
     <div class="flex gap-4 mb-8">
         <div class="flex-1 bg-[#006569]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
-            <h1 class="text-3xl text-unj font-semibold">{{ $sync->count() }}</h1>
-            <h2 class="text-xl text-unj">Total Menu</h2>
+            <h1 class="text-3xl text-primary font-semibold">{{ $sync->count() }}</h1>
+            <h2 class="text-xl text-primary">Total Menu</h2>
         </div>
         <div class="flex-1 bg-[#FF5C22]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
             <h1 class="text-3xl text-[#FF5C22] font-semibold">-</h1>
@@ -19,14 +19,14 @@
         </div>
     </div>
 
-    <div class="rounded-t-lg overflow-hidden bg-linear-to-b from-unj to-[#95F4F8] p-6">
+    <div class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6">
 
         {{-- Title Table - Start --}}
         <h1 class="text-white mb-6 text-2xl">Sinkronisasi Data</h1>
         {{-- Title Table - End --}}
 
         <div class="flex space-x-2 bg-white mb-4 rounded-md p-6">
-            <div class="bg-linear-to-l from-unj to-[#00C7CF] text-center py-2 flex-1 rounded-md text-white">Sinkronisasi Data Publik</div>
+            <div class="bg-linear-to-l from-primary to-accent-1 text-center py-2 flex-1 rounded-md text-white">Sinkronisasi Data Publik</div>
             <div class="bg-linear-to-l text-center py-2 flex-1 rounded-md text-black">Sinkronisasi Data Private</div>
         </div>
 

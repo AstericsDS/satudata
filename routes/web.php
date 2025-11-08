@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
 use App\Models\Dosen;
 use App\Livewire\Debug;
 use App\Livewire\Login;
@@ -35,7 +36,7 @@ Route::prefix('kepegawaian-dan-umum')->group(function () {
 
 // Keuangan dan Perencanaan
 Route::prefix('keuangan-dan-perencanaan')->group(function () {
-
+    Route::get('/anggaran-dan-daya-serap', AnggaranDanDayaSerap::class)->name('anggaran-dan-daya-serap');
 });
 
 // Bisnis dan Inovasi
