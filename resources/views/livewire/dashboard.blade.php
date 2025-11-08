@@ -1,5 +1,4 @@
-@vite(['resources/js/dashboardChart.js'])
-@vite(['resources/css/dashboardChart.css'])
+@vite(['resources/js/charts/dashboard.js'])
 <div class="mb-20">
     {{-- Header Data --}}
     <div class="flex justify-center gap-8 my-8 mx-24">
@@ -15,7 +14,7 @@
             </div>
             <div class="w-fit mx-auto">`
                 <span
-                    class="rounded-lg text-white font-semibold p-[2px] px-[7px] {{ is_numeric($percent_wisuda) && $percent_wisuda < 0 ? 'bg-red-700' : 'bg-unj' }}">
+                    class="rounded-lg text-white font-semibold p-[2px] px-[7px] {{ is_numeric($percent_wisuda) && $percent_wisuda < 0 ? 'bg-red-700' : 'bg-primary' }}">
                     @if (is_numeric($percent_wisuda))
                         {{ $percent_wisuda > 0 ? '+' . $percent_wisuda . '%' : '-' . $percent_wisuda . '%' }}
                     @else
@@ -37,7 +36,7 @@
             </div>
             <div class="w-fit mx-auto">
                 <span
-                    class="bg-unj rounded-lg text-white font-semibold p-[2px] px-[7px] {{ is_numeric($percent_mahasiswa) && $percent_mahasiswa < 0 ? 'bg-red-700' : 'bg-unj' }}">
+                    class="bg-primary rounded-lg text-white font-semibold p-[2px] px-[7px] {{ is_numeric($percent_mahasiswa) && $percent_mahasiswa < 0 ? 'bg-red-700' : 'bg-primary' }}">
                     @if (is_numeric($percent_mahasiswa))
                         {{ $percent_mahasiswa > 0 ? '+' . $percent_mahasiswa . '%' : '-' . $percent_mahasiswa . '%' }}
                     @else
@@ -58,7 +57,7 @@
                 </div>
             </div>
             <div class="w-fit mx-auto">
-                <span class="bg-unj rounded-lg text-white font-semibold p-[2px] px-[7px]">
+                <span class="bg-primary rounded-lg text-white font-semibold p-[2px] px-[7px]">
                     @if (is_numeric($percent_mahasiswa))
                         {{ $percent_s3 . '%' }}
                     @else
@@ -79,7 +78,7 @@
                 </div>
             </div>
             <div class="w-fit mx-auto">
-                <span class="bg-unj rounded-lg text-white font-semibold p-[2px] px-[7px]">-</span>
+                <span class="bg-primary rounded-lg text-white font-semibold p-[2px] px-[7px]">-</span>
                 <span class="text-gray-600 ml-2">Dari tahun sebelumnya</span>
             </div>
         </div>
@@ -113,7 +112,7 @@
             <label class="inline-flex items-center me-5 cursor-pointer">
                 <input type="checkbox" value="true" class="sr-only peer" checked x-model="auto">
                 <div
-                    class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-unj">
+                    class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
                 </div>
                 <span class="ms-3 text-sm font-medium text-gray-800">Ganti Otomatis</span>
             </label>
@@ -121,11 +120,11 @@
 
         {{-- Main Chart --}}
         <div @change-chart.window="active = $event.detail.id; clear()"
-            class="group relative bg-linear-to-b from-unj from-20% to-[#95F4F8] w-[65%] mx-auto rounded-md flex flex-col gap-4 px-4 pb-8 justify-center">
+            class="group relative bg-linear-to-b from-primary from-20% to-accent-2 w-[65%] mx-auto rounded-md flex flex-col gap-4 px-4 pb-8 justify-center">
 
             {{-- Change Button --}}
             <button @click="active = (active >= 0 && active <= 3) ? 4 : 0"
-                class="absolute top-[50%] -left-14 text-unj opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                class="absolute top-[50%] -left-14 text-primary opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="M11.8 13H15q.425 0 .713-.288T16 12t-.288-.712T15 11h-3.2l.9-.9q.275-.275.275-.7t-.275-.7t-.7-.275t-.7.275l-2.6 2.6q-.3.3-.3.7t.3.7l2.6 2.6q.275.275.7.275t.7-.275t.275-.7t-.275-.7zm.2 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8" />
@@ -134,7 +133,7 @@
 
             {{-- Change Button --}}
             <button @click="active = (active >= 0 && active <= 3) ? 4 : 0"
-                class="absolute top-[50%] -right-14 text-unj opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                class="absolute top-[50%] -right-14 text-primary opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="m12.2 13l-.9.9q-.275.275-.275.7t.275.7t.7.275t.7-.275l2.6-2.6q.3-.3.3-.7t-.3-.7l-2.6-2.6q-.275-.275-.7-.275t-.7.275t-.275.7t.275.7l.9.9H9q-.425 0-.712.288T8 12t.288.713T9 13zm-.2 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8" />
@@ -282,7 +281,7 @@
         </div>
 
         {{-- Menu Chart --}}
-        <div class="border border-unj rounded-md w-[95%] mx-auto my-8 p-6">
+        <div class="border border-primary rounded-md w-[95%] mx-auto my-8 p-6">
 
             <h1 class="text-center font-semibold mb-8">DATA MAHASISWA</h1>
 
@@ -292,7 +291,7 @@
                 <!-- Menu Mahasiswa -->
                 <div x-show="active >= 0 && active <= 3" class="grid grid-cols-4 gap-6">
                     <div @click="$dispatch('change-chart', { id: 0 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</h1>
                             <h2 class="text-sm">
@@ -311,7 +310,7 @@
                     </div>
 
                     <div @click="$dispatch('change-chart', { id: 1 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Jumlah Mahasiswa Berdasarkan Fakultas</h1>
                             <h2 class="text-sm">
@@ -330,7 +329,7 @@
                     </div>
 
                     <div @click="$dispatch('change-chart', { id: 2 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Jumlah Mahasiswa Berdasarkan Jenjang</h1>
                             <h2 class="text-sm">
@@ -349,7 +348,7 @@
                     </div>
 
                     <div @click="$dispatch('change-chart', { id: 3 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Jumlah Peminat per-Tahun</h1>
                             <h2 class="text-sm">
@@ -372,7 +371,7 @@
                 <div x-show="active >= 4 && active <= 7" class="grid grid-cols-4 gap-6">
 
                     <div @click="$dispatch('change-chart', { id: 4 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Dosen Berdasarkan Pendidikan</h1>
                             <h2 class="text-sm">
@@ -390,7 +389,7 @@
                     </div>
 
                     <div @click="$dispatch('change-chart', { id: 5 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Dosen Berdasarkan Jabatan Fungsional</h1>
                             <h2 class="text-sm">
@@ -408,7 +407,7 @@
                     </div>
 
                     <div @click="$dispatch('change-chart', { id: 6 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Dosen Berdasarkan Fakultas</h1>
                             <h2 class="text-sm">
@@ -426,7 +425,7 @@
                     </div>
 
                     <div @click="$dispatch('change-chart', { id: 7 })"
-                        class="bg-gradient-to-b from-unj from-20% to-[#95F4F8] rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
+                        class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
                             <h1 class="font-semibold text-sm">Dosen Berdasarkan Status Kepegawaian</h1>
                             <h2 class="text-sm">

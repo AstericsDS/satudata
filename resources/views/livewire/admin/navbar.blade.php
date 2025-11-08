@@ -1,4 +1,4 @@
-<nav class="bg-unj border-gray-200 sticky top-0 z-50">
+<nav class="bg-primary border-gray-200 sticky top-0 z-50">
 
     {{-- All Container - Start --}}
     <div class="flex flex-wrap justify-between items-center w-full px-4 sm:px-6 py-2.5">
