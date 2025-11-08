@@ -30,17 +30,17 @@ class Dashboard extends Component
             $data = [
                 'wisuda' => Mahasiswa::where('status', '=', 'LULUS')->whereYear('tanggal_keluar', $this->year)->count(),
                 'wisuda_tahun_lalu' => Mahasiswa::where('status', '=', 'LULUS')->whereYear('tanggal_keluar', $this->year - 1)->count(),
-                'mahasiswa' => Mahasiswa::where('status', '=', 'AKTIF')->where('periode_masuk', 'LIKE', ($this->year . '/' . ($this->year + 1) . '%'))->count(),
-                'mahasiswa_tahun_lalu' => Mahasiswa::where('status', '=', 'AKTIF')->where('periode_masuk', 'LIKE', (($this->year - 1) . '/' . $this->year . '%'))->count(),
+                'mahasiswa' => Mahasiswa::where('periode_masuk', 'LIKE', ($this->year . '/' . ($this->year + 1) . '%'))->count(),
+                'mahasiswa_tahun_lalu' => Mahasiswa::where('periode_masuk', 'LIKE', (($this->year - 1) . '/' . $this->year . '%'))->count(),
                 'dosen' => Dosen::count(),
             ];
             for ($i = $this->year - 7; $i <= $this->year; $i++) {
                 $periode = $i . '/' . ($i + 1);
                 $data['mahasiswa_tahun_angkatan'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('status', '=', 'AKTIF')->count();
                 $data['mahasiswa_diterima_tahun_angkatan'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->count();
-                $data['mahasiswa_s1'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('jenjang', '=', 'S1')->where('status', '=', 'AKTIF')->count();
-                $data['mahasiswa_s2'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('jenjang', '=', 'S2')->where('status', '=', 'AKTIF')->count();
-                $data['mahasiswa_s3'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('jenjang', '=', 'S3')->where('status', '=', 'AKTIF')->count();
+                $data['mahasiswa_s1'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('jenjang', '=', 'S1')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+                $data['mahasiswa_s2'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('jenjang', '=', 'S2')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+                $data['mahasiswa_s3'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('jenjang', '=', 'S3')->whereIn('status', ['AKTIF', 'Lulus'])->count();
             }
             $data['dosen_pendidikan']['Magister'] = Dosen::where('gelar', '=', 'Magister')->count();
             $data['dosen_pendidikan']['Doktor'] = Dosen::where('gelar', '=', 'Dr.')->count();
@@ -63,15 +63,15 @@ class Dashboard extends Component
             $data['dosen_status']['Dosen Tetap'] = Dosen::where('status', '=', 'Dosen Tetap')->count();
             $data['dosen_status']['Dosen Tidak Tetap'] = Dosen::where('status', '=', 'Dosen Tidak Tetap')->count();
             $data['dosen_status']['PPPK'] = Dosen::where('status', '=', 'PPPK_Dosen')->count();
-            $data['mahasiswa_fakultas']['FIP'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ilmu Pendidikan')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['FBS'] = Mahasiswa::where('fakultas', '=', 'Fakultas Bahasa dan Seni')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['FMIPA'] = Mahasiswa::where('fakultas', '=', 'Fakultas Matematika dan Ilmu Pengetahuan Alam')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['FISH'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ilmu Sosial dan Hukum')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['FT'] = Mahasiswa::where('fakultas', '=', 'Fakultas Teknik')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['FIKK'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ilmu Keolahragaan dan Kesehatan')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['FEB'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ekonomi dan Bisnis')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['FPsi'] = Mahasiswa::where('fakultas', '=', 'Fakultas Psikologi')->where('status', '=', 'AKTIF')->count();
-            $data['mahasiswa_fakultas']['SPasca'] = Mahasiswa::where('fakultas', '=', 'Sekolah Pascasarjana')->where('status', '=', 'AKTIF')->count();
+            $data['mahasiswa_fakultas']['FIP'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ilmu Pendidikan')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['FBS'] = Mahasiswa::where('fakultas', '=', 'Fakultas Bahasa dan Seni')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['FMIPA'] = Mahasiswa::where('fakultas', '=', 'Fakultas Matematika dan Ilmu Pengetahuan Alam')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['FISH'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ilmu Sosial dan Hukum')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['FT'] = Mahasiswa::where('fakultas', '=', 'Fakultas Teknik')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['FIKK'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ilmu Keolahragaan dan Kesehatan')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['FEB'] = Mahasiswa::where('fakultas', '=', 'Fakultas Ekonomi dan Bisnis')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['FPsi'] = Mahasiswa::where('fakultas', '=', 'Fakultas Psikologi')->whereIn('status', ['AKTIF', 'Lulus'])->count();
+            $data['mahasiswa_fakultas']['SPasca'] = Mahasiswa::where('fakultas', '=', 'Sekolah Pascasarjana')->whereIn('status', ['AKTIF', 'Lulus'])->count();
             return $data;
         });
         $this->percent_wisuda = ($this->dashboardData['wisuda_tahun_lalu'] ?? 0) != 0

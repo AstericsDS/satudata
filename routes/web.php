@@ -58,6 +58,11 @@ Route::prefix('debug')->group(function () {
     });
     Route::get('/count', function () {
         return [
+            'Aktif dan Lulus' => Mahasiswa::where('periode_masuk', 'LIKE', '2021/2022%')
+                ->where('jenjang', 'S1')
+                ->whereIn('status', ['AKTIF', 'Lulus'])
+                ->count(),
+            'Aktif' => Mahasiswa::where('periode_masuk', 'LIKE', '2021/2022%')->where('jenjang', '=', 'S1')->where('status', '=', 'AKTIF')->count(),
             '2018' => Mahasiswa::where('periode_masuk', 'LIKE', '2018/2019%')->count(),
             '2019' => Mahasiswa::where('periode_masuk', 'LIKE', '2019/2020%')->count(),
             '2020' => Mahasiswa::where('periode_masuk', 'LIKE', '2020/2021%')->count(),
