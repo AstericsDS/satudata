@@ -283,7 +283,7 @@
         {{-- Menu Chart --}}
         <div class="border border-primary rounded-md w-[95%] mx-auto my-8 p-6">
 
-            <h1 class="text-center font-semibold mb-8">DATA MAHASISWA</h1>
+            <h1 class="text-center font-semibold mb-8 uppercase" x-text="active >= 0 && active <= 3 ? 'Data Mahasiswa' : 'Data Dosen'"></h1>
 
             {{-- Submenu Chart --}}
             <div x-data>

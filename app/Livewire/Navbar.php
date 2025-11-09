@@ -9,6 +9,6 @@ class Navbar extends Component
 {
     public function render()
     {
-        return view('livewire.navbar')->slot('navbar');
+        return view('livewire.navbar');
     }
 }

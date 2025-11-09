@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\BisnisDanInovasi\Kemitraan;
 use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
 use App\Models\Dosen;
 use App\Livewire\Debug;
@@ -41,7 +42,7 @@ Route::prefix('keuangan-dan-perencanaan')->group(function () {
 
 // Bisnis dan Inovasi
 Route::prefix('bisnis-dan-inovasi')->group(function () {
-
+    Route::get('/kemitraan', Kemitraan::class)->name('kemitraan');
 });
 
 // Publikasi
