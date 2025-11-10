@@ -7,8 +7,8 @@
         <a href="/dashboard"  class="flex items-center space-x-3">
             <img src="{{ asset('assets/images/unj.png') }}" width="55px" class="h-14 w-auto mt-2 ml-2" alt="UNJ Logo">
             <div class="flex flex-col">
-                <h1 class="font-bold text-lg sm:text-2xl text-unj">SATU DATA</h1>
-                <h2 class="font-bold text-xs sm:text-base text-unj">UNIVERSITAS NEGERI JAKARTA</h2>
+                <h1 class="font-bold text-lg sm:text-2xl text-primary">SATU DATA</h1>
+                <h2 class="font-bold text-xs sm:text-base text-primary">UNIVERSITAS NEGERI JAKARTA</h2>
             </div>
         </a>
         {{-- Logo - End --}}
@@ -39,7 +39,7 @@
             <ul class="flex space-x-4 font-medium text-sm p-4 md:p-0 mt-4 border border-gray-100 rounded-lg xl:flex-row  xl:mt-0 xl:border-0">
 
                 {{-- Home - Start --}}
-                <li class="{{ request()->routeIs('dashboard') ? 'bg-unj rounded-md overflow-hidden text-white' : 'text-unj' }}">
+                <li class="{{ request()->routeIs('dashboard') ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
                     <a href="{{ route('dashboard') }}"  class="block py-2 px-3 hover:underline" aria-current="page">
                         Beranda
                     </a>
@@ -47,13 +47,13 @@
                 {{-- Home - End --}}
 
                 {{-- Akademik & Mahasiswa - Start --}}
-                <li class=" {{ request()->route()->getPrefix() === '/akademik-dan-mahasiswa' ? 'bg-unj rounded-md overflow-hidden text-white' : 'text-unj' }}">
+                <li class=" {{ request()->route()->getPrefix() === '/akademik-dan-mahasiswa' ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
                     <button id="akademik-navbar-link" data-dropdown-toggle="akademikNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
                         Akademik & Mahasiswa
                     </button>
                     {{-- Menu Akademik & Mahasiswa - Start --}}
                     <div id="akademikNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
-                        <ul class="text-sm text-unj" aria-labelledby="akademik-large-button">
+                        <ul class="text-sm text-primary" aria-labelledby="akademik-large-button">
                             <li>
                                 <a href="{{ route('jumlah-mahasiswa') }}"  class="block px-4 py-1.5 hover:underline">Jumlah Mahasiswa</a>
                             </li>
@@ -79,13 +79,13 @@
                 {{-- Akademik & Mahasiswa - End --}}
 
                 {{-- Kepegawaian & Umum - Start --}}
-                <li class="{{ request()->route()->getPrefix() === '/kepegawaian-dan-umum' ? 'bg-unj rounded-md overflow-hidden text-white' : 'text-unj' }}">
+                <li class="{{ request()->route()->getPrefix() === '/kepegawaian-dan-umum' ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
                     <button id="kepegawaian-navbar-link" data-dropdown-toggle="kepegawaianNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
                         Kepegawaian & Umum
                     </button>
                     {{-- Menu Kepegawaian & Umum - Start --}}
                     <div id="kepegawaianNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
-                        <ul class="text-sm text-unj" aria-labelledby="kepegawaian-large-button">
+                        <ul class="text-sm text-primary" aria-labelledby="kepegawaian-large-button">
                             <li>
                                 <a href="{{ route('agenda-pejabat') }}"  class="block px-4 py-1.5 hover:underline">Agenda Pejabat</a>
                             </li>
@@ -105,15 +105,15 @@
                 {{-- Kepegawaian & Umum - End --}}
 
                 {{-- Keuangan & Perencanaan - Start --}}
-                <li class="{{ request()->route()->getPrefix() === '/keuangan-dan-perencanaan' ? 'bg-unj rounded-md overflow-hidden text-white' : 'text-unj' }}">
+                <li class="{{ request()->route()->getPrefix() === '/keuangan-dan-perencanaan' ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
                     <button id="keuangan-navbar-link" data-dropdown-toggle="keuanganNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
                         Keuangan & Perencanaan
                     </button>
                     {{-- Menu Keuangan & Perencanaan - Start --}}
                     <div id="keuanganNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
-                        <ul class="text-sm text-unj" aria-labelledby="keuangan-large-button">
+                        <ul class="text-sm text-primary" aria-labelledby="keuangan-large-button">
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Anggaran dan Daya Serap</a>
+                                <a href="{{ route('anggaran-dan-daya-serap') }}"  class="block px-4 py-1.5 hover:underline">Anggaran dan Daya Serap</a>
                             </li>
                         </ul>
                     </div>
@@ -122,15 +122,15 @@
                 {{-- Keuangan & Perencanaan - End --}}
 
                 {{-- Bisnis & Inovasi - Start --}}
-                <li class="{{ request()->route()->getPrefix() === '/bisnis-dan-inovasi' ? 'bg-unj rounded-md overflow-hidden text-white' : 'text-unj' }}">
+                <li class="{{ request()->route()->getPrefix() === '/bisnis-dan-inovasi' ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
                     <button id="bisnis-navbar-link" data-dropdown-toggle="bisnisNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
                         Bisnis & Inovasi
                     </button>
                     {{-- Menu Bisnis & Inovasi - Start --}}
                     <div id="bisnisNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
-                        <ul class="text-sm text-unj" aria-labelledby="bisnis-large-button">
+                        <ul class="text-sm text-primary" aria-labelledby="bisnis-large-button">
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Kemitraan</a>
+                                <a href="{{ route('kemitraan') }}" class="block px-4 py-1.5 hover:underline">Kemitraan</a>
                             </li>
                         </ul>
                     </div>
@@ -139,13 +139,13 @@
                 {{-- Bisnis & Inovasi - End --}}
 
                 {{-- Publikasi - Start --}}
-                <li class="{{ request()->route()->getPrefix() === '/publikasi' ? 'bg-unj rounded-md overflow-hidden text-white' : 'text-unj' }}">
+                <li class="{{ request()->route()->getPrefix() === '/publikasi' ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
                     <button id="publikasi-navbar-link" data-dropdown-toggle="publikasiNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
                         Publikasi
                     </button>
                     {{-- Menu Publikasi - Start --}}
                     <div id="publikasiNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
-                        <ul class="text-sm text-unj" aria-labelledby="publikasi-large-button">
+                        <ul class="text-sm text-primary" aria-labelledby="publikasi-large-button">
                             <li>
                                 <a href="#"  class="block px-4 py-1.5">Grafik Indeksasi SINTA</a>
                             </li>

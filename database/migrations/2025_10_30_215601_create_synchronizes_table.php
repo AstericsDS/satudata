@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fakultas', function (Blueprint $table) {
+        Schema::create('synchronizes', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_fakultas')->unique();
-            $table->string('nama_fakultas');
-            $table->string('singkatan_fakultas');
+            $table->string('name');
+            $table->enum('status', ['synchronized', 'synchronizing', 'unsynchronized', 'error']);
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fakultas');
+        Schema::dropIfExists('synchronizes');
     }
 };

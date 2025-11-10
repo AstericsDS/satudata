@@ -8,6 +8,7 @@
     @vite('resources/js/app.js')
     <title>{{ $title ?? 'Page Title' }}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('/images/unj.png') }}">
     @livewireStyles
 </head>
 
@@ -16,10 +17,10 @@
     {{-- Navbar --}}
     <livewire:admin.navbar />
 
-        <div class="grid grid-cols-[250px_1fr] min-h-dvh">
+        <div class="bg-[url('/public/assets/dashboard/background.svg')] bg-cover">
 
             {{-- Sidebar --}}
-            <livewire:admin.sidebar />
+            <!-- <livewire:admin.sidebar /> -->
 
             {{-- Content --}}
             {{ $slot }}

@@ -1,10 +1,15 @@
 import ApexCharts from "apexcharts";
 
-const jumlah_mahasiswa_diterima = window.chartData.jumlah_mahasiswa_diterima;
 const jumlah_mahasiswa = window.chartData.jumlah_mahasiswa;
+const jumlah_mahasiswa_diterima = window.chartData.jumlah_mahasiswa_diterima;
+const mahasiswa_fakultas = window.chartData.jumlah_mahasiswa_fakultas;
 const jumlah_mahasiswa_s1 = window.chartData.jumlah_mahasiswa_s1;
 const jumlah_mahasiswa_s2 = window.chartData.jumlah_mahasiswa_s2;
 const jumlah_mahasiswa_s3 = window.chartData.jumlah_mahasiswa_s3;
+const dosen_pendidikan = window.chartData.dosen_pendidikan;
+const dosen_jabatan = window.chartData.dosen_jabatan;
+const dosen_fakultas = window.chartData.dosen_fakultas;
+const dosen_status = window.chartData.dosen_status;
 
 // Mahasiswa Berdasarkan Angkatan
 var options1 = {
@@ -18,12 +23,12 @@ var options1 = {
 
     series: [
         {
-            name: "Jumlah Mahasiswa Diterima",
-            data: jumlah_mahasiswa_diterima,
+            name: "Jumlah Mahasiswa Aktif",
+            data: Object.values(jumlah_mahasiswa),
         },
         {
-            name: "Jumlah Mahasiswa",
-            data: jumlah_mahasiswa,
+            name: "Jumlah Mahasiswa Diterima",
+            data: Object.values(jumlah_mahasiswa_diterima),
         },
     ],
 
@@ -56,16 +61,7 @@ var options1 = {
         colors: ["transparent"], // Makes the bar borders transparent
     },
     xaxis: {
-        categories: [
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
-            "2025",
-        ],
+        categories: Object.keys(jumlah_mahasiswa),
         labels: {
             style: {
                 fontSize: "12px",
@@ -117,12 +113,12 @@ var options2 = {
 
     series: [
         {
-            name: "Jumlah Mahasiswa Diterima",
-            data: jumlah_mahasiswa_diterima,
+            name: "Jumlah Mahasiswa Aktif",
+            data: Object.values(jumlah_mahasiswa),
         },
         {
-            name: "Jumlah Mahasiswa",
-            data: jumlah_mahasiswa,
+            name: "Jumlah Mahasiswa Diterima",
+            data: Object.values(jumlah_mahasiswa_diterima),
         },
     ],
 
@@ -135,41 +131,20 @@ var options2 = {
     },
 
     xaxis: {
+        show: false,
         axisBorder: {
             show: false,
         },
         axisTicks: {
             show: false,
         },
-        categories: [
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
-            "2025",
-        ],
         labels: {
-            show: true,
-            rotate: -45,
-            rotateAlways: true,
-            labels: {
-                style: {
-                    fontSize: "2px",
-                },
-            },
+            show: false,
         },
     },
 
     grid: {
-        padding: {
-            top: 0,
-            right: 5,
-            bottom: 0,
-            left: 5,
-        },
+        show: false
     },
 
     legend: {
@@ -207,7 +182,7 @@ var options3 = {
     series: [
         {
             name: "Jumlah Mahasiswa",
-            data: [2786, 5114, 7531, 6716, 5114, 6966, 3249, 7227, 5228],
+            data: Object.values(mahasiswa_fakultas),
         },
     ],
 
@@ -237,17 +212,7 @@ var options3 = {
         colors: ["transparent"],
     },
     xaxis: {
-        categories: [
-            "Pascasarjana",
-            "FIP",
-            "FBS",
-            "FMIPA",
-            "FISH",
-            "FT",
-            "FIK",
-            "FEB",
-            "FP",
-        ],
+        categories: Object.keys(mahasiswa_fakultas),
         labels: {
             style: {
                 fontSize: "12px",
@@ -300,22 +265,11 @@ var options4 = {
     series: [
         {
             name: "Jumlah Mahasiswa",
-            data: [2786, 5114, 7531, 6716, 5114, 6966, 3249, 7227, 5228],
+            data: Object.values(mahasiswa_fakultas),
         },
     ],
 
     xaxis: {
-        categories: [
-            "SPasca",
-            "FIP",
-            "FBS",
-            "FMIPA",
-            "FISH",
-            "FT",
-            "FIKK",
-            "FEB",
-            "FPsi",
-        ],
         axisBorder: {
             show: false,
         },
@@ -323,14 +277,7 @@ var options4 = {
             show: false,
         },
         labels: {
-            show: true,
-            rotate: -45,
-            rotateAlways: true,
-            labels: {
-                style: {
-                    fontSize: "2px",
-                },
-            },
+            show: false,
         },
     },
 
@@ -343,12 +290,7 @@ var options4 = {
     },
 
     grid: {
-        padding: {
-            top: 0,
-            right: 5,
-            bottom: 0,
-            left: 5,
-        },
+        show: false
     },
 
     legend: {
@@ -386,15 +328,15 @@ var options5 = {
     series: [
         {
             name: "Jumlah Mahasiswa S1",
-            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350],
+            data: Object.values(jumlah_mahasiswa_s1),
         },
         {
             name: "Jumlah Mahasiswa S2",
-            data: [2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350],
+            data: Object.values(jumlah_mahasiswa_s2),
         },
         {
             name: "Jumlah Mahasiswa S3",
-            data: [3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350],
+            data: Object.values(jumlah_mahasiswa_s3),
         },
     ],
 
@@ -424,16 +366,7 @@ var options5 = {
         colors: ["transparent"],
     },
     xaxis: {
-        categories: [
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
-            "2025",
-        ],
+        categories: Object.keys(jumlah_mahasiswa_s1),
         labels: {
             style: {
                 fontSize: "12px",
@@ -487,29 +420,19 @@ var options6 = {
     series: [
         {
             name: "Jumlah Mahasiswa S1",
-            data: [1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350],
+            data: Object.values(jumlah_mahasiswa_s1),
         },
         {
             name: "Jumlah Mahasiswa S2",
-            data: [2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350],
+            data: Object.values(jumlah_mahasiswa_s2),
         },
         {
             name: "Jumlah Mahasiswa S3",
-            data: [3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350],
+            data: Object.values(jumlah_mahasiswa_s3),
         },
     ],
 
     xaxis: {
-        categories: [
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
-            "2025",
-        ],
         axisBorder: {
             show: false,
         },
@@ -517,14 +440,7 @@ var options6 = {
             show: false,
         },
         labels: {
-            show: true,
-            rotate: -45,
-            rotateAlways: true,
-            labels: {
-                style: {
-                    fontSize: "2px",
-                },
-            },
+            show: false,
         },
     },
 
@@ -537,12 +453,7 @@ var options6 = {
     },
 
     grid: {
-        padding: {
-            top: 0,
-            right: 5,
-            bottom: 0,
-            left: 5,
-        },
+        show: false
     },
 
     legend: {
@@ -580,15 +491,15 @@ var options7 = {
     series: [
         {
             name: "Peminat SNMPTN",
-            data: [38693, 38810, 37075, 36605, 38651],
+            data: [0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
             name: "Peminat SBMPTN",
-            data: [43458, 41641, 34204, 43086, 45121],
+            data: [0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
             name: "Peminat Mandiri",
-            data: [37161, 42120, 93111, 43585, 57182],
+            data: [0, 0, 0, 0, 0, 0, 0, 0],
         },
     ],
 
@@ -619,7 +530,7 @@ var options7 = {
     },
 
     xaxis: {
-        categories: [2020, 2021, 2022, 2023, 2024],
+        categories: Object.keys(jumlah_mahasiswa),
         labels: {
             style: {
                 fontSize: "12px",
@@ -665,15 +576,15 @@ var options8 = {
     series: [
         {
             name: "Peminat SNMPTN",
-            data: [38693, 38810, 37075, 36605, 38651],
+            data: [0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
             name: "Peminat SBMPTN",
-            data: [43458, 41641, 34204, 43086, 45121],
+            data: [0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
             name: "Peminat Mandiri",
-            data: [37161, 42120, 93111, 43585, 57182],
+            data: [0, 0, 0, 0, 0, 0, 0, 0],
         },
     ],
     chart: {
@@ -700,25 +611,13 @@ var options8 = {
             show: false,
         },
         labels: {
-            show: true,
-            rotate: -45,
-            rotateAlways: true,
-            labels: {
-                style: {
-                    fontSize: "2px",
-                },
-            },
+            show: false,
         },
-        categories: [2020, 2021, 2022, 2023, 2024],
+        categories: Object.keys(jumlah_mahasiswa),
     },
 
     grid: {
-        padding: {
-            top: 0,
-            right: 5,
-            bottom: 0,
-            left: 5,
-        },
+        show: false
     },
 
     legend: {
@@ -750,19 +649,10 @@ var options9 = {
         height: 400,
     },
 
-    series: [10, 20, 30, 40],
+    series: Object.values(dosen_pendidikan),
 
-    labels: ["Sarjana", "Magister", "Doktor", "Profesor"],
+    labels: Object.keys(dosen_pendidikan),
 
-    legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 125,
-        fontSize: "20px",
-        offsetX: 175,
-        offsetY: 125,
-    },
 };
 
 var options10 = {
@@ -771,22 +661,12 @@ var options10 = {
         height: 200,
     },
 
-    series: [10, 20, 30, 40],
+    series: Object.values(dosen_pendidikan),
 
-    labels: ["Sarjana", "Magister", "Doktor", "Profesor"],
+    labels: Object.keys(dosen_pendidikan),
 
     legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 75,
-        fontSize: "10px",
-        offsetY: 50,
-        offsetX: -10,
-        itemMargin: {
-            vertical: -2,
-            horizontal: 5,
-        },
+        show: false
     },
 };
 
@@ -796,19 +676,10 @@ var options11 = {
         height: 400,
     },
 
-    series: [10, 20, 30, 40],
+    series: Object.values(dosen_jabatan),
 
-    labels: ["Asisten Ahli", "Lektor", "Lektor Kepala", "Profesor"],
+    labels: Object.keys(dosen_jabatan),
 
-    legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 125,
-        fontSize: "20px",
-        offsetX: 110,
-        offsetY: 125,
-    },
 };
 
 var options12 = {
@@ -817,23 +688,12 @@ var options12 = {
         height: "100%",
     },
 
-    series: [10, 20, 30, 40],
+    series: Object.values(dosen_jabatan),
 
-    labels: ["Asisten Ahli", "Lektor", "Lektor Kepala", "Profesor"],
+    labels: Object.keys(dosen_jabatan),
 
     legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 75,
-        width: 150,
-        fontSize: "10px",
-        offsetX: -10,
-        offsetY: 50,
-        itemMargin: {
-            vertical: 2,
-            horizontal: 5,
-        },
+        show: false
     },
 };
 
@@ -843,29 +703,11 @@ var options13 = {
         height: 400,
     },
 
-    series: [10, 20, 30, 40, 50, 60, 70, 80, 90],
 
-    labels: [
-        "FIP",
-        "FBS",
-        "FMIPA",
-        "FISH",
-        "FT",
-        "FIKK",
-        "FEB",
-        "FPsi",
-        "SPasca",
-    ],
+    series: Object.values(dosen_fakultas),
 
-    legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 125,
-        fontSize: "20px",
-        offsetX: 175,
-        offsetY: 110,
-    },
+    labels: Object.keys(dosen_fakultas),
+
 };
 
 var options14 = {
@@ -874,31 +716,13 @@ var options14 = {
         height: 200,
     },
 
-    series: [10, 20, 30, 40, 50, 60, 70, 80, 90],
 
-    labels: [
-        "FIP",
-        "FBS",
-        "FMIPA",
-        "FISH",
-        "FT",
-        "FIKK",
-        "FEB",
-        "FPsi",
-        "SPasca",
-    ],
+    series: Object.values(dosen_fakultas),
+
+    labels: Object.keys(dosen_fakultas),
 
     legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 125,
-        fontSize: "10px",
-        offsetY: 20,
-        itemMargin: {
-            vertical: 2,
-            horizontal: -2,
-        },
+        show: false
     },
 };
 
@@ -908,19 +732,11 @@ var options15 = {
         height: 400,
     },
 
-    series: [10, 20, 30, 40],
 
-    labels: ["PNS", "PPPK", "Dosen Tetap", "Dosen Tidak Tetap"],
+    series: Object.values(dosen_status),
 
-    legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 125,
-        fontSize: "20px",
-        offsetX: 100,
-        offsetY: 110,
-    },
+    labels: Object.keys(dosen_status),
+
 };
 
 var options16 = {
@@ -929,23 +745,12 @@ var options16 = {
         height: 200,
     },
 
-    series: [10, 20, 30, 40],
+    series: Object.values(dosen_status),
 
-    labels: ["PNS", "PPPK", "Dosen Tetap", "Dosen Tidak Tetap"],
+    labels: Object.keys(dosen_status),
 
     legend: {
-        position: "right",
-        horizontalAlign: "center",
-        floating: false,
-        height: 75,
-        width: 155,
-        fontSize: "10px",
-        offsetX: -10,
-        offsetY: 50,
-        itemMargin: {
-            vertical: 2,
-            horizontal: 5,
-        },
+        show: false
     },
 };
 
