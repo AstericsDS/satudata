@@ -1,14 +1,11 @@
 <?php
 
-<<<<<<< HEAD
 use App\Livewire\AgendaPejabat;
 use App\Livewire\Test;
-=======
 use App\Livewire\BisnisDanInovasi\Kemitraan;
 use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
 use App\Models\Dosen;
 use App\Livewire\Debug;
->>>>>>> fee30d23c8cdfa240a7020c249c17d114ca5bcf7
 use App\Livewire\Login;
 use App\Models\Mahasiswa;
 use App\Jobs\SyncMahasiswa;
@@ -36,13 +33,8 @@ Route::prefix('akademik-dan-mahasiswa')->group(function () {
 });
 
 // Kepegawaian dan Umum
-<<<<<<< HEAD
-Route::prefix('kepegawaian-dan-umum')->group(function() {
-    Route::get('/agenda-pejabat', AgendaPejabat::class)->name('agenda-pejabat');
-=======
 Route::prefix('kepegawaian-dan-umum')->group(function () {
-
->>>>>>> fee30d23c8cdfa240a7020c249c17d114ca5bcf7
+    Route::get('/agenda-pejabat', AgendaPejabat::class)->name('agenda-pejabat');
 });
 
 // Keuangan dan Perencanaan
@@ -59,8 +51,6 @@ Route::prefix('bisnis-dan-inovasi')->group(function () {
 Route::prefix('publikasi')->group(function () {
 
 });
-
-
 
 // DEBUG SPACE
 Route::prefix('debug')->group(function () {
