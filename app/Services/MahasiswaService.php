@@ -21,7 +21,8 @@ class MahasiswaService
                 'body' => $response->body()
             ]);
             return;
-        };
+        }
+        ;
 
         $data = $response->json();
 
@@ -86,30 +87,31 @@ class MahasiswaService
                 $rows = [];
                 foreach ($data['data'] as $item) {
 
-                    $namaProdi = $item['nama_program_studi'] ?? '';
+                    $namaProdi = '';
+                    
                     $item['fakultas'] = 'Tidak Ditemukan';
 
-                    switch ($namaProdi) {
+                    switch ($item['nama_program_studi']) {
                         case 'D3 Usaha Jasa Pariwisata':
-                            $namaProdi = 'D3 Perjalanan Wisata';
+                            $namaProdi = 'Perjalanan Wisata';
                             break;
                         case 'D3 Sekretari':
-                            $namaProdi = 'D3 Administrasi Perkantoran';
+                            $namaProdi = 'Administrasi Perkantoran';
                             break;
                         case 'S1 Ilmu Agama Islam':
-                            $namaProdi = 'S1 Pendidikan Agama Islam';
+                            $namaProdi = 'Pendidikan Agama Islam';
                             break;
                         case 'S1 Pendidikan Tata Niaga':
-                            $namaProdi = 'S1 Pendidikan Bisnis';
+                            $namaProdi = 'Pendidikan Bisnis';
                             break;
                         case 'S2 Pendidikan Olahraga':
-                            $namaProdi = 'S2 Pendidikan Jasmani';
+                            $namaProdi = 'Pendidikan Jasmani';
                             break;
                         case 'S3 Pendidikan Olahraga':
-                            $namaProdi = 'S3 Pendidikan Jasmani';
+                            $namaProdi = 'Pendidikan Jasmani';
                             break;
                         default:
-                            $namaProdi = $item['nama_program_studi'] ?? '';
+                            $namaProdi = substr($item['nama_program_studi'], 3) ?? '';
                     }
 
                     foreach ($mapFakultas as $prodiKey => $detail) {
@@ -121,8 +123,8 @@ class MahasiswaService
                     }
 
                     $tanggalKeluar = $item['tanggal_keluar'];
-                    
-                    if(!is_null($tanggalKeluar)) {
+
+                    if (!is_null($tanggalKeluar)) {
                         $tanggalKeluar = \Carbon\Carbon::createFromFormat('m-d-Y', $tanggalKeluar)->format('Y-m-d');
                     } else {
                         $tanggalKeluar = null;
@@ -132,7 +134,7 @@ class MahasiswaService
                         'nama' => $item['nama_mahasiswa'] ?? '',
                         'nipd' => $item['nipd'],
                         'id_prodi' => $item['id_prodi'] ?? '',
-                        'status' => $item['nama_status_mahasiswa'] ?? '',
+                        'status' => ucwords(strtolower($item['nama_status_mahasiswa'] ?? '')),
                         'program_studi' => $namaProdi ?? '',
                         'jenjang' => $item['jenjang'] ?? '',
                         'fakultas' => $item['fakultas'] ?? '',
