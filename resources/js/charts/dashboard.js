@@ -11,13 +11,12 @@ const dosen_jabatan = window.chartData.dosen_jabatan;
 const dosen_fakultas = window.chartData.dosen_fakultas;
 const dosen_status = window.chartData.dosen_status;
 
-// Mahasiswa Berdasarkan Angkatan
 var options1 = {
     chart: {
         type: "bar",
         height: 400,
         toolbar: {
-            show: false, // Hides the hamburger menu icon
+            show: false,
         },
     },
 
@@ -32,34 +31,32 @@ var options1 = {
         },
     ],
 
-    // 3. Styling the bars (the most important part)
     plotOptions: {
         bar: {
-            horizontal: false, // Creates vertical bars
-            columnWidth: "65%", // Width of the bar groups
-            borderRadius: 5, // This creates the rounded corners
+            horizontal: false,
+            columnWidth: "65%",
+            borderRadius: 5,
             dataLabels: {
-                position: "top", // Position of data labels
+                position: "top",
             },
         },
     },
 
-    // 4. Configuring the data labels (the numbers on the bars)
     dataLabels: {
         enabled: true,
-        offsetY: -20, // Pushes the label up from the top of the bar
+        offsetY: -20,
         style: {
             fontSize: "12px",
             colors: ["#304758"],
         },
     },
 
-    // 5. General styling and axes
     stroke: {
         show: true,
         width: 2,
-        colors: ["transparent"], // Makes the bar borders transparent
+        colors: ["transparent"],
     },
+
     xaxis: {
         categories: Object.keys(jumlah_mahasiswa),
         labels: {
@@ -74,16 +71,16 @@ var options1 = {
             show: false,
         },
     },
+
     yaxis: {
-        // Hides the Y-axis completely to match your image
         show: false,
     },
+
     grid: {
-        // Hides the background grid lines
         show: false,
     },
-    // 7. Customizing the colors and legend
-    colors: ["#4D774E", "#30534E"], // Colors for the first and second series
+
+    colors: ["#4D774E", "#30534E"],
     fill: {
         type: "gradient",
         gradient: {
@@ -101,13 +98,12 @@ var options1 = {
     },
 };
 
-// Mahasiswa Berdasarkan Angkatan (small)
 var options2 = {
     chart: {
         type: "bar",
         height: 150,
         toolbar: {
-            show: false, // Hides the hamburger menu icon
+            show: false,
         },
     },
 
@@ -258,7 +254,7 @@ var options4 = {
         type: "bar",
         height: 150,
         toolbar: {
-            show: false, // Hides the hamburger menu icon
+            show: false,
         },
     },
 
@@ -413,7 +409,7 @@ var options6 = {
         type: "bar",
         height: 150,
         toolbar: {
-            show: false, // Hides the hamburger menu icon
+            show: false,
         },
     },
 
@@ -591,7 +587,7 @@ var options8 = {
         type: "bar",
         height: 150,
         toolbar: {
-            show: false, // Hides the hamburger menu icon
+            show: false,
         },
     },
 

@@ -25,6 +25,7 @@ class Dashboard extends Component
         $this->month = now()->month;
         $this->syncMahasiswa = Synchronize::find(1);
         $this->syncDosen = Synchronize::find(2);
+        $this->month = now()->month;
         $this->year = $this->month >= 10 ? now()->year : now()->year - 1;
         $this->dashboardData = Cache::remember('dashboard_data', 3600, function () {
             $data = [

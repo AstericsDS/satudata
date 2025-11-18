@@ -25,6 +25,9 @@
         @endif
     </td>
     <td class="px-6 py-4">
+        <span>SIPEG</span>
+    </td>
+    <td class="px-6 py-4">
         <button wire:click="process()" @disabled($sync->status === 'synchronizing') class="{{ $sync->status === 'synchronizing' ? 'bg-gray-400 cursor-default' : 'bg-primary hover:bg-primary/90 cursor-pointer' }} p-1 text-white rounded-lg transition-all">
             @if($sync->status === 'synchronized' || $sync->status === 'unsynchronized' || $sync->status === 'error')
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
