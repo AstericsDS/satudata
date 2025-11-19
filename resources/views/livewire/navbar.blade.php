@@ -87,7 +87,7 @@
                     <div id="kepegawaianNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
                         <ul class="text-sm text-primary" aria-labelledby="kepegawaian-large-button">
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Agenda Pejabat</a>
+                                <a href="{{ route('agenda-pejabat') }}"  class="block px-4 py-1.5 hover:underline">Agenda Pejabat</a>
                             </li>
                             <li>
                                 <a href="#"  class="block px-4 py-1.5">Profil dan Kepakaran Dosen</a>
