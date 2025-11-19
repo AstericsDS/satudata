@@ -176,7 +176,7 @@
 
                     {{-- Modal Body - Start --}}
                     <div class="p-4 md:p-5 space-y-4 bg-white flex flex-col items-center rounded-b-lg">
-                        <img class="rounded-full w-25 h-25" src="{{ asset('assets/images/hornet.jpg') }}" alt="photo profile">
+                        <img class="rounded-full w-25 h-25 object-cover" src="{{ asset('assets/images/pak-komar.jpg') }}" alt="photo profile">
                         <div class="text-center">
                             <p>Prof Dr. Komarudin, M. Si.</p>
                             <p class="font-bold">Rektor</p>
