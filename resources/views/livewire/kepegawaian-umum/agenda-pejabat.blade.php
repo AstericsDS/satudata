@@ -1,6 +1,6 @@
 <div class="flex flex-col min-h-screen">
     
-    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 overflow-y-auto flex-grow">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow">
         {{-- Card - Start --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-4">
             {{-- Total Pejabat - Start --}}
@@ -102,11 +102,12 @@
                                     Fakultas Ilmu Sosial dan Hukum
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-md">Ada Ditempat</span>
-                                </td>
+                                    <span class="bg-[#D7EFEA] text-primary dark:bg-green-900 dark:text-green-300 font-medium inline-flex items-center px-3 py-1 text-sm rounded-lg">
+                                        Ada di Tempat
+                                    </span>
                                 <td class="px-6 py-4">
                                     <button type="button" data-modal-target="detail-agenda-pejabat" data-modal-toggle="detail-agenda-pejabat"
-                                        class="text-white bg-unj hover:bg-unj/90 active:bg-unj/80 w-[38px] h-[38px] p-0 flex items-center justify-center rounded-[10px]">
+                                        class="text-white bg-primary hover:bg-primary/90 active:bg-unj/80 w-[38px] h-[38px] p-0 flex items-center justify-center rounded-[10px]">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                             stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -133,11 +134,13 @@
                                     Fakultas Ilmu Sosial dan Hukum
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-md">Sedang Rapat</span>
+                                    <span class="bg-[#ECD1D1] text-button-red-bg dark:bg-red-900 dark:text-red-300 font-medium inline-flex items-center px-3 py-1 text-sm rounded-lg">
+                                        Sedang Rapat
+                                    </span>
                                 </td>
                                 <td class="px-6 py-4">
                                     <button type="button" data-modal-target="detail-agenda-pejabat" data-modal-toggle="detail-agenda-pejabat"
-                                        class="text-white bg-unj hover:bg-unj/90 active:bg-unj/80 w-[38px] h-[38px] p-0 flex items-center justify-center rounded-[10px]">
+                                        class="text-white bg-primary hover:bg-primary/90 active:bg-unj/80 w-[38px] h-[38px] p-0 flex items-center justify-center rounded-[10px]">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                             stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -191,7 +194,7 @@
                                         <p class="font-semibold">Rapat Pembukaan Seminar Nasional</p>
                                         <p class="font-light">Ruang Rektorat Lt. 3</p>
                                     </div>
-                                    <span class="text-sm bg-green-100 text-green-800 px-4 py-2 rounded-xl">
+                                    <span class="bg-[#D7EFEA] text-primary dark:bg-green-900 dark:text-green-300 font-medium inline-flex items-center px-3 py-1 text-sm rounded-lg">
                                         Selesai
                                     </span>
                                 </div>
@@ -206,7 +209,7 @@
                                         <p class="font-semibold">Rapat Pembukaan Seminar Nasional</p>
                                         <p class="font-light">Ruang Rektorat Lt. 3</p>
                                     </div>
-                                    <span class="text-sm bg-yellow-100 text-yellow-800 px-4 py-2 rounded-xl">
+                                    <span class="bg-[#FCF5CD] text-[#BA9F0B] dark:bg-yellow-900 dark:text-yellow-300 font-medium inline-flex items-center px-3 py-1 text-sm rounded-lg">
                                         Berjalan
                                     </span>
                                 </div>
@@ -221,7 +224,7 @@
                                         <p class="font-semibold">Rapat Pembukaan Seminar Nasional</p>
                                         <p class="font-light">Ruang Rektorat Lt. 3</p>
                                     </div>
-                                    <span class="text-sm bg-gray-100 text-gray-800 px-4 py-2 rounded-xl">
+                                    <span class="bg-[#E5E5E5] text-[#808080] dark:bg-gray-700 dark:text-gray-300 font-medium inline-flex items-center px-3 py-1 text-sm rounded-lg">
                                         Terjadwal
                                     </span>
                                 </div>
