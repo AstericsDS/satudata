@@ -7,7 +7,6 @@
         <div class="flex gap-4 items-center">
             <img src="{{asset('assets/landing_page/logo_unj.svg')}}" alt="Logo UNJ">
             <div class="flex flex-col">
-                <span class="text-primary font-extrabold tracking-wide text-2xl">PUSTIKOM</span>
                 <span class="text-primary font-semibold text-xl">UNIVERSITAS NEGERI JAKARTA</span>
             </div>
         </div>
@@ -39,8 +38,8 @@
     </div>
     
     {{-- Background --}}
-    <div>
-        <img src="{{ asset('assets/landing_page/mask.svg') }}" alt="" class="absolute right-0 -z-30 w-[1200px]">
+    <div class="">
+        <img src="{{ asset('assets/landing_page/mask.svg') }}" alt="" class="absolute right-0 w-[1200px] -z-30">
         <img src="{{ asset('assets/landing_page/vector_1.svg') }}" alt="" class="absolute right-10 -z-50 w-[1000px]">
         <img src="{{ asset('assets/landing_page/vector_2.svg') }}" alt="" class="absolute right-80 -z-40 w-[1100px]">
     </div>
