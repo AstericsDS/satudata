@@ -147,7 +147,7 @@
                     <div id="publikasiNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
                         <ul class="text-sm text-primary" aria-labelledby="publikasi-large-button">
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Grafik Indeksasi SINTA</a>
+                                <a href="{{ route('grafik-indeksasi-sinta') }}"  class="block px-4 py-1.5 hover:underline">Grafik Indeksasi SINTA</a>
                             </li>
                         </ul>
                     </div>

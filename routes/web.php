@@ -4,6 +4,7 @@ use App\Livewire\AgendaPejabat;
 use App\Livewire\Test;
 use App\Livewire\BisnisDanInovasi\Kemitraan;
 use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
+use App\Livewire\GrafikIndeksasiSinta;
 use App\Models\Dosen;
 use App\Livewire\Debug;
 use App\Livewire\Login;
@@ -49,7 +50,7 @@ Route::prefix('bisnis-dan-inovasi')->group(function () {
 
 // Publikasi
 Route::prefix('publikasi')->group(function () {
-
+    Route::get('/grafik-indeksasi-sinta', GrafikIndeksasiSinta::class)->name('grafik-indeksasi-sinta');
 });
 
 // DEBUG SPACE
