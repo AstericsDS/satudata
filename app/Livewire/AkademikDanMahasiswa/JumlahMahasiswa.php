@@ -14,9 +14,10 @@ class JumlahMahasiswa extends Component
     public $jenjang, $semester, $fakultas, $prodi, $status;
     public $selectedJenjang, $selectedFakultas, $selectedProdi, $selectedStatus;
     public $showJenjang, $showFakultas, $showProdi, $showStatus;
-    public $month, $year;
+    public $month, $year, $lastYear;
     public $update;
     public $now, $before, $percentage;
+    public $statusDetail;
     public function mount()
     {
         $order = ['S1', 'S2', 'S3', 'D3', 'D4'];
@@ -36,36 +37,23 @@ class JumlahMahasiswa extends Component
     {
         $this->selectedJenjang = $value ? $this->jenjang[0] : null;
 
-        $this->selectedFakultas = null;
-        $this->selectedProdi = null;
-
         $this->updateFakultasOptions();
 
-        if (!$value) {
-            $this->selectedProdi = null;
-        }
     }
     public function updatedSelectedJenjang()
     {
-        $this->selectedFakultas = null;
-        $this->selectedProdi = null;
         $this->updateFakultasOptions();
     }
     public function updatedShowFakultas($value)
     {
         $this->selectedFakultas = $value ? $this->fakultas[0] : null;
 
-        $this->selectedProdi = null;
 
         $this->updateProdiOptions();
 
-        if (!$value) {
-            $this->selectedProdi = null;
-        }
     }
     public function updatedSelectedFakultas()
     {
-        $this->selectedProdi = null;
         $this->updateProdiOptions();
     }
 
@@ -79,8 +67,9 @@ class JumlahMahasiswa extends Component
     }
     public function updateProdiOptions()
     {
-        if (!$this->selectedFakultas) {
+        if (!$this->selectedFakultas && !$this->selectedJenjang) {
             $this->prodi = Mahasiswa::pluck('program_studi')->unique()->toArray();
+            $this->selectedProdi = $this->prodi[0] ?? null;
             return;
         }
 
@@ -90,21 +79,40 @@ class JumlahMahasiswa extends Component
             $query->where('jenjang', $this->selectedJenjang);
         }
 
-        $this->prodi = $query->where('fakultas', $this->selectedFakultas)->pluck('program_studi')
-            ->unique()
-            ->values()
-            ->toArray();
+        if ($this->selectedFakultas) {
+            $query->where('fakultas', $this->selectedFakultas);
+        }
+
+        $this->prodi = $query->pluck('program_studi')->unique()->values()->toArray();
+
+        if ($this->showProdi) {
+            $this->selectedProdi = $this->prodi[0] ?? null;
+        }
+
     }
     public function updateFakultasOptions()
     {
         if (!$this->selectedJenjang) {
             $this->fakultas = Mahasiswa::pluck('fakultas')->unique()->toArray();
             $this->prodi = Mahasiswa::pluck('program_studi')->unique()->toArray();
+            if ($this->showFakultas) {
+                $this->selectedFakultas = $this->fakultas[0] ?? null;
+            }
+            if ($this->showProdi) {
+                $this->updateProdiOptions();
+            }
             return;
         }
 
         $this->fakultas = Mahasiswa::where('jenjang', $this->selectedJenjang)->pluck('fakultas')->unique()->values()->toArray();
         $this->prodi = Mahasiswa::where('jenjang', $this->selectedJenjang)->pluck('program_studi')->unique()->values()->toArray();
+        if ($this->showFakultas) {
+            $this->selectedFakultas = $this->fakultas[0] ?? null;
+
+        }
+        if ($this->showProdi) {
+            $this->updateProdiOptions();
+        }
     }
     public function deleteFilter()
     {
@@ -122,6 +130,11 @@ class JumlahMahasiswa extends Component
     }
     public function applyFilter()
     {
+        $this->data = [];
+        $this->data_2 = [];
+        if ($this->selectedStatus) {
+            $this->statusDetail = $this->selectedStatus;
+        }
         for ($i = $this->year - 7; $i <= $this->year; $i++) {
             $query = Mahasiswa::query();
             if ($this->selectedJenjang)
@@ -145,10 +158,35 @@ class JumlahMahasiswa extends Component
     }
     public function render()
     {
-        $index = array_key_last($this->data_2);
+        $filtered = array_filter($this->data_2, fn($v) => $v != 0);
+
+        if (empty($filtered)) {
+            $this->now = 0;
+            $this->before = 0;
+            $this->percentage = 0;
+            return view('livewire.akademik-dan-mahasiswa.jumlah-mahasiswa');
+        }
+
+        $index = array_key_last($filtered);
+        $this->lastYear = $index;
         $this->now = $this->data_2[$index];
-        $this->before = $this->data_2[$index - 1];
-        $this->percentage = number_format(($this->now - $this->before) / $this->before * 100, 2);
+
+        $filteredKeys = array_keys($filtered);
+        $currentPos = array_search($index, $filteredKeys);
+
+        $beforeKey = $filteredKeys[$currentPos - 1] ?? null;
+        $this->before = $beforeKey ? $this->data_2[$beforeKey] : 0;
+
+        if ($this->before == 0) {
+            $this->percentage = $this->now > 0 ? 100 : 0;
+        } else {
+            $this->percentage = number_format(
+                (($this->now - $this->before) / $this->before) * 100,
+                2
+            );
+        }
+
         return view('livewire.akademik-dan-mahasiswa.jumlah-mahasiswa');
     }
+
 }

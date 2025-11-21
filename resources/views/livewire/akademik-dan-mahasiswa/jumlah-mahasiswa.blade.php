@@ -166,7 +166,7 @@
                 <div class="bg-primary/10 p-6 rounded-md">
                     <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
                     <livewire:charts.jumlah-mahasiswa />
-                    <p>Pada tahun akademik {{ $year }}, universitas mencatat total {{ $now }} mahasiswa dengan pertumbuhan {{ $percentage }}% dibandingkan tahun sebelumnya.
+                    <p>Pada tahun akademik {{ $lastYear ? $lastYear : '' }}, universitas mencatat total {{ $now }} mahasiswa {{ $statusDetail ? "yang {$statusDetail}" : '' }} dengan {{ $percentage > 0 ? 'pertumbuhan' : 'penurunan' }} sebesar {{ $percentage }}% dibandingkan tahun sebelumnya.
                     </p>
                 </div>
             </div>
