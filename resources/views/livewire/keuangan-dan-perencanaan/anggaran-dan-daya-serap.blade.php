@@ -70,24 +70,24 @@
     <!-- Chart -->
     <div x-data="{ active: 'daya-serap-universitas' }" @change-chart.window="active = $event.detail.chart"
         class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6 mt-4">
-
+        
         <div class="bg-white rounded-md p-4">
-
             <div class="flex">
                 <button @click="$dispatch('change-chart', { chart: 'daya-serap-universitas' })"
-                    class="p-2 cursor-pointer transition-all"
-                    :class="active === 'daya-serap-universitas' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Grafik
-                    Daya Serap Universitas</button>
+                class="p-2 cursor-pointer transition-all"
+                :class="active === 'daya-serap-universitas' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Grafik
+                Daya Serap Universitas</button>
                 <button @click="$dispatch('change-chart', { chart: 'anggaran-per-akun-belanja' })"
-                    class="p-2 cursor-pointer transition-all"
-                    :class="active === 'anggaran-per-akun-belanja' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Anggaran
-                    per-Akun Belanja</button>
+                class="p-2 cursor-pointer transition-all"
+                :class="active === 'anggaran-per-akun-belanja' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Anggaran
+                per-Akun Belanja</button>
                 <button @click="$dispatch('change-chart', { chart: 'anggaran-per-output' })"
-                    class="p-2 cursor-pointer transition-all"
-                    :class="active === 'anggaran-per-output' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Anggaran
-                    per-Output</button>
+                class="p-2 cursor-pointer transition-all"
+                :class="active === 'anggaran-per-output' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Anggaran
+                per-Output</button>
             </div>
-
+            
+            <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit mt-4">Data Belum Sinkron</p>
             <template x-if="active === 'daya-serap-universitas'">
                 <div x-effect="if (active === 'daya-serap-universitas') $nextTick(() => window.renderChart1())">
                     <div id="daya-serap-universitas" class="flex justify-center items-center py-4"></div>

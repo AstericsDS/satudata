@@ -58,10 +58,10 @@
                                 <a href="{{ route('jumlah-mahasiswa') }}"  class="block px-4 py-1.5 hover:underline">Jumlah Mahasiswa</a>
                             </li>
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Jumlah Wisudawan</a>
+                                <a href="{{ route('jumlah-wisudawan')  }}"  class="block px-4 py-1.5 hover:underline">Jumlah Wisudawan</a>
                             </li>
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Tracer Study</a>
+                                <a href="{{ route('tracer-study') }}"  class="block px-4 py-1.5 hover:underline">Tracer Study</a>
                             </li>
                             <li>
                                 <a href="#"  class="block px-4 py-1.5">Beban Mengajar</a>

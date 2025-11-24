@@ -6,33 +6,22 @@ window.renderChart1 = function () {
     const data = window.chartData.data ?? [];
     const data_2 = window.chartData.data_2 ?? [];
 
-    const series = [];
-
-    if (data.length !== 0 && data_2.length !== 0) {
-        series.push(
-            {
-                name: "Jumlah Mahasiswa Aktif",
-                data: Object.values(data),
-            },
-            {
-                name: "Jumlah Mahasiswa Diterima",
-                data: Object.values(data_2),
-            }
-        );
-    } else if (data_2.length !== 0 && data.length === 0) {
-        series.push({
-            name: "Jumlah Mahasiswa",
-            data: Object.values(data_2),
-        });
-    }
-
     var options1 = {
         chart: {
             type: "bar",
             height: 500,
         },
 
-        series: series,
+        series: [
+            {
+                name: "Jumlah Wisudawan",
+                data: Object.values(data),
+            },
+            {
+                name: "Jumlah Mahasiswa Diterima",
+                data: Object.values(data_2),
+            },
+        ],
 
         xaxis: {
             categories: Object.keys(data_2),

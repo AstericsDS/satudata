@@ -85,7 +85,7 @@
             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
             x-transition:enter-end="opacity-100 scale-100">
 
-            <p class="mb-2">Belum sinkron</p>
+            <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
             <div id="dokumen"></div>
 
             <div class="flex">

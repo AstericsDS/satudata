@@ -96,6 +96,14 @@ var options1 = {
             horizontal: 5,
         },
     },
+    title: {
+        text: "Sumber: PDDIKTI",
+        align: "left",
+        style: {
+            fontSize: "11px",
+        },
+        margin: 20,
+    },
 };
 
 var options2 = {
@@ -140,7 +148,7 @@ var options2 = {
     },
 
     grid: {
-        show: false
+        show: false,
     },
 
     legend: {
@@ -247,6 +255,15 @@ var options3 = {
             horizontal: 5,
         },
     },
+
+    title: {
+        text: "Sumber: PDDIKTI",
+        align: "left",
+        style: {
+            fontSize: "11px",
+        },
+        margin: 20,
+    },
 };
 
 var options4 = {
@@ -286,7 +303,7 @@ var options4 = {
     },
 
     grid: {
-        show: false
+        show: false,
     },
 
     legend: {
@@ -402,6 +419,15 @@ var options5 = {
             horizontal: 5,
         },
     },
+
+    title: {
+        text: "Sumber: PDDIKTI",
+        align: "left",
+        style: {
+            fontSize: "11px",
+        },
+        margin: 20,
+    },
 };
 
 var options6 = {
@@ -449,7 +475,7 @@ var options6 = {
     },
 
     grid: {
-        show: false
+        show: false,
     },
 
     legend: {
@@ -613,7 +639,7 @@ var options8 = {
     },
 
     grid: {
-        show: false
+        show: false,
     },
 
     legend: {
@@ -649,6 +675,14 @@ var options9 = {
 
     labels: Object.keys(dosen_pendidikan),
 
+    title: {
+        text: "Sumber: SIPEG",
+        align: "left",
+        style: {
+            fontSize: "11px",
+        },
+        margin: 20,
+    },
 };
 
 var options10 = {
@@ -662,7 +696,7 @@ var options10 = {
     labels: Object.keys(dosen_pendidikan),
 
     legend: {
-        show: false
+        show: false,
     },
 };
 
@@ -676,6 +710,14 @@ var options11 = {
 
     labels: Object.keys(dosen_jabatan),
 
+    title: {
+        text: "Sumber: SIPEG",
+        align: "left",
+        style: {
+            fontSize: "11px",
+        },
+        margin: 20,
+    },
 };
 
 var options12 = {
@@ -689,7 +731,7 @@ var options12 = {
     labels: Object.keys(dosen_jabatan),
 
     legend: {
-        show: false
+        show: false,
     },
 };
 
@@ -699,11 +741,18 @@ var options13 = {
         height: 400,
     },
 
-
     series: Object.values(dosen_fakultas),
 
     labels: Object.keys(dosen_fakultas),
 
+    title: {
+        text: "Sumber: SIPEG",
+        align: "left",
+        style: {
+            fontSize: "11px",
+        },
+        margin: 20,
+    },
 };
 
 var options14 = {
@@ -712,13 +761,12 @@ var options14 = {
         height: 200,
     },
 
-
     series: Object.values(dosen_fakultas),
 
     labels: Object.keys(dosen_fakultas),
 
     legend: {
-        show: false
+        show: false,
     },
 };
 
@@ -728,11 +776,18 @@ var options15 = {
         height: 400,
     },
 
-
     series: Object.values(dosen_status),
 
     labels: Object.keys(dosen_status),
 
+    title: {
+        text: "Sumber: SIPEG",
+        align: "left",
+        style: {
+            fontSize: "11px",
+        },
+        margin: 20,
+    },
 };
 
 var options16 = {
@@ -746,7 +801,7 @@ var options16 = {
     labels: Object.keys(dosen_status),
 
     legend: {
-        show: false
+        show: false,
     },
 };
 

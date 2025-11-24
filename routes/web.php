@@ -1,22 +1,24 @@
 <?php
 
-use App\Livewire\AgendaPejabat;
-use App\Livewire\Test;
-use App\Livewire\BisnisDanInovasi\Kemitraan;
-use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
-use App\Livewire\GrafikIndeksasiSinta;
+use App\Livewire\AkademikDanMahasiswa\TracerStudy;
 use App\Models\Dosen;
+use App\Livewire\Test;
 use App\Livewire\Debug;
 use App\Livewire\Login;
 use App\Models\Mahasiswa;
 use App\Jobs\SyncMahasiswa;
 use App\Livewire\Dashboard;
 use App\Services\DosenService;
-use App\Livewire\AkademikDanMahasiswa\JumlahMahasiswa;
+use App\Livewire\AgendaPejabat;
 use App\Livewire\Admin\Sinkronisasi;
 use App\Livewire\Public\LandingPage;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\GrafikIndeksasiSinta;
 use App\Http\Controllers\DataController;
+use App\Livewire\BisnisDanInovasi\Kemitraan;
+use App\Livewire\AkademikDanMahasiswa\JumlahMahasiswa;
+use App\Livewire\AkademikDanMahasiswa\JumlahWisudawan;
+use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
 
 // Public
 Route::get('/', LandingPage::class)->name('landing-page');
@@ -31,6 +33,8 @@ Route::prefix('admin')->group(function () {
 // Akademik dan Mahasiswa
 Route::prefix('akademik-dan-mahasiswa')->group(function () {
     Route::get('/jumlah-mahasiswa', JumlahMahasiswa::class)->name('jumlah-mahasiswa');
+    Route::get('/jumlah-wisudawan', JumlahWisudawan::class)->name('jumlah-wisudawan');
+    Route::get('/tracer-study', TracerStudy::class)->name('tracer-study');
 });
 
 // Kepegawaian dan Umum
