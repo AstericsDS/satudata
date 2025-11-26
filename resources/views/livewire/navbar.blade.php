@@ -90,7 +90,7 @@
                                 <a href="{{ route('agenda-pejabat') }}"  class="block px-4 py-1.5 hover:underline">Agenda Pejabat</a>
                             </li>
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Profil dan Kepakaran Dosen</a>
+                                <a href="{{ route('profil-kepakaran-dosen') }}"  class="block px-4 py-1.5 hover:underline">Profil dan Kepakaran Dosen</a>
                             </li>
                             <li>
                                 <a href="#"  class="block px-4 py-1.5">Jumlah Tenaga Kependidikan</a>

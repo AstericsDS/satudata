@@ -10,6 +10,7 @@ use App\Jobs\SyncMahasiswa;
 use App\Livewire\Dashboard;
 use App\Services\DosenService;
 use App\Livewire\AgendaPejabat;
+use App\Livewire\ProfilKepakaranDosen;
 use App\Livewire\Admin\Sinkronisasi;
 use App\Livewire\Public\LandingPage;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,7 @@ Route::prefix('akademik-dan-mahasiswa')->group(function () {
 // Kepegawaian dan Umum
 Route::prefix('kepegawaian-dan-umum')->group(function () {
     Route::get('/agenda-pejabat', AgendaPejabat::class)->name('agenda-pejabat');
+    Route::get('/profil-kepakaran-dosen', ProfilKepakaranDosen::class)->name('profil-kepakaran-dosen');
 });
 
 // Keuangan dan Perencanaan
