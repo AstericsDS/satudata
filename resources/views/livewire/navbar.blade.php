@@ -70,7 +70,7 @@
                                 <a href="{{ route('rasio-dosen-mahasiswa') }}"  class="block px-4 py-1.5 hover:underline">Rasio Dosen/Mahasiswa</a>
                             </li>
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Data Akreditasi</a>
+                                <a href="{{ route('data-akreditasi') }}"  class="block px-4 py-1.5 hover:underline">Data Akreditasi</a>
                             </li>
                         </ul>
                     </div>

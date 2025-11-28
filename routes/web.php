@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
+use App\Livewire\AkademikDanMahasiswa\DataAkreditasi;
 use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
 use App\Livewire\AkademikDanMahasiswa\TracerStudy;
 use App\Models\TracerStudy as Tracing;
@@ -41,6 +42,7 @@ Route::prefix('akademik-dan-mahasiswa')->group(function () {
     Route::get('/tracer-study', TracerStudy::class)->name('tracer-study');
     Route::get('/beban-mengajar', BebanMengajar::class)->name('beban-mengajar');
     Route::get('/rasio-dosen-mahasiswa', RasioDosenMahasiswa::class)->name('rasio-dosen-mahasiswa');
+    Route::get('/data-akreditasi', DataAkreditasi::class)->name('data-akreditasi');
 });
 
 // Kepegawaian dan Umum
