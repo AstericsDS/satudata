@@ -128,11 +128,17 @@
                 dalam berbagai jenjang pendidikan. Visualisasi data jumlah mahasiswa membantu dalam perencanaan
                 kapasitas akademik, alokasi sumber daya, dan pengambilan keputusan strategis institusi pendidikan</p>
             <div class="bg-white rounded-md p-4 flex flex-col gap-2 ">
-                <p>Data diperbarui {{ $update->locale('id')->diffForHumans() }}</p>
+                @if($update)
+                    <p>Data diperbarui {{ $update->locale('id')->diffForHumans() }}</p>
+                @else
+                    <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
+                @endif
+                <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
+                <livewire:charts.jumlah-wisudawan />
                 <div class="bg-primary/10 p-6 rounded-md">
-                    <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
-                    <livewire:charts.jumlah-wisudawan />
-                    <p>Pada tahun akademik {{ $lastYear ? $lastYear : '' }}, universitas mencatat total {{ $now }} mahasiswa dengan {{ $percentage > 0 ? 'pertumbuhan' : 'penurunan' }} sebesar {{ $percentage }}% dibandingkan tahun sebelumnya.
+                    <p>Pada tahun akademik {{ $lastYear ? $lastYear : '' }}, universitas mencatat total {{ $now }}
+                        mahasiswa dengan {{ $percentage > 0 ? 'pertumbuhan' : 'penurunan' }} sebesar {{ $percentage }}%
+                        dibandingkan tahun sebelumnya.
                     </p>
                 </div>
             </div>

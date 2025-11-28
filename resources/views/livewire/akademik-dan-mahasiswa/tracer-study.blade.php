@@ -86,13 +86,19 @@
                 kapasitas akademik, alokasi sumber daya, dan pengambilan keputusan strategis institusi pendidikan</p>
             <div class="bg-white rounded-md p-4 flex flex-col gap-2">
                 <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
+                @if($update)
+                    <p>Data diperbarui {{ $update->locale('id')->diffForHumans() }}</p>
+                @else
+                    <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
+                @endif
                 <h2 class="text-[12px] font-semibold text-[#263238]">Sumber: Tracer Study</h2>
                 <div class="flex gap-4 py-8">
                     <livewire:charts.tracer-study-partisipasi :data="$data" />
                     <livewire:charts.tracer-study-status :data="$data" />
                 </div>
                 <div class="bg-primary/10 p-6 rounded-md">
-                    <p>Pada tahun akademik {{ $year }}, universitas mencatat total {{ $data['statistik']['current'] }} mahasiswa dengan {{ $growth >= 0 ? "pertumbuhan" : 'penurunan' }} sebesar {{ $growth }}%
+                    <p>Pada tahun akademik {{ $year }}, universitas mencatat total {{ $data['statistik']['current'] }}
+                        mahasiswa dengan {{ $growth >= 0 ? "pertumbuhan" : 'penurunan' }} sebesar {{ $growth }}%
                         dibandingkan tahun sebelumnya.</p>
                 </div>
             </div>

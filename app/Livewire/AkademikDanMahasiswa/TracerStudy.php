@@ -3,8 +3,9 @@
 namespace App\Livewire\AkademikDanMahasiswa;
 
 use Livewire\Component;
-use App\Models\TracerStudy as Model;
+use App\Models\Synchronize;
 use Livewire\Attributes\Title;
+use App\Models\TracerStudy as Model;
 use Illuminate\Support\Facades\Cache;
 
 #[Title('Tracer Study')]
@@ -13,10 +14,12 @@ class TracerStudy extends Component
     public $data;
     public $year, $month;
     public $growth, $first, $second;
+    public $update;
     public function mount()
     {
         $this->month = now()->month;
         $this->year = $this->month >= 10 ? now()->year : now()->year - 1;
+        $this->update = Synchronize::where('name', 'Tracer Study')->first() ?? '';
         $this->data = Cache::remember('tracer_study', 3600, function () {
             $data = [
                 'statistik' => [
@@ -43,7 +46,11 @@ class TracerStudy extends Component
             ];
             return $data;
         });
-        $this->growth = number_format(($this->data['statistik']['current'] - $this->data['statistik']['before']) / $this->data['statistik']['before'] * 100, 2);
+        if($this->data['statistik']['before'] !== 0) {
+            $this->growth = number_format(($this->data['statistik']['current'] - $this->data['statistik']['before']) / $this->data['statistik']['before'] * 100, 2);
+        } else {
+            $this->growth = 0;
+        }
     }
     public function render()
     {
