@@ -5,6 +5,7 @@ namespace App\Services\AkademikDanMahasiswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use App\Services\AkademikDanMahasiswa\PDDIKTIService;
 
 
 class DosenService
@@ -12,7 +13,7 @@ class DosenService
 
     public function getJabatan()
     {
-        $pddikti = new \App\Services\PDDIKTIService();
+        $pddikti = new PDDIKTIService();
         $pddikti->checkToken();
         $response = Http::post(
             config('api.pddikti_url'),
