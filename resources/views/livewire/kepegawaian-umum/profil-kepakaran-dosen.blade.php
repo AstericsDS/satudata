@@ -1,4 +1,4 @@
-@vite(['resources/js/charts/jumlah-publikasi.js'])
+@vite(['resources/js/charts/profil-kepakaran-dosen.js'])
 
 <div class="flex flex-col min-h-screen mb-20">
     <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow">
@@ -31,24 +31,109 @@
         <div class="w-full p-6 rounded-xl shadow-lg bg-gradient-to-b from-primary to-[#95F4F8]">
             {{-- Text - Start --}}
             <div class="text-white">
-                <p class="font-bold">Jumlah Dosen</p>
+                <h1 class="font-semibold text-2xl">Jumlah Dosen</h1>
                 <p class="mt-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
             </div>
             {{-- Text- End --}}
 
             {{-- Content - Start --}}
-            <div x-data="{ menu: 'jumlah-dosen' }" @change-menu.window="menu = $event.detail.menu" class="mt-2">
+            <div x-data="{ menu: 'grafik-dosen' }" @change-menu.window="menu = $event.detail.menu" class="mt-2">
                 {{-- Menu Button --}}
                 <div class="flex space-x-2 bg-white mb-4 rounded-md p-6">
                     {{-- Jumlah Dosen --}}
-                    <button @click="$dispatch('change-menu', { menu: 'jumlah-dosen' })" class="text-center py-3 flex-1 rounded-md font-semibold" :class="menu === 'jumlah-dosen' ? 'bg-linear-to-l from-primary to to-accent-1 text-white' : 'text-black hover:text-primary cursor-pointer'">
-                        Jumlah Dosen
+                    <button @click="$dispatch('change-menu', { menu: 'grafik-dosen' })" class="text-center py-3 flex-1 rounded-md font-semibold" :class="menu === 'grafik-dosen' ? 'bg-linear-to-l from-primary to to-accent-1 text-white' : 'text-black hover:text-primary cursor-pointer'">
+                        Grafik Dosen
                     </button>
 
                     {{-- Daftar Dosen per Fakultas --}}
                     <button @click="$dispatch('change-menu', { menu: 'daftar-dosen' })" class="text-center py-3 flex-1 rounded-md font-semibold" :class="menu === 'daftar-dosen' ? 'bg-linear-to-l from-primary to to-accent-1 text-white' : 'text-black hover:text-primary cursor-pointer'">
                         Daftar Dosen per Fakultas
                     </button>
+                </div>
+
+                {{-- Grafik Dosen --}}
+                <div x-show="menu === 'grafik-dosen'" class="flex gap-4 bg-white rounded-md mt-4 p-6" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    {{-- Filter - Start --}}
+                    <div class="border-1 border-[#1B1B1B]/20 p-8 rounded-md shadow-xl">
+                        <div class="flex flex-col gap-6">
+                            {{-- Teks --}}
+                            <div>
+                                <div class="flex gap-2 items-center mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
+                                        <path fill="#006569"
+                                            d="M11 20q-.425 0-.712-.288T10 19v-6L4.2 5.6q-.375-.5-.112-1.05T5 4h14q.65 0 .913.55T19.8 5.6L14 13v6q0 .425-.288.713T13 20z" />
+                                    </svg>
+                                    <h1 class="text-primary text-2xl">Filter Data</h1>
+                                </div>
+                                <p class="text-gray-700">Atur data yang akan ditampilkan</p>
+                            </div>
+
+                            {{-- Menu Filter - Start --}}
+                            <div x-data="{ jabatanFungsional: @entangle('showJabatanFungsional'),
+                            statusKepegawaian: @entangle('showStatusKepegawaian'),
+                            pendidikanTerakhir: @entangle('showPendidikanTerakhir'),
+                            status: @entangle('showStatus'),
+                            fakultas: @entangle('showFakultas'),
+                            programStudi: @entangle('showProgramStudi'),
+                            jenisKelamin: @entangle('showJenisKelamin')}"
+                            @clearFilter.window="jabatanFungsional: false; statusKepegawaian: false; pendidikanTerakhir: false; status: false; fakultas: false; programStudi: false; jenisKelamin: false;"
+                            class="flex flex-col gap-4 w-[300px]">
+                                {{-- Title --}}
+                                <h1 class="text-gray-800 text-2xl">Kategori Data</h1>
+
+                                {{-- Filter Menu List --}}
+                                <ul class="flex flex-col gap-4">
+                                    {{-- Jabatan Fungsional --}}
+                                    <li class="transition-all flex flex-col gap-3">
+                                        <label for="jabatanFungsional" class="flex gap-2 items-center">
+                                            <input id="jabatanFungsional" type="checkbox" x-model="jabatanFungsional" wire:model.change="showJabatanFungsional"
+                                            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
+                                            x-transition:enter-end="opacity-100 scale-100"
+                                            x-transition:leave="transition ease-out duration-300"
+                                            x-transition:leave-end="opacity-0 scale-90">
+                                            Jabatan Fungsional
+                                        </label>
+                                        <select wire:model.change="selectedJabatanFungsional" x-show="jabatanFungsional" class="p-2 border border-gray-300 rounded-md w-full">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                </ul>
+                                
+                                {{-- Button --}}
+                                <div class="flex gap-3 justify-end">
+                                    <button wire:click="deleteFilter"
+                                        class="rounded-md bg-red-600 p-2 text-white hover:bg-red-700 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                            <path fill="#ffffff"
+                                                d="M4 17q-.425 0-.712-.288T3 16t.288-.712T4 15h12q.425 0 .713.288T17 16t-.288.713T16 17zm2-4q-.425 0-.712-.288T5 12t.288-.712T6 11h12q.425 0 .713.288T19 12t-.288.713T18 13zm2-4q-.425 0-.712-.288T7 8t.288-.712T8 7h12q.425 0 .713.288T21 8t-.288.713T20 9z" />
+                                        </svg>
+                                        Hapus
+                                    </button>
+                                    <button wire:click="applyFilter"
+                                        class="rounded-md bg-primary p-3 text-white hover:bg-primary/90 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                            <path fill="#ffffff"
+                                                d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h11.175q.4 0 .763.15t.637.425l2.85 2.85q.275.275.425.638t.15.762V19q0 .825-.587 1.413T19 21zm7-3q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-5-8h7q.425 0 .713-.288T15 9V7q0-.425-.288-.712T14 6H7q-.425 0-.712.288T6 7v2q0 .425.288.713T7 10" />
+                                        </svg>
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                            {{-- Menu Filter - End --}}
+                        </div>
+                    </div>
+                    {{-- Filter - End --}}
+
+                    {{-- Grafik - Start --}}
+                    <div class="rounded-md flex flex-col gap-4 p-6 w-full">
+                        <p class="font-light text-gray-500">Data diperbarui 10 jam yang lalu</p>
+                        <div id="chart-dosen"></div>
+                        <div class="bg-[#EDF7F6] rounded-md p-5 text-black">
+                            <h1 class="font-bold text-xl">Analisis Data</h1>
+                            <p class="text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                    </div>
+                    {{-- Grafik - End --}}
                 </div>
 
                 {{-- Daftar Dosen per Fakultas --}}
