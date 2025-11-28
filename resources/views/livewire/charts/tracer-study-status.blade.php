@@ -1,3 +1,7 @@
-<div id="status" class="flex-1">
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
-</div>
+<div id="status" class="flex-1"></div>
+
+<script>
+    window.chartData = {
+        data: @json($data)
+    }
+</script>

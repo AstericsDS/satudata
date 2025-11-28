@@ -1,14 +1,15 @@
 import ApexCharts from "apexcharts";
 
+const data = window.chartData.data ?? [];
+
 var options1 = {
     chart: {
         type: "pie",
     },
-    
-    
+
     title: {
         text: "Partisipasi Alumni per Fakultas",
-        align: "center"
+        align: "center",
     },
 
     legend: {
@@ -16,9 +17,10 @@ var options1 = {
         horizontalAlign: "center",
     },
 
-    series: [5,7,13,15,18,21,40, 25, 31],
+    series: Object.values(data["fakultas"]),
 
-    labels: ["FIP", "FBS", "FMIPA", "FISH", "FT", "FIKK", "FEB", "FPsi", "SPasca"],
+    labels: Object.keys(data["fakultas"]),
+
 };
 
 var chart1 = new ApexCharts(document.querySelector("#partisipasi"), options1);

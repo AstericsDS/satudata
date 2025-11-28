@@ -1,5 +1,8 @@
 import ApexCharts from "apexcharts";
 
+const data = window.chartData.data ?? [];
+console.log(data)
+
 var options1 = {
     chart: {
         type: "pie",
@@ -15,9 +18,10 @@ var options1 = {
         horizontalAlign: "center",
     },
 
-    series: [1, 3, 5, 10],
+    series: Object.values(data['status_pekerjaan']),
 
-    labels: ["Bekerja", "Melanjutkan Studi", "Wiraswasta", "Belum Bekerja"],
+    labels: Object.keys(data['status_pekerjaan']),
+
 };
 
 var chart1 = new ApexCharts(document.querySelector("#status"), options1);
