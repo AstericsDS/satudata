@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Synchronize;
-use App\Services\AkademikDanmahasiswa\DosenService;
+use App\Services\AkademikDanMahasiswa\DosenService;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Throwable;
