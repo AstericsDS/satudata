@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Data;
 use App\Models\Mahasiswa;
-use App\Services\PDDIKTIService;
+use App\Services\AkademikDanMahasiswa\PDDIKTIService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 

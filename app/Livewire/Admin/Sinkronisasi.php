@@ -2,182 +2,20 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\Data;
-use App\Models\Dosen;
 use Livewire\Component;
-use App\Models\Mahasiswa;
 use App\Models\Synchronize;
-use App\Services\DosenService;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
-use App\Services\PDDIKTIService;
-use App\Services\AkademikService;
-use App\Services\MahasiswaService;
-use App\Services\UNJDalamAngkaService;
-use App\Services\DosenPendidikanService;
-use App\Services\MahasiswaAngkatanService;
 
 #[Title('Dashboard Admin')]
 #[Layout('components.layouts.admin')]
 class Sinkronisasi extends Component
 {
-    // protected PDDIKTIService $pddikti;
     public $sync;
-    // public Data $data;
-    // public $jumlah_mahasiswa_diterima = [];
-    // public $jumlah_mahasiswa = [];
-    // public array $menu_list = [];
-    
-    // public function __construct()
-    // {
-    //     $this->pddikti = app(PDDIKTIService::class);
-    // }
-    
-    // public function unjDalamAngka(UNJDalamAngkaService $service)
-    // {
-    //     $this->pddikti->checkToken();
-    //     $service->dosenCount();
-    //     $service->mahasiswaCount();
-    //     $service->wisudaCount();
-
-    //     Data::where('id', '1')->update([
-    //         'unj_dalam_angka->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
-    //     ]);
-    // }
-
-    // public function mahasiswaAngkatan(MahasiswaAngkatanService $service)
-    // {
-    //     $this->pddikti->checkToken();
-    //     $service->synchronize();
-    //     Data::where('id', 1)->update([
-    //         'mahasiswa_berdasarkan_angkatan->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
-    //     ]);
-    // }
-
-    // public function mahasiswaPendidikan(MahasiswaService $service) {
-    //     $this->pddikti->checkToken();
-    //     $service->synchronizePendidikanMahasiswa();
-    //      Data::where('id', 1)->update([
-    //         'mahasiswa_berdasarkan_jenjang_pendidikan->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
-    //     ]);
-        
-    // }
-
-    // public function dosenPendidikan(DosenService $service) {
-    //     $this->pddikti->checkToken();
-    //     $service->synchronizePendidikanDosen();
-    //     Data::where('id', 1)->update([
-    //         'dosen_berdasarkan_pendidikan->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
-    //     ]);
-    // }
-
-    // public function dosenJabatan(DosenService $service) {
-    //     $this->pddikti->checkToken();
-    //     $service->synchronizeJabatanDosen();
-    //     Data::where('id', 1)->update([
-    //         'dosen_berdasarkan_jabatan_fungsional->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
-    //     ]);
-    // }
-
-    // public function dosenKepegawaian(DosenService $service) {
-    //     $service->synchronizeKepegawaianDosen();
-    //     Data::where('id', 1)->update([
-    //         'dosen_berdasarkan_status_kepegawaian->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
-    //     ]);
-    // }
-
-    // public function dosenFakultas(DosenService $service) {
-    //     $service->synchronizeFakultasDosen();
-    //     Data::where('id', 1)->update([
-    //         'dosen_berdasarkan_fakultas->updated_at' => now('Asia/Jakarta')->locale('id')->translatedFormat('l, d F (H:i:s)')
-    //     ]);
-    // }
-
-    // public function listFakultas(AkademikService $service) {
-    //     $service->syncFakultas();
-    //     Data::update(['updated_at' => now('Asia/Jakarta')]);
-    // }
-
-    // public function dosenTable(DosenService $service) {
-    //     $service->syncDataDosen();
-    // }
 
     public function mount()
     {
-        // $this->data = Data::first();
         $this->sync = Synchronize::all();
-
-        // $this->menu_list = [
-        //     [
-        //         'no' => 1,
-        //         'title' => 'UNJ dalam angka (Dosen, Mahasiswa, Wisuda Tahun Sekarang, Peminat)',
-        //         'action' => 'unjDalamAngka',
-        //         'statusKey' => 'unj_dalam_angka',
-        //         'source' => 'PD-DIKTI',
-        //     ],
-        //     [
-        //         'no' => 2,
-        //         'title' => 'Grafik jumlah mahasiswa berdasarkan angkatan',
-        //         'action' => 'mahasiswaAngkatan',
-        //         'statusKey' => 'mahasiswa_berdasarkan_angkatan',
-        //         'source' => 'PD-DIKTI',
-        //     ],
-        //     [
-        //         'no' => 3,
-        //         'title' => 'Grafik jumlah mahasiswa berdasarkan jenjang pendidikan',
-        //         'action' => 'mahasiswaPendidikan',
-        //         'statusKey' => 'mahasiswa_berdasarkan_jenjang_pendidikan',
-        //         'source' => 'PD-DIKTI',
-        //     ],
-        //     [
-        //         'no' => 4,
-        //         'title' => 'Grafik jumlah dosen berdasarkan jenjang pendidikan',
-        //         'action' => 'dosenPendidikan',
-        //         'statusKey' => 'dosen_berdasarkan_pendidikan',
-        //         'source' => 'PD-DIKTI',
-        //     ],
-        //     [
-        //         'no' => 5,
-        //         'title' => 'Grafik jumlah mahasiswa berdasarkan jabatan fungsional',
-        //         'action' => 'dosenJabatan',
-        //         'statusKey' => 'dosen_berdasarkan_status_kepegawaian',
-        //         'source' => 'PD-DIKTI',
-        //     ],
-        //     [
-        //         'no' => 6,
-        //         'title' => 'Grafik jumlah dosen berdasarkan status kepegawaian',
-        //         'action' => 'dosenKepegawaian',
-        //         'statusKey' => 'dosen_berdasarkan_status_kepegawaian',
-        //         'source' => 'SIPEG',
-        //     ],
-        //     [
-        //         'no' => 7,
-        //         'title' => 'Grafik jumlah dosen berdasarkan fakultas',
-        //         'action' => 'dosenFakultas',
-        //         'statusKey' => 'dosen_berdasarkan_fakultas',
-        //         'source' => 'SIAKAD',
-        //     ],
-            // [
-            //     'no' => 8,
-            //     'title' => 'Sinkronisasi list fakultas',
-            //     'action' => 'listFakultas',
-            //     'statusKey' => 'dosen_berdasarkan_fakultas',
-            //     'source' => 'SIAKAD',
-            // ],
-        //     [
-        //         'no' => 9,
-        //         'title' => 'Sinkronisasi data dosen',
-        //         'action' => 'dosenTable',
-        //         'statusKey' => 'dosen_berdasarkan_fakultas',
-        //         'source' => 'SIPEG',
-        //     ],
-        // ];
-        
-        // foreach ($this->data->mahasiswa_berdasarkan_angkatan as $key => $data) {
-        //     if (!is_array($data)) continue;
-        //     $this->jumlah_mahasiswa_diterima[] = $data['jumlah_mahasiswa_diterima'] ?? 0;
-        //     $this->jumlah_mahasiswa[] = $data['jumlah_mahasiswa'] ?? 0;
-        // }
     }
 
     public function render()
