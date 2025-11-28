@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\AkademikDanmahasiswa;
+namespace App\Services\AkademikDanMahasiswa;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;

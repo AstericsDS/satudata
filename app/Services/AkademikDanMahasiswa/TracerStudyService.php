@@ -14,7 +14,7 @@ class TracerStudyService
     private $year;
     public function __construct()
     {
-        $this->base_url = "https://tracerstudy.unj.ac.id/api";
+        $this->base_url = config('api.tracer_study_base_url');
         $this->month = now()->month;
         $this->year = $this->month >= 10 ? now()->year : now()->year - 1;
     }
