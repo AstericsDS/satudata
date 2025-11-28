@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
 use App\Livewire\AkademikDanMahasiswa\TracerStudy;
 use App\Models\TracerStudy as Tracing;
 use App\Models\Dosen;
@@ -37,6 +38,7 @@ Route::prefix('akademik-dan-mahasiswa')->group(function () {
     Route::get('/jumlah-mahasiswa', JumlahMahasiswa::class)->name('jumlah-mahasiswa');
     Route::get('/jumlah-wisudawan', JumlahWisudawan::class)->name('jumlah-wisudawan');
     Route::get('/tracer-study', TracerStudy::class)->name('tracer-study');
+    Route::get('/beban-mengajar', BebanMengajar::class)->name('beban-mengajar');
 });
 
 // Kepegawaian dan Umum

@@ -64,7 +64,7 @@
                                 <a href="{{ route('tracer-study') }}"  class="block px-4 py-1.5 hover:underline">Tracer Study</a>
                             </li>
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Beban Mengajar</a>
+                                <a href="{{ route('beban-mengajar') }}"  class="block px-4 py-1.5 hover:underline">Beban Mengajar</a>
                             </li>
                             <li>
                                 <a href="#"  class="block px-4 py-1.5">Rasio Dosen/Mahasiswa</a>
