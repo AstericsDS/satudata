@@ -1,6 +1,10 @@
 <?php
 
+use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
+use App\Livewire\AkademikDanMahasiswa\DataAkreditasi;
+use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
 use App\Livewire\AkademikDanMahasiswa\TracerStudy;
+use App\Models\TracerStudy as Tracing;
 use App\Models\Dosen;
 use App\Livewire\Test;
 use App\Livewire\Debug;
@@ -8,13 +12,14 @@ use App\Livewire\Login;
 use App\Models\Mahasiswa;
 use App\Jobs\SyncMahasiswa;
 use App\Livewire\Dashboard;
-use App\Services\DosenService;
+use App\Services\AkademikDanMahasiswa\DosenService;
 use App\Livewire\AgendaPejabat;
 use App\Livewire\ProfilKepakaranDosen;
 use App\Livewire\TemukanPegawai;
 use App\Livewire\JumlahTenagaKependidikan;
 use App\Livewire\Admin\Sinkronisasi;
 use App\Livewire\Public\LandingPage;
+use App\Services\AkademikDanMahasiswa\TracerStudyService;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\GrafikIndeksasiSinta;
 use App\Http\Controllers\DataController;
@@ -38,6 +43,9 @@ Route::prefix('akademik-dan-mahasiswa')->group(function () {
     Route::get('/jumlah-mahasiswa', JumlahMahasiswa::class)->name('jumlah-mahasiswa');
     Route::get('/jumlah-wisudawan', JumlahWisudawan::class)->name('jumlah-wisudawan');
     Route::get('/tracer-study', TracerStudy::class)->name('tracer-study');
+    Route::get('/beban-mengajar', BebanMengajar::class)->name('beban-mengajar');
+    Route::get('/rasio-dosen-mahasiswa', RasioDosenMahasiswa::class)->name('rasio-dosen-mahasiswa');
+    Route::get('/data-akreditasi', DataAkreditasi::class)->name('data-akreditasi');
 });
 
 // Kepegawaian dan Umum
@@ -124,17 +132,17 @@ Route::prefix('debug')->group(function () {
     });
     Route::get('/sipeg/dosen', function (DosenService $service) {
         return [
-            'total_dosen' => Dosen::count(),
-            'all_jabatan' => DB::table('dosens')
-                ->join(DB::raw("
-        JSON_TABLE(dosens.jabatan, '$[*]' 
-            COLUMNS(value VARCHAR(255) PATH '$')
-        ) jt
-    "), function ($join) { })
-                ->select('jt.value')
-                ->distinct()
-                ->pluck('jt.value')
-
+            'All Jenjang' => Dosen::distinct()->pluck('jenjang')->toArray(),
+            'All Prodi' => Dosen::distinct()->pluck('prodi'),
+            'No jenjang' => Dosen::where('jenjang', '')->get(),
+            'No Prodi' => Dosen::where('prodi', '')->get(),
+            // 'Count null NIDN' => Dosen::where('nidn', '')->get(),
+        ];
+    });
+    Route::get('/tracer-study', function(TracerStudyService $service) {
+        // $service->synchronize();
+        return [
+            'total' => Tracing::distinct()->pluck('status_pekerjaan'),
         ];
     });
 });

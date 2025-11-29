@@ -127,7 +127,7 @@
                                 x-transition:leave="transition ease-out duration-300"
                                 x-transition:leave-end="opacity-0 scale-90"
                                 class="p-2 border border-gray-300 rounded-md w-full">
-                                @foreach($status as $item)
+                                @foreach($status ?? [] as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
@@ -162,15 +162,23 @@
                 dalam berbagai jenjang pendidikan. Visualisasi data jumlah mahasiswa membantu dalam perencanaan
                 kapasitas akademik, alokasi sumber daya, dan pengambilan keputusan strategis institusi pendidikan</p>
             <div class="bg-white rounded-md p-4 flex flex-col gap-2 ">
-                <p>Data diperbarui {{ $update->locale('id')->diffForHumans() }}</p>
+                @if($update)
+                    <p>Data diperbarui {{ $update->locale('id')->diffForHumans() }}</p>
+                @else
+                    <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
+                @endif
+                <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
+                <livewire:charts.jumlah-mahasiswa />
                 <div class="bg-primary/10 p-6 rounded-md">
-                    <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
-                    <livewire:charts.jumlah-mahasiswa />
-                    <p>Pada tahun akademik {{ $lastYear ? $lastYear : '' }}, universitas mencatat total {{ $now }} mahasiswa {{ $statusDetail ? "yang {$statusDetail}" : '' }} dengan {{ $percentage > 0 ? 'pertumbuhan' : 'penurunan' }} sebesar {{ $percentage }}% dibandingkan tahun sebelumnya.
+                    <p>
+                        Pada tahun akademik {{ $lastYear ?? '' }},
+                        universitas mencatat total {{ $now ?? 0 }} mahasiswa
+                        {{ ($statusDetail ?? false) ? "yang " . ($statusDetail ?? '') : '' }}
+                        dengan {{ (($percentage ?? 0) > 0) ? 'pertumbuhan' : 'penurunan' }}
+                        sebesar {{ $percentage ?? 0 }}% dibandingkan tahun sebelumnya.
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

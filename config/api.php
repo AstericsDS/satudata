@@ -5,4 +5,5 @@ return [
     'pddikti_url' => env('PDDIKTI_URL'),
     'sipeg_base_url' => env('SIPEG_BASE_URL'),
     'sipeg_token' => env('SIPEG_TOKEN'),
+    'tracer_study_base_url' => env('TRACER_STUDY_BASE_URL')
 ];

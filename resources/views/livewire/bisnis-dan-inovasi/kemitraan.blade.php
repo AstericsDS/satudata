@@ -72,11 +72,11 @@
 
         <div class="flex space-x-2 bg-white mb-4 rounded-md p-6">
             <button @click="$dispatch('change-menu', { menu: 'grafik-statistik' })"
-                class="text-center py-3 flex-1 rounded-md font-semibold"
+                class="text-center py-3 flex-1 rounded-md font-semibold transition-all"
                 :class="menu === 'grafik-statistik' ? 'bg-linear-to-l from-primary to-accent-1 text-white' : 'text-black hover:text-primary cursor-pointer'">Grafik
                 Statistik</button>
             <button @click="$dispatch('change-menu', { menu: 'daftar-dokumen-kerja-sama' })"
-                class="text-center py-3 flex-1 rounded-md font-semibold"
+                class="text-center py-3 flex-1 rounded-md font-semibold transition-all"
                 :class="menu === 'daftar-dokumen-kerja-sama' ? 'bg-linear-to-l from-primary to-accent-1 text-white' : 'text-black hover:text-primary cursor-pointer'">Daftar
                 Dokumen Kerja Sama</button>
         </div>

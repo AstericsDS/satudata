@@ -25,7 +25,7 @@ class JumlahWisudawan extends Component
         $this->prodi = Mahasiswa::pluck('program_studi')->unique()->values()->toArray();
         $this->month = now()->month;
         $this->year = $this->month >= 10 ? now()->year : now()->year - 1;
-        $this->update = Synchronize::find(1)->updated_at;
+        $this->update = Synchronize::where('name', 'Mahasiswa dan Alumni')->first()->updated_at ?? null;
         for ($i = $this->year - 7; $i <= $this->year; $i++) {
             $this->data[$i] = Mahasiswa::where('status', 'Lulus')->where('periode_masuk', 'LIKE', $i . '/' . $i + 1 . '%')->count();
             $this->data_2[$i] = Mahasiswa::where('periode_masuk', 'LIKE', $i . '/' . $i + 1 . '%')->count();
@@ -139,7 +139,7 @@ class JumlahWisudawan extends Component
             $this->now = 0;
             $this->before = 0;
             $this->percentage = 0;
-            return view('livewire.akademik-dan-mahasiswa.jumlah-mahasiswa');
+            return view('livewire.akademik-dan-mahasiswa.jumlah-wisudawan');
         }
 
         $index = array_key_last($filtered);

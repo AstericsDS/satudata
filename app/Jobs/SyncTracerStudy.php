@@ -2,24 +2,25 @@
 
 namespace App\Jobs;
 
+use Throwable;
 use App\Models\Synchronize;
-use App\Services\AkademikDanMahasiswa\DosenService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Throwable;
+use App\Services\AkademikDanMahasiswa\TracerStudyService;
 
-class SyncDosen implements ShouldQueue
+class SyncTracerStudy implements ShouldQueue
 {
     use Queueable;
-    private DosenService $dosenService;
-    private $syncId;
 
     /**
      * Create a new job instance.
      */
+    private TracerStudyService $service;
+    private $syncId;
     public function __construct($syncId)
     {
-        $this->dosenService = new DosenService();
+        $this->service = new TracerStudyService();
         $this->syncId = $syncId;
     }
 
@@ -30,12 +31,10 @@ class SyncDosen implements ShouldQueue
     {
         $sync = Synchronize::find($this->syncId);
         try {
-            $this->dosenService->synchronize();
+            $this->service->synchronize();
             $sync->update(['status' => 'synchronized']);
-        } catch (Throwable $e) {
-            $sync->timestamps = false;
-            $sync->update(['status' => 'error']);
-            \Log::error("SyncDosen failed for sync_id={$this->syncId}: " . $e->getMessage());
+        } catch (Throwable $err) {
+            Log::error("Tracer Study synchronize failed, id: {$this->syncId}. Error: " . $err->getMessage());
         }
     }
 }

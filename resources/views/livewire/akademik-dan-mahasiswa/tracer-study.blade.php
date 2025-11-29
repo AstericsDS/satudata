@@ -32,13 +32,17 @@
                 class="flex flex-col w-sm py-10 space-y-4 bg-linear-to-tr from-primary/70 to-accent-1/70 rounded-md shadow-lg border border-[#1B1B1B]/20">
                 <div class="flex space-x-8 justify-center items-center">
                     <img src="{{ asset('assets/tracer_study/total.svg') }}" alt="Total Akun Alumni">
-                    <h1 class="text-white text-4xl font-semibold">8,945</h1>
+                    <h1 class="text-white text-4xl font-semibold">{{ $data['statistik']['current'] }}</h1>
                 </div>
 
                 <p class="text-center text-white font-semibold text-lg">Total Akun Alumni</p>
 
                 <div class="flex space-x-2 justify-center">
-                    <span class="bg-[#9DC88D] rounded-md px-1 text-white">+4%</span>
+                    @if ($growth >= 0)
+                        <span class="bg-[#9DC88D] rounded-md px-1 text-white">+{{ $growth }}%</span>
+                    @else
+                        <span class="bg-[#FF383C] rounded-md px-1 text-white">{{ $growth }}%</span>
+                    @endif
                     <p class="text-[#1B1B1B]/50">Dari tahun sebelumnya</p>
                 </div>
             </div>
@@ -47,13 +51,13 @@
                 class="flex flex-col w-sm py-10 space-y-4 bg-linear-to-tr from-primary/70 to-accent-1/70 rounded-md shadow-lg border border-[#1B1B1B]/20">
                 <div class="flex space-x-8 justify-center items-center">
                     <img src="{{ asset('assets/tracer_study/survey.svg') }}" alt="Alumni Mengisi Survey">
-                    <h1 class="text-white text-4xl font-semibold">8,945</h1>
+                    <h1 class="text-white text-4xl font-semibold">-</h1>
                 </div>
 
                 <p class="text-center text-white font-semibold text-lg">Alumni Mengisi Survey</p>
 
                 <div class="flex space-x-2 justify-center">
-                    <span class="bg-[#9DC88D] rounded-md px-1 text-white">+4%</span>
+                    <span class="bg-[#9DC88D] rounded-md px-1 text-white">0%</span>
                     <p class="text-[#1B1B1B]/50">Dari tahun sebelumnya</p>
                 </div>
             </div>
@@ -62,13 +66,13 @@
                 class="flex flex-col w-sm py-10 space-y-4 bg-linear-to-tr from-primary/70 to-accent-1/70 rounded-md shadow-lg border border-[#1B1B1B]/20">
                 <div class="flex space-x-8 justify-center items-center">
                     <img src="{{ asset('assets/tracer_study/total.svg') }}" alt="Total Akun Alumni">
-                    <h1 class="text-white text-4xl font-semibold">8,945</h1>
+                    <h1 class="text-white text-4xl font-semibold">-</h1>
                 </div>
 
                 <p class="text-center text-white font-semibold text-lg">Tingkat Partisipasi</p>
 
                 <div class="flex space-x-2 justify-center">
-                    <span class="bg-[#FF383C] rounded-md px-1 text-white">-7%</span>
+                    <span class="bg-[#9DC88D] rounded-md px-1 text-white">0%</span>
                     <p class="text-[#1B1B1B]/50">Dari tahun sebelumnya</p>
                 </div>
             </div>
@@ -81,18 +85,21 @@
                 dalam berbagai jenjang pendidikan. Visualisasi data jumlah mahasiswa membantu dalam perencanaan
                 kapasitas akademik, alokasi sumber daya, dan pengambilan keputusan strategis institusi pendidikan</p>
             <div class="bg-white rounded-md p-4 flex flex-col gap-2">
-                <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
+                <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
+                @if($update)
+                    <p>Data diperbarui {{ $update->locale('id')->diffForHumans() }}</p>
+                @else
+                    <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
+                @endif
+                <h2 class="text-[12px] font-semibold text-[#263238]">Sumber: Tracer Study</h2>
+                <div class="flex gap-4 py-8">
+                    <livewire:charts.tracer-study-partisipasi :data="$data" />
+                    <livewire:charts.tracer-study-status :data="$data" />
+                </div>
                 <div class="bg-primary/10 p-6 rounded-md">
-                    <h1 class="text-2xl font-semibold mb-4">Analisis Data</h1>
-                    <div class="flex gap-4 py-8">
-                        <livewire:charts.tracer-study-partisipasi />
-                        <livewire:charts.tracer-study-status />
-                    </div>
-                    <p>Pada tahun akademik 2024, universitas mencatat total 2,847 mahasiswa dengan pertumbuhan 7.2%
-                        dibandingkan tahun sebelumnya. Fakultas Teknik mendominasi dengan 30.1% dari total populasi
-                        mahasiswa (856 mahasiswa), diikuti oleh Fakultas FKIP dengan 19.5% (555 mahasiswa). Distribusi
-                        yang cukup merata ini menunjukkan diversifikasi program studi yang sehat, dengan trend
-                        pertumbuhan positif mengindikasikan daya tarik institusi yang meningkat.</p>
+                    <p>Pada tahun akademik {{ $year }}, universitas mencatat total {{ $data['statistik']['current'] }}
+                        mahasiswa dengan {{ $growth >= 0 ? "pertumbuhan" : 'penurunan' }} sebesar {{ $growth }}%
+                        dibandingkan tahun sebelumnya.</p>
                 </div>
             </div>
         </div>

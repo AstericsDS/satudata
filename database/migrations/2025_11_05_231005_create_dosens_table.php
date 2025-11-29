@@ -16,10 +16,13 @@ return new class extends Migration
             $table->string('nama')->index();
             $table->string('nip')->index();
             $table->unique(['nama', 'nip']);
+            $table->string('nidn');
             $table->string('gelar');
             $table->string('gelar_depan');
             $table->string('gelar_belakang');
+            $table->string('jenjang');
             $table->string('unit');
+            $table->string('prodi');
             $table->string('status');
             $table->json('jabatan')->nullable();
             $table->timestamps();

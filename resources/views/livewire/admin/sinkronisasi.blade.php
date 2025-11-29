@@ -64,6 +64,7 @@
                 <tbody>
                     <livewire:admin.button.mahasiswa-synchronize />
                     <livewire:admin.button.dosen-synchronize />
+                    <livewire:admin.button.tracer-study-synchronize />
                 </tbody>
                 {{-- Table Body - End --}}
 

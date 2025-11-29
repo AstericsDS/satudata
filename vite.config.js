@@ -13,7 +13,6 @@ export default defineConfig({
                 'resources/js/charts/jumlah-wisudawan.js',
                 'resources/js/charts/bisnis-dan-inovasi.js',
                 'resources/js/charts/keuangan-dan-perencanaan.js',
-                'resources/js/charts/grafik-artikel.js',
                 'resources/js/charts/scopus-document-quartile.js',
                 'resources/js/charts/tracer-study-partisipasi.js',
                 'resources/js/charts/tracer-study-status.js',
