@@ -99,10 +99,10 @@
                                         <td class="px-6 py-3">
                                             {{ $i }}
                                         </td>
-                                        <td class="px-6 py-3">
+                                        <td data-modal-target="detail-tendik" data-modal-toggle="detail-tendik" class="px-6 py-3 hover:underline cursor-pointer">
                                             Abcde, S. Kom.
                                         </td>
-                                        <td class="px-6 py-3">
+                                        <td class="px-6 py-3"">
                                             1234567890
                                         </td>
                                         <td class="px-6 py-3">
@@ -124,5 +124,79 @@
             {{-- Content - End --}}
         </div>
         {{-- Main Container - End --}}
+
+        {{-- Modal - Start --}}
+        <div id="detail-tendik" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden rounded-lg fixed inset-0 z-50 justify-center items-center w-full h-full backdrop-blur-sm bg-black/20 transition-all duration-300">
+            <div class="relative p-4 w-full max-w-[768px] max-h-full">
+                {{-- Modal Header --}}
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t-lg border-gray-200 bg-gradient-to-r from-[#00C7CF] to-[#006569]">
+                    <h3 class="text-xl font-semibold text-gray-800">
+                        Profil Abcde, S. Kom.
+                    </h3>
+                    <button type="button" class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="detail-tendik">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+                {{-- Modal Body --}}
+                <div class="p-4 md:p-5 space-y-4 bg-white flex flex-col items-center rounded-b-lg">
+                    <div class="w-full bg-[#EDF7F6] rounded-lg p-6 shadow-sm flex flex-col lg:flex-row gap-8 items-start">
+                        {{-- Foto Profil --}}
+                        <div class="flex shrink-0">
+                            <div class="w-full h-full rounded-full flex items-center justify-center mt-2">
+                                <img class="rounded-full w-25 h-25 object-cover" src="{{ asset('assets/images/unj.png') }}" alt="photo profile">
+                            </div>
+                        </div>
+
+                        {{-- Detail Informasi --}}
+                        <div class="flex-grow space-y-4 py-2">
+                            <p class="text-lg font-bold text-black mb-4">Abcde, S. Kom.</p>
+
+                            <div class="grid grid-cols-[200px_20px_1fr] gap-y-3 text-sm md:text-base text-black">
+                                {{-- NIP --}}
+                                <p class="font-semibold">NIP</p>
+                                <p>:</p>
+                                <p>1234567890</p>
+
+                                {{-- Unit --}}
+                                <p class="font-semibold">Unit</p>
+                                <p>:</p>
+                                <p>Direktur Keuangan dan Perencanaan</p>
+
+                                {{-- Jabatan --}}
+                                <p class="font-semibold">Jabatan</p>
+                                <p>:</p>
+                                <p>Pranata Komputer</p>
+
+                                {{-- Status --}}
+                                <p class="font-semibold">Status</p>
+                                <p>:</p>
+                                <p>PNS</p>
+
+                                {{-- Pangkat --}}
+                                <p class="font-semibold">Pangkat</p>
+                                <p>:</p>
+                                <p>Penata Muda</p>
+
+                                {{-- Golongan --}}
+                                <p class="font-semibold">Golongan</p>
+                                <p>:</p>
+                                <p>III/b</p>
+
+                                {{-- Pendidikan Terakhir --}}
+                                <p class="font-semibold white">Pendidikan Terakhir</p>
+                                <p>:</p>
+                                <p>S1 - Ilmu Komputer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Modal - End --}}
     </div>
 </div>
