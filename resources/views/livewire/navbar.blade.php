@@ -96,7 +96,7 @@
                                 <a href="{{ route('jumlah-tenaga-kependidikan') }}"  class="block px-4 py-1.5 hover:underline">Jumlah Tenaga Kependidikan</a>
                             </li>
                             <li>
-                                <a href="#"  class="block px-4 py-1.5">Temukan Pegawai</a>
+                                <a href="{{ route('temukan-pegawai') }}"  class="block px-4 py-1.5 hover:underline">Temukan Pegawai</a>
                             </li>
                         </ul>
                     </div>

@@ -11,6 +11,7 @@ use App\Livewire\Dashboard;
 use App\Services\DosenService;
 use App\Livewire\AgendaPejabat;
 use App\Livewire\ProfilKepakaranDosen;
+use App\Livewire\TemukanPegawai;
 use App\Livewire\JumlahTenagaKependidikan;
 use App\Livewire\Admin\Sinkronisasi;
 use App\Livewire\Public\LandingPage;
@@ -44,6 +45,7 @@ Route::prefix('kepegawaian-dan-umum')->group(function () {
     Route::get('/agenda-pejabat', AgendaPejabat::class)->name('agenda-pejabat');
     Route::get('/profil-kepakaran-dosen', ProfilKepakaranDosen::class)->name('profil-kepakaran-dosen');
     Route::get('/jumlah-tenaga-kependidikan', JumlahTenagaKependidikan::class)->name('jumlah-tenaga-kependidikan');
+    Route::get('/temukan-pegawai', TemukanPegawai::class)->name('temukan-pegawai');
 });
 
 // Keuangan dan Perencanaan
