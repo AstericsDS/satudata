@@ -1,4 +1,5 @@
 @vite(['resources/js/charts/profil-kepakaran-dosen.js'])
+@vite(['resources/js/charts/jumlah-publikasi.js'])
 
 <div class="flex flex-col min-h-screen mb-20">
     <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow">
