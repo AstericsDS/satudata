@@ -34,6 +34,8 @@ class SyncTracerStudy implements ShouldQueue
             $this->service->synchronize();
             $sync->update(['status' => 'synchronized']);
         } catch (Throwable $err) {
+            $sync->timestamps = false;
+            $sync->update(['status' => 'error']);
             Log::error("Tracer Study synchronize failed, id: {$this->syncId}. Error: " . $err->getMessage());
         }
     }
