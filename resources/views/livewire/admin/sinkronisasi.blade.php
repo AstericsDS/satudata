@@ -1,6 +1,6 @@
 <div class="p-8">
 
-    <div class="flex gap-4 mb-8">
+    <div wire:poll.3s class="flex gap-4 mb-8">
         <div class="flex-1 bg-[#006569]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
             <h1 class="text-3xl text-primary font-semibold">{{ $sync->count() }}</h1>
             <h2 class="text-xl text-primary">Total Menu</h2>
@@ -9,11 +9,11 @@
             <h1 class="text-3xl text-[#FF5C22] font-semibold">-</h1>
             <h2 class="text-xl text-[#FF5C22]">Total Sub-Menu</h2>
         </div>
-        <div wire:poll.5s class="flex-1 bg-[#0162B8]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
+        <div class="flex-1 bg-[#0162B8]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
             <h1 class="text-3xl text-[#0162B8] font-semibold">{{ $sync->where('status', '=', 'synchronized')->count() }}</h1>
             <h2 class="text-xl text-[#0162B8]">Tersinkron</h2>
         </div>
-        <div wire:poll.5s class="flex-1 bg-[#CF1E2E]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
+        <div class="flex-1 bg-[#CF1E2E]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
             <h1 class="text-3xl text-[#CF1E2E] font-semibold">{{ $sync->where('status', '!=', 'synchronized')->count() }}</h1>
             <h2 class="text-xl text-[#CF1E2E]">Belum Sinkron</h2>
         </div>
@@ -65,6 +65,7 @@
                     <livewire:admin.button.mahasiswa-synchronize />
                     <livewire:admin.button.dosen-synchronize />
                     <livewire:admin.button.tracer-study-synchronize />
+                    <livewire:admin.button.kerjasama-synchronize />
                 </tbody>
                 {{-- Table Body - End --}}
 

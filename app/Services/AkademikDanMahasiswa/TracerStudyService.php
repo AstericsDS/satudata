@@ -2,6 +2,8 @@
 
 namespace App\Services\AkademikDanMahasiswa;
 
+use App\Models\Synchronize;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
@@ -12,11 +14,13 @@ class TracerStudyService
     private $base_url;
     private $month;
     private $year;
+    private $sync;
     public function __construct()
     {
         $this->base_url = config('api.tracer_study_base_url');
         $this->month = now()->month;
         $this->year = $this->month >= 10 ? now()->year : now()->year - 1;
+        $this->sync = Synchronize::where('name', 'Tracer Study')->first();
     }
     public function eskra()
     {
@@ -129,8 +133,15 @@ class TracerStudyService
     }
     public function synchronize()
     {
-        $this->syncEksporData();
-        sleep(5);
-        $this->syncStudiLanjut();
+        try {
+            $this->syncEksporData();
+            sleep(5);
+            $this->syncStudiLanjut();
+            $this->sync->update(['status' => 'synchronized']);
+            
+        } catch (Exception $err) {
+            $this->sync->update(['status' => 'error']);
+            Log::error("Failed request on Tracer Study", ['error' => $err->getMessage()]);
+        }
     }
 }

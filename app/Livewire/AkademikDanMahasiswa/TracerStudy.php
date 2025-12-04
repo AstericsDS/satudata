@@ -19,7 +19,7 @@ class TracerStudy extends Component
     {
         $this->month = now()->month;
         $this->year = $this->month >= 10 ? now()->year : now()->year - 1;
-        $this->update = Synchronize::where('name', 'Tracer Study')->first() ?? '';
+        $this->update = Synchronize::where('name', 'Tracer Study')->first() ?? null;
         $this->data = Cache::remember('tracer_study', 3600, function () {
             $data = [
                 'statistik' => [

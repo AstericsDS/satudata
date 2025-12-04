@@ -17,12 +17,9 @@ class SyncMahasiswa implements ShouldQueue
      */
 
     private MahasiswaService $mahasiswaService;
-    private $syncId;
-
-    public function __construct($syncId)
+    public function __construct()
     {
         $this->mahasiswaService = new MahasiswaService();
-        $this->syncId = $syncId;
     }
 
     /**
@@ -30,14 +27,6 @@ class SyncMahasiswa implements ShouldQueue
      */
     public function handle(): void
     {
-        $sync = Synchronize::find($this->syncId);
-        try {
-            $this->mahasiswaService->synchronize();
-            $sync->update(['status' => 'synchronized']);
-        } catch (Throwable $error) {
-            $sync->timestamps = false;
-            $sync->update(['status' => 'error']);
-            \Log::error("SyncMahasiswa failed for sync_id={$this->syncId}: " . $error->getMessage());
-        }
+        $this->mahasiswaService->synchronize();
     }
 }

@@ -15,7 +15,7 @@ class MahasiswaSynchronize extends Component
             $this->sync->updateQuietly(['status' => 'synchronizing']);
         });
     
-        SyncMahasiswa::dispatch($this->sync->id);
+        SyncMahasiswa::dispatch();
     }
     public function mount()
     {

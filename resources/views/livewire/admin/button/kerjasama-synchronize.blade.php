@@ -1,9 +1,9 @@
 <tr wire:poll.3s class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
     <td class="px-6 py-4">
-        3
+        4
     </td>
     <td class="px-6 py-4">
-        Tracer Study
+        Kemitraan
     </td>
     <td class="px-6 py-4">
         @if($sync->status === 'unsynchronized')
@@ -25,10 +25,10 @@
         @endif
     </td>
     <td class="px-6 py-4">
-        <span>Tracer Study</span>
+        <span>SIKERMA</span>
     </td>
     <td class="px-6 py-4">
-        <button wire:click="process()" @disabled($sync->status === 'synchronizing')
+        <button wire:click="process" @disabled($sync->status === 'synchronizing')
             class="{{ $sync->status === 'synchronizing' ? 'bg-gray-400 cursor-default' : 'bg-primary hover:bg-primary/90 cursor-pointer' }} p-1 text-white rounded-lg  transition-all">
             @if($sync->status === 'synchronized' || $sync->status === 'unsynchronized' || $sync->status === 'error')
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">

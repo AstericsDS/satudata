@@ -2,22 +2,24 @@
 
 namespace App\Jobs;
 
+use Exception;
 use App\Models\Synchronize;
-use App\Services\AkademikDanMahasiswa\DosenService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Throwable;
+use App\Services\BisnisDanInovasi\KerjasamaService;
 
-class SyncDosen implements ShouldQueue
+class SyncKerjasama implements ShouldQueue
 {
     use Queueable;
-    private DosenService $dosenService;
+
     /**
      * Create a new job instance.
      */
+    private KerjasamaService $service;
     public function __construct()
     {
-        $this->dosenService = new DosenService();
+        $this->service = new KerjasamaService();
     }
 
     /**
@@ -25,6 +27,6 @@ class SyncDosen implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->dosenService->synchronize();
+        $this->service->synchronize();
     }
 }

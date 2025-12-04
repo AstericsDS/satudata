@@ -2,30 +2,29 @@
 
 namespace App\Livewire\Admin\Button;
 
-use App\Jobs\SyncDosen;
+use App\Jobs\SyncKerjasama;
 use Livewire\Component;
 use App\Models\Synchronize;
 
-class DosenSynchronize extends Component
+class KerjasamaSynchronize extends Component
 {
     public Synchronize $sync;
     public function process()
     {
         $this->sync->withoutTimestamps(function () {
             $this->sync->updateQuietly(['status' => 'synchronizing']);
+            SyncKerjasama::dispatch();
         });
-
-        SyncDosen::dispatch();
     }
     public function mount()
     {
         $this->sync = Synchronize::firstOrCreate(
-            ['name' => 'Dosen'],
+            ['name' => 'Kemitraan'],
             ['status' => 'unsynchronized']
         );
     }
     public function render()
     {
-        return view('livewire.admin.button.dosen-synchronize');
+        return view('livewire.admin.button.kerjasama-synchronize');
     }
 }

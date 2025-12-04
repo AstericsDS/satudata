@@ -162,8 +162,8 @@
                 dalam berbagai jenjang pendidikan. Visualisasi data jumlah mahasiswa membantu dalam perencanaan
                 kapasitas akademik, alokasi sumber daya, dan pengambilan keputusan strategis institusi pendidikan</p>
             <div class="bg-white rounded-md p-4 flex flex-col gap-2 ">
-                @if($update)
-                    <p>Data diperbarui {{ $update->locale('id')->diffForHumans() }}</p>
+                @if($update && $update->status === 'synchronized')
+                    <p>Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}</p>
                 @else
                     <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
                 @endif

@@ -1,4 +1,4 @@
-<tr wire:poll.5s class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+<tr wire:poll.3s class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
     <td class="px-6 py-4">
         2
     </td>

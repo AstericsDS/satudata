@@ -1,6 +1,5 @@
 @vite(['resources/js/charts/bisnis-dan-inovasi.js'])
 <div class="mx-24 mt-4 mb-20">
-
     <!-- Breadcrumb -->
     <nav class="flex justify-end" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -45,22 +44,22 @@
     <div class="flex gap-8 mt-6">
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">45</h1>
+            <h1 class="text-5xl">{{ $data['statistik']['MoU'] }}</h1>
             <h2>Total MOU</h2>
         </div>
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">23</h1>
+            <h1 class="text-5xl">{{ $data['statistik']['MoA'] }}</h1>
             <h2>Total MOA</h2>
         </div>
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">12</h1>
+            <h1 class="text-5xl">{{ $data['statistik']['IA'] }}</h1>
             <h2>Total IA</h2>
         </div>
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">80</h1>
+            <h1 class="text-5xl">{{ $data['statistik']['Total'] }}</h1>
             <h2>Total Kemitraan</h2>
         </div>
     </div>
@@ -85,9 +84,13 @@
             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
             x-transition:enter-end="opacity-100 scale-100">
 
-            <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
-            <div id="dokumen"></div>
-
+            @if($update && $update->status === "synchronized")
+                <p wire:poll.5s>Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}</p>
+            @else
+                <p wire:poll.5s class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
+            @endif
+            <livewire:charts.kemitraan :data="$data" />
+            
             <div class="flex">
                 <button @click="$dispatch('change-graphic-table', { chart: 'per-fakultas' })"
                     class="p-2 cursor-pointer transition-all"

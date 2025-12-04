@@ -1,5 +1,8 @@
 import ApexCharts from "apexcharts";
 
+const data = window.chartData ?? [];
+console.log(data);
+
 var options1 = {
     chart: {
         type: "bar",
@@ -13,18 +16,24 @@ var options1 = {
         marign: 60,
     },
 
+    stroke: {
+        show: true,
+        width: 3,
+        colors: ["transparent"],
+    },
+
     series: [
         {
             name: "MOU",
-            data: [10, 8, 12, 5, 10],
+            data: Object.values(data["mou"]),
         },
         {
             name: "MOA",
-            data: [5, 4, 6, 3, 5],
+            data: Object.values(data["moa"]),
         },
         {
             name: "IA",
-            data: [3, 2, 4, 1, 2],
+            data: Object.values(data["ia"]),
         },
     ],
 
@@ -32,6 +41,7 @@ var options1 = {
         bar: {
             horizontal: false,
             borderRadius: 5,
+            borderRadiusApplication: "top",
             dataLabels: {
                 position: "top",
             },
@@ -48,7 +58,7 @@ var options1 = {
     },
 
     xaxis: {
-        categories: [2021, 2022, 2023, 2024, 2025],
+        categories: Object.keys(data["mou"]),
     },
 
     yaxis: {
@@ -68,13 +78,13 @@ var options1 = {
 
     legend: {
         markers: {
-            shape: "circle"
-        }
+            shape: "circle",
+        },
     },
 
     grid: {
         show: false,
-    }
+    },
 };
 
 var chart1 = new ApexCharts(document.querySelector("#dokumen"), options1);

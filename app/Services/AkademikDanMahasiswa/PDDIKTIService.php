@@ -13,8 +13,8 @@ class PDDIKTIService
             'Content-Type' => 'application/json',
         ])->post(config('api.pddikti_url'), [
                     'act' => 'GetToken',
-                    'username' => env('PDDIKTI_USERNAME'),
-                    'password' => env('PDDIKTI_PASSWORD'),
+                    'username' => config('api.pddikti_username'),
+                    'password' => config('api.pddikti_password'),
                 ]);
 
         $data = $response->json();

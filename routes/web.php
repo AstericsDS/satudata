@@ -4,6 +4,7 @@ use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
 use App\Livewire\AkademikDanMahasiswa\DataAkreditasi;
 use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
 use App\Livewire\AkademikDanMahasiswa\TracerStudy;
+use App\Models\Kerjasama;
 use App\Models\TracerStudy as Tracing;
 use App\Models\Dosen;
 use App\Livewire\Test;
@@ -20,6 +21,7 @@ use App\Livewire\JumlahTenagaKependidikan;
 use App\Livewire\Admin\Sinkronisasi;
 use App\Livewire\Public\LandingPage;
 use App\Services\AkademikDanMahasiswa\TracerStudyService;
+use App\Services\BisnisDanInovasi\KerjasamaService;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\GrafikIndeksasiSinta;
 use App\Http\Controllers\DataController;
@@ -139,10 +141,24 @@ Route::prefix('debug')->group(function () {
             // 'Count null NIDN' => Dosen::where('nidn', '')->get(),
         ];
     });
-    Route::get('/tracer-study', function(TracerStudyService $service) {
+    Route::get('/tracer-study', function (TracerStudyService $service) {
         // $service->synchronize();
         return [
-            'total' => Tracing::distinct()->pluck('status_pekerjaan'),
+            'total' => Tracing::count(),
         ];
+    });
+    Route::get('/sync-tracer-study', function (TracerStudyService $service) {
+        $service->synchronize();
+    });
+    Route::get('/sikerma', function (KerjasamaService $service) {
+        return [
+            // 'total' => Kerjasama::count(),
+            // 'unit' => Kerjasama::distinct()->pluck('unit'),
+            // 'jenis_dokumen' => Kerjasama::distinct()->pluck('jenis_dokumen'),
+            'klasifikasi distinct' => Kerjasama::distinct()->pluck('klasifikasi')
+        ];
+    });
+    Route::get('/sync-sikerma', function (KerjasamaService $service) {
+        $service->synchronize();
     });
 });

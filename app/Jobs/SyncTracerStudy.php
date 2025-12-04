@@ -17,11 +17,9 @@ class SyncTracerStudy implements ShouldQueue
      * Create a new job instance.
      */
     private TracerStudyService $service;
-    private $syncId;
-    public function __construct($syncId)
+    public function __construct()
     {
         $this->service = new TracerStudyService();
-        $this->syncId = $syncId;
     }
 
     /**
@@ -29,14 +27,6 @@ class SyncTracerStudy implements ShouldQueue
      */
     public function handle(): void
     {
-        $sync = Synchronize::find($this->syncId);
-        try {
-            $this->service->synchronize();
-            $sync->update(['status' => 'synchronized']);
-        } catch (Throwable $err) {
-            $sync->timestamps = false;
-            $sync->update(['status' => 'error']);
-            Log::error("Tracer Study synchronize failed, id: {$this->syncId}. Error: " . $err->getMessage());
-        }
+        $this->service->synchronize();
     }
 }

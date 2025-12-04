@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Admin\Button;
 
-use App\Models\Synchronize;
 use App\Jobs\SyncTracerStudy;
+use App\Models\Synchronize;
 use Livewire\Component;
 
 class TracerStudySynchronize extends Component
@@ -13,7 +13,7 @@ class TracerStudySynchronize extends Component
     {
         $this->sync->withoutTimestamps(function() {
             $this->sync->updateQuietly(['status' => 'synchronizing']);
-            SyncTracerStudy::dispatch($this->sync->id);
+            SyncTracerStudy::dispatch();
         });
     }
     public function mount()
