@@ -20,20 +20,24 @@ class KerjasamaService {
     }
     public function getToken()
     {
-        // CAUTION: Remove withoutVerifying if you found an answer to curl certificate problem
-        $response = Http::withoutVerifying()->post($this->base_url . '/auth/login', [
-            "email" => "satudata@unj.ac.id",
-            "password" => "@5atU*7584"
-        ]);
-        $payload = $response->json();
-        return $payload['access_token'];
-        
+        try {
+            // CAUTION: Remove withoutVerifying if you found an answer to curl certificate problem
+            $response = Http::withoutVerifying()->post($this->base_url . '/auth/login', [
+                "email" => "satudata@unj.ac.id",
+                "password" => "@5atU*7584"
+            ]);
+            $payload = $response->json();
+            return $payload['access_token'];
+        } catch (Exception $err) {
+            $this->sync->update(['status' => 'error']);
+            Log::error("Failed request on Kemitraan (SIKERMA)", ['error' => $err->getMessage()]);
+        }
     }
     public function synchronize()
     {
         try {
             $token = $this->getToken();
-            
+
             for($i = $this->year-4; $i <= $this->year; $i++) {
                 $response = Http::withToken($token)->withoutVerifying()->get($this->base_url . '/partnership/partner?tahun=' . $i);
                 $data = $response->json();
