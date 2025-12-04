@@ -31,9 +31,9 @@ class KerjasamaService {
     }
     public function synchronize()
     {
-        $token = $this->getToken();
-
         try {
+            $token = $this->getToken();
+            
             for($i = $this->year-4; $i <= $this->year; $i++) {
                 $response = Http::withToken($token)->withoutVerifying()->get($this->base_url . '/partnership/partner?tahun=' . $i);
                 $data = $response->json();
