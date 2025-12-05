@@ -151,11 +151,26 @@ Route::prefix('debug')->group(function () {
         $service->synchronize();
     });
     Route::get('/sikerma', function (KerjasamaService $service) {
+        $fakultas = Kerjasama::distinct()->pluck('unit');
+        $result = $fakultas->map(function($unit) {
+            return [
+                'unit' => $unit,
+                'MoU' => Kerjasama::where('unit', $unit)->where('jenis_dokumen', 'Memorandum of Understanding (MoU)')->count(),
+                'MoA' => Kerjasama::where('unit', $unit)->where('jenis_dokumen', 'Memorandum of Agreement (MoA)')->count(),
+                'IA' => Kerjasama::where('unit', $unit)->where('jenis_dokumen', 'Implementation Arrangement (IA)')->count(),
+            ];
+        });
+        $data = Kerjasama::where('unit', 'LIKE', '%Fakultas%')->get();
         return [
             // 'total' => Kerjasama::count(),
             // 'unit' => Kerjasama::distinct()->pluck('unit'),
             // 'jenis_dokumen' => Kerjasama::distinct()->pluck('jenis_dokumen'),
-            'klasifikasi distinct' => Kerjasama::distinct()->pluck('klasifikasi')
+            // 'klasifikasi distinct' => Kerjasama::distinct()->pluck('klasifikasi'),
+            // 'unit' => Kerjasama::distinct()->pluck('unit'),
+            // 'per-fakultas' => $data->groupBy('klasifikasi'),
+            // 'distinct-negara' => Kerjasama::distinct()->pluck('negara'),
+            // 'distinct-kategori' => Kerjasama::distinct()->pluck('kategori'),
+            'distinct-status' => Kerjasama::distinct()->pluck('status'),
         ];
     });
     Route::get('/sync-sikerma', function (KerjasamaService $service) {

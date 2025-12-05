@@ -64,9 +64,10 @@
         </div>
     </div>
 
-    <div x-data="{ menu: 'grafik-statistik', graphicTable: 'per-fakultas', documentTable: 'mou'  }"
-        @change-graphic-table.window="graphicTable = $event.detail.chart"
+    <div x-data="{ menu: 'daftar-dokumen-kerja-sama', graphicTable: 'per-fakultas', documentTable: 'mou'  }"
         @change-menu.window="menu = $event.detail.menu"
+        @change-graphic-table.window="graphicTable = $event.detail.chart"
+        @change-document-table.window="documentTable = $event.detail.table"
         class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6 mt-8">
 
         <div class="flex space-x-2 bg-white mb-4 rounded-md p-6">
@@ -80,6 +81,7 @@
                 Dokumen Kerja Sama</button>
         </div>
 
+        <!-- GRAFIK STATISTIK -->
         <div x-show="menu === 'grafik-statistik'" class="flex flex-col bg-white rounded-md mt-4 p-6"
             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
             x-transition:enter-end="opacity-100 scale-100">
@@ -89,8 +91,10 @@
             @else
                 <p wire:poll.5s class="bg-red-300 text-red-900 px-2 rounded-md w-fit">Data Belum Sinkron</p>
             @endif
+            <h2 class="text-[12px] font-semibold text-[#263238]">Sumber: SIKERMA</h2>
+
             <livewire:charts.kemitraan :data="$data" />
-            
+
             <div class="flex">
                 <button @click="$dispatch('change-graphic-table', { chart: 'per-fakultas' })"
                     class="p-2 cursor-pointer transition-all"
@@ -106,11 +110,53 @@
                     Kewarganegaraan</button>
             </div>
 
+            <div x-show="graphicTable === 'per-fakultas'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                <livewire:bisnis-dan-inovasi.tables.fakultas />
+            </div>
+
+            <div x-show="graphicTable === 'klasifikasi-mitra'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                <livewire:bisnis-dan-inovasi.tables.klasifikasi />
+            </div>
+
+            <div x-show="graphicTable === 'kewarganegaraan'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                <livewire:bisnis-dan-inovasi.tables.kewarganegaraan />
+            </div>
+
         </div>
 
-        <div x-show="menu === 'daftar-dokumen-kerja-sama'" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+        <!-- DAFTAR DOKUMEN KERJA SAMA -->
+        <div x-show="menu === 'daftar-dokumen-kerja-sama'" class="flex flex-col bg-white rounded-md mt-4 p-6"
+            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100">
+            <div class="flex">
+                <button @click="$dispatch('change-document-table', { table: 'mou' })"
+                    class="p-2 cursor-pointer transition-all"
+                    :class="documentTable === 'mou' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Daftar MoU</button>
+                <button @click="$dispatch('change-document-table', { table: 'moa' })"
+                    class="p-2 cursor-pointer transition-all"
+                    :class="documentTable === 'moa' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Daftar MoA</button>
+                <button @click="$dispatch('change-document-table', { table: 'ia' })"
+                    class="p-2 cursor-pointer transition-all"
+                    :class="documentTable === 'ia' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Daftar IA</button>
+            </div>
 
+            <div x-show="documentTable === 'mou'" class="mt-4" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                <livewire:bisnis-dan-inovasi.tables.MOU />
+            </div>
+
+            <div x-show="documentTable === 'moa'" class="mt-4" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                <livewire:bisnis-dan-inovasi.tables.MOA />
+            </div>
+
+            <div x-show="documentTable === 'ia'" class="mt-4" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                <livewire:bisnis-dan-inovasi.tables.IA />
+            </div>
         </div>
 
     </div>

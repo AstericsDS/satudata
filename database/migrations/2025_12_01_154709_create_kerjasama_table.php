@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('jenis_dokumen');
             $table->string('unit');
+            $table->string('kategori');
             $table->timestamps();
         });
     }

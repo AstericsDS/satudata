@@ -18,6 +18,7 @@ class Kerjasama extends Model
         'tanggal_akhir',
         'status',
         'jenis_dokumen',
-        'unit'
+        'unit',
+        'kategori',
     ];
 }

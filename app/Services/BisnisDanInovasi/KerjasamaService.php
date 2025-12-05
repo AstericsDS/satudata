@@ -56,6 +56,7 @@ class KerjasamaService {
                         'status' => $item['partnership']['status']['status'],
                         'jenis_dokumen' => $item['partnership']['jenis_dokumen']['jenis_dok'],
                         'unit' => $item['partnership']['unit_info']['nama'],
+                        'kategori' => $item['partnership']['kategorikerma_id'] ? ucwords($item['partnership']['kategorikerma_id']) : 'Lainnya',
                     ];
                 }
                 $chunks = array_chunk($rows, 200);
@@ -63,7 +64,7 @@ class KerjasamaService {
                     DB::table('kerjasama')->upsert(
                         $chunk,
                         ['id'],
-                        ['nama_kerjasama', 'nama_partner', 'klasifikasi', 'negara', 'tanggal_awal', 'tanggal_akhir', 'status', 'jenis_dokumen', 'unit']
+                        ['nama_kerjasama', 'nama_partner', 'klasifikasi', 'negara', 'tanggal_awal', 'tanggal_akhir', 'status', 'jenis_dokumen', 'unit', 'kategori']
                     );
                 }
                 unset($item);

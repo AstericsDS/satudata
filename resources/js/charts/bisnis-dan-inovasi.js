@@ -13,7 +13,6 @@ var options1 = {
     title: {
         text: "Statistik Dokumen Kerja Sama Berdasarkan Tahun",
         align: "center",
-        marign: 60,
     },
 
     stroke: {
