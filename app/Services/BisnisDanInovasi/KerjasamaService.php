@@ -44,6 +44,7 @@ class KerjasamaService {
     
                 $rows = [];
                 foreach($data['data'] as $item) {
+                    $kategori = $item['partnership']['kategorikerma_id'] ? ucwords($item['partnership']['kategorikerma_id']) : 'Lainnya';
                     $rows[] = [
                         'id' => $item['id'],
                         'tahun' => $i,
@@ -56,7 +57,7 @@ class KerjasamaService {
                         'status' => $item['partnership']['status']['status'],
                         'jenis_dokumen' => $item['partnership']['jenis_dokumen']['jenis_dok'],
                         'unit' => $item['partnership']['unit_info']['nama'],
-                        'kategori' => $item['partnership']['kategorikerma_id'] ? ucwords($item['partnership']['kategorikerma_id']) : 'Lainnya',
+                        'kategori' => $kategori,
                     ];
                 }
                 $chunks = array_chunk($rows, 200);
