@@ -102,7 +102,7 @@ class DosenService
             }
             $chunks = array_chunk($rows, 200);
             foreach ($chunks as $chunk) {
-                DB::table('dosens')->upsert(
+                DB::table('dosen')->upsert(
                     $chunk,
                     ['nama', 'nip'],
                     ['nama', 'nip', 'gelar', 'gelar_depan', 'gelar_belakang', 'unit', 'status', 'jabatan']

@@ -155,7 +155,7 @@ class MahasiswaService
 
                     $chunks = array_chunk($rows, 200);
                     foreach ($chunks as $chunk) {
-                        DB::table('mahasiswas')->upsert(
+                        DB::table('mahasiswa')->upsert(
                             $chunk,
                             ['nipd', 'id_prodi'],
                             ['nama', 'status', 'program_studi', 'jenjang', 'fakultas', 'periode_masuk', 'tanggal_keluar', 'updated_at']
