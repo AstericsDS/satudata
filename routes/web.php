@@ -185,4 +185,11 @@ Route::prefix('debug')->group(function () {
     Route::get('/sync-sikerma', function (KerjasamaService $service) {
         $service->synchronize();
     });
+    Route::get('/letsgo', function(){
+        $data_mahasiswa = Mahasiswa::distinct()->pluck('program_studi');
+        $data_dosen = Dosen::distinct()->pluck('prodi');
+        return [
+            'onBoth' => $data_mahasiswa->intersect($data_dosen)->values()
+        ];
+    });
 });

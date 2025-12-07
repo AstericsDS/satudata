@@ -31,7 +31,10 @@
         </div>
     
         <div class="bg-gradient-to-b from-primary to-accent-2 from-20% to-100% p-6 rounded-md">
-            <h1 class="text-white text-2xl font-semibold">Daftar Rasio Dosen : Mahasiswa per Program Studi</h1>
+            <h1 class="text-white text-2xl font-semibold mb-4">Daftar Rasio Dosen : Mahasiswa per Program Studi</h1>
+            <div class="bg-white p-4 rounded-md">
+                <livewire:akademik-dan-mahasiswa.tables.rasio />
+            </div>
         </div>
 
     </div>
