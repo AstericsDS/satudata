@@ -79,6 +79,14 @@ Route::prefix('debug')->group(function () {
     Route::get('/debug/api', function () {
         SyncMahasiswa::dispatchSync();
     });
+    Route::get('/count-all', function () {
+        return [
+            'mahasiswa' => Mahasiswa::count(),
+            'dosen' => Dosen::count(),
+            'tracer' => Tracing::count(),
+            'kerjasama' => Kerjasama::count()
+        ];
+    });
     Route::get('/count', function () {
         return [
             'Aktif dan Lulus' => Mahasiswa::where('periode_masuk', 'LIKE', '2021/2022%')
@@ -152,7 +160,7 @@ Route::prefix('debug')->group(function () {
     });
     Route::get('/sikerma', function (KerjasamaService $service) {
         $fakultas = Kerjasama::distinct()->pluck('unit');
-        $result = $fakultas->map(function($unit) {
+        $result = $fakultas->map(function ($unit) {
             return [
                 'unit' => $unit,
                 'MoU' => Kerjasama::where('unit', $unit)->where('jenis_dokumen', 'Memorandum of Understanding (MoU)')->count(),

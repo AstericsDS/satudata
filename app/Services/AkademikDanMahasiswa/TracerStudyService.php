@@ -50,8 +50,6 @@ class TracerStudyService
                     ]
                 )->get($this->base_url . '/ekspor/data?tahun=' . $i);
 
-
-
                 $data = $response->json();
                 if (!isset($data['data'])) {
                     Log::error("Invalid API response", ['year' => $i, 'status' => $response->status(), 'body' => $response->body()]);
@@ -83,7 +81,8 @@ class TracerStudyService
                 }
 
             }
-        } catch (\Exception $err) {
+        } catch (Exception $err) {
+            $this->sync->update(['status' => 'error']);
             Log::error("Tracer data failed in /ekspor/data", ['tahun' => $i, 'error' => $err->getMessage()]);
         }
     }
@@ -92,19 +91,19 @@ class TracerStudyService
         $token = $this->getToken();
         try {
             for ($i = $this->year - 7; $i <= $this->year; $i++) {
+
                 $response = Http::withHeaders(
                     [
                         "Authorization" => "Bearer $token"
                     ]
                 )->get($this->base_url . '/ekspor/lulusan-studi-lanjut?tahun=' . $i);
 
-
-
                 $data = $response->json();
                 if (!isset($data['data'])) {
                     Log::error("Invalid API response", ['year' => $i, 'status' => $response->status(), 'body' => $response->body()]);
                     continue;
                 }
+
                 $rows = [];
                 foreach ($data['data'] as $item) {
                     $rows[] = [
@@ -118,6 +117,7 @@ class TracerStudyService
                         'updated_at' => now(),
                     ];
                 }
+
                 $chunks = array_chunk($rows, 200);
                 foreach ($chunks as $chunk) {
                     DB::table('tracer_studies')->upsert(
@@ -126,22 +126,18 @@ class TracerStudyService
                         ['status_pekerjaan'],
                     );
                 }
+
             }
-        } catch (\Exception $err) {
+        } catch (Exception $err) {
+            $this->sync->update(['status' => 'error']);
             Log::error("Tracer data failed in /ekspor/lulusan-studi-lanjut", ['tahun' => $i, 'error' => $err->getMessage()]);
         }
     }
     public function synchronize()
     {
-        try {
-            $this->syncEksporData();
-            sleep(5);
-            $this->syncStudiLanjut();
-            $this->sync->update(['status' => 'synchronized']);
-            
-        } catch (Exception $err) {
-            $this->sync->update(['status' => 'error']);
-            Log::error("Failed request on Tracer Study", ['error' => $err->getMessage()]);
-        }
+        $this->syncEksporData();
+        sleep(5);
+        $this->syncStudiLanjut();
+        $this->sync->update(['status' => 'synchronized']);
     }
 }

@@ -28,8 +28,7 @@ class MahasiswaService
                 'body' => $response->body()
             ]);
             return;
-        }
-        ;
+        };
 
         $data = $response->json();
 
@@ -37,12 +36,11 @@ class MahasiswaService
             Log::warning('Unexpected response format', [
                 'body' => $data
             ]);
-        }
+        };
 
         $mapFakultas = [];
 
         foreach ($data['isi'] as $item) {
-
 
             $mapFakultas[$item['namaProdi']] = [
                 'fakultas' => $item['namaFakultas'],
@@ -76,7 +74,7 @@ class MahasiswaService
 
             for ($i = $year - 7; $i <= $year; $i++) {
 
-                $response = Http::post(
+                $response = Http::timeout(300)->post(
                     config('api.pddikti_url'),
                     [
                         "act" => "GetListMahasiswa",
