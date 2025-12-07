@@ -168,7 +168,7 @@ class MahasiswaService
             $this->sync->update(['status' => 'synchronized']);
         } catch (Exception $err) {
             $this->sync->update(['status' => 'error']);
-            Log::error("Failed request on Tracer Study", ['error' => $err->getMessage()]);
+            Log::error("Failed request on PDDIKTI", ['error' => $err->getMessage()]);
         }
     }
 }
