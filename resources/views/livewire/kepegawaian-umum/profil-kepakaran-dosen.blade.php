@@ -137,10 +137,10 @@
                     {{-- Grafik - End --}}
                 </div>
 
-                {{-- Daftar Dosen per Fakultas --}}
+                {{-- Tabel Dosen per Fakultas --}}
                 <div x-show="menu === 'daftar-dosen'" class="flex flex-col bg-white rounded-md mt-4 p-6" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                     {{-- Table --}}
-                    <div class="relative overflow-x-auto rounded-lg">
+                    {{-- <div class="relative overflow-x-auto rounded-lg">
                         <table class="w-full text-sm text-left rtl:text-right rounded-lg">
                             <thead class="text-base bg-primary text-white sticky top-0 z-10 uppercase">
                                 <tr class="border-b-1 border-gray-200">
@@ -197,7 +197,8 @@
                                 @endfor
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
+                    <livewire:power-grid.daftar-dosen-table />
                 </div>
             </div>
             {{-- Content - End --}}
