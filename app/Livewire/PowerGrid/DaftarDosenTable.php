@@ -49,6 +49,8 @@ final class DaftarDosenTable extends PowerGridComponent
 
             ->add('nidn')
 
+            ->add('unit')
+
             ->add('prodi_lengkap', function (Dosen $row) {
                 return $row->jenjang . ' - ' . $row->prodi;
             })
@@ -75,7 +77,7 @@ final class DaftarDosenTable extends PowerGridComponent
                     $color = 'bg-yellow-100 text-yellow-700';
                 } else if($status === 'PPPK_Dosen') {
                     $label = 'Dosen PPPK';
-                    $color = 'bg-oblue-100 text-blue-700';
+                    $color = 'bg-blue-100 text-blue-700';
                 } else {
                     $label = 'Dosen';
                     $color = 'bg-[#E5E5E5] text-[#808080]';
@@ -88,7 +90,7 @@ final class DaftarDosenTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')->index(),
+            Column::make('No', 'id')->index(),
 
             Column::make('Nama Dosen', 'nama_dosen', 'nama')
                 ->searchable()
@@ -96,6 +98,9 @@ final class DaftarDosenTable extends PowerGridComponent
 
             Column::make('NIDN', 'nidn', 'nidn')
                 ->searchable()
+                ->sortable(),
+
+            Column::make('Fakultas', 'unit', 'unit')
                 ->sortable(),
             
             Column::make('Program Studi', 'prodi_lengkap', 'prodi')
@@ -118,8 +123,6 @@ final class DaftarDosenTable extends PowerGridComponent
             ->get();
             
         return [
-            Filter::inputText('nama', 'nama')
-                ->operators(['contains']),
 
             Filter::select('unit', 'unit')
                 ->dataSource($daftarFakultas) 
