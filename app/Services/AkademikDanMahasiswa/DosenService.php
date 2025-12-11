@@ -87,6 +87,7 @@ class DosenService
                         'nama' => $item['nama'],
                         'nip' => $item['nip_baru'],
                         'nidn' => $nidn,
+                        'gender' => $item['gender'] ?? null,
                         'gelar' => $gelar,
                         'gelar_depan' => $item['gelar_depan'],
                         'gelar_belakang' => $item['gelar_belakang'],
@@ -105,7 +106,7 @@ class DosenService
                 DB::table('dosen')->upsert(
                     $chunk,
                     ['nama', 'nip'],
-                    ['nama', 'nip', 'gelar', 'gelar_depan', 'gelar_belakang', 'unit', 'status', 'jabatan']
+                    ['nama', 'nip', 'gender', 'gelar', 'gelar_depan', 'gelar_belakang', 'unit', 'status', 'jabatan']
                 );
             }
             $this->sync->update(['status' => 'synchronized']);

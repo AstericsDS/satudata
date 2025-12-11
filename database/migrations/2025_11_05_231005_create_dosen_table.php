@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nip')->index();
             $table->unique(['nama', 'nip']);
             $table->string('nidn');
+            $table->char('gender')->nullable();
             $table->string('gelar');
             $table->string('gelar_depan');
             $table->string('gelar_belakang');
