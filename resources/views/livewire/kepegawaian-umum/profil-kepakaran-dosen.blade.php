@@ -99,7 +99,7 @@
                                     Kategori Data
                                 </h1>
 
-                                {{-- Menu Filter - Start --}}
+                                {{-- Menu Filter --}}
                                 <ul class="flex flex-col gap-4">
                                     {{-- Jabatan Fungsional --}}
                                     <li class="transition-all flex flex-col gap-3">
@@ -210,7 +210,7 @@
                                             class="p-2 border border-gray-300 rounded-md w-full"
                                         >
                                             @foreach ($prodi ?? [] as $item)
-                                                <option value="{{ $item }}">
+                                                <option wire:key="{{ $loop->index }}" value="{{ $item }}">
                                                     {{ $item }}
                                                 </option>
                                             @endforeach
@@ -275,7 +275,33 @@
                                         </select>
                                     </li>
                                 </ul>
-                                {{-- Menu Filter - End --}}
+                                
+                                {{-- Button --}}
+                                <div class="flex gap-3 justify-end">
+                                    {{-- Hapus --}}
+                                    <button
+                                        wire:click="deleteFilter"
+                                        class="rounded-md bg-red-600 p-2 text-white hover:bg-red-700 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                            <path fill="#ffffff"
+                                                d="M4 17q-.425 0-.712-.288T3 16t.288-.712T4 15h12q.425 0 .713.288T17 16t-.288.713T16 17zm2-4q-.425 0-.712-.288T5 12t.288-.712T6 11h12q.425 0 .713.288T19 12t-.288.713T18 13zm2-4q-.425 0-.712-.288T7 8t.288-.712T8 7h12q.425 0 .713.288T21 8t-.288.713T20 9z" />
+                                        </svg>
+                                        Hapus
+                                    </button>
+
+                                    {{-- Simpan --}}
+                                    <button
+                                        wire:click="applyFilter"
+                                        class="rounded-md bg-primary p-3 text-white hover:bg-primary/90 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                            <path fill="#ffffff"
+                                                d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h11.175q.4 0 .763.15t.637.425l2.85 2.85q.275.275.425.638t.15.762V19q0 .825-.587 1.413T19 21zm7-3q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-5-8h7q.425 0 .713-.288T15 9V7q0-.425-.288-.712T14 6H7q-.425 0-.712.288T6 7v2q0 .425.288.713T7 10" />
+                                        </svg>
+                                        Simpan
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
