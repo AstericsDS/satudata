@@ -79,7 +79,7 @@ window.renderChartDosen = function (dataValues) {
 
         dataLabels: {
             enabled: true,
-            offsetX: 20,
+            offsetX: 30,
             style: {
                 fontSize: "12px",
                 colors: ["#304758"],

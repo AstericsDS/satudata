@@ -102,7 +102,7 @@
                                 {{-- Menu Filter --}}
                                 <ul class="flex flex-col gap-4">
                                     {{-- Jabatan Fungsional --}}
-                                    <li class="transition-all flex flex-col gap-3">
+                                    {{-- <li class="transition-all flex flex-col gap-3">
                                         <label for="jabatan_fungsional" class="flex gap-2 items-center">
                                             <input
                                                 id="jabatan_fungsional"
@@ -128,7 +128,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </li>
+                                    </li> --}}
 
                                     {{-- Pendidikan Terakhir --}}
                                     <li class="transition-all flex flex-col gap-3">
@@ -238,9 +238,9 @@
                                             x-transition:leave-end="opacity-0 scale-90"
                                             class="p-2 border border-gray-300 rounded-md w-full"
                                         >
-                                            @foreach ($gender as $item)
+                                            @foreach ($gender as $item => $label)
                                                 <option value="{{ $item }}">
-                                                    {{ $item }}
+                                                    {{ $label }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -309,7 +309,15 @@
 
                     {{-- Grafik - Start --}}
                     <div class="rounded-md flex flex-col gap-4 p-6 w-full">
-                        <p class="font-light text-gray-500">Data diperbarui 10 jam yang lalu</p>
+                        @if ($update && $update->status === 'synchronized')
+                            <p class="font-light text-gray-500">
+                                Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}
+                            </p>
+                        @else
+                            <p class="font-light text-red-500">
+                                Data Belum Sinkron
+                            </p>
+                        @endif
                         <div id="chart-dosen" wire:ignore></div>
                         <script>
                             document.addEventListener('livewire:init', () => {
@@ -322,6 +330,15 @@
                                 };
 
                                 window.renderChartDosen(chartData);
+
+                                Livewire.on('update-chart-dosen', (event) => {
+                                    // Event biasanya dikirim dalam array, ambil index 0
+                                    const newData = event[0];
+                                    
+                                    // Panggil ulang fungsi render chart dengan data baru
+                                    // Asumsi: renderChartDosen di file JS kamu sudah handle destroy/update chart lama
+                                    window.renderChartDosen(newData);
+                                });
                             })
                         </script>
                         <div class="bg-[#EDF7F6] rounded-md p-5 text-black">

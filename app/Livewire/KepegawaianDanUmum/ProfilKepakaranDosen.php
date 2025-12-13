@@ -3,6 +3,7 @@
 namespace App\Livewire\KepegawaianDanUmum;
 
 use App\Models\Dosen;
+use App\Models\Synchronize;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -33,20 +34,22 @@ class ProfilKepakaranDosen extends Component
     public $selected_status_kepegawaian;
 
     // Toggle filter
-    public
-    $show_jabatan_fungsional;
+    public $show_jabatan_fungsional;
     public $show_pendidikan_terakhir;
     public $show_fakultas;
     public $show_prodi;
     public $show_gender;
     public $show_status_kepegawaian;
 
+    // Another property
     public $update;
-    public $now, $before, $percentage;
-
 
     public function mount()
     {
+        $this->calculateChartData();
+
+        $this->update = Synchronize::where('name', 'Dosen')->first() ?? null;
+
         $this->data_asisten_ahli = Dosen::whereJsonContains('jabatan', 'Asisten Ahli')->count();
         
         $this->data_lektor = Dosen::whereJsonContains('jabatan', 'Lektor')->count();
@@ -65,7 +68,10 @@ class ProfilKepakaranDosen extends Component
 
         $this->prodi = Dosen::pluck('prodi')->unique()->values()->toArray();
 
-        $this->gender = ['Laki-laki', 'Perempuan'];
+        $this->gender = [
+            'L' => 'Laki-laki',
+            'P' => 'Perempuan'
+        ];
 
         $this->status_kepegawaian = [
             'Dosen' => 'Dosen PNS',
@@ -87,27 +93,13 @@ class ProfilKepakaranDosen extends Component
 
     public function updatedShowFakultas($value)
     {
-        if($value) {
-            $this->selected_fakultas = $this->fakultas[0] ?? null;
-            $this->updatedSelectedFakultas($this->selected_fakultas);
-        } else {
-            $this->selected_fakultas = null;
-            $this->prodi = Dosen::pluck('prodi')->unique()->values()->toArray();
-        }
-        // $this->updateProdiOptions();
+        $this->selected_fakultas = $value ? ($this->fakultas[0] ?? null) : null;
+        $this->updateProdiOptions();
     }
 
     public function updatedSelectedFakultas($value)
     {
-        // $this->prodi = Dosen::where('unit', $this->selected_fakultas)->pluck('prodi')->unique()->values()->toArray();
-        $this->selected_prodi = null;
-
-        if($value) {
-            $this->prodi = Dosen::where('unit', $value)->pluck('prodi')->unique()->values()->toArray();
-        } else {
-            $this->prodi = Dosen::pluck('prodi')->unique()->values()->toArray();
-        }
-        // $this->updateProdiOptions();
+        $this->updateProdiOptions();
     }
 
     public function updateProdiOptions()
@@ -121,7 +113,7 @@ class ProfilKepakaranDosen extends Component
         }
 
         if($this->show_prodi && !empty($this->prodi)) {
-            $this->selected_prodi = $this->prodi[0];
+            $this->selected_prodi = $this->prodi[0] ?? null;
         }
 
         // $query = Dosen::query();
@@ -140,12 +132,12 @@ class ProfilKepakaranDosen extends Component
 
     public function updatedShowProdi($value)
     {
-        $this->selected_prodi = $value ? $this->prodi[0] : null;
+        $this->selected_prodi = $value ? ($this->prodi[0] ?? null) : null;
     }
 
     public function updatedShowGender($value)
     {
-        $this->selected_gender = $value ? 'Laki-laki' : null;
+        $this->selected_gender = $value ? array_key_first($this->gender) : null;
     }
 
     public function updatedShowStatus($value)
@@ -169,45 +161,68 @@ class ProfilKepakaranDosen extends Component
             'show_status_kepegawaian',
             'selected_status_kepegawaian'
         ]);
+
+        $this->prodi = Dosen::pluck('prodi')->unique()->values()->toArray();
+        $this->applyFilter();
         $this->dispatch('clearFilter');
     }
 
     public function applyFilter()
     {
+        $this->calculateChartData();
+        $this->dispatch('update-chart-dosen', [
+            'asisten_ahli' => $this->data_asisten_ahli,
+            'lektor' => $this->data_lektor,
+            'lektor_kepala' => $this->data_lektor_kepala,
+            'profesor' => $this->data_profesor,
+        ]);
+    }
+
+    private function calculateChartData()
+    {
         $query = Dosen::query();
 
-        // Filter jabatan fungsional
-        if ($this->selected_jabatan_fungsional) {
+        // Filter jabatan 
+        if ($this->show_jabatan_fungsional && $this->selected_jabatan_fungsional) {
             $query->where('jabatan', $this->selected_jabatan_fungsional);
         }
 
-        // Filter pendidikan terakhir
-        if ($this->selected_pendidikan_terakhir) {
+        // Filter pendidikan
+        if ($this->show_pendidikan_terakhir && $this->selected_pendidikan_terakhir) {
             if ($this->selected_pendidikan_terakhir === 'S3') {
-                $query->where(function ($q) {
-                    $q->where('gelar', 'LIKE', '%Dr. %');
-                });
+                $query->where('gelar', 'LIKE', '%Dr.%'); // Sesuaikan dengan format database
             } else if ($this->selected_pendidikan_terakhir === 'S2') {
-                $query->where(function ($q) {
-                    $q->where('gelar', 'LIKE', 'Magister');
-                });
+                $query->where('gelar', 'LIKE', '%M.%')->orWhere('gelar', 'LIKE', '%Magister%');
             }
         }
 
         // Filter fakultas
-        if ($this->selected_fakultas) {
+        if ($this->show_fakultas && $this->selected_fakultas) {
             $query->where('unit', $this->selected_fakultas);
         }
 
         // Filter prodi
-        if ($this->selected_prodi) {
+        if ($this->show_prodi && $this->selected_prodi) {
             $query->where('prodi', $this->selected_prodi);
         }
 
         // Filter gender
-        if ($this->selected_gender) {
+        if ($this->show_gender && $this->selected_gender) {
             $query->where('gender', $this->selected_gender);
         }
+
+        // Filter status kepegawaian
+        if ($this->show_status_kepegawaian && $this->selected_status_kepegawaian) {
+            
+            $query->where('status', $this->selected_status_kepegawaian); 
+        }
+
+        // Hitung kategori berdasarkan query yang sudah difilter
+        // Clone query agar tidak menumpuk where clause
+        $this->data_asisten_ahli = (clone $query)->whereJsonContains('jabatan', 'Asisten Ahli')->count();
+        $this->data_lektor = (clone $query)->whereJsonContains('jabatan', 'Lektor')->count();
+        $this->data_lektor_kepala = (clone $query)->whereJsonContains('jabatan', 'Lektor Kepala')->count();
+        $this->data_profesor = (clone $query)->whereJsonContains('jabatan', 'Profesor')->count();
     }
 
     public function render()
