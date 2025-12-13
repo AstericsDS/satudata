@@ -9,6 +9,13 @@ use Livewire\Component;
 #[Title('Profil Kepakaran Dosen')]
 class ProfilKepakaranDosen extends Component
 {
+    // Data grafik
+    public $data_asisten_ahli;
+    public $data_lektor;
+    public $data_lektor_kepala;
+    public $data_profesor;
+    // public $data_arsiparis_muda;
+
     // Filter list
     public $jabatan_fungsional = [];
     public $pendidikan_terakhir = [];
@@ -28,7 +35,7 @@ class ProfilKepakaranDosen extends Component
     // Toggle filter
     public
     $show_jabatan_fungsional;
-    public $show_pendidikan_terakir;
+    public $show_pendidikan_terakhir;
     public $show_fakultas;
     public $show_prodi;
     public $show_gender;
@@ -40,6 +47,16 @@ class ProfilKepakaranDosen extends Component
 
     public function mount()
     {
+        $this->data_asisten_ahli = Dosen::whereJsonContains('jabatan', 'Asisten Ahli')->count();
+        
+        $this->data_lektor = Dosen::whereJsonContains('jabatan', 'Lektor')->count();
+
+        $this->data_lektor_kepala = Dosen::whereJsonContains('jabatan', 'Lektor Kepala')->count();
+
+        $this->data_profesor = Dosen::whereJsonContains('jabatan', 'Profesor')->count();
+
+        // $this->data_arsiparis_muda = Dosen::whereJsonContains('jabatan', 'Arsiparis Muda')->count();
+        
         $this->jabatan_fungsional = Dosen::whereNotNull('jabatan')->pluck('jabatan')->flatten()->unique()->values()->toArray();
 
         $this->pendidikan_terakhir = ['S2', 'S3'];
@@ -70,35 +87,54 @@ class ProfilKepakaranDosen extends Component
 
     public function updatedShowFakultas($value)
     {
-        $this->selected_fakultas = $value ? $this->fakultas[0] : null;
-        $this->updateProdiOptions();
+        if($value) {
+            $this->selected_fakultas = $this->fakultas[0] ?? null;
+            $this->updatedSelectedFakultas($this->selected_fakultas);
+        } else {
+            $this->selected_fakultas = null;
+            $this->prodi = Dosen::pluck('prodi')->unique()->values()->toArray();
+        }
+        // $this->updateProdiOptions();
     }
 
     public function updatedSelectedFakultas($value)
     {
-        $this->prodi = Dosen::where('unit', $this->selected_fakultas)->pluck('prodi')->unique()->values()->toArray();
-        $this->updateProdiOptions();
+        // $this->prodi = Dosen::where('unit', $this->selected_fakultas)->pluck('prodi')->unique()->values()->toArray();
+        $this->selected_prodi = null;
+
+        if($value) {
+            $this->prodi = Dosen::where('unit', $value)->pluck('prodi')->unique()->values()->toArray();
+        } else {
+            $this->prodi = Dosen::pluck('prodi')->unique()->values()->toArray();
+        }
+        // $this->updateProdiOptions();
     }
 
     public function updateProdiOptions()
     {
         if(!$this->selected_fakultas) {
             $this->prodi = Dosen::pluck('prodi')->unique()->toArray();
-            $this->selected_prodi = $this->prodi[0] ?? null;
-            return;
+            // $this->selected_prodi = $this->prodi[0] ?? null;
+            // return;
+        } else {
+            $this->prodi = Dosen::where('unit', $this->selected_fakultas)->pluck('prodi')->unique()->values()->toArray();
         }
 
-        $query = Dosen::query();
-
-        if($this->selected_fakultas) {
-            $query->where('unit', $this->selected_fakultas);
+        if($this->show_prodi && !empty($this->prodi)) {
+            $this->selected_prodi = $this->prodi[0];
         }
 
-        $this->prodi = $query->pluck('prodi')->unique()->values()->toArray();
+        // $query = Dosen::query();
 
-        if($this->show_prodi) {
-            $this->selected_prodi = $this->prodi[0] ?? null;
-        }
+        // if($this->selected_fakultas) {
+        //     $query->where('unit', $this->selected_fakultas);
+        // }
+
+        // $this->prodi = $query->pluck('prodi')->unique()->values()->toArray();
+
+        // if($this->show_prodi) {
+        //     $this->selected_prodi = $this->prodi[0] ?? null;
+        // }
 
     }
 
@@ -123,7 +159,7 @@ class ProfilKepakaranDosen extends Component
             'show_jabatan_fungsional',
             'selected_jabatan_fungsional',
             'show_pendidikan_terakhir',
-            'selected_pendidikan terakhir',
+            'selected_pendidikan_terakhir',
             'show_fakultas',
             'selected_fakultas',
             'show_prodi',

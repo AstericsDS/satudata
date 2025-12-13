@@ -1,7 +1,7 @@
-@vite(['resources/js/charts/profil-kepakaran-dosen.js'])
-@vite(['resources/js/charts/jumlah-publikasi.js'])
-
 <div class="flex flex-col min-h-screen mb-20">
+    @vite(['resources/js/charts/profil-kepakaran-dosen.js'])
+    @vite(['resources/js/charts/jumlah-publikasi.js'])
+
     <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow">
 
         {{-- Breadcrumbs - Start --}}
@@ -209,8 +209,8 @@
                                             x-transition:leave-end="opacity-0 scale-90"
                                             class="p-2 border border-gray-300 rounded-md w-full"
                                         >
-                                            @foreach ($prodi ?? [] as $item)
-                                                <option wire:key="{{ $loop->index }}" value="{{ $item }}">
+                                            @foreach ($prodi as $item)
+                                                <option wire:key="{{ $item }}" value="{{ $item }}">
                                                     {{ $item }}
                                                 </option>
                                             @endforeach
@@ -310,7 +310,20 @@
                     {{-- Grafik - Start --}}
                     <div class="rounded-md flex flex-col gap-4 p-6 w-full">
                         <p class="font-light text-gray-500">Data diperbarui 10 jam yang lalu</p>
-                        <div id="chart-dosen"></div>
+                        <div id="chart-dosen" wire:ignore></div>
+                        <script>
+                            document.addEventListener('livewire:init', () => {
+                                const chartData = {
+                                    asisten_ahli: @json($data_asisten_ahli),
+                                    lektor: @json($data_lektor),
+                                    lektor_kepala: @json($data_lektor_kepala),
+                                    profesor: @json($data_profesor),
+
+                                };
+
+                                window.renderChartDosen(chartData);
+                            })
+                        </script>
                         <div class="bg-[#EDF7F6] rounded-md p-5 text-black">
                             <h1 class="font-bold text-xl">Analisis Data</h1>
                             <p class="text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -321,65 +334,6 @@
 
                 {{-- Tabel Dosen per Fakultas --}}
                 <div x-show="menu === 'daftar-dosen'" class="flex flex-col bg-white rounded-md mt-4 p-6" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                    {{-- Table --}}
-                    {{-- <div class="relative overflow-x-auto rounded-lg">
-                        <table class="w-full text-sm text-left rtl:text-right rounded-lg">
-                            <thead class="text-base bg-primary text-white sticky top-0 z-10 uppercase">
-                                <tr class="border-b-1 border-gray-200">
-                                    <th scope="col" class="px-6 py-3">
-                                        No
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Nama Dosen
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        NIDN
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        NUPTK
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Program Studi
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Jabatan
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @for ($i = 1; $i < 11; $i++)
-                                    <tr>
-                                        <td class="px-6 py-3">
-                                            {{ $i }}
-                                        </td>
-                                        <td data-modal-target="detail-dosen" data-modal-toggle="detail-dosen" class="px-6 py-4 hover:underline cursor-pointer">
-                                            Prof. Dr. Komarudin, M. Si.
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            1234567890
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            1234567890
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            S1 - Pendidikan Pancasila dan Kewarganegaraan
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            Rektor
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            <span class="bg-[#D7EFEA] text-primary dark:bg-green-900 dark:text-green-300 font-medium inline-flex items-center px-3 py-1 text-sm rounded-lg">
-                                                Aktif
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                        </table>
-                    </div> --}}
                     <livewire:power-grid.daftar-dosen-table />
                 </div>
             </div>
