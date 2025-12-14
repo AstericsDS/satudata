@@ -43,7 +43,7 @@ final class DaftarDosenTable extends PowerGridComponent
 
             ->add('nama_dosen', function (Dosen $row) {
                 $gelarDepan = $row->gelar_depan ? $row->gelar_depan . ' ' : '';
-                $gelarBelakang = $row->gelar_belakang ? ', ' . $row->gelar_belakang : '';
+                $gelarBelakang = $row->gelar_belakang;
                 return $gelarDepan . $row->nama . $gelarBelakang;
             })
 
