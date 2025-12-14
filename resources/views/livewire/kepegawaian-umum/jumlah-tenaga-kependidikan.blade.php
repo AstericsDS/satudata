@@ -67,58 +67,14 @@
                 </div>
 
                 {{-- Daftar Tenaga Kependidikan per Unit --}}
-                <div x-show="menu === 'daftar-tendik'" class="flex flex-col bg-white rounded-md mt-4 p-6" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                    {{-- Table --}}
-                    <div class="relative overflow-x-auto rounded-lg">
-                        <table class="w-full text-sm text-left rtl:text-right rounded-lg">
-                            <thead class="text-base bg-primary text-white sticky top-0 z-10 uppercase">
-                                <tr class="border-b-1 border-gray-200">
-                                    <th scope="col" class="px-6 py-3">
-                                        No
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Nama
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        NIP
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Unit
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Jabatan
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @for ($i = 1; $i < 11; $i++)
-                                    <tr>
-                                        <td class="px-6 py-3">
-                                            {{ $i }}
-                                        </td>
-                                        <td data-modal-target="detail-tendik" data-modal-toggle="detail-tendik" class="px-6 py-3 hover:underline cursor-pointer">
-                                            Abcde, S. Kom.
-                                        </td>
-                                        <td class="px-6 py-3"">
-                                            1234567890
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            Direktur Keuangan dan Perencanaan
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            Pranata Komputer
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            PNS
-                                        </td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                        </table>
-                    </div>
+                <div
+                    x-show="menu === 'daftar-tendik'"
+                    class="flex flex-col bg-white rounded-md mt-4 p-6"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                >
+                    <livewire:power-grid.daftar-tendik-table />
                 </div>
             </div>
             {{-- Content - End --}}
