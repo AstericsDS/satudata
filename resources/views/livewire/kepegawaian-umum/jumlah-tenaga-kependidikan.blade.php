@@ -82,14 +82,39 @@
         {{-- Main Container - End --}}
 
         {{-- Modal - Start --}}
-        <div id="detail-tendik" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden rounded-lg fixed inset-0 z-50 justify-center items-center w-full h-full backdrop-blur-sm bg-black/20 transition-all duration-300">
-            <div class="relative p-4 w-full max-w-[768px] max-h-full">
+        <div
+            x-data="{
+                showModal: false,
+            }"
+            @open-modal-detail.window="
+                showModal = true;
+                $nextTick(() => { $el.focus(); });
+            "
+            x-show="showModal"
+            style="display: none;"
+            class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-y-auto overflow-x-hidden backdrop-blur-sm bg-black/40 transition-opacity duration-300"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+        >   
+            <div
+                class="relative p-4 w-full max-w-[768px] max-h-full"
+                @click.outside="showModal = false"
+            >
                 {{-- Modal Header --}}
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t-lg border-gray-200 bg-gradient-to-r from-[#00C7CF] to-[#006569]">
                     <h3 class="text-xl font-semibold text-gray-800">
                         Profil Abcde, S. Kom.
                     </h3>
-                    <button type="button" class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="detail-tendik">
+                    <button
+                        type="button"
+                        @click="showModal = false"
+                        class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        aria-hidden="true"
+                    >
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -120,7 +145,7 @@
 
                                 {{-- Unit --}}
                                 <p class="font-semibold">Unit</p>
-                                <p>:</p>
+                                <p>:</p>    
                                 <p>Direktur Keuangan dan Perencanaan</p>
 
                                 {{-- Jabatan --}}
