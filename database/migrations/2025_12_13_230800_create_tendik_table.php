@@ -11,21 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('tendik', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->index();
             $table->string('nip')->index();
             $table->unique(['nama', 'nip']);
-            $table->string('nidn');
-            $table->char('gender')->nullable();
-            $table->string('gelar');
-            $table->string('gelar_depan');
-            $table->string('gelar_belakang');
-            $table->string('jenjang');
-            $table->string('unit');
-            $table->string('prodi');
-            $table->string('status');
-            $table->json('jabatan')->nullable();
+            $table->string('unit_kerja');
+            $table->string('gelar_depan')->nullable();
+            $table->string('gelar_belakang')->nullable();
+            $table->string('status_kepegawaian'); // di sipeg namanya cabang
+            $table->string('golongan')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('tendik');
     }
 };

@@ -66,6 +66,7 @@
                     <livewire:admin.button.dosen-synchronize />
                     <livewire:admin.button.tracer-study-synchronize />
                     <livewire:admin.button.kerjasama-synchronize />
+                    <livewire:admin.button.tendik-synchronize />
                 </tbody>
                 {{-- Table Body - End --}}
 

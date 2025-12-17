@@ -1,7 +1,7 @@
-@vite(['resources/js/charts/profil-kepakaran-dosen.js'])
-@vite(['resources/js/charts/jumlah-publikasi.js'])
-
 <div class="flex flex-col min-h-screen mb-20">
+    @vite(['resources/js/charts/profil-kepakaran-dosen.js'])
+    @vite(['resources/js/charts/jumlah-publikasi.js'])
+
     <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow">
 
         {{-- Breadcrumbs - Start --}}
@@ -54,64 +54,247 @@
 
                 {{-- Grafik Dosen --}}
                 <div x-show="menu === 'grafik-dosen'" class="flex gap-4 bg-white rounded-md mt-4 p-6" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+
                     {{-- Filter - Start --}}
-                    <div class="border-1 border-[#1B1B1B]/20 p-8 rounded-md shadow-xl">
+                    <div class="border-1 border-[#1B1B1B]/20 p-8 rounded-md bg-white shadow-xl">
                         <div class="flex flex-col gap-6">
-                            {{-- Teks --}}
+                            {{-- Title --}}
                             <div>
-                                <div class="flex gap-2 items-center mb-3">
+                                <div class="flex gap2 items-center mb-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
                                         <path fill="#006569"
                                             d="M11 20q-.425 0-.712-.288T10 19v-6L4.2 5.6q-.375-.5-.112-1.05T5 4h14q.65 0 .913.55T19.8 5.6L14 13v6q0 .425-.288.713T13 20z" />
                                     </svg>
-                                    <h1 class="text-primary text-2xl">Filter Data</h1>
+                                    <h1 class="text-primary text-2xl">
+                                        Filter Data
+                                    </h1>
                                 </div>
-                                <p class="text-gray-700">Atur data yang akan ditampilkan</p>
+                                <p class="text-gray-700">
+                                    Atur data yang akan ditampilkan
+                                </p>
                             </div>
 
-                            {{-- Menu Filter - Start --}}
-                            <div x-data="{ jabatanFungsional: @entangle('showJabatanFungsional'),
-                            statusKepegawaian: @entangle('showStatusKepegawaian'),
-                            pendidikanTerakhir: @entangle('showPendidikanTerakhir'),
-                            status: @entangle('showStatus'),
-                            fakultas: @entangle('showFakultas'),
-                            programStudi: @entangle('showProgramStudi'),
-                            jenisKelamin: @entangle('showJenisKelamin')}"
-                            @clearFilter.window="jabatanFungsional: false; statusKepegawaian: false; pendidikanTerakhir: false; status: false; fakultas: false; programStudi: false; jenisKelamin: false;"
-                            class="flex flex-col gap-4 w-[300px]">
-                                {{-- Title --}}
-                                <h1 class="text-gray-800 text-2xl">Kategori Data</h1>
+                            {{-- Menu Filter --}}
+                            <div
+                                x-data="{
+                                    jabatan_fungsional: @entangle('show_jabatan_fungsional'),
+                                    pendidikan_terakhir: @entangle('show_pendidikan_terakhir'),
+                                    fakultas: @entangle('show_fakultas'),
+                                    prodi: @entangle('show_prodi'),
+                                    gender: @entangle('show_gender'),
+                                    status_kepegawaian: @entangle('show_status_kepegawaian')
+                                }"
+                                @clearFilter.window="
+                                    jabatan_fungsional: false;
+                                    pendidikan_terakhir: false;
+                                    fakultas: false;
+                                    prodi: false;
+                                    gender: false;
+                                    status_kepegawaian: false;
+                                "
+                                class="flex flex-col gap-4 w-[300px]"
+                            >
+                                {{-- Header --}}
+                                <h1 class="text-gray-800 text-2xl">
+                                    Kategori Data
+                                </h1>
 
-                                {{-- Filter Menu List --}}
+                                {{-- Menu Filter --}}
                                 <ul class="flex flex-col gap-4">
                                     {{-- Jabatan Fungsional --}}
-                                    <li class="transition-all flex flex-col gap-3">
-                                        <label for="jabatanFungsional" class="flex gap-2 items-center">
-                                            <input id="jabatanFungsional" type="checkbox" x-model="jabatanFungsional" wire:model.change="showJabatanFungsional"
-                                            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
-                                            x-transition:enter-end="opacity-100 scale-100"
-                                            x-transition:leave="transition ease-out duration-300"
-                                            x-transition:leave-end="opacity-0 scale-90">
+                                    {{-- <li class="transition-all flex flex-col gap-3">
+                                        <label for="jabatan_fungsional" class="flex gap-2 items-center">
+                                            <input
+                                                id="jabatan_fungsional"
+                                                type="checkbox"
+                                                x-model="jabatan_fungsional"
+                                                wire:model.live="show_jabatan_fungsional"
+                                            >
                                             Jabatan Fungsional
                                         </label>
-                                        <select wire:model.change="selectedJabatanFungsional" x-show="jabatanFungsional" class="p-2 border border-gray-300 rounded-md w-full">
-                                            <option value=""></option>
+                                        <select
+                                            wire:model.live="selected_jabatan_fungsional"
+                                            x-show="jabatan_fungsional"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            scale-90"
+                                            x-transition:enter-end="opacity-100 scale-100"
+                                            x-transition:leave="transition ease-out duration-300"
+                                            x-transition:leave-end="opacity-0 scale-90"
+                                            class="p-2 border border-gray-300 rounded-md w-full"
+                                        >
+                                            @foreach ($jabatan_fungsional as $item)
+                                                <option value="{{ $item }}">
+                                                    {{ $item }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </li> --}}
+
+                                    {{-- Pendidikan Terakhir --}}
+                                    <li class="transition-all flex flex-col gap-3">
+                                        <label for="pendidikan_terakhir" class="flex gap-2 items-center">
+                                            <input
+                                                id="pendidikan_terakhir"
+                                                type="checkbox"
+                                                x-model="pendidikan_terakhir"
+                                                wire:model.live="show_pendidikan_terakhir"
+                                            >
+                                            Pendidikan Terakhir
+                                        </label>
+                                        <select
+                                            wire:model.live="selected_pendidikan_terakhir"
+                                            x-show="pendidikan_terakhir"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            scale-90"
+                                            x-transition:enter-end="opacity-100 scale-100"
+                                            x-transition:leave="transition ease-out duration-300"
+                                            x-transition:leave-end="opacity-0 scale-90"
+                                            class="p-2 border border-gray-300 rounded-md w-full"
+                                        >
+                                            @foreach ($pendidikan_terakhir as $item)
+                                                <option value="{{ $item }}">
+                                                    {{ $item }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </li>
+
+                                    {{-- Fakultas --}}
+                                    <li class="transition-all flex flex-col gap-3">
+                                        <label for="fakultas" class="flex gap-2 items-center">
+                                            <input
+                                                id="fakultas"
+                                                type="checkbox"
+                                                x-model="fakultas"
+                                                wire:model.change="show_fakultas"
+                                            >
+                                            Fakultas
+                                        </label>
+                                        <select
+                                            wire:model.change="selected_fakultas"
+                                            x-show="fakultas"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            scale-90"
+                                            x-transition:enter-end="opacity-100 scale-100"
+                                            x-transition:leave="transition ease-out duration-300"
+                                            x-transition:leave-end="opacity-0 scale-90"
+                                            class="p-2 border border-gray-300 rounded-md w-full"
+                                        >
+                                            @foreach ($fakultas as $item)
+                                                <option value="{{ $item }}">
+                                                    {{ $item }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </li>
+
+                                    {{-- Prodi --}}
+                                    <li class="transition-all flex flex-col gap-3">
+                                        <label for="prodi" class="flex gap-2 items-center">
+                                            <input
+                                                id="prodi"
+                                                type="checkbox"
+                                                x-model="prodi"
+                                                wire:model.change="show_prodi"
+                                            >
+                                            Prodi
+                                        </label>
+                                        <select
+                                            wire:model.change="selected_prodi"
+                                            x-show="prodi"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            scale-90"
+                                            x-transition:enter-end="opacity-100 scale-100"
+                                            x-transition:leave="transition ease-out duration-300"
+                                            x-transition:leave-end="opacity-0 scale-90"
+                                            class="p-2 border border-gray-300 rounded-md w-full"
+                                        >
+                                            @foreach ($prodi as $item)
+                                                <option wire:key="{{ $item }}" value="{{ $item }}">
+                                                    {{ $item }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </li>
+
+                                    {{-- Gender --}}
+                                    <li class="transition-all flex flex-col gap-3">
+                                        <label for="gender" class="flex gap-2 items-center">
+                                            <input
+                                                id="gender"
+                                                type="checkbox"
+                                                x-model="gender"
+                                                wire:model.live="show_gender"
+                                            >
+                                            Gender
+                                        </label>
+                                        <select
+                                            wire:model.live="selected_gender"
+                                            x-show="gender"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            scale-90"
+                                            x-transition:enter-end="opacity-100 scale-100"
+                                            x-transition:leave="transition ease-out duration-300"
+                                            x-transition:leave-end="opacity-0 scale-90"
+                                            class="p-2 border border-gray-300 rounded-md w-full"
+                                        >
+                                            @foreach ($gender as $item => $label)
+                                                <option value="{{ $item }}">
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </li>
+
+                                    {{-- Status Kepegawaian --}}
+                                    <li class="transition-all flex flex-col gap-3">
+                                        <label for="status_kepegawaian" class="flex gap-2 items-center">
+                                            <input
+                                                id="status_kepegawaian"
+                                                type="checkbox"
+                                                x-model="status_kepegawaian"
+                                                wire:model.live="show_status_kepegawaian"
+                                            >
+                                            Status Kepegawaian
+                                        </label>
+                                        <select
+                                            wire:model.live="selected_status_kepegawaian"
+                                            x-show="status_kepegawaian"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            scale-90"
+                                            x-transition:enter-end="opacity-100 scale-100"
+                                            x-transition:leave="transition ease-out duration-300"
+                                            x-transition:leave-end="opacity-0 scale-90"
+                                            class="p-2 border border-gray-300 rounded-md w-full"
+                                        >
+                                            @foreach ($status_kepegawaian as $item)
+                                                <option value="{{ $item }}">
+                                                    {{ $item }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </li>
                                 </ul>
                                 
                                 {{-- Button --}}
                                 <div class="flex gap-3 justify-end">
-                                    <button wire:click="deleteFilter"
-                                        class="rounded-md bg-red-600 p-2 text-white hover:bg-red-700 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit">
+                                    {{-- Hapus --}}
+                                    <button
+                                        wire:click="deleteFilter"
+                                        class="rounded-md bg-red-600 p-2 text-white hover:bg-red-700 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit"
+                                    >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
                                             <path fill="#ffffff"
                                                 d="M4 17q-.425 0-.712-.288T3 16t.288-.712T4 15h12q.425 0 .713.288T17 16t-.288.713T16 17zm2-4q-.425 0-.712-.288T5 12t.288-.712T6 11h12q.425 0 .713.288T19 12t-.288.713T18 13zm2-4q-.425 0-.712-.288T7 8t.288-.712T8 7h12q.425 0 .713.288T21 8t-.288.713T20 9z" />
                                         </svg>
                                         Hapus
                                     </button>
-                                    <button wire:click="applyFilter"
-                                        class="rounded-md bg-primary p-3 text-white hover:bg-primary/90 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit">
+
+                                    {{-- Simpan --}}
+                                    <button
+                                        wire:click="applyFilter"
+                                        class="rounded-md bg-primary p-3 text-white hover:bg-primary/90 cursor-pointer transition-all flex items-center justify-center gap-2 w-fit"
+                                    >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
                                             <path fill="#ffffff"
                                                 d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h11.175q.4 0 .763.15t.637.425l2.85 2.85q.275.275.425.638t.15.762V19q0 .825-.587 1.413T19 21zm7-3q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-5-8h7q.425 0 .713-.288T15 9V7q0-.425-.288-.712T14 6H7q-.425 0-.712.288T6 7v2q0 .425.288.713T7 10" />
@@ -120,15 +303,44 @@
                                     </button>
                                 </div>
                             </div>
-                            {{-- Menu Filter - End --}}
                         </div>
                     </div>
                     {{-- Filter - End --}}
 
                     {{-- Grafik - Start --}}
                     <div class="rounded-md flex flex-col gap-4 p-6 w-full">
-                        <p class="font-light text-gray-500">Data diperbarui 10 jam yang lalu</p>
-                        <div id="chart-dosen"></div>
+                        @if ($update && $update->status === 'synchronized')
+                            <p class="font-light text-gray-500">
+                                Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}
+                            </p>
+                        @else
+                            <p class="font-light text-red-500">
+                                Data Belum Sinkron
+                            </p>
+                        @endif
+                        <div id="chart-dosen" wire:ignore></div>
+                        <script>
+                            document.addEventListener('livewire:init', () => {
+                                const chartData = {
+                                    asisten_ahli: @json($data_asisten_ahli),
+                                    lektor: @json($data_lektor),
+                                    lektor_kepala: @json($data_lektor_kepala),
+                                    profesor: @json($data_profesor),
+
+                                };
+
+                                window.renderChartDosen(chartData);
+
+                                Livewire.on('update-chart-dosen', (event) => {
+                                    // Event biasanya dikirim dalam array, ambil index 0
+                                    const newData = event[0];
+                                    
+                                    // Panggil ulang fungsi render chart dengan data baru
+                                    // Asumsi: renderChartDosen di file JS kamu sudah handle destroy/update chart lama
+                                    window.renderChartDosen(newData);
+                                });
+                            })
+                        </script>
                         <div class="bg-[#EDF7F6] rounded-md p-5 text-black">
                             <h1 class="font-bold text-xl">Analisis Data</h1>
                             <p class="text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -137,67 +349,9 @@
                     {{-- Grafik - End --}}
                 </div>
 
-                {{-- Daftar Dosen per Fakultas --}}
+                {{-- Tabel Dosen per Fakultas --}}
                 <div x-show="menu === 'daftar-dosen'" class="flex flex-col bg-white rounded-md mt-4 p-6" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                    {{-- Table --}}
-                    <div class="relative overflow-x-auto rounded-lg">
-                        <table class="w-full text-sm text-left rtl:text-right rounded-lg">
-                            <thead class="text-base bg-primary text-white sticky top-0 z-10 uppercase">
-                                <tr class="border-b-1 border-gray-200">
-                                    <th scope="col" class="px-6 py-3">
-                                        No
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Nama Dosen
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        NIDN
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        NUPTK
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Program Studi
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Jabatan
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @for ($i = 1; $i < 11; $i++)
-                                    <tr>
-                                        <td class="px-6 py-3">
-                                            {{ $i }}
-                                        </td>
-                                        <td data-modal-target="detail-dosen" data-modal-toggle="detail-dosen" class="px-6 py-4 hover:underline cursor-pointer">
-                                            Prof. Dr. Komarudin, M. Si.
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            1234567890
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            1234567890
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            S1 - Pendidikan Pancasila dan Kewarganegaraan
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            Rektor
-                                        </td>
-                                        <td class="px-6 py-3">
-                                            <span class="bg-[#D7EFEA] text-primary dark:bg-green-900 dark:text-green-300 font-medium inline-flex items-center px-3 py-1 text-sm rounded-lg">
-                                                Aktif
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                        </table>
-                    </div>
+                    <livewire:power-grid.daftar-dosen-table />
                 </div>
             </div>
             {{-- Content - End --}}

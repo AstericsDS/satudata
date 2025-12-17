@@ -9,8 +9,8 @@ class Dosen extends Model
     protected $table = 'dosen';
     protected $fillable = [
         'nama',
-        'nik',
         'nidn',
+        'gender',
         'gelar_depan',
         'gelar_belakang',
         'jenjang',
