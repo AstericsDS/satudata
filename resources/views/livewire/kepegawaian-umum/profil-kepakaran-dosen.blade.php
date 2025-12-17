@@ -21,7 +21,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 9 4-4-4-4" />
                         </svg>
-                        <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Profil & Kepakaran Dosen</span>
+                        <span class="ms-1 text-sm font-medium text-primary">Profil & Kepakaran Dosen</span>
                     </div>
                 </li>
             </ol>
