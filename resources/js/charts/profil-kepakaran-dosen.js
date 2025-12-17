@@ -48,8 +48,7 @@ window.renderChartDosen = function (dataValues) {
         },
 
         subtitle: {
-            text: "Sumber: SIPEG",
-            
+            text: "Sumber: SIPEG",          
             align: 'left',
             style: {
                 fontSize: '11px',
