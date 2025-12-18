@@ -27,5 +27,10 @@ class DatabaseSeeder extends Seeder
         //     FakultasSeeder::class,
         //     ProdiSeeder::class
         // ]);
+
+        User::create([
+            'name' => 'Andhika',
+            'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id'
+        ]);
     }
 }

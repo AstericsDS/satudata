@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SSOController;
 use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
 use App\Livewire\AkademikDanMahasiswa\DataAkreditasi;
 use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
@@ -35,8 +36,12 @@ Route::get('/', LandingPage::class)->name('landing-page');
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
 Route::get('/login', Login::class)->name('login');
 
+// SSO
+Route::get('/sso/login', [SSOController::class, 'redirectToProvider'])->name('sso.login');
+Route::get('/sso/callback', [SSOController::class, 'handleProviderCallback'])->name('sso.callback');
+
 // Admin
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/sinkronisasi', Sinkronisasi::class)->name('sinkronisasi-publik');
 });
 

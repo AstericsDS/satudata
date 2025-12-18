@@ -2,6 +2,7 @@
 
 namespace App\Services\AkademikDanMahasiswa;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
@@ -16,8 +17,13 @@ class PDDIKTIService
                     'username' => config('api.pddikti_username'),
                     'password' => config('api.pddikti_password'),
                 ]);
+        if($response->failed()) {
+            Log::error('PDDIKTI API Error: HTTP Request failed', ['body' => $response->body()]);
+            return;
+        }
 
         $data = $response->json();
+        Log::info('PDDIKTI Response:', ['response' => $data]);
         Cache::put('token', $data['data']['token']);
         return;
     }
