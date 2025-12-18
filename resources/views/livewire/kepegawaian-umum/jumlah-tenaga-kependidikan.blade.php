@@ -229,5 +229,116 @@
             {{-- Content - End --}}
         </div>
         {{-- Main Container - End --}}
+
+        {{-- Modal - Start --}}
+        <div
+            x-data="{
+                showModal: false,
+                detail: {
+                    nama: '-',
+                    nip: '-',
+                    unit: '-',
+                    jabatan: '-',
+                    status: '-',
+                    golongan: '-'
+                }
+            }"
+            @open-modal-detail.window="
+                showModal = true;
+                detail = $event.detail;
+                $nextTick(() => { $el.focus(); });
+            "
+            x-show="showModal"
+            aria-modal="true"
+            class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-y-auto overflow-x-hidden backdrop-blur-sm bg-gray-900/75 bg-opacity-75 transition-opacity"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+        >   
+            <div
+                class="relative p-4 w-full max-w-[768px] max-h-full"
+                @click.outside="showModal = false"
+            >
+                {{-- Modal Header --}}
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t-lg border-gray-200 bg-gradient-to-r from-[#00C7CF] to-[#006569]">
+                    <h3 class="text-xl font-semibold text-gray-800">
+                        Profil <span x-text="detail.nama_lengkap"></span>
+                    </h3>
+                    <button
+                        type="button"
+                        @click="showModal = false"
+                        class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        aria-hidden="true"
+                    >
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+                {{-- Modal Body --}}
+                <div class="p-4 md:p-5 space-y-4 bg-white flex flex-col items-center rounded-b-lg">
+                    <div class="w-full bg-[#EDF7F6] rounded-lg p-6 shadow-sm flex flex-col lg:flex-row gap-8 items-start">
+                        {{-- Foto Profil --}}
+                        <div class="flex shrink-0">
+                            <div class="w-full h-full rounded-full flex items-center justify-center mt-2">
+                                <img class="rounded-full w-25 h-25 object-cover" src="{{ asset('assets/images/unj.png') }}" alt="photo profile">
+                            </div>
+                        </div>
+
+                        {{-- Detail Informasi --}}
+                        <div class="flex-grow space-y-4 py-2">
+                            <p
+                                class="text-lg font-bold text-black mb-4"
+                                x-text="detail.nama_lengkap"
+                            ></p>
+
+                            <div class="grid grid-cols-[200px_20px_1fr] gap-y-3 text-sm md:text-base text-black">
+                                {{-- NIP --}}
+                                <p class="font-semibold">NIP</p>
+                                <p>:</p>
+                                <p x-text="detail.nip"></p>
+
+                                {{-- Unit --}}
+                                <p class="font-semibold">Unit</p>
+                                <p>:</p>    
+                                <p x-text="detail.unit"></p>
+
+                                {{-- Jabatan --}}
+                                <p class="font-semibold">Jabatan</p>
+                                <p>:</p>
+                                <p x-text="detail.jabatan"></p>
+
+                                {{-- Status --}}
+                                <p class="font-semibold">Status</p>
+                                <p>:</p>
+                                <p x-text="detail.status"></p>
+
+                                {{-- Pangkat --}}
+                                {{-- <p class="font-semibold">Pangkat</p>
+                                <p>:</p>
+                                <p>Penata Muda</p> --}}
+
+                                {{-- Golongan --}}
+                                <p class="font-semibold">Golongan</p>
+                                <p>:</p>
+                                <p x-text="detail.golongan"></p>
+
+                                {{-- Pendidikan Terakhir --}}
+                                {{-- <p class="font-semibold white">Pendidikan Terakhir</p>
+                                <p>:</p>
+                                <p>S1 - Ilmu Komputer</p> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Modal - End --}}
     </div>
 </div>

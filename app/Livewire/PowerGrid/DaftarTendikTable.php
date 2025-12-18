@@ -50,7 +50,7 @@ final class DaftarTendikTable extends PowerGridComponent
 
             ->add('unit_kerja')
 
-            ->add('golongan')
+            // ->add('golongan')
 
             ->add('status_badge', function (Tendik $row) {
                 $status = $row->status_kepegawaian ?? 'Tidak Diketahui';
@@ -95,13 +95,13 @@ final class DaftarTendikTable extends PowerGridComponent
             Column::make('Unit', 'unit_kerja', 'unit_kerja')
                 ->sortable(),
 
-            Column::make('Golongan', 'golongan', 'golongan')
-                ->sortable(),
+            // Column::make('Golongan', 'golongan', 'golongan')
+            //     ->sortable(),
 
             Column::make('Status', 'status_badge', 'status_kepegawaian')
                 ->sortable(),
 
-            // Column::action('Aksi'),
+            Column::action('Aksi'),
         ];
     }
 
@@ -134,28 +134,26 @@ final class DaftarTendikTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }   
 
-    // public function actions(Tendik $row): array
-    // {
-    //     return [
-    //         Button::add('view')
-    //             ->slot('
-    //                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-    //                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-    //                 </svg>')
-    //             ->class('bg-primary hover:bg-primary/90 text-white px-2 py-1.5 rounded-md transition duration-200 ease-in-out')
-    //             ->dispatch('open-modal-detail', [
-    //                 'nama_lengkap' => ($row->gelar_depan ? $row->gelar_depan . ' ' : '') . $row->nama . ($row->gelar_belakang ? ', ' . $row->gelar_belakang : ''),
-    //                 'nip' => $row->nip,
-    //                 'unit' => filled($row->unit_kerja) ? $row->unit_kerja : $row->homebase,
-    //                 // 'jabatan' => $row->jabatan_fungsional ?? '-', // Pastikan kolom ini ada di DB atau sesuaikan
-    //                 'status' => $row->status_kepegawaian ?? '-',
-    //                 // 'pangkat' => $row->pangkat ?? '-', // Sesuaikan dengan nama kolom di DB
-    //                 'golongan' => $row->golongan ?? '-', // Sesuaikan dengan nama kolom di DB
-    //                 // 'pendidikan' => $row->pendidikan_terakhir ?? '-', // Sesuaikan dengan nama kolom di DB
-    //                 'foto' => asset('assets/images/unj.png'), // Atau $row->foto jika ada upload
-    //             ])
-    //     ];
-    // }
+    public function actions(Tendik $row): array
+    {
+        return [
+            Button::add('view')
+                ->slot('
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>')
+                ->class('bg-primary hover:bg-primary/90 text-white px-2 py-1.5 rounded-md transition duration-200 ease-in-out')
+                ->dispatch('open-modal-detail', [
+                    'nama_lengkap' => ($row->gelar_depan ? $row->gelar_depan . ' ' : '') . $row->nama . ($row->gelar_belakang ? ', ' . $row->gelar_belakang : ''),
+                    'nip' => $row->nip,
+                    'unit' => filled($row->unit_kerja) ? $row->unit_kerja : $row->homebase,
+                    'jabatan' => $row->jabatan ?: '-', 
+                    'status' => $row->status_kepegawaian ?? '-',
+                    'golongan' => $row->golongan ?? '-',
+                    'foto' => asset('assets/images/unj.png'), // Atau $row->foto jika ada upload
+                ])
+        ];
+    }
 
     /*
     public function actionRules(Tendik $row): array
