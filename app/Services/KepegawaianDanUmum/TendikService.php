@@ -17,6 +17,15 @@ class TendikService {
         $this->sync = Synchronize::where('name', 'Tendik')->first();
     }
 
+    private function cleanString($string) {
+        if (is_null($string)) {
+            return null;
+        }
+
+        $string = preg_replace('/^[\pZ\pC]+|[\pZ\pC]+$/u', '', $string); 
+        return trim($string);
+    }
+
     public function synchronize() {
         if($this->sync) {
             $this->sync->update(['status' => 'synchronizing']);
@@ -30,6 +39,17 @@ class TendikService {
 
             foreach($data['pegawais'] as $item) {
                 if(!in_array($item['cabang'], $exclude_dosen)) {
+
+                    if(isset($item['ket_status']) && stripos($item['ket_status'], 'SPT') !== false) {
+                        continue;
+                    }
+
+                    $jabatanClean = isset($item['ket_status']) ? $this->cleanString($item['ket_status']) : null;
+                    if ($jabatanClean) {
+                         // menghapus karakter non-alfanumerik/non-spasi di awal string
+                         $jabatanClean = preg_replace('/^[^a-zA-Z0-9\s]+/', '', $jabatanClean);
+                    }
+
                     $rows[] = [
                         'nama' => $item['nama'],
                         'nip' => $item['nip_baru'] ?? $item['nip1'],
@@ -37,6 +57,7 @@ class TendikService {
                         'gelar_depan' => $item['gelar_depan'],
                         'gelar_belakang' => $item['gelar_belakang'],
                         'status_kepegawaian' => $item['cabang'],
+                        'jabatan' => $jabatanClean,
                         'golongan' => $item['gol'],
                         'updated_at' => now(),
                         'created_at' => now(),

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('gelar_depan')->nullable();
             $table->string('gelar_belakang')->nullable();
             $table->string('status_kepegawaian'); // di sipeg namanya cabang
+            $table->string('jabatan')->nullable(); // di sipeg namanya ket_status, cuma ada di dosen pns
             $table->string('golongan')->nullable();
             $table->timestamps();
         });

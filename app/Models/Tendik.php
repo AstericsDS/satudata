@@ -14,6 +14,7 @@ class Tendik extends Model
         'gelar_depan',
         'gelar_belakang',
         'status_kepegawaian',
+        'jabatan',
         'golongan'
     ];
 }
