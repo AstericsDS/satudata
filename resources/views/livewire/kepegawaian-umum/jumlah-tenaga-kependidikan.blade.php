@@ -232,6 +232,7 @@
 
         {{-- Modal - Start --}}
         <div
+            x-cloak
             x-data="{
                 showModal: false,
                 detail: {
