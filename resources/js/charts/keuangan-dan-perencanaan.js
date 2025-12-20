@@ -1,6 +1,6 @@
 import ApexCharts from "apexcharts";
 
-var options1 = {
+var optionsDayaSerapUniversitas = {
     chart: {
         type: "pie",
         height: 500,
@@ -81,10 +81,13 @@ var options3 = {
     labels: ["Lorem 1", "Lorem 2"],
 };
 
-window.renderChart1 = function() {
-    if (window.chart1) window.chart1.destroy();
-    window.chart1 = new ApexCharts(document.querySelector("#daya-serap-universitas"), options1);
-    window.chart1.render();
+window.renderChartDayaSerapUniversitas = function(dataSeries) {
+    if (window.chartDayaSerapUniversitas) window.chartDayaSerapUniversitas.destroy();
+    if (dataSeries && Array.isArray(dataSeries)) {
+        optionsDayaSerapUniversitas.series = dataSeries;
+    }
+    window.chartDayaSerapUniversitas = new ApexCharts(document.querySelector("#daya-serap-universitas"), optionsDayaSerapUniversitas);
+    window.chartDayaSerapUniversitas.render();
 };
 window.renderChart2 = function() {
     if (window.chart2) window.chart2.destroy();
@@ -98,9 +101,9 @@ window.renderChart3 = function() {
 };
 
 
-var chart1 = new ApexCharts(
+var chartDayaSerapUniversitas = new ApexCharts(
     document.querySelector("#daya-serap-universitas"),
-    options1
+    optionsDayaSerapUniversitas
 );
 
 var chart2 = new ApexCharts(

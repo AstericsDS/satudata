@@ -1,69 +1,52 @@
 @vite(['resources/js/charts/keuangan-dan-perencanaan.js'])
 <div class="mx-24 mt-4 mb-20">
 
-    <!-- Breadcrumb -->
-    <nav class="flex justify-end" aria-label="Breadcrumb">
+    {{-- Breadcrumbs - Start --}}
+    <nav class="flex justify-end mr-2 mb-2" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <a href="{{ route('dashboard') }}"
-                    class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary transition-all">
-                    <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                            d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                    </svg>
-                    Beranda
-                </a>
-            </li>
             <li>
                 <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
-                    </svg>
-                    <a href="{{ route('anggaran-dan-daya-serap') }}"
-                        class="ms-1 text-sm font-medium text-gray-700 hover:text-primary transition-all md:ms-2">Keuangan
-                        dan
-                        Perencanaan
+                    <a href="#"
+                        class="ms-1 text-sm font-medium text-gray-700 hover:text-primary transition-all md:ms-2">
+                        Keuangan dan Perencanaan
                     </a>
                 </div>
             </li>
             <li aria-current="page">
                 <div class="flex items-center">
                     <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
+                                d="m1 9 4-4-4-4" />
                     </svg>
-                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Anggaran dan Daya
-                        Serap</span>
+                    <span class="ms-1 text-sm font-medium text-primary">Anggaran dan Daya Serap</span>
                 </div>
             </li>
         </ol>
     </nav>
+    {{-- Breadcrumbs - End --}}
 
     <!-- Stat Cards -->
     <div class="flex gap-8 mt-6">
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">25.5M</h1>
-            <h2>Total Anggaran</h2>
+            <h1 class="text-5xl">{{ $data_pagu_total }}</h1>
+            <h2 class="text-xl">Total Anggaran</h2>
         </div>
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">18.2M</h1>
-            <h2>Realisasi</h2>
+            <h1 class="text-5xl">{{ $data_pagu_realisasi }}</h1>
+            <h2 class="text-xl">Realisasi</h2>
         </div>
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">7.3M</h1>
-            <h2>Sisa Anggaran</h2>
+            <h1 class="text-5xl">{{ $data_pagu_sisa }}</h1>
+            <h2 class="text-xl">Sisa Anggaran</h2>
         </div>
         <div
             class="flex-1 flex flex-col items-center gap-3 justify-center bg-linear-to-tr from-primary/70 to-accent-1/70 text-white p-8 rounded-md">
-            <h1 class="text-5xl">71.4%</h1>
-            <h2>Daya Serap</h2>
+            <h1 class="text-5xl">{{ $daya_serap }}</h1>
+            <h2 class="text-xl">Daya Serap</h2>
         </div>
     </div>
 
@@ -87,17 +70,30 @@
                 per-Output</button>
             </div>
             
-            <p class="bg-red-300 text-red-900 px-2 rounded-md w-fit mt-4">Data Belum Sinkron</p>
+            @if ($update && $update->status === 'synchronized')
+                <p class="font-light text-gray-500 mt-2">
+                    Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}
+                </p>
+            @else
+                <p class="font-light text-red-500">
+                    Data Belum Sinkron
+                </p>
+            @endif
             <template x-if="active === 'daya-serap-universitas'">
-                <div x-effect="if (active === 'daya-serap-universitas') $nextTick(() => window.renderChart1())">
-                    <div id="daya-serap-universitas" class="flex justify-center items-center py-4"></div>
+                <div
+                    x-effect="
+                        if (active === 'daya-serap-universitas') $nextTick(() => window.renderChartDayaSerapUniversitas([{{ $chart_pagu_realisasi }}, {{ $chart_pagu_sisa }} ]))
+                    "
+                >
+                    <div id="daya-serap-universitas" class="flex justify-center items-center py-4" wire:ignore></div>
+                    {{-- Status --}}
                     <div class="flex gap-4">
                         <div class="bg-primary/10 flex-1 p-4 rounded-md text-center">
-                            <h1 class="font-semibold text-3xl mb-4">Rp 18.2M</h1>
+                            <h1 class="font-semibold text-3xl mb-4">Rp {{ $data_pagu_realisasi }}</h1>
                             <h2>Realisasi</h2>
                         </div>
                         <div class="bg-primary/10 flex-1 p-4 rounded-md text-center">
-                            <h1 class="font-semibold text-3xl mb-4">Rp 7.3M</h1>
+                            <h1 class="font-semibold text-3xl mb-4">Rp {{ $data_pagu_sisa }}</h1>
                             <h2>Sisa Anggaran</h2>
                         </div>
                     </div>
