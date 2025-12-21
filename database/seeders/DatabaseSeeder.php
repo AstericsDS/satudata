@@ -7,6 +7,7 @@ use App\Models\Fakultas;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,9 +29,20 @@ class DatabaseSeeder extends Seeder
         //     ProdiSeeder::class
         // ]);
 
-        User::create([
-            'name' => 'Andhika',
-            'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id'
+        // User::create([
+        //     'name' => 'Andhika',
+        //     'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id'
+        // ]);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Andhika',
+                'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id'
+            ],
+            [
+                'name' => 'Chelsea',
+                'email' => 'chelsea.vanianindya.putri@mhs.unj.ac.id'
+            ]
         ]);
     }
 }
