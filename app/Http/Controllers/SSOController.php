@@ -51,7 +51,9 @@ class SSOController extends Controller
         } catch (\Exception $e) {
             return redirect(route('login'))->with('error', 'Token SSO tidak valid. Silakan coba lagi');
         }
+
         $user = User::where('email', $decoded->email)->first();
+
         if ($user) {
             $userCreate = User::updateOrCreate(
                 ['email' => $decoded->email],
@@ -67,8 +69,7 @@ class SSOController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended(route('sinkronisasi-publik'));
-        } else {
-            return redirect()->intended(route('login'))->with('error', 'Kamu tidak memiliki akses');
         }
+        return redirect()->intended(route('login'))->with('error', 'Kamu tidak memiliki akses');
     }
 }
