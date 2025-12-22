@@ -4,7 +4,7 @@
     <div class="flex flex-wrap justify-between items-center w-full px-4 sm:px-6 py-2.5">
 
         {{-- Logo - Start --}}
-        <a href="/dashboard"  class="flex items-center space-x-3">
+        <a href="/"  class="flex items-center space-x-3">
             <img src="{{ asset('assets/images/unj.png') }}" width="55px" class="h-14 w-auto mt-2 ml-2" alt="UNJ Logo">
             <div class="flex flex-col">
                 <h1 class="font-bold text-lg sm:text-2xl text-primary">SATU DATA</h1>
@@ -63,15 +63,15 @@
                             <li>
                                 <a href="{{ route('tracer-study') }}"  class="block px-4 py-1.5 hover:underline">Tracer Study</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('beban-mengajar') }}"  class="block px-4 py-1.5 hover:underline">Beban Mengajar</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('rasio-dosen-mahasiswa') }}"  class="block px-4 py-1.5 hover:underline">Rasio Dosen/Mahasiswa</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('data-akreditasi') }}"  class="block px-4 py-1.5 hover:underline">Data Akreditasi</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     {{-- Menu Akademik & Mahasiswa - End --}}
@@ -86,18 +86,18 @@
                     {{-- Menu Kepegawaian & Umum - Start --}}
                     <div id="kepegawaianNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
                         <ul class="text-sm text-primary" aria-labelledby="kepegawaian-large-button">
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('agenda-pejabat') }}"  class="block px-4 py-1.5 hover:underline">Agenda Pejabat</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('profil-kepakaran-dosen') }}"  class="block px-4 py-1.5 hover:underline">Profil dan Kepakaran Dosen</a>
                             </li>
                             <li>
                                 <a href="{{ route('jumlah-tenaga-kependidikan') }}"  class="block px-4 py-1.5 hover:underline">Jumlah Tenaga Kependidikan</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('temukan-pegawai') }}"  class="block px-4 py-1.5 hover:underline">Temukan Pegawai</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     {{-- Menu Kepegawaian & Umum - End --}}
@@ -140,9 +140,9 @@
 
                 {{-- Publikasi - Start --}}
                 <li class="{{ request()->route()->getPrefix() === '/publikasi' ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
-                    <button id="publikasi-navbar-link" data-dropdown-toggle="publikasiNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
+                    {{-- <button id="publikasi-navbar-link" data-dropdown-toggle="publikasiNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
                         Publikasi
-                    </button>
+                    </button> --}}
                     {{-- Menu Publikasi - Start --}}
                     <div id="publikasiNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
                         <ul class="text-sm text-primary" aria-labelledby="publikasi-large-button">

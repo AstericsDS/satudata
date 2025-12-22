@@ -19,7 +19,7 @@
     <div class="absolute left-[65px] top-[30%]">
 
         <div class="flex flex-col items-center">
-            <span class="text-primary mb-4">Selamat Datang,</span>
+            <span class="text-primary text-xl mb-4">Selamat Datang</span>
             <span class="text-primary text-6xl font-extrabold tracking-wide">SATU DATA</span>
             <span class="text-primary text-2xl font-semibold">Universitas Negeri Jakarta</span>
         </div>
