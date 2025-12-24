@@ -39,7 +39,7 @@ class AnggaranDanDayaSerap extends Component
     public function mount() {
         $this->update = Synchronize::where('name', 'Anggaran dan Daya Serap')->first() ?? null;
 
-        $data = Anggaran::first(); 
+        $data = Anggaran::where('data_scope', 'total')->first(); 
 
         if ($data) {
             $pagu_total = $data->pagu_total;
@@ -58,8 +58,8 @@ class AnggaranDanDayaSerap extends Component
             $this->data_pagu_sisa = $this->formatNumber($pagu_sisa);
             $this->daya_serap = number_format($persentase, 1) . '%';
 
-            $this->chart_pagu_realisasi = (float) $pagu_realisasi;
-            $this->chart_pagu_sisa = (float) $pagu_sisa;
+            $this->chart_pagu_realisasi = $pagu_realisasi;
+            $this->chart_pagu_sisa = $pagu_sisa;
         }
     }
 
