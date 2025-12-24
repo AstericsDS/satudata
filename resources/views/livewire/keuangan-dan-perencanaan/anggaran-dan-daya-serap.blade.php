@@ -71,7 +71,7 @@
             </div>
             
             @if ($update && $update->status === 'synchronized')
-                <div class="flex flex-col mt-4 gap-1">
+                <div class="flex flex-col mt-4 gap-2">
                     <p class="font-light text-gray-500">
                         Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}
                     </p>
