@@ -183,8 +183,8 @@ Route::prefix('debug')->group(function () {
             // 'per-fakultas' => $data->groupBy('klasifikasi'),
             // 'distinct-negara' => Kerjasama::distinct()->pluck('negara'),
             // 'distinct-kategori' => Kerjasama::distinct()->pluck('kategori'),
-            // 'distinct-status' => Kerjasama::distinct()->pluck('status'),
-            'distinct-negara' => Kerjasama::distinct()->pluck('status'),
+            'distinct-status' => Kerjasama::distinct()->pluck('status'),
+            // 'distinct-negara' => Kerjasama::distinct()->pluck('tahun'),
         ];
     });
     Route::get('/sync-sikerma', function (KerjasamaService $service) {

@@ -45,7 +45,28 @@ final class MOA extends PowerGridComponent
             ->add('kategori')
             ->add('tanggal_awal_formatted', fn(Kerjasama $model) => Carbon::parse($model->tanggal_awal)->locale('ID')->format('j F Y'))
             ->add('tanggal_akhir_formatted', fn(Kerjasama $model) => Carbon::parse($model->tanggal_akhir)->locale('ID')->format('j F Y'))
-            ->add('status');
+            ->add('status', function (Kerjasama $row) {
+                switch ($row->status) {
+                    case 'Aktif':
+                        $class = 'bg-green-100 text-green-800';
+                        break;
+                    case 'Tidak Aktif':
+                        $class = 'bg-red-100 text-red-800';
+                        break;
+                    case 'Kadaluarsa':
+                        $class = 'bg-yellow-100 text-yellow-800';
+                        break;
+                    case 'Dalam Pengajuan':
+                        $class = 'bg-blue-100 text-blue-800';
+                        break;
+                    case 'Dalam Perpanjangan':
+                        $class = 'bg-indigo-100 text-indigo-800';
+                        break;
+                    default:
+                        $class = 'bg-gray-100 text-gray-800';
+                }
+                return "<span class='p-3 inline-flex rounded-lg text-sm {$class}'>{$row->status}</span>";
+            });
     }
 
     public function columns(): array
