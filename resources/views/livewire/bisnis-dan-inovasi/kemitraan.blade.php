@@ -64,7 +64,7 @@
         </div>
     </div>
 
-    <div x-data="{ menu: 'daftar-dokumen-kerja-sama', graphicTable: 'per-fakultas', documentTable: 'mou'  }"
+    <div x-data="{ menu: 'grafik-statistik', graphicTable: 'per-fakultas', documentTable: 'mou'  }"
         @change-menu.window="menu = $event.detail.menu"
         @change-graphic-table.window="graphicTable = $event.detail.chart"
         @change-document-table.window="documentTable = $event.detail.table"
