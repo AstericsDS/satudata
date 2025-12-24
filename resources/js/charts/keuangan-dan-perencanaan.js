@@ -17,12 +17,11 @@ var optionsDayaSerapUniversitas = {
     tooltip: {
         y: {
             formatter: function (value) {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                return 'Rp' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             },
         },
     },
 
-    series: [18200000000, 7300000000],
 
     labels: ["Realisasi", "Sisa Anggaran"],
 };

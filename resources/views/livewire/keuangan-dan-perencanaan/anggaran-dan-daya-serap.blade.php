@@ -1,5 +1,5 @@
-@vite(['resources/js/charts/keuangan-dan-perencanaan.js'])
 <div class="mx-24 mt-4 mb-20">
+    @vite(['resources/js/charts/keuangan-dan-perencanaan.js'])
 
     {{-- Breadcrumbs - Start --}}
     <nav class="flex justify-end mr-2 mb-2" aria-label="Breadcrumb">
@@ -71,9 +71,14 @@
             </div>
             
             @if ($update && $update->status === 'synchronized')
-                <p class="font-light text-gray-500 mt-2">
-                    Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}
-                </p>
+                <div class="flex flex-col mt-4 gap-2">
+                    <p class="font-light text-gray-500">
+                        Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}
+                    </p>
+                    <p class="font-semibold text-gray-800">
+                        Sumber: SAKU
+                    </p>
+                </div>
             @else
                 <p class="font-light text-red-500">
                     Data Belum Sinkron
@@ -101,7 +106,7 @@
             </template>
 
             <template x-if="active === 'anggaran-per-akun-belanja'">
-                <div x-effect="if (active === 'anggaran-per-akun-belanja') $nextTick(() => window.renderChart2())">
+                <!-- <div x-effect="if (active === 'anggaran-per-akun-belanja') $nextTick(() => window.renderChart2())">
                     <div id="anggaran-per-akun-belanja" class="flex justify-center items-center py-4"></div>
 
                     <div class="flex gap-4">
@@ -114,11 +119,14 @@
                             <h2>Lorem 2</h2>
                         </div>
                     </div>
+                </div> -->
+                <div>
+                    <livewire:keuangan-dan-perencanaan.tables.akun />
                 </div>
             </template>
 
             <template x-if="active === 'anggaran-per-output'">
-                <div x-effect="if (active === 'anggaran-per-output') $nextTick(() => window.renderChart3())">
+                <!-- <div x-effect="if (active === 'anggaran-per-output') $nextTick(() => window.renderChart3())">
                     <div id="anggaran-per-output" class="flex justify-center items-center py-4"></div>
 
                     <div class="flex gap-4">
@@ -131,7 +139,8 @@
                             <h2>Lorem 2</h2>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <livewire:keuangan-dan-perencanaan.tables.ouput />
             </template>
 
         </div>

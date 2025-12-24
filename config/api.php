@@ -9,4 +9,6 @@ return [
     'sipeg_token' => env('SIPEG_TOKEN'),
     'tracer_study_base_url' => env('TRACER_STUDY_BASE_URL'),
     'sikerma_base_url' => env('SIKERMA_BASE_URL'),
+    'saku_base_url' => env('SAKU_BASE_URL'),
+    'saku_token' => env('SAKU_TOKEN'),
 ];
