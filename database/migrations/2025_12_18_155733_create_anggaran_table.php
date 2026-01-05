@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('pagu_total');
             $table->bigInteger('pagu_realisasi');
             $table->bigInteger('pagu_sisa');
+            $table->unique(['tahun', 'satker', 'nama', 'data_scope'], 'anggaran_unique_identifier');
             $table->timestamps();
         });
     }

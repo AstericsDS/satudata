@@ -22,7 +22,7 @@ class AnggaranService
     }
     public function getTotal()
     {
-        $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/v2/statistik/realisasi-pagu?thang=2025&kd_satker=999');
+        $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/v2/statistik/realisasi-pagu?thang=' . $this->year . '&kd_satker=999');
         $data = $response->json();
 
         if (!isset($data['data']) || (isset($data['code']) && $data['code'] !== 0)) {
@@ -45,7 +45,7 @@ class AnggaranService
 
         DB::table('anggaran')->upsert(
             $rows,
-            ['tahun', 'satker'],
+            ['tahun', 'satker', 'nama', 'data_scope'],
             ['pagu_total', 'pagu_realisasi', 'pagu_sisa']
         );
 
@@ -54,7 +54,7 @@ class AnggaranService
     }
     public function getAkun()
     {
-        $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/statistik/realisasi-pagu/per-akun?thang=2025&kd_satker=999');
+        $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/statistik/realisasi-pagu/per-akun?thang=' . $this->year . '&kd_satker=999');
         $data = $response->json();
 
         if (!isset($data['data'])) {
@@ -80,14 +80,14 @@ class AnggaranService
 
         DB::table('anggaran')->upsert(
             $rows,
-            ['tahun', 'satker', 'nama'],
+            ['tahun', 'satker', 'nama', 'data_scope'],
             ['pagu_total', 'pagu_realisasi', 'pagu_sisa']
         );
 
     }
     public function getOuput()
     {
-        $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/statistik/realisasi-pagu/per-sub-output?thang=2025&kd_satker=999');
+        $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/statistik/realisasi-pagu/per-sub-output?thang=' . $this->year . '&kd_satker=999');
         $data = $response->json();
 
         if (!isset($data['data'])) {
@@ -113,7 +113,7 @@ class AnggaranService
 
         DB::table('anggaran')->upsert(
             $rows,
-            ['tahun', 'satker', 'nama'],
+            ['tahun', 'satker', 'nama', 'data_scope'],
             ['pagu_total', 'pagu_realisasi', 'pagu_sisa']
         );
 
