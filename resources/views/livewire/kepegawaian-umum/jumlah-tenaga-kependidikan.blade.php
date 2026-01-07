@@ -232,7 +232,9 @@
 
         {{-- Modal - Start --}}
         <div
+            x-show="showModal"
             x-cloak
+            class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-y-auto overflow-x-hidden bg-gray-900/75 bg-opacity-75 transition-opacity"
             x-data="{
                 showModal: false,
                 detail: {
@@ -249,19 +251,31 @@
                 detail = $event.detail;
                 $nextTick(() => { $el.focus(); });
             "
-            x-show="showModal"
             aria-modal="true"
-            class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-y-auto overflow-x-hidden backdrop-blur-sm bg-gray-900/75 bg-opacity-75 transition-opacity"
-            x-transition:enter="ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-90"
-            x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="ease-in duration-200"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-        >   
+        >
+            {{-- Backdrop Blur --}}
             <div
-                class="relative p-4 w-full max-w-[768px] max-h-full"
-                @click.outside="showModal = false"
+                x-show="showModal"
+                x-transition:enter="ease-out duration-200"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-gray-900/75 backdrop-blur-sm"
+            ></div>
+
+
+            {{-- Modal Wrapper --}}
+            <div
+                x-show="showModal"
+                x-transition:enter="ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95"
+                class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-2rem)] max-w-[768px] bg-white rounded-lg shadow-lg"
             >
                 {{-- Modal Header --}}
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t-lg border-gray-200 bg-gradient-to-r from-[#00C7CF] to-[#006569]">
