@@ -234,7 +234,7 @@
         <div
             x-show="showModal"
             x-cloak
-            class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-y-auto overflow-x-hidden bg-gray-900/75 bg-opacity-75 transition-opacity"
+            class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-y-auto overflow-x-hidden"
             x-data="{
                 showModal: false,
                 detail: {
