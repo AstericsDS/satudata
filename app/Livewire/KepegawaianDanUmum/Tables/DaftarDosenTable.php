@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\PowerGrid;
+namespace App\Livewire\KepegawaianDanUmum\Tables;
 
 use App\Models\Dosen;
 use Illuminate\Database\Eloquent\Builder;

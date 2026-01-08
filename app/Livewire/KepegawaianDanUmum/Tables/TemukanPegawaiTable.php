@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\PowerGrid;
+namespace App\Livewire\KepegawaianDanUmum\Tables;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;

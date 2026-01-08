@@ -223,7 +223,7 @@
                 <div x-show="menu === 'daftar-tendik'" class="flex flex-col bg-white rounded-md mt-4 p-6"
                     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
                     x-transition:enter-end="opacity-100 scale-100">
-                    <livewire:power-grid.daftar-tendik-table />
+                    <livewire:kepegawaian-dan-umum.tables.daftar-tendik-table />
                 </div>
             </div>
             {{-- Content - End --}}

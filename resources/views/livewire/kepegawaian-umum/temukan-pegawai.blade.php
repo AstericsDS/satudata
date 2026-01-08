@@ -38,7 +38,7 @@
 
             {{-- Table --}}
             <div class="relative rounded-lg my-4 bg-white p-5">
-                <livewire:power-grid.temukan-pegawai-table />
+                <livewire:kepegawaian-dan-umum.tables.temukan-pegawai-table />
             </div>
         </div>
         {{-- Main Container - End --}}
