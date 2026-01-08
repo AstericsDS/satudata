@@ -95,9 +95,9 @@
                             <li>
                                 <a href="{{ route('jumlah-tenaga-kependidikan') }}"  class="block px-4 py-1.5 hover:underline">Jumlah Tenaga Kependidikan</a>
                             </li>
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('temukan-pegawai') }}"  class="block px-4 py-1.5 hover:underline">Temukan Pegawai</a>
-                            </li> --}}
+                            </li>
                         </ul>
                     </div>
                     {{-- Menu Kepegawaian & Umum - End --}}
