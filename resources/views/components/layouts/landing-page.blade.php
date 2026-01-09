@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/images/unj.png')}}">
     <script src="https://kit.fontawesome.com/803b706a8d.js" crossorigin="anonymous"></script>
     <title>{{ $title ?? 'SATU DATA' }}</title>
 </head>
