@@ -36,6 +36,7 @@ var options1 = {
             horizontal: false,
             columnWidth: "65%",
             borderRadius: 5,
+            borderRadiusApplication: "end",
             dataLabels: {
                 position: "top",
             },
@@ -166,10 +167,17 @@ var options2 = {
         },
     },
 
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+    },
+
     plotOptions: {
         bar: {
             horizontal: false,
             borderRadius: 2,
+            borderRadiusApplication: "end",
         },
     },
 };
@@ -195,6 +203,7 @@ var options3 = {
             horizontal: false,
             columnWidth: "65%",
             borderRadius: 5,
+            borderRadiusApplication: "end",
             dataLabels: {
                 position: "top",
             },
@@ -321,10 +330,17 @@ var options4 = {
         },
     },
 
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+    },
+
     plotOptions: {
         bar: {
             horizontal: false,
             borderRadius: 2,
+            borderRadiusApplication: "end",
         },
     },
 };
@@ -358,6 +374,7 @@ var options5 = {
             horizontal: false,
             columnWidth: "65%",
             borderRadius: 5,
+            borderRadiusApplication: "end",
             dataLabels: {
                 position: "top",
             },
@@ -493,10 +510,17 @@ var options6 = {
         },
     },
 
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+    },
+
     plotOptions: {
         bar: {
             horizontal: false,
             borderRadius: 2,
+            borderRadiusApplication: "end",
         },
     },
 };
@@ -530,6 +554,7 @@ var options7 = {
             horizontal: false,
             columnWidth: "65%",
             borderRadius: 5,
+            borderRadiusApplication: "end",
             dataLabels: {
                 position: "top",
             },
@@ -657,10 +682,17 @@ var options8 = {
         },
     },
 
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+    },
+
     plotOptions: {
         bar: {
             horizontal: false,
             borderRadius: 2,
+            borderRadiusApplication: "end",
         },
     },
 };
@@ -682,6 +714,14 @@ var options9 = {
             fontSize: "11px",
         },
         margin: 20,
+    },
+
+    legend: {
+        position: "bottom",
+        horizontalAlign: "center",
+        itemMargin: {
+            vertical: 25,
+        },
     },
 };
 
@@ -718,6 +758,14 @@ var options11 = {
         },
         margin: 20,
     },
+
+    legend: {
+        position: "bottom",
+        horizontalAlign: "center",
+        itemMargin: {
+            vertical: 25,
+        },
+    },
 };
 
 var options12 = {
@@ -753,6 +801,14 @@ var options13 = {
         },
         margin: 20,
     },
+
+    legend: {
+        position: "bottom",
+        horizontalAlign: "center",
+        itemMargin: {
+            vertical: 25,
+        },
+    },
 };
 
 var options14 = {
@@ -787,6 +843,14 @@ var options15 = {
             fontSize: "11px",
         },
         margin: 20,
+    },
+
+    legend: {
+        position: "bottom",
+        horizontalAlign: "center",
+        itemMargin: {
+            vertical: 25,
+        },
     },
 };
 

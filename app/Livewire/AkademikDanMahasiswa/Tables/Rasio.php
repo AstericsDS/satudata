@@ -36,7 +36,6 @@ final class Rasio extends PowerGridComponent
 
     public function datasource(): Collection
     {
-        logger()->debug('Year Range', ['result' => $this->yearRange]);
         $program_studi = Mahasiswa::distinct()
             ->pluck('program_studi')
             ->intersect(
