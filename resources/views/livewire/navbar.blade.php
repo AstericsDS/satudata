@@ -1,7 +1,7 @@
 <nav class="bg-transparent border-gray-200">
 
     {{-- All Container - Start --}}
-    <div class="flex flex-wrap justify-between items-center w-full px-4 sm:px-6 py-2.5">
+    <div class="flex flex-wrap justify-between items-center w-full px-4 sm:px-6 py-2.5 relative">
 
         {{-- Logo - Start --}}
         <a href="/"  class="flex items-center space-x-3">
@@ -14,11 +14,11 @@
         {{-- Logo - End --}}
 
         {{-- Collapse Three-lines Button - Start --}}
-        <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg xl:hidden focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-multi-level" aria-expanded="false">
+        <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg xl:hidden focus:outline-none focus:ring-2 focus:ring-primary" aria-controls="navbar-multi-level" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
 
             {{-- Hamburger Icon -  Start --}}
-            <svg id="hamburger-icon" class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <svg id="hamburger-icon" class="w-5 h-5 text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
             </svg>
             {{-- Hamburger Icon - End --}}
@@ -33,14 +33,14 @@
         {{-- Collapse Three-lines Button - End --}}
 
         {{-- Menu - Start --}}
-        <div class="hidden w-full xl:block xl:w-auto" id="navbar-multi-level">
+        <div class="hidden w-full absolute top-full left-0 z-50 bg-white shadow-lg xl:shadow-none xl:bg-transparent xl:static xl:block xl:w-auto" id="navbar-multi-level">
 
             {{-- Menu List - Start --}}
-            <ul class="flex space-x-4 font-medium text-sm p-4 md:p-0 mt-4 border border-gray-100 rounded-lg xl:flex-row  xl:mt-0 xl:border-0">
+            <ul class="flex flex-col font-medium text-sm p-4 xl:p-0 mt-0 border border-gray-100 rounded-b-lg xl:flex-row xl:space-x-4 xl:mt-0 xl:border-0 bg-gray-50 xl:bg-transparent">
 
                 {{-- Home - Start --}}
                 <li class="{{ request()->routeIs('dashboard') ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
-                    <a href="{{ route('dashboard') }}"  class="block py-2 px-3 hover:underline" aria-current="page">
+                    <a href="{{ route('dashboard') }}"  class="block py-2 px-3 hover:underline focus:outline-none focus:bg-gray-100" aria-current="page">
                         Beranda
                     </a>
                 </li>
@@ -48,12 +48,12 @@
 
                 {{-- Akademik & Mahasiswa - Start --}}
                 <li class=" {{ request()->route()->getPrefix() === '/akademik-dan-mahasiswa' ? 'bg-primary rounded-md overflow-hidden text-white' : 'text-primary' }}">
-                    <button id="akademik-navbar-link" data-dropdown-toggle="akademikNavbar" class="flex items-center justify-between w-full py-2 px-3 hover:underline cursor-pointer">
+                    <button id="akademik-navbar-link" data-dropdown-toggle="akademikNavbar" class="flex items-center justify-between w-full py-2 px-3 rounded-md xl:hover:bg-transparent hover:underline cursor-pointer">
                         Akademik & Mahasiswa
                     </button>
                     {{-- Menu Akademik & Mahasiswa - Start --}}
-                    <div id="akademikNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-55">
-                        <ul class="text-sm text-primary" aria-labelledby="akademik-large-button">
+                    <div id="akademikNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 xl:w-55">
+                        <ul class="text-sm text-primary" aria-labelledby="akademik-navbar-link">
                             <li>
                                 <a href="{{ route('jumlah-mahasiswa') }}"  class="block px-4 py-1.5 hover:underline">Jumlah Mahasiswa</a>
                             </li>
