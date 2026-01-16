@@ -1,18 +1,19 @@
 @vite(['resources/js/charts/dashboard.js'])
 <div class="mb-20">
-    {{-- Header Data --}}
-    <div class="flex justify-center gap-8 my-8 mx-24">
+
+    {{-- Stat Cards - Start --}}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 my-8 mx-4 md:mx-12 lg:mx-24">
 
         {{-- Wisudawan --}}
-        <div class="flex-1 px-6 py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
+        <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
             <div class="flex items-center justify-center">
-                <img src="{{ asset('assets/dashboard/wisudawan.svg') }}" alt="Wisudawan 2025" class="w-10">
-                <div class="flex items-center ml-4 gap-2 text-xl">
+                <img src="{{ asset('assets/dashboard/wisudawan.svg') }}" alt="Wisudawan 2025" class="w-10 h-10 shrink-0">
+                <div class="flex flex-col text-center items-center ml-4 gap-2 text-xl">
                     <span class="font-bold">{{ $dashboardData['wisuda'] ?? '-' }}</span>
                     <span class="font-semibold ">Wisudawan {{ $year }}</span>
                 </div>
             </div>
-            <div class="w-fit mx-auto">`
+            <div class="w-full text-center mx-auto">
                 <span
                     class="rounded-lg text-white font-semibold p-[2px] px-[7px] {{ is_numeric($percent_wisuda) && $percent_wisuda < 0 ? 'bg-red-700' : 'bg-primary' }}">
                     @if (is_numeric($percent_wisuda))
@@ -26,15 +27,15 @@
         </div>
 
         {{-- Mahasiswa --}}
-        <div class="flex-1 px-6 py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
+        <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
             <div class="flex items-center justify-center">
-                <img src="{{ asset('assets/dashboard/mahasiswa.svg') }}" alt="Mahasiswa" class="w-10">
-                <div class="flex items-center ml-4 gap-2 text-xl">
+                <img src="{{ asset('assets/dashboard/mahasiswa.svg') }}" alt="Mahasiswa" class="w-10 h-10 shrink-0">
+                <div class="flex flex-col text-center items-center ml-4 gap-2 text-xl">
                     <span class="font-bold">{{ $dashboardData['mahasiswa'] ?? '-' }}</span>
                     <span class="font-semibold ">Mahasiswa</span>
                 </div>
             </div>
-            <div class="w-fit mx-auto">
+            <div class="w-full text-center mx-auto">
                 <span
                     class="bg-primary rounded-lg text-white font-semibold p-[2px] px-[7px] {{ is_numeric($percent_mahasiswa) && $percent_mahasiswa < 0 ? 'bg-red-700' : 'bg-primary' }}">
                     @if (is_numeric($percent_mahasiswa))
@@ -48,15 +49,15 @@
         </div>
 
         {{-- Dosen --}}
-        <div class="flex-1 px-6 py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
+        <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
             <div class="flex items-center justify-center">
-                <img src="{{ asset('assets/dashboard/dosen.svg') }}" alt="Dosen" class="w-10">
-                <div class="flex items-center ml-4 gap-2 text-xl">
+                <img src="{{ asset('assets/dashboard/dosen.svg') }}" alt="Dosen" class="w-10 h-10 shrink-0">
+                <div class="flex flex-col text-center items-center ml-4 gap-2 text-xl">
                     <span class="font-bold">{{ $dashboardData['dosen'] ?? '-' }}</span>
                     <span class="font-semibold ">Dosen</span>
                 </div>
             </div>
-            <div class="w-fit mx-auto">
+            <div class="w-full text-center mx-auto">
                 <span class="bg-primary rounded-lg text-white font-semibold p-[2px] px-[7px]">
                     @if (is_numeric($percent_mahasiswa))
                         {{ $percent_s3 . '%' }}
@@ -69,21 +70,23 @@
         </div>
 
         {{-- Peminat --}}
-        <div class="flex-1 px-6 py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
+        <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
             <div class="flex items-center justify-center">
-                <img src="{{ asset('assets/dashboard/peminat.svg') }}" alt="Peminat 2025" class="w-10">
-                <div class="flex items-center ml-4 gap-2 text-xl">
+                <img src="{{ asset('assets/dashboard/peminat.svg') }}" alt="Peminat 2025" class="w-10 h-10 shrink-0">
+                <div class="flex flex-col text-center items-center ml-4 gap-2 text-xl">
                     <span class="font-bold">0</span>
                     <span class="font-semibold ">Peminat {{ $year }}</span>
                 </div>
             </div>
-            <div class="w-fit mx-auto">
+            <div class="w-full text-center mx-auto">
                 <span class="bg-primary rounded-lg text-white font-semibold p-[2px] px-[7px]">-</span>
                 <span class="text-gray-600 ml-2">Dari tahun sebelumnya</span>
             </div>
         </div>
     </div>
+    {{-- Stat Cards - End --}}
 
+    {{-- Graphic - Start --}}
     <div x-data="{
         active: 0,
         total: 8,
@@ -108,7 +111,7 @@
 
     }" x-effect="auto ? start() : stop()">
 
-        <div class="w-[65%] mx-auto text-end">
+        <div class="w-[95%] md:w-[90%] xl:w-[65%] mx-auto text-end">
             <label class="inline-flex items-center me-5 cursor-pointer">
                 <input type="checkbox" value="true" class="sr-only peer" checked x-model="auto">
                 <div
@@ -119,12 +122,16 @@
         </div>
 
         {{-- Main Chart --}}
-        <div @change-chart.window="active = $event.detail.id; clear()"
-            class="group relative bg-linear-to-b from-primary from-20% to-accent-2 w-[65%] mx-auto rounded-md flex flex-col gap-4 px-4 pb-8 justify-center">
+        <div
+            @change-chart.window="active = $event.detail.id; clear()"
+            class="group relative bg-linear-to-b from-primary from-20% to-accent-2 w-[95%] md:w-[90%] xl:w-[65%] mx-auto rounded-md flex flex-col gap-4 px-4 pb-8 justify-center"
+        >
 
             {{-- Change Button --}}
-            <button @click="active = (active >= 0 && active <= 3) ? 4 : 0"
-                class="absolute top-[50%] -left-14 text-primary opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+            <button 
+                class="absolute top-[50%] -left-14 text-primary opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                @click="active = (active >= 0 && active <= 3) ? 4 : 0"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="M11.8 13H15q.425 0 .713-.288T16 12t-.288-.712T15 11h-3.2l.9-.9q.275-.275.275-.7t-.275-.7t-.7-.275t-.7.275l-2.6 2.6q-.3.3-.3.7t.3.7l2.6 2.6q.275.275.7.275t.7-.275t.275-.7t-.275-.7zm.2 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8" />
@@ -289,7 +296,7 @@
             <div x-data>
 
                 <!-- Menu Mahasiswa -->
-                <div x-show="active >= 0 && active <= 3" class="grid grid-cols-4 gap-6">
+                <div x-show="active >= 0 && active <= 3" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div @click="$dispatch('change-chart', { id: 0 })"
                         class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
                         <div class="p-4 text-white text-center">
@@ -368,7 +375,7 @@
                 </div>
 
                 <!-- Menu Dosen -->
-                <div x-show="active >= 4 && active <= 7" class="grid grid-cols-4 gap-6">
+                <div x-show="active >= 4 && active <= 7" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                     <div @click="$dispatch('change-chart', { id: 4 })"
                         class="bg-gradient-to-b from-primary from-20% to-accent-2 rounded-md flex flex-col relative hover:-translate-y-3 transition-all cursor-pointer hover:opacity-90 active:opacity-80 active:transition-none">
@@ -446,7 +453,7 @@
             </div>
         </div>
     </div>
-
+    {{-- Graphic - End --}}
 
 </div>
 
