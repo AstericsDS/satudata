@@ -32,7 +32,7 @@ class TendikService {
         }
 
         try {
-            $response = Http::withToken(config('api.sipeg_token'))->get(config('api.sipeg_base_url') . '/api/pegawai');
+            $response = Http::withToken(config('api.sipeg_token'))->get(config('api.sipeg_base_url') . '/api/pegawai/all');
             $data = $response->json();
             $exclude_dosen = ['Dosen', 'Dosen Tetap', 'Dosen Tidak Tetap', 'PPPK_Dosen'];
             $rows = [];
@@ -40,15 +40,15 @@ class TendikService {
             foreach($data['pegawais'] as $item) {
                 if(!in_array($item['cabang'], $exclude_dosen)) {
 
-                    if(isset($item['ket_status']) && stripos($item['ket_status'], 'SPT') !== false) {
-                        continue;
-                    }
+                    // if(isset($item['ket_status']) && stripos($item['ket_status'], 'SPT') !== false) {
+                    //     continue;
+                    // }
 
-                    $jabatanClean = isset($item['ket_status']) ? $this->cleanString($item['ket_status']) : null;
-                    if ($jabatanClean) {
-                         // menghapus karakter non-alfanumerik/non-spasi di awal string
-                         $jabatanClean = preg_replace('/^[^a-zA-Z0-9\s]+/', '', $jabatanClean);
-                    }
+                    // $jabatanClean = isset($item['ket_status']) ? $this->cleanString($item['ket_status']) : null;
+                    // if ($jabatanClean) {
+                    //      // menghapus karakter non-alfanumerik/non-spasi di awal string
+                    //      $jabatanClean = preg_replace('/^[^a-zA-Z0-9\s]+/', '', $jabatanClean);
+                    // }
 
                     $rows[] = [
                         'nama' => $item['nama'],
@@ -57,7 +57,7 @@ class TendikService {
                         'gelar_depan' => $item['gelar_depan'],
                         'gelar_belakang' => $item['gelar_belakang'],
                         'status_kepegawaian' => $item['cabang'],
-                        'jabatan' => $jabatanClean,
+                        'jabatan' => $item['jfu_akhir'],
                         'golongan' => $item['gol'],
                         'updated_at' => now(),
                         'created_at' => now(),
