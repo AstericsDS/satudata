@@ -300,11 +300,11 @@
                 <div class="p-4 md:p-5 space-y-4 bg-white flex flex-col items-center rounded-b-lg">
                     <div class="w-full bg-[#EDF7F6] rounded-lg p-6 shadow-sm flex flex-col lg:flex-row gap-8 items-start">
                         {{-- Foto Profil --}}
-                        <div class="flex shrink-0">
+                        {{-- <div class="flex shrink-0">
                             <div class="w-full h-full rounded-full flex items-center justify-center mt-2">
                                 <img class="rounded-full w-25 h-25 object-cover" src="{{ asset('assets/images/unj.png') }}" alt="photo profile">
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- Detail Informasi --}}
                         <div class="flex-grow space-y-4 py-2">
@@ -332,7 +332,7 @@
                                 {{-- Status --}}
                                 <p class="font-semibold">Status</p>
                                 <p>:</p>
-                                <p x-text="detail.status"></p>
+                                <p x-text="detail.status === 'Pegawai' ? 'Tendik PNS' : (detail.status === 'PPPK_Tendik' ? 'Tendik PPPK' : detail.status)"></p>
 
                                 {{-- Pangkat --}}
                                 {{-- <p class="font-semibold">Pangkat</p>
