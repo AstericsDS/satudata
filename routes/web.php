@@ -1,34 +1,36 @@
 <?php
 
-use App\Http\Controllers\SSOController;
-use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
-use App\Livewire\AkademikDanMahasiswa\DataAkreditasi;
-use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
-use App\Livewire\AkademikDanMahasiswa\TracerStudy;
-use App\Models\Kerjasama;
-use App\Models\TracerStudy as Tracing;
 use App\Models\Dosen;
 use App\Livewire\Test;
 use App\Livewire\Debug;
 use App\Livewire\Login;
+use App\Models\Kerjasama;
 use App\Models\Mahasiswa;
 use App\Jobs\SyncMahasiswa;
 use App\Livewire\Dashboard;
-use App\Services\AkademikDanMahasiswa\DosenService;
-use App\Livewire\KepegawaianDanUmum\AgendaPejabat;
-use App\Livewire\KepegawaianDanUmum\ProfilKepakaranDosen;
-use App\Livewire\KepegawaianDanUmum\TemukanPegawai;
-use App\Livewire\KepegawaianDanUmum\JumlahTenagaKependidikan;
 use App\Livewire\Admin\Sinkronisasi;
 use App\Livewire\Public\LandingPage;
-use App\Services\AkademikDanMahasiswa\TracerStudyService;
-use App\Services\BisnisDanInovasi\KerjasamaService;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\GrafikIndeksasiSinta;
+use App\Models\TracerStudy as Tracing;
+use App\Http\Controllers\SSOController;
 use App\Http\Controllers\DataController;
 use App\Livewire\BisnisDanInovasi\Kemitraan;
+use App\Livewire\AkademikDanMahasiswa\TracerStudy;
+use App\Livewire\KepegawaianDanUmum\AgendaPejabat;
+use App\Livewire\KepegawaianDanUmum\TemukanPegawai;
+use App\Services\AkademikDanMahasiswa\DosenService;
+use App\Services\BisnisDanInovasi\KerjasamaService;
+use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
+use App\Livewire\AkademikDanMahasiswa\DataAkreditasi;
 use App\Livewire\AkademikDanMahasiswa\JumlahMahasiswa;
 use App\Livewire\AkademikDanMahasiswa\JumlahWisudawan;
+use App\Livewire\AkademikDanMahasiswa\SebaranMahasiswa;
+use App\Livewire\AkademikDanMahasiswa\SNBT;
+use App\Livewire\KepegawaianDanUmum\ProfilKepakaranDosen;
+use App\Services\AkademikDanMahasiswa\TracerStudyService;
+use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
+use App\Livewire\KepegawaianDanUmum\JumlahTenagaKependidikan;
 use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
 
 // Public
@@ -50,6 +52,8 @@ Route::prefix('akademik-dan-mahasiswa')->group(function () {
     Route::get('/jumlah-mahasiswa', JumlahMahasiswa::class)->name('jumlah-mahasiswa');
     Route::get('/jumlah-wisudawan', JumlahWisudawan::class)->name('jumlah-wisudawan');
     Route::get('/tracer-study', TracerStudy::class)->name('tracer-study');
+    Route::get('/sebaran-mahasiswa', SebaranMahasiswa::class)->name('sebaran-mahasiswa');
+    Route::get('/sebaran-mahasiswa/snbt', SNBT::class)->name('snbt');
     Route::get('/beban-mengajar', BebanMengajar::class)->name('beban-mengajar');
     Route::get('/rasio-dosen-mahasiswa', RasioDosenMahasiswa::class)->name('rasio-dosen-mahasiswa');
     Route::get('/data-akreditasi', DataAkreditasi::class)->name('data-akreditasi');
