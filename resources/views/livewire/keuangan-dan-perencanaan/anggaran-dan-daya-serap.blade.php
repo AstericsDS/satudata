@@ -56,18 +56,32 @@
         
         <div class="bg-white rounded-md p-4">
             <div class="flex">
-                <button @click="$dispatch('change-chart', { chart: 'daya-serap-universitas' })"
-                class="p-2 cursor-pointer transition-all"
-                :class="active === 'daya-serap-universitas' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Grafik
-                Daya Serap Universitas</button>
-                <button @click="$dispatch('change-chart', { chart: 'anggaran-per-akun-belanja' })"
-                class="p-2 cursor-pointer transition-all"
-                :class="active === 'anggaran-per-akun-belanja' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Anggaran
-                per-Akun Belanja</button>
-                <button @click="$dispatch('change-chart', { chart: 'anggaran-per-output' })"
-                class="p-2 cursor-pointer transition-all"
-                :class="active === 'anggaran-per-output' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'">Anggaran
-                per-Output</button>
+                {{-- Grafik Daya Serap Universitas --}}
+                <button
+                    @click="$dispatch('change-chart', { chart: 'daya-serap-universitas' })"
+                    class="p-2 cursor-pointer transition-all"
+                    :class="active === 'daya-serap-universitas' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'"
+                >
+                    Grafik Daya Serap Universitas
+                </button>
+
+                {{-- Anggaran per Akun Belanja --}}
+                {{-- <button
+                    @click="$dispatch('change-chart', { chart: 'anggaran-per-akun-belanja' })"
+                    class="p-2 cursor-pointer transition-all"
+                    :class="active === 'anggaran-per-akun-belanja' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'"
+                >
+                    Anggaran per-Akun Belanja
+                </button> --}}
+
+                {{-- Anggaran per Output --}}
+                {{-- <button
+                    @click="$dispatch('change-chart', { chart: 'anggaran-per-output' })"
+                    class="p-2 cursor-pointer transition-all"
+                    :class="active === 'anggaran-per-output' ? 'text-primary bg-primary/10 border-b-[1px] border-primary' : 'text-black hover:text-primary'"
+                >
+                    Anggaran per-Output
+                </button> --}}
             </div>
             
             @if ($update && $update->status === 'synchronized')
@@ -106,40 +120,12 @@
             </template>
 
             <template x-if="active === 'anggaran-per-akun-belanja'">
-                <!-- <div x-effect="if (active === 'anggaran-per-akun-belanja') $nextTick(() => window.renderChart2())">
-                    <div id="anggaran-per-akun-belanja" class="flex justify-center items-center py-4"></div>
-
-                    <div class="flex gap-4">
-                        <div class="bg-primary/10 flex-1 p-4 rounded-md text-center">
-                            <h1 class="font-semibold text-3xl mb-4">Rp 7.8M</h1>
-                            <h2>Lorem 1</h2>
-                        </div>
-                        <div class="bg-primary/10 flex-1 p-4 rounded-md text-center">
-                            <h1 class="font-semibold text-3xl mb-4">Rp 11.3M</h1>
-                            <h2>Lorem 2</h2>
-                        </div>
-                    </div>
-                </div> -->
                 <div>
                     <livewire:keuangan-dan-perencanaan.tables.akun />
                 </div>
             </template>
 
             <template x-if="active === 'anggaran-per-output'">
-                <!-- <div x-effect="if (active === 'anggaran-per-output') $nextTick(() => window.renderChart3())">
-                    <div id="anggaran-per-output" class="flex justify-center items-center py-4"></div>
-
-                    <div class="flex gap-4">
-                        <div class="bg-primary/10 flex-1 p-4 rounded-md text-center">
-                            <h1 class="font-semibold text-3xl mb-4">Rp 3.5M</h1>
-                            <h2>Lorem 1</h2>
-                        </div>
-                        <div class="bg-primary/10 flex-1 p-4 rounded-md text-center">
-                            <h1 class="font-semibold text-3xl mb-4">Rp 23.75M</h1>
-                            <h2>Lorem 2</h2>
-                        </div>
-                    </div>
-                </div> -->
                 <livewire:keuangan-dan-perencanaan.tables.ouput />
             </template>
 
