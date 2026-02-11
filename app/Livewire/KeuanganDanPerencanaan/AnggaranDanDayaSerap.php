@@ -20,6 +20,9 @@ class AnggaranDanDayaSerap extends Component
     public $chart_pagu_realisasi;
     public $chart_pagu_sisa;
 
+    public $satker_list = [];
+    public $selected_satker = 'Universitas Negeri Jakarta';
+
     private function formatNumber($value) {
         $value = floatval($value);
 
@@ -36,12 +39,14 @@ class AnggaranDanDayaSerap extends Component
         return number_format($value);
     }
 
-    public function mount() {
-        $this->update = Synchronize::where('name', 'Anggaran dan Daya Serap')->first() ?? null;
+    public function loadData() {
+        if($this->selected_satker === 'Universitas Negeri Jakarta') {
+            $data = Anggaran::where('data_scope', 'total')->first();
+        } else {
+            $data = Anggaran::where('data_scope', 'total')->where('satker', $this->selected_satker)->first();
+        }
 
-        $data = Anggaran::where('data_scope', 'total')->first(); 
-
-        if ($data) {
+        if($data) {
             $pagu_total = $data->pagu_total;
             $pagu_realisasi = $data->pagu_realisasi;
             $pagu_sisa = $data->pagu_sisa;
@@ -60,7 +65,55 @@ class AnggaranDanDayaSerap extends Component
 
             $this->chart_pagu_realisasi = $pagu_realisasi;
             $this->chart_pagu_sisa = $pagu_sisa;
+        } else {
+            $this->data_pagu_total = 0;
+            $this->data_pagu_realisasi = 0;
+            $this->data_pagu_sisa = 0;
+            $this->daya_serap = '0%';
+
+            $this->chart_pagu_realisasi = 0;
+            $this->chart_pagu_sisa = 0;
         }
+    }
+
+    public function updateSelectedSatker($satker) {
+        $this->loadData();
+
+        $this->dispatch('update-chart-data', [
+            'realisasi' => $this->chart_pagu_realisasi,
+            'sisa' => $this->chart_pagu_sisa,
+        ]);
+    }
+
+    public function mount() {
+        $this->update = Synchronize::where('name', 'Anggaran dan Daya Serap')->first() ?? null;
+
+        $this->satker_list = Anggaran::where('data_scope', 'total')->orderBy('satker')->pluck('satker')->toArray();
+
+        $this->loadData();
+
+        // $data = Anggaran::where('data_scope', 'total')->first(); 
+
+        // if ($data) {
+        //     $pagu_total = $data->pagu_total;
+        //     $pagu_realisasi = $data->pagu_realisasi;
+        //     $pagu_sisa = $data->pagu_sisa;
+
+        //     // Cek jika total > 0 untuk menghindari error "Division by Zero"
+        //     if ($pagu_total > 0) {
+        //         $persentase = ($pagu_realisasi / $pagu_total) * 100;
+        //     } else {
+        //         $persentase = 0;
+        //     }
+
+        //     $this->data_pagu_total = $this->formatNumber($pagu_total);
+        //     $this->data_pagu_realisasi = $this->formatNumber($pagu_realisasi);
+        //     $this->data_pagu_sisa = $this->formatNumber($pagu_sisa);
+        //     $this->daya_serap = number_format($persentase, 1) . '%';
+
+        //     $this->chart_pagu_realisasi = $pagu_realisasi;
+        //     $this->chart_pagu_sisa = $pagu_sisa;
+        // }
     }
 
     public function render()

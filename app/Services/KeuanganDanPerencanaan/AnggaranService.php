@@ -52,6 +52,56 @@ class AnggaranService
         $this->sync->update(['status' => 'synchronized']);
 
     }
+
+    public function getPerSatker() {
+        $response_satker = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/referensi/satker');
+        $data_satker = $response_satker->json();
+
+        if (!isset($data_satker['data'])) {
+            return;
+        }
+
+        $satker_list = $data_satker['data'];
+        $rows = [];
+
+        foreach ($satker_list as $satker) {
+            try {
+                if (empty($satker['kd_satker'])) {
+                    continue;
+                }
+
+                $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/statistik/realisasi-pagu?thang=2025&kd_satker=' . $satker['kd_satker']);
+                $data = $response->json();
+
+                if (isset($data['data']) && $data['code'] === 0) {
+                    $item = $data['data'];
+
+                    $rows[] = [
+                        'satker' => $satker['ur_satker'],
+                        'tahun' => $item['thang'],
+                        'data_scope' => 'total',
+                        'nama' => 'Total Anggaran',
+                        'pagu_total' => $item['pagu_total'],
+                        'pagu_realisasi' => $item['pagu_realisasi'],
+                        'pagu_sisa' => $item['pagu_sisa'],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+            } catch (Exception $error) {
+                continue;
+            }
+        }
+
+        if (!empty($rows)) {
+            DB::table('anggaran')->upsert(
+                $rows,
+                ['tahun', 'satker', 'nama', 'data_scope'],
+                ['pagu_total', 'pagu_realisasi', 'pagu_sisa', 'updated_at']
+            );
+        }
+    }
+
     public function getAkun()
     {
         $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/statistik/realisasi-pagu/per-akun?thang=' . $this->year . '&kd_satker=999');
@@ -123,6 +173,7 @@ class AnggaranService
     {
         try {
             $this->getTotal();
+            $this->getPerSatker();
             $this->getAkun();
             $this->getOuput();
         } catch (Exception $err) {

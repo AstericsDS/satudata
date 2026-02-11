@@ -55,6 +55,7 @@
         class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6 mt-4">
         
         <div class="bg-white rounded-md p-4">
+            {{-- Tab Buttons --}}
             <div class="flex">
                 {{-- Grafik Daya Serap Universitas --}}
                 <button
@@ -83,6 +84,30 @@
                     Anggaran per-Output
                 </button> --}}
             </div>
+
+            {{-- Filter --}}
+            <div class="flex justify-between items-center mt-6">
+                <div class="w-64">
+                    <label 
+                        for="satker-filter"
+                        class="block mb-2 text-sm font-medium text-gray-800"
+                    >
+                        Pilih Satuan Kerja
+                    </label>
+                    <select
+                        wire:model.live="selected_satker"
+                        id="satker-filter"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                    >
+                        <option value="Universitas Negeri Jakarta">
+                            Universitas Negeri Jakarta
+                        </option>
+                        @foreach ($satker_list as $satker)
+                            <option value="{{ $satker }}">{{ $satker }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             
             @if ($update && $update->status === 'synchronized')
                 <div class="flex flex-col mt-4 gap-2">
@@ -98,6 +123,7 @@
                     Data Belum Sinkron
                 </p>
             @endif
+
             <template x-if="active === 'daya-serap-universitas'">
                 <div
                     x-effect="
