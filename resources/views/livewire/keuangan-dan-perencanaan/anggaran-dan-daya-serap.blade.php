@@ -51,9 +51,16 @@
     </div>
 
     <!-- Chart -->
-    <div x-data="{ active: 'daya-serap-universitas' }" @change-chart.window="active = $event.detail.chart"
-        class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6 mt-4">
-        
+    <div
+        x-data="{ active: 'daya-serap-universitas' }"
+        @change-chart.window="active = $event.detail.chart"
+        @update-chart-data.window="
+            if(active === 'daya-serap-universitas') {
+                window.renderChartDayaSerapUniversitas([$event.detail.realisasi, $event.detail.sisa]);
+            }
+        "
+        class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6 mt-4"
+    >
         <div class="bg-white rounded-md p-4">
             {{-- Tab Buttons --}}
             <div class="flex">

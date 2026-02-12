@@ -76,7 +76,7 @@ class AnggaranDanDayaSerap extends Component
         }
     }
 
-    public function updateSelectedSatker($satker) {
+    public function updatedSelectedSatker() {
         $this->loadData();
 
         $this->dispatch('update-chart-data', [
