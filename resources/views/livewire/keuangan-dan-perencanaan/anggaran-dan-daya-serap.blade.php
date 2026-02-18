@@ -93,8 +93,9 @@
             </div>
 
             {{-- Filter --}}
-            <div class="flex justify-between items-center mt-6">
-                <div class="w-64">
+            <div class="flex justify-start gap-4 items-center mt-6">
+                {{-- Satuan Kerja --}}
+                <div class="w-150">
                     <label 
                         for="satker-filter"
                         class="block mb-2 text-sm font-medium text-gray-800"
@@ -112,6 +113,24 @@
                         @foreach ($satker_list as $satker)
                             <option value="{{ $satker }}">{{ $satker }}</option>
                         @endforeach
+                    </select>
+                </div>
+
+                {{-- Tahun --}}
+                <div class="w-32">
+                    <label 
+                        for="tahun-filter"
+                        class="block mb-2 text-sm font-medium text-gray-800"
+                    >
+                        Tahun
+                    </label>
+                    <select
+                        id="satker-filter"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                    >
+                        <option value="Universitas Negeri Jakarta">
+                            2026
+                        </option>
                     </select>
                 </div>
             </div>
