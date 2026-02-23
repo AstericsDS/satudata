@@ -23,6 +23,9 @@ class AnggaranDanDayaSerap extends Component
     public $satker_list = [];
     public $selected_satker = 'Universitas Negeri Jakarta';
 
+    public $year_list = [];
+    public $selected_year;
+
     private function formatNumber($value) {
         $value = floatval($value);
 
@@ -41,9 +44,15 @@ class AnggaranDanDayaSerap extends Component
 
     public function loadData() {
         if($this->selected_satker === 'Universitas Negeri Jakarta') {
-            $data = Anggaran::where('data_scope', 'total')->first();
+            $data = Anggaran::where('data_scope', 'total')
+                ->where('satker', 'Universitas Negeri Jakarta')
+                ->where('tahun',$this->selected_year)
+                ->first();
         } else {
-            $data = Anggaran::where('data_scope', 'total')->where('satker', $this->selected_satker)->first();
+            $data = Anggaran::where('data_scope', 'total')
+                ->where('satker', $this->selected_satker)
+                ->where('tahun',$this->selected_year)
+                ->first();
         }
 
         if($data) {
@@ -85,10 +94,31 @@ class AnggaranDanDayaSerap extends Component
         ]);
     }
 
+    public function updatedSelectedYear() {
+        $this->loadData();
+        $this->dispatch('update-chart-data', [
+            'realisasi' => $this->chart_pagu_realisasi,
+            'sisa' => $this->chart_pagu_sisa,
+        ]);
+    }
+
     public function mount() {
         $this->update = Synchronize::where('name', 'Anggaran dan Daya Serap')->first() ?? null;
 
-        $this->satker_list = Anggaran::where('data_scope', 'total')->orderBy('satker')->pluck('satker')->toArray();
+        $this->year_list = Anggaran::select('tahun')->distinct()->orderBy('tahun', 'desc')->pluck('tahun')->toArray();
+        if(!empty($this->year_list)) {
+            $this->selected_year = $this->year_list[0];
+        } else {
+            $this->selected_year = now()->year;
+        }
+
+        $this->satker_list = Anggaran::select('satker')
+            ->where('data_scope', 'total')
+            ->where('satker', '!=', 'Universitas Negeri Jakarta')
+            ->distinct()
+            ->orderBy('satker')
+            ->pluck('satker')
+            ->toArray();
 
         $this->loadData();
 
