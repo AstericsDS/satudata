@@ -30,9 +30,13 @@
     <div class="flex flex-col items-center lg:items-start justify-center px-4 md:px-8 lg:px-15 mt-50 md:mt-24 lg:mt-0 top-[30%] lg:absolute lg:left-[65px]">
 
         <div class="flex flex-col items-center text-center">
-            <span class="text-primary text-lg mb-2 sm:text-xl sm:mb-3 md:text-2xl md:mb-4">Selamat Datang</span>
-            <span class="text-primary text-4xl font-extrabold tracking-wide sm:text-5xl md:text-6xl">SATU DATA</span>
-            <span class="text-primary text-lg font-semibold mt-1 sm:text-xl sm:mt-2 md:text-2xl md:mt-2">
+            <span class="text-primary text-lg md:text-2xl lg:text-4xl mb-2 sm:mb-3 md:mb-4">
+                Selamat Datang
+            </span>
+            <span class="text-primary text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-wide">
+                SATU DATA
+            </span>
+            <span class="text-primary text-lg md:text-2xl lg:text-4xl font-semibold mt-1 md:mt-2">
                 Universitas Negeri Jakarta
             </span>
         </div>
@@ -42,13 +46,13 @@
         <div class="flex flex-col items-center gap-3 w-full sm:flex-row sm:justify-center sm:gap-4 md:gap-6 md:justify-center lg:justify-start">
             <a
                 href="{{route('dashboard')}}"
-                class="px-4 py-2 bg-linear-to-r from-accent-1 to-primary text-white text-lg sm:text-xl md:text-2xl rounded-2xl hover:from-primary hover:to-accent-1 transition-colors duration-300 cursor-pointer font-semibold w-[50%] md:w-full lg:w-full text-center"
+                class="px-4 py-2 bg-linear-to-r from-accent-1 to-primary text-white text-lg sm:text-xl md:text-2xl rounded-2xl hover:from-primary hover:to-accent-1 transition-colors duration-300 cursor-pointer font-semibold w-[50%] md:w-full lg:w-[65%] text-center"
             >
                 Jelajah Data
             </a>
             <a
                 href="{{route('login')}}"
-                class="flex gap-2 px-4 py-2 bg-linear-to-l from-accent-1 to-primary text-white text-lg sm:text-xl md:text-2xl rounded-2xl hover:from-primary hover:to-accent-1 transition-colors duration-300 cursor-pointer font-semibold w-[50%] md:w-full lg:w-fit justify-center"
+                class="flex gap-2 px-4 py-2 bg-linear-to-l from-accent-1 to-primary text-white text-lg sm:text-xl md:text-2xl rounded-2xl hover:from-primary hover:to-accent-1 transition-colors duration-300 cursor-pointer font-semibold w-[50%] md:w-full lg:w-[35%] justify-center"
             >
                 <span>Login</span>
                 <div class="bg-primary rounded-full size-6 sm:size-7 md:size-8 flex justify-center items-center">
@@ -60,7 +64,7 @@
     
     {{-- Background --}}
     <div
-        style="background-image: url('{{ asset('assets/landing_page/bg.png') }}');" 
+        style="background-image: url('{{ asset('assets/landing_page/bg2.png') }}');" 
         class="hidden lg:block absolute inset-0 bg-[length:auto_100%] bg-right bg-no-repeat -z-10""
     ></div>
 
