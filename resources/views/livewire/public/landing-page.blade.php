@@ -68,6 +68,21 @@
         class="hidden lg:block absolute inset-0 bg-[length:auto_100%] bg-right bg-no-repeat -z-10""
     ></div>
 
+    {{-- My UNJ --}}
+    <div class="absolute bottom-24 md:bottom-90 lg:bottom-15 left-1/2 -translate-x-1/2 lg:left-7 lg:translate-x-0 z-10">
+        <a href="http://my.unj.ac.id" target="_blank">
+            <img
+                src="{{asset('assets/landing_page/myunj.png')}}"
+                alt="My UNJ"
+                class="lg:block h-auto w-[180px] sm:w-[220px] md:w-[250px] lg:w-[300px]"
+                width="300"
+                height="300"
+            
+            >
+        </a>
+        
+    </div>
+
     {{-- Footer --}}
     <div class="bg-primary text-white flex w-full justify-center py-3 mt-auto fixed bottom-0">
         <div>
