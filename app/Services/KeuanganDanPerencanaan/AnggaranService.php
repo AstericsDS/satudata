@@ -136,7 +136,7 @@ class AnggaranService
         );
 
     }
-    public function getOuput($year, $satker_list)
+    public function getOuput($year)
     {
         $response = Http::withToken(config('api.saku_token'))->get(config('api.saku_base_url') . '/statistik/realisasi-pagu/per-sub-output?thang=' . $year . '&kd_satker=999');
         $data = $response->json();
