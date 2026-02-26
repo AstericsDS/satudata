@@ -1,37 +1,36 @@
 <?php
 
-use App\Models\Dosen;
-use App\Livewire\Test;
-use App\Livewire\Debug;
-use App\Livewire\Login;
-use App\Models\Kerjasama;
-use App\Models\Mahasiswa;
-use App\Jobs\SyncMahasiswa;
-use App\Livewire\Dashboard;
-use App\Livewire\Admin\Sinkronisasi;
-use App\Livewire\Public\LandingPage;
-use Illuminate\Support\Facades\Route;
-use App\Livewire\GrafikIndeksasiSinta;
-use App\Models\TracerStudy as Tracing;
 use App\Http\Controllers\SSOController;
-use App\Http\Controllers\DataController;
-use App\Livewire\BisnisDanInovasi\Kemitraan;
-use App\Livewire\AkademikDanMahasiswa\TracerStudy;
-use App\Livewire\KepegawaianDanUmum\AgendaPejabat;
-use App\Livewire\KepegawaianDanUmum\TemukanPegawai;
-use App\Services\AkademikDanMahasiswa\DosenService;
-use App\Services\BisnisDanInovasi\KerjasamaService;
+use App\Jobs\SyncMahasiswa;
+use App\Livewire\Admin\Sinkronisasi;
 use App\Livewire\AkademikDanMahasiswa\BebanMengajar;
 use App\Livewire\AkademikDanMahasiswa\DataAkreditasi;
 use App\Livewire\AkademikDanMahasiswa\JumlahMahasiswa;
 use App\Livewire\AkademikDanMahasiswa\JumlahWisudawan;
+use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
 use App\Livewire\AkademikDanMahasiswa\SebaranMahasiswa;
 use App\Livewire\AkademikDanMahasiswa\SNBT;
-use App\Livewire\KepegawaianDanUmum\ProfilKepakaranDosen;
-use App\Services\AkademikDanMahasiswa\TracerStudyService;
-use App\Livewire\AkademikDanMahasiswa\RasioDosenMahasiswa;
+use App\Livewire\AkademikDanMahasiswa\TracerStudy;
+use App\Livewire\BisnisDanInovasi\Kemitraan;
+use App\Livewire\Dashboard;
+use App\Livewire\GrafikIndeksasiSinta;
+use App\Livewire\KepegawaianDanUmum\AgendaPejabat;
 use App\Livewire\KepegawaianDanUmum\JumlahTenagaKependidikan;
+use App\Livewire\KepegawaianDanUmum\ProfilKepakaranDosen;
+use App\Livewire\KepegawaianDanUmum\TemukanPegawai;
 use App\Livewire\KeuanganDanPerencanaan\AnggaranDanDayaSerap;
+use App\Livewire\Login;
+use App\Livewire\Public\LandingPage;
+use App\Models\Absensi;
+use App\Models\Dosen;
+use App\Models\Kerjasama;
+use App\Models\Mahasiswa;
+use App\Models\TracerStudy as Tracing;
+use App\Services\AkademikDanMahasiswa\DosenService;
+use App\Services\AkademikDanMahasiswa\TracerStudyService;
+use App\Services\BisnisDanInovasi\KerjasamaService;
+use App\Services\KepegawaianDanUmum\AbsensiService;
+use Illuminate\Support\Facades\Route;
 
 // Public
 Route::get('/', LandingPage::class)->name('landing-page');
@@ -80,6 +79,11 @@ Route::prefix('bisnis-dan-inovasi')->group(function () {
 // Publikasi
 Route::prefix('publikasi')->group(function () {
     Route::get('/grafik-indeksasi-sinta', GrafikIndeksasiSinta::class)->name('grafik-indeksasi-sinta');
+});
+
+// Private
+Route::prefix('private')->group(function(){
+    Route::get('/dashboard', Dashboard::class)->name('private-dashboard');
 });
 
 // DEBUG SPACE
@@ -162,10 +166,19 @@ Route::prefix('debug')->group(function () {
         // $service->synchronize();
         return [
             'total' => Tracing::count(),
+            '2025' => Tracing::where('tahun_lulus', 2025)->count(),
+            '2024' => Tracing::where('tahun_lulus', 2024)->count(),
+            '2023' => Tracing::where('tahun_lulus', 2023)->count(),
+            '2022' => Tracing::where('tahun_lulus', 2022)->count(),
+            '2021' => Tracing::where('tahun_lulus', 2021)->count(),
+            '2020' => Tracing::where('tahun_lulus', 2020)->count(),
+            '2019' => Tracing::where('tahun_lulus', 2019)->count(),
+            '2018' => Tracing::where('tahun_lulus', 2018)->count(),
+            '2017' => Tracing::where('tahun_lulus', 2017)->count()
         ];
     });
     Route::get('/sync-tracer-study', function (TracerStudyService $service) {
-        $service->synchronize();
+        $service->syncEksporData();
     });
     Route::get('/sikerma', function (KerjasamaService $service) {
         $fakultas = Kerjasama::distinct()->pluck('unit');
@@ -200,5 +213,12 @@ Route::prefix('debug')->group(function () {
         return [
             'onBoth' => $data_mahasiswa->intersect($data_dosen)->values()
         ];
+    });
+    Route::get('/absensi/sync', function() {
+        $service = new AbsensiService();
+        $service->synchronize();
+    });
+    Route::get('/absensi', function() {
+        return Absensi::distinct('cabang')->pluck('cabang');
     });
 });

@@ -2,9 +2,6 @@
 
 namespace App\Jobs;
 
-use Exception;
-use App\Models\Synchronize;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Services\BisnisDanInovasi\KerjasamaService;

@@ -68,7 +68,7 @@ class SSOController extends Controller
             $request->session()->forget('sso_private_key');
             $request->session()->regenerate();
 
-            return redirect()->intended(route('sinkronisasi-publik'));
+            return redirect()->intended(route('private-dashboard'));
         }
         return redirect()->intended(route('login'))->with('error', 'Kamu tidak memiliki akses');
     }

@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
-use Throwable;
 use App\Models\Synchronize;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Services\AkademikDanMahasiswa\TracerStudyService;
+use Exception;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Log;
 
 class SyncTracerStudy implements ShouldQueue
 {

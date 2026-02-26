@@ -80,7 +80,7 @@
                                 <a href="{{ route('tracer-study') }}" class="block px-4 py-1.5 hover:underline">Tracer
                                     Study</a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="{{ route('sebaran-mahasiswa') }}"
                                     class="block px-4 py-1.5 hover:underline">Sebaran Mahasiswa</a>
                             </li>
@@ -88,7 +88,7 @@
                                 <li>
                                     <a href="{{ route('snbt') }}" class="border-l-[2px] border-gray-500 block px-4 py-1.5 hover:underline">SNBT</a>
                                 </li>
-                            </div>
+                            </div> -->
                             {{-- <li>
                                 <a href="{{ route('beban-mengajar') }}" class="block px-4 py-1.5 hover:underline">Beban
                                     Mengajar</a>

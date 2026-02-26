@@ -13,27 +13,27 @@
             <h1 class="text-3xl text-[#0162B8] font-semibold">{{ $sync->where('status', '=', 'synchronized')->count() }}</h1>
             <h2 class="text-xl text-[#0162B8]">Tersinkron</h2>
         </div>
-        <div class="flex-1 bg-[#CF1E2E]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
-            <h1 class="text-3xl text-[#CF1E2E] font-semibold">{{ $sync->where('status', '!=', 'synchronized')->count() }}</h1>
-            <h2 class="text-xl text-[#CF1E2E]">Belum Sinkron</h2>
+        <div class="flex-1 bg-red-primary/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
+            <h1 class="text-3xl text-red-primary font-semibold">{{ $sync->where('status', '=', 'unsynchronized')->count() }}</h1>
+            <h2 class="text-xl text-red-primary">Belum Sinkron</h2>
         </div>
     </div>
 
-    <div class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6">
+    <div x-data="{ active: 'public' }" class="rounded-t-lg overflow-hidden bg-linear-to-b from-primary to-accent-2 p-6">
 
         {{-- Title Table - Start --}}
         <h1 class="text-white mb-6 text-2xl">Sinkronisasi Data</h1>
         {{-- Title Table - End --}}
 
         <div class="flex space-x-2 bg-white mb-4 rounded-md p-6">
-            <div class="bg-linear-to-l from-primary to-accent-1 text-center py-2 flex-1 rounded-md text-white">Sinkronisasi Data Publik</div>
-            <div class="bg-linear-to-l text-center py-2 flex-1 rounded-md text-black">Sinkronisasi Data Private</div>
+            <button @click="active = 'public'" :class="active === 'public' ? 'bg-linear-to-l from-primary to-accent-1 text-white' : 'text-primary hover:text-primary/80'" class="text-center py-2 flex-1 rounded-md cursor-pointer transition-all">Sinkronisasi Data Publik</button>
+            <button @click="active = 'private'" :class="active === 'private' ? 'bg-linear-to-l from-primary to-accent-1 text-white' : 'text-primary hover:text-primary/80'" class="text-center py-2 flex-1 rounded-md cursor-pointer transition-all">Sinkronisasi Data Private</button>
         </div>
 
-        <div class="relative overflow-x-auto rounded-md">
+        <div class="relative overflow-x-scroll rounded-md">
 
             {{-- Table - Start --}}
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table class="w-full whitespace-nowrap text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 
                 {{-- Table Head - Start --}}
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -61,13 +61,16 @@
                 {{-- Table Head - End --}}
 
                 {{-- Table Body - Start --}}
-                <tbody>
+                <tbody x-show="active === 'public'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                     <livewire:admin.button.mahasiswa-synchronize />
                     <livewire:admin.button.dosen-synchronize />
                     <livewire:admin.button.tracer-study-synchronize />
                     <livewire:admin.button.kerjasama-synchronize />
                     <livewire:admin.button.tendik-synchronize />
                     <livewire:admin.button.anggaran-synchronize />
+                </tbody>
+                <tbody x-show="active === 'private'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <livewire:admin.button.absensi-synchronize />
                 </tbody>
                 {{-- Table Body - End --}}
 

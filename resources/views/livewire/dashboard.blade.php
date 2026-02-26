@@ -1,8 +1,26 @@
 @vite(['resources/js/charts/dashboard.js'])
-<div class="mb-20">
+<div x-data="{active: 0, total: {{ $isPrivate ? 9 : 8 }}, auto: true, intervalId: null, next(){
+    this.active = (this.active + 1) % this.total;
+},  prev(){
+    this.active = (this.active - 1 + this.total) % this.total;
+},start() {
+            if (this.intervalId) clearInterval(this.intervalId);
+            this.intervalId = setInterval(() => {
+                this.active = (this.active + 1) % this.total;
+            }, 10000);
+        },
+        stop() {
+            if (this.intervalId) clearInterval(this.intervalId);
+        },
+        clear() {
+            clearInterval(this.intervalId);
+            this.intervalId = setInterval(() => {
+                this.active = (this.active + 1) % this.total;
+            }, 10000);
+        }}" class="mb-20">
 
     {{-- Stat Cards - Start --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 my-8 mx-4 md:mx-12 lg:mx-24">
+    <div x-show="active >= 0 && active <= 7" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 my-8 mx-4 md:mx-12 lg:mx-24">
 
         {{-- Wisudawan --}}
         <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md">
@@ -86,30 +104,82 @@
     </div>
     {{-- Stat Cards - End --}}
 
-    {{-- Graphic - Start --}}
-    <div x-data="{
-        active: 0,
-        total: 8,
-        auto: true,
-        intervalId: null,
-    
-        start() {
-            if (this.intervalId) clearInterval(this.intervalId);
-            this.intervalId = setInterval(() => {
-                this.active = (this.active + 1) % this.total;
-            }, 10000);
-        },
-        stop() {
-            if (this.intervalId) clearInterval(this.intervalId);
-        },
-        clear() {
-            clearInterval(this.intervalId);
-            this.intervalId = setInterval(() => {
-                this.active = (this.active + 1) % this.total;
-            }, 10000);
-        }
+    <div x-show="active == 8" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 my-8 mx-4 md:mx-12 lg:mx-24">
+        <!-- Total Pegawai Tidak Absen -->
+        <div class="relative overflow-hidden bg-red-primary rounded-lg p-5 flex flex-col gap-6">
+            <div class="absolute -top-18 -right-12 w-48 h-48 bg-black/10 rounded-full"></div>
+            <div class="absolute -bottom-16 -left-12 w-52 h-52 bg-black/10 rounded-full"></div>
+            <div class="flex justify-between items-center z-50">
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g></svg>
+                </div>
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    {{ $this->absensi['date'] ?? 'Tanggal tidak tersedia' }}
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 z-50">
+                <h2 class="text-white font-semibold">Pegawai Belum Presensi</h2>
+                <span class="text-5xl text-white font-semibold">{{ $this->absensi['total_pegawai_tidak_hadir'] ?? 0 }}</span>
+            </div>
+        </div>
 
-    }" x-effect="auto ? start() : stop()">
+        <!-- Total Pegawai Hadir -->
+        <div class="relative overflow-hidden bg-primary rounded-lg p-5 flex flex-col gap-6">
+            <div class="absolute -top-18 -right-12 w-48 h-48 bg-white/10 rounded-full"></div>
+            <div class="absolute -bottom-16 -left-12 w-52 h-52 bg-white/10 rounded-full"></div>
+            <div class="flex justify-between items-center z-50">
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11l3 3L22 4"/></g></svg>
+                </div>
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    {{ $this->absensi['date'] ?? 'Tanggal tidak tersedia' }}
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 z-50">
+                <h2 class="text-white font-semibold">Pegawai Hadir</h2>
+                <span class="text-5xl text-white font-semibold">{{ $this->absensi['total_absen_hari_ini'] ?? 0 }}</span>
+            </div>
+        </div>
+
+        <!-- Total Pegawai WFA -->
+        <div class="relative overflow-hidden bg-tertiary rounded-lg p-5 flex flex-col gap-6">
+            <div class="absolute -top-18 -right-12 w-48 h-48 bg-white/10 rounded-full"></div>
+            <div class="absolute -bottom-16 -left-12 w-52 h-52 bg-white/10 rounded-full"></div>
+            <div class="flex justify-between items-center z-50">
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M13.413 11.413Q14 10.825 14 10t-.587-1.412T12 8t-1.412.588T10 10t.588 1.413T12 12t1.413-.587M12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2t5.588 2.225T20 10.2q0 2.5-1.987 5.438T12 22"/></svg>
+                </div>
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    {{ $this->absensi['date'] ?? 'Tanggal tidak tersedia' }}
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 z-50">
+                <h2 class="text-white font-semibold">Pegawai WFA</h2>
+                <span class="text-5xl text-white font-semibold">{{ $this->absensi['total_pegawai_wfa'] ?? 0 }}</span>
+            </div>
+        </div>
+
+        <!-- Total Pegawai -->
+        <div class="relative overflow-hidden bg-[#0162B8]/70 rounded-lg p-5 flex flex-col gap-6">
+            <div class="absolute -top-18 -right-12 w-48 h-48 bg-white/10 rounded-full"></div>
+            <div class="absolute -bottom-16 -left-12 w-52 h-52 bg-white/10 rounded-full"></div>
+            <div class="flex justify-between items-center z-50">
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M13.413 11.413Q14 10.825 14 10t-.587-1.412T12 8t-1.412.588T10 10t.588 1.413T12 12t1.413-.587M12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2t5.588 2.225T20 10.2q0 2.5-1.987 5.438T12 22"/></svg>
+                </div>
+                <div class="bg-white/20 rounded-md text-white p-2">
+                    {{ $this->absensi['date'] ?? 'Tanggal tidak tersedia' }}
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 z-50">
+                <h2 class="text-white font-semibold">Total Pegawai</h2>
+                <span class="text-5xl text-white font-semibold">{{ $this->absensi['total_pegawai_aktif'] ?? 0 }}</span>
+            </div>
+        </div>
+    </div>
+
+    {{-- Graphic - Start --}}
+    <div x-show="active >= 0 && active <= 7" x-effect="auto ? start() : stop()">
 
         <div class="w-[95%] md:w-[90%] xl:w-[65%] mx-auto text-end">
             <label class="inline-flex items-center me-5 cursor-pointer">
@@ -130,7 +200,7 @@
             {{-- Previous Button --}}
             <button 
                 class="hidden md:block absolute top-[50%] -left-14 text-primary opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                @click="active = (active >= 0 && active <= 3) ? 4 : 0"
+                @click="prev(); clear()"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -141,7 +211,7 @@
             {{-- Next Button --}}
             <button
                 class="hidden md:block absolute top-[50%] -right-14 text-primary opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                @click="active = (active >= 0 && active <= 3) ? 4 : 0"
+                @click="next(); clear()"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -292,7 +362,14 @@
         {{-- Menu Chart --}}
         <div class="border border-primary rounded-md w-[95%] mx-auto my-8 p-6">
 
-            <h1 class="text-center font-semibold mb-8 uppercase" x-text="active >= 0 && active <= 3 ? 'Data Mahasiswa' : 'Data Dosen'"></h1>
+            <div class="flex gap-2 justify-center mb-4">
+                <button :class="active >= 0 && active <= 3 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 0">Data Mahasiswa</button>
+                <button :class="active >= 4 && active <= 7 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 4">Data Dosen</button>
+                @if ($isPrivate)
+                    <button :class="active == 8 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 8">Data Absensi</button>
+                @endif
+            </div>
+            <!-- <h1 class="text-center font-semibold mb-8 uppercase" x-text="active >= 0 && active <= 3 ? 'Data Mahasiswa' : 'Data Dosen'"></h1> -->
 
             {{-- Submenu Chart --}}
             <div x-data>
@@ -452,11 +529,30 @@
                     </div>
                 </div>
 
+                <div>
+
+                </div>
             </div>
         </div>
     </div>
     {{-- Graphic - End --}}
 
+
+    <!-- Absensi -->
+    @if ($isPrivate)
+        <div x-show="active == 8" class="bg-primary p-6 rounded-md mx-4 md:mx-12 lg:mx-24" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+            <div class="p-4 bg-white rounded-md">
+                <livewire:kepegawaian-dan-umum.tables.absensi/>
+            </div>
+        </div>
+        <div x-show="active === 8" class="flex gap-2 justify-center mt-6">
+            <button :class="active >= 0 && active <= 3 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 0">Data Mahasiswa</button>
+            <button :class="active >= 4 && active <= 7 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 4">Data Dosen</button>
+            @if ($isPrivate)
+                <button :class="active == 8 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 8">Data Absensi</button>
+            @endif
+        </div>
+    @endif
 </div>
 
 <script>

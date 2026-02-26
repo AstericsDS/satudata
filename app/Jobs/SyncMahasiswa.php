@@ -2,11 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Models\Synchronize;
 use App\Services\AkademikDanMahasiswa\MahasiswaService;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Throwable;
 
 class SyncMahasiswa implements ShouldQueue
 {

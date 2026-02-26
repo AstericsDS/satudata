@@ -36,6 +36,9 @@ class KerjasamaService {
     public function synchronize()
     {
         try {
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronizing']);
+            }
             $token = $this->getToken();
 
             for($i = $this->year-4; $i <= $this->year; $i++) {
@@ -70,9 +73,13 @@ class KerjasamaService {
                 }
                 unset($item);
             }
-            $this->sync->update(['status' => 'synchronized']);
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronized']);
+            }
         } catch (Exception $err) {
-            $this->sync->update(['status' => 'error']);
+            if($this->sync) {
+                $this->sync->update(['status' => 'error']);
+            }
             Log::error("Failed request on Kemitraan (SIKERMA)", ['request' => $this->base_url . '/partnership/partner?tahun=' . $i, 'tahun' => $i, 'error' => $err->getMessage()]);
         }
     }

@@ -63,6 +63,9 @@ class MahasiswaService
     public function synchronize()
     {
         try {
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronizing']);
+            }
             $mapFakultas = $this->mapFakultas();
 
             $month = now()->month;
@@ -163,9 +166,13 @@ class MahasiswaService
                     unset($item);
                 }
             }
-            $this->sync->update(['status' => 'synchronized']);
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronized']);
+            }
         } catch (Exception $err) {
-            $this->sync->update(['status' => 'error']);
+            if($this->sync) {
+                $this->sync->update(['status' => 'error']);
+            }
             Log::error("Failed request on PDDIKTI", ['error' => $err->getMessage()]);
         }
     }

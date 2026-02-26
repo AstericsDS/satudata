@@ -80,11 +80,15 @@ class TendikService {
                 );
             }
 
-            $this->sync->update(['status' => 'synchronized']);
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronized']);
+            }
 
         } catch(Exception $err) {
-            $this->sync->update(['status' => 'error']);
-            Log::error('Failed request on Tendik (SIPEG)'. ['error' => $err->getMessage()]);
+            if($this->sync) {
+                $this->sync->update(['status' => 'error']);
+            }
+            Log::error('Failed request on Tendik (SIPEG)', ['error' => $err->getMessage()]);
         }
     }
 }

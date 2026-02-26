@@ -3,12 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Dosen;
-use App\Models\Synchronize;
-use Livewire\Component;
 use App\Models\Mahasiswa;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Layout;
+use App\Models\Synchronize;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
 
 #[Title('Beranda')]
 #[Layout('components.layouts.app')]
@@ -18,10 +19,23 @@ class Dashboard extends Component
     public $dashboardData = [];
     public $year, $month;
     public $percent_mahasiswa, $percent_wisuda, $percent_s3;
+    public $absensi = [];
     public $syncMahasiswa;
     public $syncDosen;
+    public $isPrivate;
     public function mount()
     {
+        $this->isPrivate = request()->routeIs('private-dashboard');
+        if($this->isPrivate) {
+            $this->absensi = Cache::get('absensi', [
+                'date' => null,
+                'total_pegawai_aktif' => 0,
+                'total_absen_hari_ini' => 0,
+                'total_pegawai_wfa' => 0,
+                'total_pegawai_tidak_hadir' => 0,
+            ]);
+            $this->absensi['date'] = $this->absensi['date'] ? Carbon::parse($this->absensi['date'])->locale('id')->translatedFormat('l, j F Y') : null;
+        }
         $this->month = now()->month;
         $this->syncMahasiswa = Synchronize::find(1);
         $this->syncDosen = Synchronize::find(2);
@@ -35,7 +49,7 @@ class Dashboard extends Component
                 'mahasiswa_tahun_lalu' => Mahasiswa::where('periode_masuk', 'LIKE', (($this->year - 1) . '/' . $this->year . '%'))->count(),
                 'dosen' => Dosen::count(),
             ];
-            for ($i = $this->year - 7; $i <= $this->year; $i++) {
+            for ($i = $this->year - 4; $i <= $this->year; $i++) {
                 $periode = $i . '/' . ($i + 1);
                 $data['mahasiswa_tahun_angkatan'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->where('status', '=', 'AKTIF')->count();
                 $data['mahasiswa_diterima_tahun_angkatan'][$i] = Mahasiswa::where('periode_masuk', 'LIKE', ($periode . '%'))->count();

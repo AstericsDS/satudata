@@ -80,7 +80,7 @@
         </div>
 
         <div class="flex flex-col gap-4 bg-linear-to-b from-primary to-accent-2 from-20% to-100% shadow-lg p-6">
-            <h1 class="font-semibold text-xl text-white">Tracer Study</h1>
+            <h1 class="font-semibold text-xl text-white">Tracer Study {{ $this->year }}</h1>
             <p class="text-white">Data ini mencakup seluruh mahasiswa aktif, cuti, dan yang berstatus khusus lainnya
                 dalam berbagai jenjang pendidikan. Visualisasi data jumlah mahasiswa membantu dalam perencanaan
                 kapasitas akademik, alokasi sumber daya, dan pengambilan keputusan strategis institusi pendidikan</p>

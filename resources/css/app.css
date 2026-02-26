@@ -22,6 +22,7 @@
     --color-accent-2: #95F4F8;
     --color-secondary: #4D774E;
     --color-tertiary: #9DC88D;
+    --color-red-primary: #CF1E2E;
 }
 @layer base {
     html {

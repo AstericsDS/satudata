@@ -176,6 +176,9 @@ class AnggaranService
         set_time_limit(0);
         ini_set('memory_limit', '2048M');
         try {
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronizing']);
+            }
             $current_year = now()->year;
             $range_year = range($current_year, $current_year - 2);
         

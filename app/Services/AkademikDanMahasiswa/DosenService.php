@@ -46,7 +46,9 @@ class DosenService
     public function synchronize()
     {
         try {
-
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronizing']);
+            }
             $response = Http::withToken(config('api.sipeg_token'))->get(config('api.sipeg_base_url') . '/api/pegawai');
             $jabatan = $this->getJabatan();
             $data = $response->json();
@@ -109,9 +111,13 @@ class DosenService
                     ['nama', 'nip', 'gender', 'gelar', 'gelar_depan', 'gelar_belakang', 'unit', 'status', 'jabatan']
                 );
             }
-            $this->sync->update(['status' => 'synchronized']);
+            if($this->sync) {
+                $this->sync->update(['status' => 'synchronized']);
+            }
         } catch (Exception $err) {
-            $this->sync->update(['status' => 'error']);
+            if($this->sync) {
+                $this->sync->update(['status' => 'error']);
+            }
             Log::error("Failed request on Dosen (SIPEG)", ['error' => $err->getMessage()]);
         }
     }

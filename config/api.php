@@ -11,4 +11,8 @@ return [
     'sikerma_base_url' => env('SIKERMA_BASE_URL'),
     'saku_base_url' => env('SAKU_BASE_URL'),
     'saku_token' => env('SAKU_TOKEN'),
+    'dasi_base_url' => env('DASI_BASE_URL'),
+    'dasi_token' => env('DASI_TOKEN'),
+    'buk_base_url' => env('BUK_BASE_URL'),
+    'buk_token' => env('BUK_TOKEN'),
 ];
