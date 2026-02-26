@@ -41,9 +41,6 @@ class TracerStudyService
             )->timeout(120)->get($this->base_url . '/ekspor/data?tahun=' . $i);
 
             $data = $response->json();
-            if($i === 2024){
-                dd($data);
-            }
             if (!isset($data['data'])) {
                 Log::error("Invalid API response", ['year' => $i, 'status' => $response->status(), 'body' => $response->body()]);
                 continue;
@@ -119,8 +116,6 @@ class TracerStudyService
     }
     public function synchronize()
     {
-        set_time_limit(0);
-        ini_set('memory_limit', '10240M');
         try {
             if($this->sync) {
                 $this->sync->update(['status' => 'synchronizing']);
