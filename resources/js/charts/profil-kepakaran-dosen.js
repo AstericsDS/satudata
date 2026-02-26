@@ -5,6 +5,15 @@ window.renderChartDosen = function (dataValues) {
         window.chartDosenInstance.destroy();
     }
 
+    const maxData = Math.max(
+        dataValues.asisten_ahli || 0,
+        dataValues.lektor || 0,
+        dataValues.lektor_kepala || 0,
+        dataValues.profesor || 0,
+    );
+
+    const axisMax = maxData + Math.max(1, Math.ceil(maxData * 0.2));
+
     // const data_profesor = window.chartDosen.data_profesor ?? [];
     // const data_lektor_kepala = window.chartDosen.data_lektor_kepala ?? [];
     // const data_lektor = window.chartDosen.data_lektor ?? [];
@@ -78,7 +87,8 @@ window.renderChartDosen = function (dataValues) {
 
         dataLabels: {
             enabled: true,
-            offsetX: 30,
+            textAnchor: "start",
+            offsetX: 20,
             style: {
                 fontSize: "12px",
                 colors: ["#304758"],
@@ -114,8 +124,12 @@ window.renderChartDosen = function (dataValues) {
                 'Profesor', 
                 // 'Arsiparis Muda'
             ],
+            max: axisMax,
             labels: {
-                style: { fontSize: '12px' }
+                style: { fontSize: '12px' },
+                formatter: function (val) {
+                    return Math.round(val);
+                }
             }
         },
 
