@@ -121,6 +121,17 @@ final class DaftarDosenTable extends PowerGridComponent
             ->distinct()
             ->orderBy('unit', 'asc')
             ->get();
+
+        $daftarJabatan = Dosen::query()
+            ->pluck('jabatan')
+            ->flatten()
+            ->filter()
+            ->unique()
+            ->sort()
+            ->map(function ($jabatan) {
+                return ['nama_jabatan' => $jabatan];
+            })
+            ->values();
             
         return [
 
@@ -128,6 +139,24 @@ final class DaftarDosenTable extends PowerGridComponent
                 ->dataSource($daftarFakultas) 
                 ->optionLabel('unit')
                 ->optionValue('unit'),
+
+            Filter::select('jabatan', 'jabatan')
+                ->dataSource($daftarJabatan)
+                ->optionLabel('nama_jabatan')
+                ->optionValue('nama_jabatan')
+                ->builder(function (Builder $query, $value) {
+                    return $query->whereJsonContains('jabatan', $value);
+                }),
+
+            Filter::select('status')
+                ->dataSource([
+                    ['id' => 'Dosen', 'name' => 'Dosen PNS'],
+                    ['id' => 'Dosen Tetap', 'name' => 'Dosen Tetap'],
+                    ['id' => 'Dosen Tidak Tetap', 'name' => 'Dosen Tidak Tetap'],
+                    ['id' => 'PPPK_Dosen', 'name' => 'Dosen PPPK'],
+                ])
+                ->optionValue('id')
+                ->optionLabel('name'),
         ];
     }
 
