@@ -14,38 +14,6 @@ window.renderChartDosen = function (dataValues) {
 
     const axisMax = maxData + Math.max(1, Math.ceil(maxData * 0.2));
 
-    // const data_profesor = window.chartDosen.data_profesor ?? [];
-    // const data_lektor_kepala = window.chartDosen.data_lektor_kepala ?? [];
-    // const data_lektor = window.chartDosen.data_lektor ?? [];
-    // const data_asisten_ahli = window.chartDosen.data_asisten_ahli ?? [];
-    // const data_arsiparis_muda = window.chartDosen.data_arsiparis_muda ?? [];
-    // const series = [];
-
-    // if(data_profesor.length !== 0 && data_lektor_kepala.length !== 0 && data_lektor.length !== 0 && data_asisten_ahli.length !== 0 && data_arsiparis_muda.length !== 0) {
-    //     series.push(
-    //         {
-    //             name: "Jumlah Profesor",
-    //             data: Object.values(data_profesor),
-    //         },
-    //         {
-    //             name: "Jumlah Lektor Kepala",
-    //             data: Object.values(data_lektor_kepala),
-    //         },
-    //         {
-    //             name: "Jumlah Lektor",
-    //             data: Object.values(data_lektor),
-    //         },
-    //         {
-    //             name: "Jumlah Asisten Ahli",
-    //             data: Object.values(data_asisten_ahli),
-    //         },
-    //         {
-    //             name: "Jumlah Arsiparis Muda",
-    //             data: Object.values(data_arsiparis_muda),
-    //         },
-    //     );
-    // }
-
     var optionDosen = {
         title: {
             text: 'Jumlah Dosen',
@@ -111,8 +79,8 @@ window.renderChartDosen = function (dataValues) {
                     dataValues.lektor,
                     dataValues.lektor_kepala,
                     dataValues.profesor,
-                    // dataValues.asriparis_muda,
-                ]
+                    dataValues.arsiparis,
+                ],
             }
         ],
 
@@ -121,8 +89,8 @@ window.renderChartDosen = function (dataValues) {
                 'Asisten Ahli', 
                 'Lektor', 
                 'Lektor Kepala', 
-                'Profesor', 
-                // 'Arsiparis Muda'
+                'Profesor',
+                'Arsiparis', 
             ],
             max: axisMax,
             labels: {
@@ -133,7 +101,7 @@ window.renderChartDosen = function (dataValues) {
             }
         },
 
-        colors: ["#4D774E", "#006569", "#589092", "#7F7099"],
+        colors: ["#4D774E", "#006569", "#589092", "#7F7099" , "#B45309"],
 
         fill: {
             type: "gradient",
@@ -141,7 +109,7 @@ window.renderChartDosen = function (dataValues) {
                 shade: "light",
                 type: "horizontal",
                 shadeIntensity: 0.5,
-                gradientToColors: ["#8FDD91", "#6CB9AD", "#95F4F8", "#D4BBFF"],
+                gradientToColors: ["#8FDD91", "#6CB9AD", "#95F4F8", "#D4BBFF", "#FDE68A"],
                 inverseColors: false,
                 opacityFrom: 1,
                 opacityTo: 1,
