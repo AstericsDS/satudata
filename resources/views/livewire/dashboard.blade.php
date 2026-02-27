@@ -1,5 +1,5 @@
 @vite(['resources/js/charts/dashboard.js'])
-<div x-data="{active: 0, total: {{ $isPrivate ? 9 : 8 }}, submenu: false, auto: false, intervalId: null, next(){
+<div x-data="{active: 0, total: {{ $isPrivate ? 9 : 8 }}, submenu: false, auto: true, intervalId: null, next(){
     this.active = (this.active + 1) % this.total;
 },  prev(){
     this.active = (this.active - 1 + this.total) % this.total;
