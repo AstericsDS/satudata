@@ -46,9 +46,9 @@
                         Grafik Dosen
                     </button>
 
-                    {{-- Daftar Dosen per Fakultas --}}
+                    {{-- Daftar Dosen --}}
                     <button @click="$dispatch('change-menu', { menu: 'daftar-dosen' })" class="text-center py-3 flex-1 rounded-md font-semibold" :class="menu === 'daftar-dosen' ? 'bg-linear-to-l from-primary to to-accent-1 text-white' : 'text-black hover:text-primary cursor-pointer'">
-                        Daftar Dosen per Fakultas
+                        Daftar Dosen
                     </button>
                 </div>
 
@@ -326,6 +326,7 @@
                                     lektor: @json($data_lektor),
                                     lektor_kepala: @json($data_lektor_kepala),
                                     profesor: @json($data_profesor),
+                                    arsiparis: @json($data_arsiparis),
 
                                 };
 

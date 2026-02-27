@@ -15,7 +15,7 @@ class ProfilKepakaranDosen extends Component
     public $data_lektor;
     public $data_lektor_kepala;
     public $data_profesor;
-    // public $data_arsiparis_muda;
+    public $data_arsiparis;
 
     // Filter list
     public $jabatan_fungsional = [];
@@ -58,7 +58,10 @@ class ProfilKepakaranDosen extends Component
 
         $this->data_profesor = Dosen::whereJsonContains('jabatan', 'Profesor')->count();
 
-        // $this->data_arsiparis_muda = Dosen::whereJsonContains('jabatan', 'Arsiparis Muda')->count();
+        $this->data_arsiparis = Dosen::where(function($query) {
+            $query->whereJsonContains('jabatan', 'Arsiparis Muda')
+                  ->orWhereJsonContains('jabatan', 'Arsiparis Madya');
+        })->count();
         
         $this->jabatan_fungsional = Dosen::whereNotNull('jabatan')->pluck('jabatan')->flatten()->unique()->values()->toArray();
 
@@ -175,6 +178,7 @@ class ProfilKepakaranDosen extends Component
             'lektor' => $this->data_lektor,
             'lektor_kepala' => $this->data_lektor_kepala,
             'profesor' => $this->data_profesor,
+            'arsiparis' => $this->data_arsiparis
         ]);
     }
 
@@ -223,6 +227,10 @@ class ProfilKepakaranDosen extends Component
         $this->data_lektor = (clone $query)->whereJsonContains('jabatan', 'Lektor')->count();
         $this->data_lektor_kepala = (clone $query)->whereJsonContains('jabatan', 'Lektor Kepala')->count();
         $this->data_profesor = (clone $query)->whereJsonContains('jabatan', 'Profesor')->count();
+        $this->data_arsiparis = (clone $query)->where(function($query) {
+            $query->whereJsonContains('jabatan', 'Arsiparis Muda')
+                  ->orWhereJsonContains('jabatan', 'Arsiparis Madya');
+        })->count();
     }
 
     public function render()
