@@ -14,7 +14,7 @@ const dosen_status = window.chartData.dosen_status;
 var options1 = {
     chart: {
         type: "bar",
-        height: 400,
+        height: 450,
         toolbar: {
             show: false,
         },
@@ -185,7 +185,7 @@ var options2 = {
 var options3 = {
     chart: {
         type: "bar",
-        height: 400,
+        height: 450,
         toolbar: {
             show: false,
         },
@@ -348,7 +348,7 @@ var options4 = {
 var options5 = {
     chart: {
         type: "bar",
-        height: 400,
+        height: 450,
         toolbar: {
             show: false,
         },
@@ -528,7 +528,7 @@ var options6 = {
 var options7 = {
     chart: {
         type: "bar",
-        height: 400,
+        height: 450,
         toolbar: {
             show: false,
         },
@@ -700,7 +700,7 @@ var options8 = {
 var options9 = {
     chart: {
         type: "pie",
-        height: 400,
+        height: 450,
     },
 
     series: Object.values(dosen_pendidikan),
@@ -743,7 +743,7 @@ var options10 = {
 var options11 = {
     chart: {
         type: "pie",
-        height: 400,
+        height: 450,
     },
 
     series: Object.values(dosen_jabatan),
@@ -786,7 +786,7 @@ var options12 = {
 var options13 = {
     chart: {
         type: "pie",
-        height: 400,
+        height: 450,
     },
 
     series: Object.values(dosen_fakultas),
@@ -829,7 +829,7 @@ var options14 = {
 var options15 = {
     chart: {
         type: "pie",
-        height: 400,
+        height: 450,
     },
 
     series: Object.values(dosen_status),

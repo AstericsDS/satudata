@@ -64,20 +64,6 @@
                                 @endforeach
                             </select>
                         </li>
-                        <!-- <li class="transition-all flex flex-col gap-3">
-                            <label for="semester" class="flex gap-2 items-center">
-                                <input id="semester" type="checkbox" x-model="semester">
-                                Semester
-                            </label>
-                            <select wire:model.change="selectedSemester" x-show="semester" x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0 scale-90"
-                                x-transition:enter-end="opacity-100 scale-100"
-                                x-transition:leave="transition ease-out duration-300"
-                                x-transition:leave-end="opacity-0 scale-90"
-                                class="p-2 border border-gray-300 rounded-md w-full">
-                                <option value="S1">S1</option>
-                            </select>
-                        </li> -->
                         <li class="transition-all flex flex-col gap-3">
                             <label for="fakultas" class="flex gap-2 items-center">
                                 <input id="fakultas" type="checkbox" x-model="fakultas"

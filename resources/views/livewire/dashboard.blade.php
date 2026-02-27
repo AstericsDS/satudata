@@ -1,5 +1,5 @@
 @vite(['resources/js/charts/dashboard.js'])
-<div x-data="{active: 0, total: {{ $isPrivate ? 9 : 8 }}, auto: true, intervalId: null, next(){
+<div x-data="{active: 0, total: {{ $isPrivate ? 9 : 8 }}, submenu: false, auto: false, intervalId: null, next(){
     this.active = (this.active + 1) % this.total;
 },  prev(){
     this.active = (this.active - 1 + this.total) % this.total;
@@ -104,6 +104,7 @@
     </div>
     {{-- Stat Cards - End --}}
 
+    <!-- Private Data - Absensi -->
     <div x-show="active == 8" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 my-8 mx-4 md:mx-12 lg:mx-24">
         <!-- Total Pegawai Tidak Absen -->
         <div class="relative overflow-hidden bg-red-primary rounded-lg p-5 flex flex-col gap-6">
@@ -360,9 +361,11 @@
         </div>
 
         {{-- Menu Chart --}}
-        <div class="border border-primary rounded-md w-[95%] mx-auto my-8 p-6">
-
-            <div class="flex gap-2 justify-center mb-4">
+        <div :class="submenu ? 'p-6' : 'p-0'" class="relative border border-primary rounded-md w-[95%] mx-auto my-8 transition-all">
+            <button @click="submenu = !submenu" class="group absolute left-1/2 -translate-x-1/2 -top-4 rounded-full p-1 border-primary border-2 bg-white cursor-pointer transition-all">
+                <svg :class="submenu ? 'rotate-180' : ''" class="transition-all" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><!-- Icon from Lucide by Lucide Contributors - https://github.com/lucide-icons/lucide/blob/main/LICENSE --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/></svg>
+            </button>
+            <div x-show="submenu" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="flex gap-2 justify-center mb-4">
                 <button :class="active >= 0 && active <= 3 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 0">Data Mahasiswa</button>
                 <button :class="active >= 4 && active <= 7 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'" class="px-2 py-1 rounded-md transition-all cursor-pointer" @click="active = 4">Data Dosen</button>
                 @if ($isPrivate)
@@ -372,7 +375,7 @@
             <!-- <h1 class="text-center font-semibold mb-8 uppercase" x-text="active >= 0 && active <= 3 ? 'Data Mahasiswa' : 'Data Dosen'"></h1> -->
 
             {{-- Submenu Chart --}}
-            <div x-data>
+            <div x-data x-show="submenu" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
 
                 <!-- Menu Mahasiswa -->
                 <div x-show="active >= 0 && active <= 3" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
