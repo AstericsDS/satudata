@@ -74,14 +74,15 @@ var options1 = {
     },
 
     yaxis: {
-        show: false,
+        show: true,
     },
 
     grid: {
-        show: false,
+        show: true,
     },
 
     colors: ["#4D774E", "#30534E"],
+
     fill: {
         type: "gradient",
         gradient: {
@@ -90,13 +91,18 @@ var options1 = {
             stops: [0, 100],
         },
     },
+
     legend: {
         position: "bottom",
         horizontalAlign: "center",
         itemMargin: {
             horizontal: 5,
         },
+        markers: {
+            shape: "circle"
+        },
     },
+
     title: {
         text: "Sumber: PDDIKTI",
         align: "left",
@@ -105,6 +111,38 @@ var options1 = {
         },
         margin: 20,
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                dataLabels: {
+                    enabled: false,
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        borderRadius: 5,
+                        borderRadiusApplication: "end",
+                        dataLabels: {
+                            position: "top",
+                        },
+                    },
+                },
+                yaxis: {
+                    show: true,
+                    labels: {
+                        style: {
+                            fontSize: "10px"
+                        }
+                    }
+                },
+                legend: {
+                    fontSize: "10px"
+                }
+            }
+        }
+    ]
 };
 
 var options2 = {
@@ -240,11 +278,11 @@ var options3 = {
     },
 
     yaxis: {
-        show: false,
+        show: true,
     },
 
     grid: {
-        show: false,
+        show: true,
     },
 
     colors: ["#4D774E", "#30534E"],
@@ -263,6 +301,9 @@ var options3 = {
         itemMargin: {
             horizontal: 5,
         },
+        markers: {
+            shape: "circle"
+        },
     },
 
     title: {
@@ -273,6 +314,35 @@ var options3 = {
         },
         margin: 20,
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                dataLabels: {
+                    enabled: false,
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        borderRadius: 5,
+                        borderRadiusApplication: "end",
+                        dataLabels: {
+                            position: "top",
+                        },
+                    },
+                },
+                yaxis: {
+                    show: true,
+                    labels: {
+                        style: {
+                            fontSize: "10px"
+                        }
+                    }
+                },
+            }
+        }
+    ]
 };
 
 var options4 = {
@@ -411,11 +481,11 @@ var options5 = {
     },
 
     yaxis: {
-        show: false,
+        show: true,
     },
 
     grid: {
-        show: false,
+        show: true,
     },
 
     colors: ["#4D774E", "#4D6245", "#30534E"],
@@ -435,6 +505,9 @@ var options5 = {
         itemMargin: {
             horizontal: 5,
         },
+        markers: {
+            shape: "circle"
+        },
     },
 
     title: {
@@ -445,6 +518,38 @@ var options5 = {
         },
         margin: 20,
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                dataLabels: {
+                    enabled: false,
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        borderRadius: 5,
+                        borderRadiusApplication: "end",
+                        dataLabels: {
+                            position: "top",
+                        },
+                    },
+                },
+                yaxis: {
+                    show: true,
+                    labels: {
+                        style: {
+                            fontSize: "10px"
+                        }
+                    }
+                },
+                legend: {
+                    fontSize: "10px"
+                }
+            }
+        }
+    ]
 };
 
 var options6 = {
@@ -592,11 +697,11 @@ var options7 = {
     },
 
     yaxis: {
-        show: false,
+        show: true,
     },
 
     grid: {
-        show: false,
+        show: true,
     },
 
     colors: ["#4D774E", "#4D6245", "#30534E"],
@@ -616,7 +721,42 @@ var options7 = {
         itemMargin: {
             horizontal: 5,
         },
+        markers: {
+            shape: "circle"
+        },
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                dataLabels: {
+                    enabled: false,
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        borderRadius: 5,
+                        borderRadiusApplication: "end",
+                        dataLabels: {
+                            position: "top",
+                        },
+                    },
+                },
+                yaxis: {
+                    show: true,
+                    labels: {
+                        style: {
+                            fontSize: "10px"
+                        }
+                    }
+                },
+                legend: {
+                    fontSize: "10px"
+                }
+            }
+        }
+    ]
 };
 
 var options8 = {
@@ -720,9 +860,29 @@ var options9 = {
         position: "bottom",
         horizontalAlign: "center",
         itemMargin: {
-            vertical: 25,
+            vertical: 10,
+        },
+        markers: {
+            shape: "circle"
         },
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                legend: {
+                    fontSize: "10px",
+                    itemMargin: {
+                        vertical: 5
+                    }
+                },
+                chart: {
+                    height: 400,
+                },
+            },
+        }
+    ]
 };
 
 var options10 = {
@@ -763,9 +923,29 @@ var options11 = {
         position: "bottom",
         horizontalAlign: "center",
         itemMargin: {
-            vertical: 25,
+            vertical: 10,
+        },
+        markers: {
+            shape: "circle"
         },
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                legend: {
+                    fontSize: "10px",
+                    itemMargin: {
+                        vertical: 5
+                    }
+                },
+                chart: {
+                    height: 400,
+                },
+            },
+        }
+    ]
 };
 
 var options12 = {
@@ -806,9 +986,29 @@ var options13 = {
         position: "bottom",
         horizontalAlign: "center",
         itemMargin: {
-            vertical: 25,
+            vertical: 10,
+        },
+        markers: {
+            shape: "circle"
         },
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                legend: {
+                    fontSize: "10px",
+                    itemMargin: {
+                        vertical: 5
+                    }
+                },
+                chart: {
+                    height: 400,
+                },
+            },
+        }
+    ]
 };
 
 var options14 = {
@@ -849,9 +1049,29 @@ var options15 = {
         position: "bottom",
         horizontalAlign: "center",
         itemMargin: {
-            vertical: 25,
+            vertical: 10,
+        },
+        markers: {
+            shape: "circle"
         },
     },
+
+    responsive: [
+        {
+            breakpoint: 768,
+            options: {
+                legend: {
+                    fontSize: "10px",
+                    itemMargin: {
+                        vertical: 5
+                    }
+                },
+                chart: {
+                    height: 400,
+                },
+            },
+        }
+    ]
 };
 
 var options16 = {
