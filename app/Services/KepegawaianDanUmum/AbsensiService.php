@@ -34,6 +34,9 @@ class AbsensiService {
             $this->data_wfa = $responseWfa->json();
             $this->data = $response->json();
             if($response->successful() && $responseWfa->successful() && isset($this->data['data']) && isset($this->data_wfa['data'])) {
+                if(Cache::get('absensi')) {
+                    Cache::forget('absensi');
+                }
                 Cache::remember('absensi', 86500, function() {
                     return [
                         'date' => $this->data['date'],
