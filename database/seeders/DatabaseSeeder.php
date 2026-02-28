@@ -42,6 +42,10 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Chelsea',
                 'email' => 'chelsea.vanianindya.putri@mhs.unj.ac.id'
+            ],
+            [
+                'name' => 'Agung Pandu',
+                'email' => 'agungpan@unj.ac.id'
             ]
         ]);
     }

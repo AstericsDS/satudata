@@ -4,7 +4,7 @@
     active: 0,
     total: {{ $isPrivate ? 9 : 8 }},
     submenu: false,
-    auto: false,
+    auto: true,
     intervalId: null,
     next() {
       this.active = (this.active + 1) % this.total;
@@ -620,14 +620,14 @@
         <button
           :class="active >= 0 && active <= 3 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
           class="px-2 py-1 rounded-md transition-all cursor-pointer"
-          @click="active = 0"
+          @click="active = 0; clear()"
         >
           Data Mahasiswa
         </button>
         <button
           :class="active >= 4 && active <= 7 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
           class="px-2 py-1 rounded-md transition-all cursor-pointer"
-          @click="active = 4"
+          @click="active = 4; clear()"
         >
           Data Dosen
         </button>
@@ -635,7 +635,7 @@
           <button
             :class="active == 8 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
             class="px-2 py-1 rounded-md transition-all cursor-pointer"
-            @click="active = 8"
+            @click="active = 8; clear()"
           >
             Data Absensi
           </button>
@@ -835,14 +835,14 @@
       <button
         :class="active >= 0 && active <= 3 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
         class="px-2 py-1 rounded-md transition-all cursor-pointer"
-        @click="active = 0"
+        @click="active = 0; clear()"
       >
         Data Mahasiswa
       </button>
       <button
         :class="active >= 4 && active <= 7 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
         class="px-2 py-1 rounded-md transition-all cursor-pointer"
-        @click="active = 4"
+        @click="active = 4; clear()"
       >
         Data Dosen
       </button>
@@ -850,7 +850,7 @@
         <button
           :class="active == 8 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
           class="px-2 py-1 rounded-md transition-all cursor-pointer"
-          @click="active = 8"
+          @click="active = 8; clear()"
         >
           Data Absensi
         </button>
@@ -879,14 +879,14 @@
       <button
         :class="active >= 0 && active <= 3 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
         class="px-2 py-1 rounded-md transition-all cursor-pointer"
-        @click="active = 0"
+        @click="active = 0; clear()"
       >
         Data Mahasiswa
       </button>
       <button
         :class="active >= 4 && active <= 7 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
         class="px-2 py-1 rounded-md transition-all cursor-pointer"
-        @click="active = 4"
+        @click="active = 4; clear()"
       >
         Data Dosen
       </button>
@@ -894,7 +894,7 @@
         <button
           :class="active == 8 ? 'bg-primary text-white' : 'text-primary hover:text-primary/80'"
           class="px-2 py-1 rounded-md transition-all cursor-pointer"
-          @click="active = 8"
+          @click="active = 8; clear()"
         >
           Data Absensi
         </button>
