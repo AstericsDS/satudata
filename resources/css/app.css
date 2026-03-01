@@ -23,7 +23,12 @@
     --color-secondary: #4D774E;
     --color-tertiary: #9DC88D;
     --color-red-primary: #CF1E2E;
+
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 900px;
+    --breakpoint-lg: 1680px;
 }
+
 @layer base {
     html {
         @apply text-sm;
