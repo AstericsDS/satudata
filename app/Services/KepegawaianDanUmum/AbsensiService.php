@@ -34,19 +34,17 @@ class AbsensiService {
             $this->data_wfa = $responseWfa->json();
             $this->data = $response->json();
             if($response->successful() && $responseWfa->successful() && isset($this->data['data']) && isset($this->data_wfa['data'])) {
-                if(Cache::get('absensi')) {
-                    Cache::forget('absensi');
-                }
-                Cache::remember('absensi', 86500, function() {
-                    return [
+                Cache::put('absensi',
+                    [
                         'date' => $this->data['date'],
                         'total_pegawai_aktif' => $this->data['total_pegawai_aktif'],
                         'total_absen_hari_ini' => $this->data['total_absen_hari_ini'],
                         'total_pegawai_wfa' => $this->data_wfa['data']['total'],
                         'total_pegawai_tidak_hadir' => $this->data['total_pegawai_aktif'] - $this->data['total_absen_hari_ini'] - $this->data_wfa['data']['total'],
-                    ];
-                });
-                DB::table('absensi')->truncate();
+                    ],
+                    now()->addHours(25)
+                );
+                
                 $rows = [];
                 foreach($this->data['data'] as $item) {
                     $rows[] = [
@@ -56,11 +54,11 @@ class AbsensiService {
                         'checktime' => $item['checktime'],
                     ];
                 }
-                Absensi::upsert(
-                    $rows,
-                    ['nama', 'unit_kerja'],
-                    ['cabang', 'checktime']
-                );
+
+                DB::transaction(function() use ($rows) {
+                    DB::table('absensi')->delete();
+                    DB::table('absensi')->insert($rows);
+                });
                 
                 if($this->sync) {
                     $this->sync->update(['status' => 'synchronized']);

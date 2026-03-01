@@ -84,6 +84,34 @@ window.renderChart1 = function () {
             },
             margin: 20,
         },
+
+        responsive: [
+            {
+                breakpoint: 930,
+                options: {
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                        }
+                    },
+                    legend: {
+                        fontSize: "10px"
+                    },
+                    dataLabels: {
+                        offsetY: 0,
+                        style: {
+                            fontSize: "10px"
+                        },
+                        background: {
+                            enabled: true,
+                            foreColor: '#ffffff',
+                            padding: 4,
+                            borderRadius: 2,
+                        },
+                    }
+                }
+            }
+        ]
     };
 
     window.chart1 = new ApexCharts(document.querySelector("#chart"), options1);

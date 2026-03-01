@@ -1,4 +1,4 @@
-<div class="mx-24 mt-4 mb-20">
+<div class="mx-24 mt-4 mb-8">
 
     <!-- Breadcrumb -->
     <nav class="flex justify-end" aria-label="Breadcrumb">

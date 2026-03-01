@@ -1,4 +1,4 @@
-<div class="mx-24 mt-4 mb-20">
+<div class="mx-24 mt-4 mb-8">
     @vite(['resources/js/charts/tracer-study-partisipasi.js', 'resources/js/charts/tracer-study-status.js'])
     <!-- Breadcrumb -->
     <nav class="flex justify-end" aria-label="Breadcrumb">

@@ -117,7 +117,17 @@ var options1 = {
             breakpoint: 768,
             options: {
                 dataLabels: {
-                    enabled: false,
+                    offsetY: 0,
+                    offsetX: -20,
+                    style: {
+                        fontSize: "10px"
+                    },
+                    background: {
+                        enabled: true,
+                        foreColor: '#ffffff',
+                        padding: 4,
+                        borderRadius: 2,
+                    },
                 },
                 plotOptions: {
                     bar: {
@@ -320,7 +330,17 @@ var options3 = {
             breakpoint: 768,
             options: {
                 dataLabels: {
-                    enabled: false,
+                    offsetY: 0,
+                    offsetX: -20,
+                    style: {
+                        fontSize: "10px"
+                    },
+                    background: {
+                        enabled: true,
+                        foreColor: '#ffffff',
+                        padding: 4,
+                        borderRadius: 2,
+                    },
                 },
                 plotOptions: {
                     bar: {
@@ -524,7 +544,17 @@ var options5 = {
             breakpoint: 768,
             options: {
                 dataLabels: {
-                    enabled: false,
+                    offsetY: 0,
+                    offsetX: -15,
+                    style: {
+                        fontSize: "9px"
+                    },
+                    background: {
+                        enabled: true,
+                        foreColor: '#ffffff',
+                        padding: 4,
+                        borderRadius: 2,
+                    },
                 },
                 plotOptions: {
                     bar: {
@@ -731,7 +761,17 @@ var options7 = {
             breakpoint: 768,
             options: {
                 dataLabels: {
-                    enabled: false,
+                    offsetY: 0,
+                    offsetX: -20,
+                    style: {
+                        fontSize: "10px"
+                    },
+                    background: {
+                        enabled: true,
+                        foreColor: '#ffffff',
+                        padding: 4,
+                        borderRadius: 2,
+                    },
                 },
                 plotOptions: {
                     bar: {
