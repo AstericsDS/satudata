@@ -1,6 +1,6 @@
 <div class="p-8">
 
-    <div wire:poll.3s class="flex gap-4 mb-8">
+    <div wire:poll.3s class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div class="flex-1 bg-[#006569]/10 rounded-md p-4 text-center flex flex-col space-y-2 border-[1px] border-slate-400">
             <h1 class="text-3xl text-primary font-semibold">{{ $sync->count() }}</h1>
             <h2 class="text-xl text-primary">Total Menu</h2>

@@ -1,4 +1,4 @@
-<div class="mx-24 mt-4 mb-20">
+<div class="mx-24 mt-4 mb-8">
     @vite(['resources/js/charts/keuangan-dan-perencanaan.js'])
 
     {{-- Breadcrumbs - Start --}}

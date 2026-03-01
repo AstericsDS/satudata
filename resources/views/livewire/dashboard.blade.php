@@ -4,7 +4,7 @@
     active: 0,
     total: {{ $isPrivate ? 9 : 8 }},
     submenu: false,
-    auto: false,
+    auto: true,
     intervalId: null,
     next() {
       this.active = (this.active + 1) % this.total;
@@ -30,7 +30,7 @@
       }, 10000)
     },
   }"
-  class="mb-20"
+  class="mb-8"
 >
   {{-- Stat Cards - Start --}}
   <div
@@ -38,14 +38,14 @@
     class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-6 my-8 mx-4 md:mx-12 xl:mx-8 2xl:mx-24"
   >
     {{-- Wisudawan --}}
-    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap">
+    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap text-sm sm:text-base">
       <div class="flex items-center justify-center gap-8">
         <img
           src="{{ asset("assets/dashboard/wisudawan.svg") }}"
           alt="Wisudawan 2025"
           class="lg:w-14 lg:h-14 w-10 h-10 shrink-0"
         />
-        <div class="flex flex-col text-center items-center justify-center gap-2 text-xl">
+        <div class="flex flex-col text-center items-center justify-center gap-2 text-lg sm:text-xl">
           <span class="font-bold">{{ $dashboardData["wisuda"] ?? "-" }}</span>
           <span class="font-semibold">Wisudawan {{ $year }}</span>
         </div>
@@ -63,14 +63,14 @@
     </div>
 
     {{-- Mahasiswa --}}
-    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap">
+    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap text-sm sm:text-base">
       <div class="flex items-center justify-center gap-8">
         <img
           src="{{ asset("assets/dashboard/mahasiswa.svg") }}"
           alt="Mahasiswa"
           class="lg:w-14 lg:h-14 w-10 h-10 shrink-0"
         />
-        <div class="flex flex-col text-center items-center justify-center gap-2 text-xl">
+        <div class="flex flex-col text-center items-center justify-center gap-2 text-lg sm:text-xl">
           <span class="font-bold">{{ $dashboardData["mahasiswa"] ?? "-" }}</span>
           <span class="font-semibold">Mahasiswa</span>
         </div>
@@ -88,14 +88,14 @@
     </div>
 
     {{-- Dosen --}}
-    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap">
+    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap text-sm sm:text-base">
       <div class="flex items-center justify-center gap-8">
         <img
           src="{{ asset("assets/dashboard/dosen.svg") }}"
           alt="Dosen"
           class="lg:w-14 lg:h-14 w-10 h-10 shrink-0"
         />
-        <div class="flex flex-col text-center items-center justify-center gap-2 text-xl">
+        <div class="flex flex-col text-center items-center justify-center gap-2 text-lg sm:text-xl">
           <span class="font-bold">{{ $dashboardData["dosen"] ?? "-" }}</span>
           <span class="font-semibold">Dosen</span>
         </div>
@@ -113,14 +113,14 @@
     </div>
 
     {{-- Peminat --}}
-    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap">
+    <div class="px-4 py-6 xl:px-6 xl:py-8 flex flex-col gap-4 bg-white border border-gray-300 rounded-md shadow-md text-nowrap text-sm sm:text-base">
       <div class="flex items-center justify-center gap-8">
         <img
           src="{{ asset("assets/dashboard/peminat.svg") }}"
           alt="Peminat 2025"
           class="lg:w-14 lg:h-14 w-10 h-10 shrink-0"
         />
-        <div class="flex flex-col text-center items-center justify-center gap-2 text-xl">
+        <div class="flex flex-col text-center items-center justify-center gap-2 text-lg sm:text-xl">
           <span class="font-bold">0</span>
           <span class="font-semibold">Peminat {{ $year }}</span>
         </div>
@@ -172,7 +172,7 @@
       </div>
       <div class="flex flex-col gap-2 z-50">
         <h2 class="text-white font-semibold">Pegawai Belum Presensi</h2>
-        <span class="text-5xl text-white font-semibold">{{ $this->absensi["total_pegawai_tidak_hadir"] ?? 0 }}</span>
+        <span class="text-3xl sm:text-5xl text-white font-semibold">{{ $this->absensi["total_pegawai_tidak_hadir"] ?? 0 }}</span>
       </div>
     </div>
 
@@ -206,7 +206,7 @@
       </div>
       <div class="flex flex-col gap-2 z-50">
         <h2 class="text-white font-semibold">Pegawai Hadir</h2>
-        <span class="text-5xl text-white font-semibold">{{ $this->absensi["total_absen_hari_ini"] ?? 0 }}</span>
+        <span class="text-3xl sm:text-5xl text-white font-semibold">{{ $this->absensi["total_absen_hari_ini"] ?? 0 }}</span>
       </div>
     </div>
 
@@ -234,7 +234,7 @@
       </div>
       <div class="flex flex-col gap-2 z-50">
         <h2 class="text-white font-semibold">Pegawai WFA</h2>
-        <span class="text-5xl text-white font-semibold">{{ $this->absensi["total_pegawai_wfa"] ?? 0 }}</span>
+        <span class="text-3xl sm:text-5xl text-white font-semibold">{{ $this->absensi["total_pegawai_wfa"] ?? 0 }}</span>
       </div>
     </div>
 
@@ -262,7 +262,7 @@
       </div>
       <div class="flex flex-col gap-2 z-50">
         <h2 class="text-white font-semibold">Total Pegawai</h2>
-        <span class="text-5xl text-white font-semibold">{{ $this->absensi["total_pegawai_aktif"] ?? 0 }}</span>
+        <span class="text-3xl sm:text-5xl text-white font-semibold">{{ $this->absensi["total_pegawai_aktif"] ?? 0 }}</span>
       </div>
     </div>
   </div>
@@ -275,56 +275,20 @@
     <div class="w-[95%] md:w-[90%] xl:w-[65%] mx-auto flex justify-between sm:justify-end items-center mb-2">
       <div class="flex gap-2 items-center sm:hidden">
         <button
-          class="cursor-pointer"
+          class="cursor-pointer px-4 rounded-md border-[3px] border-primary flex items-center justify-center"
           @click="prev()"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <g
-              fill="none"
-              stroke="#006569"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-              />
-              <path d="m14 16l-4-4l4-4" />
-            </g>
-          </svg>
+          <span class="text-xl text-primary font-semibold">
+            <
+          </span>
         </button>
         <button
-          class="cursor-pointer"
+          class="cursor-pointer px-4 rounded-md border-[3px] border-primary flex items-center justify-center"
           @click="next()"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <g
-              fill="none"
-              stroke="#006569"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+          <span class="text-xl text-primary font-semibold">
             >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-              />
-              <path d="m10 8l4 4l-4 4" />
-            </g>
-          </svg>
+          </span>
         </button>
       </div>
       <label class="inline-flex items-center cursor-pointer">
@@ -390,10 +354,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Jumlah Mahasiswa Berdasarkan Tahun Angkatan</h1>
 
           @if (optional($syncMahasiswa)->updated_at)
-            <h2>Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -415,10 +379,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Jumlah Mahasiswa Berdasarkan Fakultas</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Jumlah Mahasiswa Berdasarkan Fakultas</h1>
 
           @if (optional($syncMahasiswa)->updated_at)
-            <h2>Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -440,10 +404,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Jumlah Mahasiswa Berdasarkan Jenjang</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Jumlah Mahasiswa Berdasarkan Jenjang</h1>
 
           @if (optional($syncMahasiswa)->updated_at)
-            <h2>Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -465,10 +429,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Jumlah Peminat per-Tahun</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Jumlah Peminat per-Tahun</h1>
 
           @if (optional($syncMahasiswa)->updated_at)
-            <h2>Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncMahasiswa->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -490,10 +454,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Dosen Berdasarkan Pendidikan</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Dosen Berdasarkan Pendidikan</h1>
 
           @if (optional($syncDosen)->updated_at)
-            <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -515,10 +479,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Dosen Berdasarkan Jabatan Fungsional</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Dosen Berdasarkan Jabatan Fungsional</h1>
 
           @if (optional($syncDosen)->updated_at)
-            <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -540,10 +504,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Dosen Berdasarkan Fakultas</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Dosen Berdasarkan Fakultas</h1>
 
           @if (optional($syncDosen)->updated_at)
-            <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -565,10 +529,10 @@
       >
         {{-- Header --}}
         <div class="p-4 text-white text-center">
-          <h1 class="font-semibold">Dosen Berdasarkan Status Kepegawaian</h1>
+          <h1 class="text-sm sm:text-base font-semibold">Dosen Berdasarkan Status Kepegawaian</h1>
 
           @if (optional($syncDosen)->updated_at)
-            <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+            <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
           @else
             <h2>Belum Sinkron</h2>
           @endif
@@ -757,7 +721,7 @@
               <h1 class="font-semibold text-sm">Dosen Berdasarkan Pendidikan</h1>
               <h2 class="text-sm">
                 @if (optional($syncDosen)->updated_at)
-                  <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+                  <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
                 @else
                   <h2>Belum Sinkron</h2>
                 @endif
@@ -776,7 +740,7 @@
               <h1 class="font-semibold text-sm">Dosen Berdasarkan Jabatan Fungsional</h1>
               <h2 class="text-sm">
                 @if (optional($syncDosen)->updated_at)
-                  <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+                  <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
                 @else
                   <h2>Belum Sinkron</h2>
                 @endif
@@ -795,7 +759,7 @@
               <h1 class="font-semibold text-sm">Dosen Berdasarkan Fakultas</h1>
               <h2 class="text-sm">
                 @if (optional($syncDosen)->updated_at)
-                  <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+                  <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
                 @else
                   <h2>Belum Sinkron</h2>
                 @endif
@@ -814,7 +778,7 @@
               <h1 class="font-semibold text-sm">Dosen Berdasarkan Status Kepegawaian</h1>
               <h2 class="text-sm">
                 @if (optional($syncDosen)->updated_at)
-                  <h2>Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
+                  <h2 class="text-sm sm:text-base">Data diperbarui {{ optional($syncDosen->updated_at)->locale("id")->diffForHumans() }}</h2>
                 @else
                   <h2>Belum Sinkron</h2>
                 @endif

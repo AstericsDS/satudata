@@ -1,5 +1,5 @@
 @vite(["resources/js/charts/bisnis-dan-inovasi.js"])
-<div class="mx-24 mb-20 mt-4">
+<div class="mx-24 mb-8 mt-4">
     <!-- Breadcrumb -->
     <nav
         class="flex justify-end"

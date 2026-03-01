@@ -1,4 +1,4 @@
-<div class="flex flex-col min-h-screen mb-20">
+<div class="flex flex-col min-h-screen mb-8">
     @vite(['resources/js/charts/profil-kepakaran-dosen.js'])
     @vite(['resources/js/charts/jumlah-publikasi.js'])
 
