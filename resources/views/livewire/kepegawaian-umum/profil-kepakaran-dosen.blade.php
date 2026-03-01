@@ -308,7 +308,10 @@
                     {{-- Filter - End --}}
 
                     {{-- Grafik - Start --}}
-                    <div class="rounded-md flex flex-col gap-4 p-6 w-full">
+                    <div
+                        x-data="{ chartType: 'bar' }"
+                        class="rounded-md flex flex-col gap-4 p-6 w-full"
+                    >
                         @if ($update && $update->status === 'synchronized')
                             <p class="font-light text-gray-500">
                                 Data diperbarui {{ $update->updated_at->locale('id')->diffForHumans() }}
@@ -318,6 +321,43 @@
                                 Data Belum Sinkron
                             </p>
                         @endif
+
+                        {{-- Chart Type Toggle --}}
+                        <div class="flex items-center gap-2 self-end">
+                            {{-- Bar Chart Button --}}
+                            <button
+                                @click="chartType = 'bar'; window._currentChartType = 'bar'; window.renderChartDosen(window._lastChartData || {}, 'bar')"
+                                :class="chartType === 'bar'
+                                    ? 'bg-primary text-white shadow-md'
+                                    : 'bg-white text-gray-500 border border-gray-300 hover:border-primary hover:text-primary'"
+                                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer"
+                                title="Column Chart"
+                            >
+                                {{-- Bar chart icon --}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 13h2v7H3zm4-6h2v13H7zm4 3h2v10h-2zm4-6h2v16h-2z"/>
+                                </svg>
+                                Batang
+                            </button>
+
+                            {{-- Pie Chart Button --}}
+                            <button
+                                @click="chartType = 'pie'; window._currentChartType = 'pie'; window.renderChartDosen(window._lastChartData || {}, 'pie')"
+                                :class="chartType === 'pie'
+                                    ? 'bg-primary text-white shadow-md'
+                                    : 'bg-white text-gray-500 border border-gray-300 hover:border-primary hover:text-primary'"
+                                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer"
+                                title="Pie Chart"
+                            >
+                                {{-- Pie chart icon --}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11 2.05v8.95H2.05A9.003 9.003 0 0 1 11 2.05zm2 0A9.003 9.003 0 0 1 21.95 11H13V2.05zM21.95 13A9.003 9.003 0 0 1 3.28 18.78L9.34 13H21.95zm-13 .06L3.28 18.78A9.003 9.003 0 0 1 2.05 13H8.95z"/>
+                                </svg>
+                                Pie
+                            </button>
+                        </div>
+                        {{-- Chart Type Toggle End --}}
+
                         <div id="chart-dosen" wire:ignore></div>
                         <script>
                             document.addEventListener('livewire:init', () => {
@@ -327,21 +367,27 @@
                                     lektor_kepala: @json($data_lektor_kepala),
                                     profesor: @json($data_profesor),
                                     arsiparis: @json($data_arsiparis),
-
                                 };
 
-                                window.renderChartDosen(chartData);
+                                // Store data globally so the Alpine toggle can re-use it
+                                window._lastChartData = chartData;
+                                window.renderChartDosen(chartData, 'bar');
 
                                 Livewire.on('update-chart-dosen', (event) => {
-                                    // Event biasanya dikirim dalam array, ambil index 0
                                     const newData = event[0];
-                                    
-                                    // Panggil ulang fungsi render chart dengan data baru
-                                    // Asumsi: renderChartDosen di file JS kamu sudah handle destroy/update chart lama
-                                    window.renderChartDosen(newData);
+                                    // Keep the currently active chart type when filters change
+                                    const currentType = window._currentChartType || 'bar';
+                                    window._lastChartData = newData;
+                                    window.renderChartDosen(newData, currentType);
                                 });
-                            })
+                            });
+
+                            // Track which chart type is active (mirrors Alpine state)
+                            document.addEventListener('alpine:init', () => {
+                                window._currentChartType = 'bar';
+                            });
                         </script>
+
                         <div class="bg-[#EDF7F6] rounded-md p-5 text-black">
                             <h1 class="font-bold text-xl">Analisis Data</h1>
                             <p class="text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
