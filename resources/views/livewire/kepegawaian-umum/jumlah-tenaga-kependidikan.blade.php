@@ -55,7 +55,7 @@
                     <button @click="$dispatch('change-menu', { menu: 'daftar-tendik' })"
                         class="text-center py-3 flex-1 rounded-md font-semibold"
                         :class="menu === 'daftar-tendik' ? 'bg-linear-to-l from-primary to to-accent-1 text-white' : 'text-black hover:text-primary cursor-pointer'">
-                        Daftar Tenaga Kependidikan per Unit
+                        Daftar Tenaga Kependidikan
                     </button>
                 </div>
 
@@ -196,6 +196,42 @@
                                 Data Belum Sinkron
                             </p>
                         @endif
+
+                        {{-- Chart Type Toggle --}}
+                        <div class="flex items-center gap-2 self-end" x-data="{ chartType: 'bar' }">
+                            {{-- Bar Chart Button --}}
+                            <button
+                                @click="chartType = 'bar'; window._currentChartType = 'bar'; window.renderChartTendik(window._lastChartData || {}, 'bar')"
+                                :class="chartType === 'bar'
+                                    ? 'bg-primary text-white shadow-md'
+                                    : 'bg-white text-gray-500 border border-gray-300 hover:border-primary hover:text-primary'"
+                                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer"
+                                title="Column Chart"
+                            >
+                                {{-- Bar chart icon --}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 13h2v7H3zm4-6h2v13H7zm4 3h2v10h-2zm4-6h2v16h-2z"/>
+                                </svg>
+                                Batang
+                            </button>
+
+                            {{-- Pie Chart Button --}}
+                            <button
+                                @click="chartType = 'pie'; window._currentChartType = 'pie'; window.renderChartTendik(window._lastChartData || {}, 'pie')"
+                                :class="chartType === 'pie'
+                                    ? 'bg-primary text-white shadow-md'
+                                    : 'bg-white text-gray-500 border border-gray-300 hover:border-primary hover:text-primary'"
+                                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer"
+                                title="Pie Chart"
+                            >
+                                {{-- Pie chart icon --}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11 2.05v8.95H2.05A9.003 9.003 0 0 1 11 2.05zm2 0A9.003 9.003 0 0 1 21.95 11H13V2.05zM21.95 13A9.003 9.003 0 0 1 3.28 18.78L9.34 13H21.95zm-13 .06L3.28 18.78A9.003 9.003 0 0 1 2.05 13H8.95z"/>
+                                </svg>
+                                Pie
+                            </button>
+                        </div>
+
                         <div id="chart-tendik" wire:ignore></div>
                         <script>
                             document.addEventListener('livewire:init', () => {
@@ -206,14 +242,20 @@
                                     tendik_pppk: @json($data_tendik_pppk),
                                 };
 
-                                window.renderChartTendik(chartData);
+                                window._lastChartData = chartData;
+                                window.renderChartTendik(chartData, 'bar');
 
                                 Livewire.on('update-chart-tendik', (event) => {
                                     const newData = event[0];
-                                    // console.log(newData)
-                                    window.renderChartTendik(newData);
+                                    const currentType = window._currentChartType || 'bar';
+                                    window._lastChartData = newData;
+                                    window.renderChartTendik(newData, currentType);
                                 });
-                            })
+                            });
+
+                            document.addEventListener('alpine:init', () => {
+                                window._currentChartType = 'bar';
+                            });
                         </script>
                     </div>
                     {{-- Grafik - End --}}

@@ -1,57 +1,44 @@
 import ApexCharts from "apexcharts";
 
-window.renderChartTendik = function (dataValues) {
+const CHART_COLORS = ["#4D774E", "#006569", "#589092", "#7F7099"];
+const CHART_GRADIENT_TO = ["#8FDD91", "#6CB9AD", "#95F4F8", "#D4BBFF"];
+const CHART_CATEGORIES = [
+    "Tendik PNS",
+    "Tendik Tetap",
+    "Tendik Tidak Tetap",
+    "Tendik PPPK",
+];
+
+window.renderChartTendik = function (dataValues, chartType = 'bar') {
     if(window.chartTendikInstance) {
         window.chartTendikInstance.destroy();
     }
 
-    var optionTendik = {
+    const seriesData = [
+        dataValues.tendik_pns || 0,
+        dataValues.tendik_tetap || 0,
+        dataValues.tendik_tidak_tetap || 0,
+        dataValues.tendik_pppk || 0,
+    ];
+
+    const commonOptions = {
         title: {
-            text: "Jumlah Tenaga Kependidikan",
-            align: "center",
-            style: {
-                fontSize: "16px",
-            },
+            text: 'Jumlah Tenaga Kependidikan',
+            align: 'center',
+            style: { fontSize: '16px' },
             margin: 20,
         },
 
         subtitle: {
-            text: "Sumber: SIPEG",
-            align: "left",
+            text: 'Sumber: SIPEG',
+            align: 'left',
             style: {
                 fontSize: "11px",
                 fontWeight: "bold",
             },
         },
 
-        chart: {
-            type: "bar",
-            height: 500,
-            animations: {
-                enabled: true,
-            },
-        },
-
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                borderRadius: 5,
-                borderRadiusApplication: "end",
-                dataLabels: {
-                    position: "top",
-                },
-                distributed: true,
-            },
-        },
-
-        dataLabels: {
-            enabled: true,
-            offsetX: 30,
-            style: {
-                fontSize: "12px",
-                colors: ["#304758"],
-            },
-        },
+        colors: CHART_COLORS,
 
         legend: {
             position: "bottom",
@@ -60,57 +47,96 @@ window.renderChartTendik = function (dataValues) {
                 horizontal: 5,
             },
         },
-
-        series: [
-            {
-                name: "Jumlah Tenaga Kependidikan",
-                data: [
-                    dataValues.tendik_pns,
-                    dataValues.tendik_tetap,
-                    dataValues.tendik_tidak_tetap,
-                    dataValues.tendik_pppk,
-                ],
-            },
-        ],
-
-        xaxis: {
-            categories: [
-                "Tendik PNS",
-                "Tendik Tetap",
-                "Tendik Tidap Tetap",
-                "Tendik PPPK",
-            ],
-            labels: {
-                style: { fontSize: "12px" },
-            },
-        },
-
-        colors: ["#4D774E", "#006569", "#589092", "#7F7099"],
-
-        fill: {
-            type: "gradient",
-            gradient: {
-                shade: "light",
-                type: "horizontal",
-                shadeIntensity: 0.5,
-                gradientToColors: ["#8FDD91", "#6CB9AD", "#95F4F8", "#D4BBFF"],
-                inverseColors: false,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100],
-            },
-        },
-
-        stroke: {
-            show: true,
-            width: 3,
-            colors: ["transparent"],
-        },
-
-        grid: {
-            show: false,
-        },
     };
+
+    let optionTendik;
+
+    if (chartType === 'pie') {
+        optionTendik = {
+            ...commonOptions,
+            chart: {
+                type: 'pie',
+                height: 500,
+                animations: { enabled: true },
+            },
+            series: seriesData,
+            labels: CHART_CATEGORIES,
+            dataLabels: {
+                enabled: true,
+                formatter: function (val, opts) {
+                    return opts.w.config.labels[opts.seriesIndex] + ': ' + opts.w.globals.series[opts.seriesIndex];
+                },
+                style: { fontSize: '12px' },
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) { return val + ' Tenaga Kependidikan'; }
+                }
+            },
+        };
+    } else {
+        const maxData = Math.max(...seriesData);
+        const axisMax = maxData + Math.max(1, Math.ceil(maxData * 0.2));
+
+        optionTendik = {
+            ...commonOptions,
+            chart: {
+                type: 'bar',
+                height: 500,
+                animations: { enabled: true },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    borderRadius: 5,
+                    borderRadiusApplication: "end",
+                    dataLabels: {
+                        position: "top",
+                    },
+                    distributed: true,
+                },
+            },
+            dataLabels: {
+                enabled: true,
+                offsetX: 30,
+                style: {
+                    fontSize: "12px",
+                    colors: ["#304758"],
+                },
+            },
+            series: [{
+                name: 'Jumlah Tenaga Kependidikan',
+                data: seriesData,
+            }],
+            xaxis: {
+                categories: CHART_CATEGORIES,
+                max: axisMax,
+                labels: {
+                    style: { fontSize: "12px" },
+                    formatter: function (val) { return Math.round(val); }
+                },
+            },
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shade: "light",
+                    type: "horizontal",
+                    shadeIntensity: 0.5,
+                    gradientToColors: CHART_GRADIENT_TO,
+                    inverseColors: false,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100],
+                },
+            },
+            stroke: {
+                show: true,
+                width: 3,
+                colors: ['transparent'],
+            },
+            grid: { show: false }
+        }
+    }
 
     window.chartTendikInstance = new ApexCharts(
         document.querySelector("#chart-tendik"),
