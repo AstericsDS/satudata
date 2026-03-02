@@ -33,7 +33,9 @@ class AbsensiService {
             $responseWfa = Http::withoutVerifying()->withToken(config('api.buk_token'))->post(config('api.buk_base_url') . '/absen-dasi.php');
             $this->data_wfa = $responseWfa->json();
             $this->data = $response->json();
+            
             if($response->successful() && $responseWfa->successful() && isset($this->data['data']) && isset($this->data_wfa['data'])) {
+                Cache::forget('absensi');
                 Cache::put('absensi',
                     [
                         'date' => $this->data['date'],

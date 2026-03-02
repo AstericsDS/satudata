@@ -21,4 +21,4 @@ Schedule::job(new SyncTracerStudy)->dailyAt('00:15');
 Schedule::job(new SyncKerjasama)->dailyAt('00:20');
 Schedule::job(new SyncTendik)->dailyAt('00:25');
 Schedule::job(new SyncAnggaran)->dailyAt('00:30');
-Schedule::job(new SyncAbsensi)->dailyAt('07:00');
+Schedule::job(new SyncAbsensi)->hourly();
