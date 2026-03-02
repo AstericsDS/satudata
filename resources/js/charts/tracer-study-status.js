@@ -22,6 +22,27 @@ var options1 = {
 
     labels: Object.keys(data['status_pekerjaan']),
 
+    responsive: [
+        {
+            breakpoint: 768,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    options: {
+                        legend: {
+                            fontSize: "5px",
+                            itemMargin: {
+                                vertical: 5
+                            }
+                        },
+                        chart: {
+                            height: 400,
+                        },
+                    },
+                }
+            ]
+        }
+    ]
 };
 
 var chart1 = new ApexCharts(document.querySelector("#status"), options1);

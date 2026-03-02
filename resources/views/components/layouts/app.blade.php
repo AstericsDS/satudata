@@ -13,7 +13,7 @@
     @livewireStyles
 </head>
 
-<body class="min-h-screen bg-[url('/public/assets/dashboard/background.svg')] bg-cover relative flex flex-col">
+<body class="min-h-screen bg-[url('/public/assets/dashboard/background.svg')] bg-cover relative grid grid-rows-[auto_1fr_auto]">
     
     {{-- Navbar --}}
     <livewire:navbar />
